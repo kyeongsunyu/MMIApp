@@ -28,6 +28,15 @@ x86/
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/
+
+# _MappingLibrary keeps seven C# sources in a folder literally named "bin".
+# They are source, not build output, and Mapping.csproj compiles them, but
+# [Bb]in/ above swept them out of version control - a fresh clone fails with
+# CS2001 on every one. Re-include the directory first: git does not descend
+# into an excluded directory, so un-excluding the files alone would do nothing.
+!_MappingLibrary/bin/
+_MappingLibrary/bin/*
+!_MappingLibrary/bin/*.cs
 [Oo]bj/
 [Oo]ut/
 [Ll]og/
