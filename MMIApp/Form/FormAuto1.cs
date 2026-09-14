@@ -578,5 +578,95 @@ namespace MMI
         {
            
         }
+
+        #region SCAN TRIGGER
+
+        // The panel is laid out and its inputs are parsed here, but nothing is
+        // sent to SEQ yet: the shared memory DLL that carries the recipe has
+        // been extended in source and still has to be rebuilt and dropped into
+        // C:\WORK\DLL. SendScanTriggerRecipe() is the one place those calls go.
+        //
+        // The right hand column is deliberately left empty until then. Every
+        // value there - speed, line count, scan time, pitch in encoder counts -
+        // is computed by SEQ from the recipe, and computing it a second time
+        // here would give the operator two answers that can disagree.
+
+        private bool TryReadScanTriggerRecipe(out double dStart, out double dEnd,
+                                              out double dPitch, out double dRate)
+        {
+            dStart = dEnd = dPitch = dRate = 0.0;
+
+            if (!double.TryParse(txtScanTrigStart.Text, out dStart)) return false;
+            if (!double.TryParse(txtScanTrigEnd.Text,   out dEnd))   return false;
+            if (!double.TryParse(txtScanTrigPitch.Text, out dPitch)) return false;
+            if (!double.TryParse(txtScanTrigRate.Text,  out dRate))  return false;
+
+            return true;
+        }
+
+        private void ClearScanTriggerDisplay()
+        {
+            lblScanTrigSpeed.Text  = "-";
+            lblScanTrigLines.Text  = "-";
+            lblScanTrigTime.Text   = "-";
+            lblScanTrigCounts.Text = "-";
+            lblScanTrigState.Text  = "-";
+        }
+
+        private void SendScanTriggerRecipe(double dStart, double dEnd,
+                                           double dPitch, double dRate)
+        {
+            // Once SharedMemDll carries the recipe:
+            //
+            //   MmiGV.pShMem.WScanTriggerRecipe.uAxisNo    = 0;
+            //   MmiGV.pShMem.WScanTriggerRecipe.dTrigStart = dStart;
+            //   MmiGV.pShMem.WScanTriggerRecipe.dTrigEnd   = dEnd;
+            //   MmiGV.pShMem.WScanTriggerRecipe.dPitch     = dPitch;
+            //   MmiGV.pShMem.WScanTriggerRecipe.dLineRate  = dRate;
+            //   MmiGV.pShMem.SetScanTriggerRecipe();
+            //   MmiGV.pShMem.GetScanTriggerDisplay();
+            //
+            // then fill the right hand column from RScanTriggerDisplay and
+            // enable START only when nValidateCode is 0.
+        }
+
+        private void btnScanTrigSet_Click(object sender, EventArgs e)
+        {
+            double dStart, dEnd, dPitch, dRate;
+
+            if (!TryReadScanTriggerRecipe(out dStart, out dEnd, out dPitch, out dRate))
+            {
+                lblScanTrigResult.Text = "BAD NUMBER";
+                ClearScanTriggerDisplay();
+                return;
+            }
+
+            // Only the checks that need no machine knowledge. Everything else -
+            // whether the pitch is a whole number of encoder counts, whether the
+            // speed fits the axis - is SEQ's to judge.
+            if (dEnd <= dStart || dPitch <= 0.0 || dRate <= 0.0)
+            {
+                lblScanTrigResult.Text = "BAD RANGE";
+                ClearScanTriggerDisplay();
+                return;
+            }
+
+            SendScanTriggerRecipe(dStart, dEnd, dPitch, dRate);
+            lblScanTrigResult.Text = "NOT CONNECTED";
+        }
+
+        private void btnScanTrigStart_Click(object sender, EventArgs e)
+        {
+            // MmiGV.pShMem.SetScanTriggerStart();
+            lblScanTrigResult.Text = "NOT CONNECTED";
+        }
+
+        private void btnScanTrigStop_Click(object sender, EventArgs e)
+        {
+            // MmiGV.pShMem.SetScanTriggerStop();
+            lblScanTrigResult.Text = "NOT CONNECTED";
+        }
+
+        #endregion
     }
 }

@@ -124,6 +124,30 @@
             this.buttonX3 = new DevComponents.DotNetBar.ButtonX();
             this.bar1 = new DevComponents.DotNetBar.Bar();
             this.superTabItem3 = new DevComponents.DotNetBar.SuperTabItem();
+            this.groupBoxScanTrigger = new System.Windows.Forms.GroupBox();
+            this.txtScanTrigStart = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtScanTrigEnd = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtScanTrigPitch = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtScanTrigRate = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.lblScanTrigSpeed = new DevComponents.DotNetBar.LabelX();
+            this.lblScanTrigLines = new DevComponents.DotNetBar.LabelX();
+            this.lblScanTrigTime = new DevComponents.DotNetBar.LabelX();
+            this.lblScanTrigCounts = new DevComponents.DotNetBar.LabelX();
+            this.lblScanTrigState = new DevComponents.DotNetBar.LabelX();
+            this.lblScanTrigResult = new DevComponents.DotNetBar.LabelX();
+            this.lblcapScanTrig0 = new DevComponents.DotNetBar.LabelX();
+            this.lblcapScanTrig1 = new DevComponents.DotNetBar.LabelX();
+            this.lblcapScanTrig2 = new DevComponents.DotNetBar.LabelX();
+            this.lblcapScanTrig3 = new DevComponents.DotNetBar.LabelX();
+            this.lblcapScanTrigR0 = new DevComponents.DotNetBar.LabelX();
+            this.lblcapScanTrigR1 = new DevComponents.DotNetBar.LabelX();
+            this.lblcapScanTrigR2 = new DevComponents.DotNetBar.LabelX();
+            this.lblcapScanTrigR3 = new DevComponents.DotNetBar.LabelX();
+            this.lblcapScanTrigR4 = new DevComponents.DotNetBar.LabelX();
+            this.lblcapScanTrigR5 = new DevComponents.DotNetBar.LabelX();
+            this.btnScanTrigSet = new DevComponents.DotNetBar.ButtonX();
+            this.btnScanTrigStart = new DevComponents.DotNetBar.ButtonX();
+            this.btnScanTrigStop = new DevComponents.DotNetBar.ButtonX();
             this.tmRun = new System.Windows.Forms.Timer(this.components);
             this.btnTest = new DevComponents.DotNetBar.ButtonX();
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
@@ -1494,6 +1518,7 @@
             // 
             // tcState
             // 
+            this.tcState.Controls.Add(this.groupBoxScanTrigger);
             this.tcState.Controls.Add(this.groupBox3);
             this.tcState.Controls.Add(this.groupBox2);
             this.tcState.Controls.Add(this.groupBox1);
@@ -1505,6 +1530,292 @@
             this.tcState.Size = new System.Drawing.Size(1196, 886);
             this.tcState.TabIndex = 0;
             this.tcState.TabItem = this.superTabItem3;
+            // 
+            // groupBoxScanTrigger
+            // 
+            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrig0);
+            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrig1);
+            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrig2);
+            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrig3);
+            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrigR0);
+            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrigR1);
+            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrigR2);
+            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrigR3);
+            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrigR4);
+            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrigR5);
+            this.groupBoxScanTrigger.Controls.Add(this.txtScanTrigStart);
+            this.groupBoxScanTrigger.Controls.Add(this.txtScanTrigEnd);
+            this.groupBoxScanTrigger.Controls.Add(this.txtScanTrigPitch);
+            this.groupBoxScanTrigger.Controls.Add(this.txtScanTrigRate);
+            this.groupBoxScanTrigger.Controls.Add(this.lblScanTrigSpeed);
+            this.groupBoxScanTrigger.Controls.Add(this.lblScanTrigLines);
+            this.groupBoxScanTrigger.Controls.Add(this.lblScanTrigTime);
+            this.groupBoxScanTrigger.Controls.Add(this.lblScanTrigCounts);
+            this.groupBoxScanTrigger.Controls.Add(this.lblScanTrigState);
+            this.groupBoxScanTrigger.Controls.Add(this.lblScanTrigResult);
+            this.groupBoxScanTrigger.Controls.Add(this.btnScanTrigSet);
+            this.groupBoxScanTrigger.Controls.Add(this.btnScanTrigStart);
+            this.groupBoxScanTrigger.Controls.Add(this.btnScanTrigStop);
+            this.groupBoxScanTrigger.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxScanTrigger.Location = new System.Drawing.Point(810, 247);
+            this.groupBoxScanTrigger.Name = "groupBoxScanTrigger";
+            this.groupBoxScanTrigger.Size = new System.Drawing.Size(371, 150);
+            this.groupBoxScanTrigger.TabIndex = 200;
+            this.groupBoxScanTrigger.TabStop = false;
+            this.groupBoxScanTrigger.Text = "SCAN TRIGGER";
+            // 
+            // lblcapScanTrig0
+            // 
+            this.lblcapScanTrig0.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrig0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrig0.Location = new System.Drawing.Point(8, 26);
+            this.lblcapScanTrig0.Name = "lblcapScanTrig0";
+            this.lblcapScanTrig0.Size = new System.Drawing.Size(58, 18);
+            this.lblcapScanTrig0.TabIndex = 201;
+            this.lblcapScanTrig0.Text = "Start";
+            // 
+            // lblcapScanTrig1
+            // 
+            this.lblcapScanTrig1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrig1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrig1.Location = new System.Drawing.Point(8, 46);
+            this.lblcapScanTrig1.Name = "lblcapScanTrig1";
+            this.lblcapScanTrig1.Size = new System.Drawing.Size(58, 18);
+            this.lblcapScanTrig1.TabIndex = 202;
+            this.lblcapScanTrig1.Text = "End";
+            // 
+            // lblcapScanTrig2
+            // 
+            this.lblcapScanTrig2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrig2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrig2.Location = new System.Drawing.Point(8, 66);
+            this.lblcapScanTrig2.Name = "lblcapScanTrig2";
+            this.lblcapScanTrig2.Size = new System.Drawing.Size(58, 18);
+            this.lblcapScanTrig2.TabIndex = 203;
+            this.lblcapScanTrig2.Text = "Pitch";
+            // 
+            // lblcapScanTrig3
+            // 
+            this.lblcapScanTrig3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrig3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrig3.Location = new System.Drawing.Point(8, 86);
+            this.lblcapScanTrig3.Name = "lblcapScanTrig3";
+            this.lblcapScanTrig3.Size = new System.Drawing.Size(58, 18);
+            this.lblcapScanTrig3.TabIndex = 204;
+            this.lblcapScanTrig3.Text = "Rate";
+            // 
+            // lblcapScanTrigR0
+            // 
+            this.lblcapScanTrigR0.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrigR0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrigR0.Location = new System.Drawing.Point(152, 26);
+            this.lblcapScanTrigR0.Name = "lblcapScanTrigR0";
+            this.lblcapScanTrigR0.Size = new System.Drawing.Size(74, 18);
+            this.lblcapScanTrigR0.TabIndex = 205;
+            this.lblcapScanTrigR0.Text = "Speed";
+            // 
+            // lblcapScanTrigR1
+            // 
+            this.lblcapScanTrigR1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrigR1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrigR1.Location = new System.Drawing.Point(152, 46);
+            this.lblcapScanTrigR1.Name = "lblcapScanTrigR1";
+            this.lblcapScanTrigR1.Size = new System.Drawing.Size(74, 18);
+            this.lblcapScanTrigR1.TabIndex = 206;
+            this.lblcapScanTrigR1.Text = "Lines";
+            // 
+            // lblcapScanTrigR2
+            // 
+            this.lblcapScanTrigR2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrigR2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrigR2.Location = new System.Drawing.Point(152, 66);
+            this.lblcapScanTrigR2.Name = "lblcapScanTrigR2";
+            this.lblcapScanTrigR2.Size = new System.Drawing.Size(74, 18);
+            this.lblcapScanTrigR2.TabIndex = 207;
+            this.lblcapScanTrigR2.Text = "Time";
+            // 
+            // lblcapScanTrigR3
+            // 
+            this.lblcapScanTrigR3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrigR3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrigR3.Location = new System.Drawing.Point(152, 86);
+            this.lblcapScanTrigR3.Name = "lblcapScanTrigR3";
+            this.lblcapScanTrigR3.Size = new System.Drawing.Size(74, 18);
+            this.lblcapScanTrigR3.TabIndex = 208;
+            this.lblcapScanTrigR3.Text = "Counts";
+            // 
+            // lblcapScanTrigR4
+            // 
+            this.lblcapScanTrigR4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrigR4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrigR4.Location = new System.Drawing.Point(152, 106);
+            this.lblcapScanTrigR4.Name = "lblcapScanTrigR4";
+            this.lblcapScanTrigR4.Size = new System.Drawing.Size(74, 18);
+            this.lblcapScanTrigR4.TabIndex = 209;
+            this.lblcapScanTrigR4.Text = "State";
+            // 
+            // lblcapScanTrigR5
+            // 
+            this.lblcapScanTrigR5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrigR5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrigR5.Location = new System.Drawing.Point(152, 126);
+            this.lblcapScanTrigR5.Name = "lblcapScanTrigR5";
+            this.lblcapScanTrigR5.Size = new System.Drawing.Size(74, 18);
+            this.lblcapScanTrigR5.TabIndex = 210;
+            this.lblcapScanTrigR5.Text = "Result";
+            // 
+            // txtScanTrigStart
+            // 
+            this.txtScanTrigStart.Border.Class = "TextBoxBorder";
+            this.txtScanTrigStart.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtScanTrigStart.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScanTrigStart.Location = new System.Drawing.Point(68, 26);
+            this.txtScanTrigStart.Name = "txtScanTrigStart";
+            this.txtScanTrigStart.PreventEnterBeep = true;
+            this.txtScanTrigStart.Size = new System.Drawing.Size(74, 18);
+            this.txtScanTrigStart.TabIndex = 211;
+            this.txtScanTrigStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtScanTrigEnd
+            // 
+            this.txtScanTrigEnd.Border.Class = "TextBoxBorder";
+            this.txtScanTrigEnd.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtScanTrigEnd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScanTrigEnd.Location = new System.Drawing.Point(68, 46);
+            this.txtScanTrigEnd.Name = "txtScanTrigEnd";
+            this.txtScanTrigEnd.PreventEnterBeep = true;
+            this.txtScanTrigEnd.Size = new System.Drawing.Size(74, 18);
+            this.txtScanTrigEnd.TabIndex = 212;
+            this.txtScanTrigEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtScanTrigPitch
+            // 
+            this.txtScanTrigPitch.Border.Class = "TextBoxBorder";
+            this.txtScanTrigPitch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtScanTrigPitch.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScanTrigPitch.Location = new System.Drawing.Point(68, 66);
+            this.txtScanTrigPitch.Name = "txtScanTrigPitch";
+            this.txtScanTrigPitch.PreventEnterBeep = true;
+            this.txtScanTrigPitch.Size = new System.Drawing.Size(74, 18);
+            this.txtScanTrigPitch.TabIndex = 213;
+            this.txtScanTrigPitch.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtScanTrigRate
+            // 
+            this.txtScanTrigRate.Border.Class = "TextBoxBorder";
+            this.txtScanTrigRate.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtScanTrigRate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScanTrigRate.Location = new System.Drawing.Point(68, 86);
+            this.txtScanTrigRate.Name = "txtScanTrigRate";
+            this.txtScanTrigRate.PreventEnterBeep = true;
+            this.txtScanTrigRate.Size = new System.Drawing.Size(74, 18);
+            this.txtScanTrigRate.TabIndex = 214;
+            this.txtScanTrigRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblScanTrigSpeed
+            // 
+            this.lblScanTrigSpeed.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblScanTrigSpeed.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTrigSpeed.Location = new System.Drawing.Point(230, 26);
+            this.lblScanTrigSpeed.Name = "lblScanTrigSpeed";
+            this.lblScanTrigSpeed.Size = new System.Drawing.Size(130, 18);
+            this.lblScanTrigSpeed.TabIndex = 215;
+            this.lblScanTrigSpeed.Text = "-";
+            this.lblScanTrigSpeed.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // lblScanTrigLines
+            // 
+            this.lblScanTrigLines.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblScanTrigLines.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTrigLines.Location = new System.Drawing.Point(230, 46);
+            this.lblScanTrigLines.Name = "lblScanTrigLines";
+            this.lblScanTrigLines.Size = new System.Drawing.Size(130, 18);
+            this.lblScanTrigLines.TabIndex = 216;
+            this.lblScanTrigLines.Text = "-";
+            this.lblScanTrigLines.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // lblScanTrigTime
+            // 
+            this.lblScanTrigTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblScanTrigTime.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTrigTime.Location = new System.Drawing.Point(230, 66);
+            this.lblScanTrigTime.Name = "lblScanTrigTime";
+            this.lblScanTrigTime.Size = new System.Drawing.Size(130, 18);
+            this.lblScanTrigTime.TabIndex = 217;
+            this.lblScanTrigTime.Text = "-";
+            this.lblScanTrigTime.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // lblScanTrigCounts
+            // 
+            this.lblScanTrigCounts.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblScanTrigCounts.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTrigCounts.Location = new System.Drawing.Point(230, 86);
+            this.lblScanTrigCounts.Name = "lblScanTrigCounts";
+            this.lblScanTrigCounts.Size = new System.Drawing.Size(130, 18);
+            this.lblScanTrigCounts.TabIndex = 218;
+            this.lblScanTrigCounts.Text = "-";
+            this.lblScanTrigCounts.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // lblScanTrigState
+            // 
+            this.lblScanTrigState.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblScanTrigState.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTrigState.Location = new System.Drawing.Point(230, 106);
+            this.lblScanTrigState.Name = "lblScanTrigState";
+            this.lblScanTrigState.Size = new System.Drawing.Size(130, 18);
+            this.lblScanTrigState.TabIndex = 219;
+            this.lblScanTrigState.Text = "-";
+            this.lblScanTrigState.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // lblScanTrigResult
+            // 
+            this.lblScanTrigResult.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblScanTrigResult.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTrigResult.Location = new System.Drawing.Point(230, 126);
+            this.lblScanTrigResult.Name = "lblScanTrigResult";
+            this.lblScanTrigResult.Size = new System.Drawing.Size(130, 18);
+            this.lblScanTrigResult.TabIndex = 220;
+            this.lblScanTrigResult.Text = "-";
+            this.lblScanTrigResult.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // btnScanTrigSet
+            // 
+            this.btnScanTrigSet.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnScanTrigSet.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnScanTrigSet.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScanTrigSet.Location = new System.Drawing.Point(8, 106);
+            this.btnScanTrigSet.Name = "btnScanTrigSet";
+            this.btnScanTrigSet.Size = new System.Drawing.Size(60, 18);
+            this.btnScanTrigSet.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnScanTrigSet.TabIndex = 221;
+            this.btnScanTrigSet.Text = "SET";
+            this.btnScanTrigSet.Click += new System.EventHandler(this.btnScanTrigSet_Click);
+            // 
+            // btnScanTrigStart
+            // 
+            this.btnScanTrigStart.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnScanTrigStart.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnScanTrigStart.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScanTrigStart.Location = new System.Drawing.Point(8, 126);
+            this.btnScanTrigStart.Name = "btnScanTrigStart";
+            this.btnScanTrigStart.Size = new System.Drawing.Size(60, 18);
+            this.btnScanTrigStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnScanTrigStart.TabIndex = 222;
+            this.btnScanTrigStart.Text = "START";
+            this.btnScanTrigStart.Click += new System.EventHandler(this.btnScanTrigStart_Click);
+            // 
+            // btnScanTrigStop
+            // 
+            this.btnScanTrigStop.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnScanTrigStop.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnScanTrigStop.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScanTrigStop.Location = new System.Drawing.Point(74, 126);
+            this.btnScanTrigStop.Name = "btnScanTrigStop";
+            this.btnScanTrigStop.Size = new System.Drawing.Size(60, 18);
+            this.btnScanTrigStop.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnScanTrigStop.TabIndex = 223;
+            this.btnScanTrigStop.Text = "STOP";
+            this.btnScanTrigStop.Click += new System.EventHandler(this.btnScanTrigStop_Click);
             // 
             // groupBox3
             // 
@@ -3411,5 +3722,29 @@
         public DevComponents.DotNetBar.LabelX labelX2;
         public System.Windows.Forms.Label lblAir3;
         public DevComponents.DotNetBar.LabelX labelX14;
+        private System.Windows.Forms.GroupBox groupBoxScanTrigger;
+        public DevComponents.DotNetBar.Controls.TextBoxX txtScanTrigStart;
+        public DevComponents.DotNetBar.Controls.TextBoxX txtScanTrigEnd;
+        public DevComponents.DotNetBar.Controls.TextBoxX txtScanTrigPitch;
+        public DevComponents.DotNetBar.Controls.TextBoxX txtScanTrigRate;
+        public DevComponents.DotNetBar.LabelX lblScanTrigSpeed;
+        public DevComponents.DotNetBar.LabelX lblScanTrigLines;
+        public DevComponents.DotNetBar.LabelX lblScanTrigTime;
+        public DevComponents.DotNetBar.LabelX lblScanTrigCounts;
+        public DevComponents.DotNetBar.LabelX lblScanTrigState;
+        public DevComponents.DotNetBar.LabelX lblScanTrigResult;
+        private DevComponents.DotNetBar.LabelX lblcapScanTrig0;
+        private DevComponents.DotNetBar.LabelX lblcapScanTrig1;
+        private DevComponents.DotNetBar.LabelX lblcapScanTrig2;
+        private DevComponents.DotNetBar.LabelX lblcapScanTrig3;
+        private DevComponents.DotNetBar.LabelX lblcapScanTrigR0;
+        private DevComponents.DotNetBar.LabelX lblcapScanTrigR1;
+        private DevComponents.DotNetBar.LabelX lblcapScanTrigR2;
+        private DevComponents.DotNetBar.LabelX lblcapScanTrigR3;
+        private DevComponents.DotNetBar.LabelX lblcapScanTrigR4;
+        private DevComponents.DotNetBar.LabelX lblcapScanTrigR5;
+        private DevComponents.DotNetBar.ButtonX btnScanTrigSet;
+        private DevComponents.DotNetBar.ButtonX btnScanTrigStart;
+        private DevComponents.DotNetBar.ButtonX btnScanTrigStop;
     }
 }
