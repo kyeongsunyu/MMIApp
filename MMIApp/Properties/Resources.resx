@@ -119,168 +119,168 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="dialog-cancel-5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\dialog-cancel-5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\dialog-cancel-5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WaterJet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\WaterJet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\WaterJet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="format-list-unordered" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\format-list-unordered.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\format-list-unordered.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="buzzer1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buzzer1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow-right-double1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\arrow-right-double.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\arrow-right-double.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="system-users-4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\system-users-4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\system-users-4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="aim" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\aim.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\aim.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="go-last-view" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\go-last-view.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\go-last-view.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EMO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EMO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Saw Picker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Saw Picker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Saw Picker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="buzzer31" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buzzer31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RearSortPicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\RearSortPicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\RearSortPicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="system-users-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\system-users-3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\system-users-3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="kate-4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\kate-4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\kate-4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tray2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Tray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Tray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="go-home-61" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\go-home-6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\go-home-6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="i3_logo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\BMP\i3_logo2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\bmp\i3_logo2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TextEdit.app" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\TextEdit.app.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\TextEdit.app.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tray1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Tray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Tray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TopView" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\TopView.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\TopView.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Flip" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Flip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Flip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FrontSortPicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\FrontSortPicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\FrontSortPicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="preferences-desktop-keyboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\preferences-desktop-keyboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\preferences-desktop-keyboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Empty Tray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Empty Tray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Empty Tray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="keoc_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\keoc_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\keoc_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="system-run-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\system-run-3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\system-run-3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Vision" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Vision.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Vision.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Pallet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Pallet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Pallet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PM51" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\BMP\PM5.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\bmp\PM5.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="buzzer3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buzzer3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="JedecTray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\JedecTray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\JedecTray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow-right-double" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\arrow-right-double.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\arrow-right-double.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mc_assay1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mc_assay1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="view-refresh-21" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\view-refresh-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\view-refresh-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="touchpad" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\touchpad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\touchpad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="buzzer2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buzzer2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Tray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Tray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="terminator" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\terminator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\terminator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="i3_logo21" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\BMP\i3_logo2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\bmp\i3_logo2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="accessories-calculator-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\accessories-calculator-3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\accessories-calculator-3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tray Picker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Tray Picker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Tray Picker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Empty Picker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Empty Picker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Empty Picker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PM5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\BMP\PM5.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\bmp\PM5.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow-right-double2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\arrow-right-double.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\arrow-right-double.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EMO1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EMO1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="view-refresh-2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\view-refresh-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\view-refresh-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="utilities-system-monitor-2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\utilities-system-monitor-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\utilities-system-monitor-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="buzzer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buzzer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="configure-2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\configure-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\configure-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tray3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Tray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Tray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Flip1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Flip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Flip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Load Picker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Load Picker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Load Picker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="go-home-6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\go-home-6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\go-home-6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Ionizer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\x86\Debug\image\Machine\Ionizer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\Machine\Ionizer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="keoc_logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\image\keoc_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>C:\WORK\image\keoc_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
