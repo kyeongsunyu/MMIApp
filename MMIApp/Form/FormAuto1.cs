@@ -581,36 +581,87 @@ namespace MMI
 
         #region SCAN TRIGGER
 
-        // The panel is laid out and its inputs are parsed here, but nothing is
+        // The panel is laid out and its inputs are collected here, but nothing is
         // sent to SEQ yet: the shared memory DLL that carries the recipe has
         // been extended in source and still has to be rebuilt and dropped into
         // C:\WORK\DLL. SendScanTriggerRecipe() is the one place those calls go.
         //
-        // The right hand column is deliberately left empty until then. Every
-        // value there - speed, line count, scan time, pitch in encoder counts -
-        // is computed by SEQ from the recipe, and computing it a second time
-        // here would give the operator two answers that can disagree.
+        // The computed rows - speed, line count, scan time, pitch in encoder
+        // counts - stay empty until then. Every one of them is SEQ's to work out
+        // from the recipe, and working them out a second time here would give the
+        // operator two answers that can disagree.
+        //
+        // The four inputs are entered through frm_NumPad rather than typed, the
+        // same way Target UPH is on the PRODUCT panel: the machine runs on a
+        // touch screen with no keyboard in front of it.
+
+        private bool ReadScanTriggerNumPad(out double dValue)
+        {
+            dValue = 0.0;
+
+            if (!frmMain.frm_NumPad.Display()) return false;
+
+            dValue = frmMain.frm_NumPad.GetValue();
+            return true;
+        }
+
+        private void btnTrigStart_Click(object sender, EventArgs e)
+        {
+            double dValue;
+            if (!ReadScanTriggerNumPad(out dValue)) return;
+
+            lblTrigStart.Text = dValue.ToString("F3");
+            ClearScanTriggerDisplay();
+        }
+
+        private void btnTrigEnd_Click(object sender, EventArgs e)
+        {
+            double dValue;
+            if (!ReadScanTriggerNumPad(out dValue)) return;
+
+            lblTrigEnd.Text = dValue.ToString("F3");
+            ClearScanTriggerDisplay();
+        }
+
+        private void btnTrigPitch_Click(object sender, EventArgs e)
+        {
+            double dValue;
+            if (!ReadScanTriggerNumPad(out dValue)) return;
+
+            lblTrigPitch.Text = dValue.ToString("F2");
+            ClearScanTriggerDisplay();
+        }
+
+        private void btnTrigRate_Click(object sender, EventArgs e)
+        {
+            double dValue;
+            if (!ReadScanTriggerNumPad(out dValue)) return;
+
+            lblTrigRate.Text = dValue.ToString("F2");
+            ClearScanTriggerDisplay();
+        }
 
         private bool TryReadScanTriggerRecipe(out double dStart, out double dEnd,
                                               out double dPitch, out double dRate)
         {
             dStart = dEnd = dPitch = dRate = 0.0;
 
-            if (!double.TryParse(txtScanTrigStart.Text, out dStart)) return false;
-            if (!double.TryParse(txtScanTrigEnd.Text,   out dEnd))   return false;
-            if (!double.TryParse(txtScanTrigPitch.Text, out dPitch)) return false;
-            if (!double.TryParse(txtScanTrigRate.Text,  out dRate))  return false;
+            if (!double.TryParse(lblTrigStart.Text, out dStart)) return false;
+            if (!double.TryParse(lblTrigEnd.Text,   out dEnd))   return false;
+            if (!double.TryParse(lblTrigPitch.Text, out dPitch)) return false;
+            if (!double.TryParse(lblTrigRate.Text,  out dRate))  return false;
 
             return true;
         }
 
+        // Only the computed rows. The state row carries the last message and is
+        // written by the caller, so clearing it here would wipe what was just set.
         private void ClearScanTriggerDisplay()
         {
             lblScanTrigSpeed.Text  = "-";
             lblScanTrigLines.Text  = "-";
             lblScanTrigTime.Text   = "-";
             lblScanTrigCounts.Text = "-";
-            lblScanTrigState.Text  = "-";
         }
 
         private void SendScanTriggerRecipe(double dStart, double dEnd,
@@ -626,8 +677,8 @@ namespace MMI
             //   MmiGV.pShMem.SetScanTriggerRecipe();
             //   MmiGV.pShMem.GetScanTriggerDisplay();
             //
-            // then fill the right hand column from RScanTriggerDisplay and
-            // enable START only when nValidateCode is 0.
+            // then fill the computed rows from RScanTriggerDisplay and enable
+            // START only when nValidateCode is 0.
         }
 
         private void btnScanTrigSet_Click(object sender, EventArgs e)
@@ -636,8 +687,8 @@ namespace MMI
 
             if (!TryReadScanTriggerRecipe(out dStart, out dEnd, out dPitch, out dRate))
             {
-                lblScanTrigResult.Text = "BAD NUMBER";
                 ClearScanTriggerDisplay();
+                lblScanTrigState.Text = "BAD NUMBER";
                 return;
             }
 
@@ -646,25 +697,25 @@ namespace MMI
             // speed fits the axis - is SEQ's to judge.
             if (dEnd <= dStart || dPitch <= 0.0 || dRate <= 0.0)
             {
-                lblScanTrigResult.Text = "BAD RANGE";
                 ClearScanTriggerDisplay();
+                lblScanTrigState.Text = "BAD RANGE";
                 return;
             }
 
             SendScanTriggerRecipe(dStart, dEnd, dPitch, dRate);
-            lblScanTrigResult.Text = "NOT CONNECTED";
+            lblScanTrigState.Text = "NO DLL";
         }
 
         private void btnScanTrigStart_Click(object sender, EventArgs e)
         {
             // MmiGV.pShMem.SetScanTriggerStart();
-            lblScanTrigResult.Text = "NOT CONNECTED";
+            lblScanTrigState.Text = "NO DLL";
         }
 
         private void btnScanTrigStop_Click(object sender, EventArgs e)
         {
             // MmiGV.pShMem.SetScanTriggerStop();
-            lblScanTrigResult.Text = "NOT CONNECTED";
+            lblScanTrigState.Text = "NO DLL";
         }
 
         #endregion

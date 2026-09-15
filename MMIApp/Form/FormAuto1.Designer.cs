@@ -124,27 +124,25 @@
             this.buttonX3 = new DevComponents.DotNetBar.ButtonX();
             this.bar1 = new DevComponents.DotNetBar.Bar();
             this.superTabItem3 = new DevComponents.DotNetBar.SuperTabItem();
-            this.groupBoxScanTrigger = new System.Windows.Forms.GroupBox();
-            this.txtScanTrigStart = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.txtScanTrigEnd = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.txtScanTrigPitch = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.txtScanTrigRate = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.lblScanTrigSpeed = new DevComponents.DotNetBar.LabelX();
-            this.lblScanTrigLines = new DevComponents.DotNetBar.LabelX();
-            this.lblScanTrigTime = new DevComponents.DotNetBar.LabelX();
-            this.lblScanTrigCounts = new DevComponents.DotNetBar.LabelX();
-            this.lblScanTrigState = new DevComponents.DotNetBar.LabelX();
-            this.lblScanTrigResult = new DevComponents.DotNetBar.LabelX();
-            this.lblcapScanTrig0 = new DevComponents.DotNetBar.LabelX();
-            this.lblcapScanTrig1 = new DevComponents.DotNetBar.LabelX();
-            this.lblcapScanTrig2 = new DevComponents.DotNetBar.LabelX();
-            this.lblcapScanTrig3 = new DevComponents.DotNetBar.LabelX();
+            this.pnlScanTrigger = new DevComponents.DotNetBar.ExpandablePanel();
+            this.btnTrigStart = new DevComponents.DotNetBar.ButtonX();
+            this.lblTrigStart = new DevComponents.DotNetBar.LabelX();
+            this.btnTrigEnd = new DevComponents.DotNetBar.ButtonX();
+            this.lblTrigEnd = new DevComponents.DotNetBar.LabelX();
+            this.btnTrigPitch = new DevComponents.DotNetBar.ButtonX();
+            this.lblTrigPitch = new DevComponents.DotNetBar.LabelX();
+            this.btnTrigRate = new DevComponents.DotNetBar.ButtonX();
+            this.lblTrigRate = new DevComponents.DotNetBar.LabelX();
             this.lblcapScanTrigR0 = new DevComponents.DotNetBar.LabelX();
+            this.lblScanTrigSpeed = new DevComponents.DotNetBar.LabelX();
             this.lblcapScanTrigR1 = new DevComponents.DotNetBar.LabelX();
+            this.lblScanTrigLines = new DevComponents.DotNetBar.LabelX();
             this.lblcapScanTrigR2 = new DevComponents.DotNetBar.LabelX();
+            this.lblScanTrigTime = new DevComponents.DotNetBar.LabelX();
             this.lblcapScanTrigR3 = new DevComponents.DotNetBar.LabelX();
+            this.lblScanTrigCounts = new DevComponents.DotNetBar.LabelX();
             this.lblcapScanTrigR4 = new DevComponents.DotNetBar.LabelX();
-            this.lblcapScanTrigR5 = new DevComponents.DotNetBar.LabelX();
+            this.lblScanTrigState = new DevComponents.DotNetBar.LabelX();
             this.btnScanTrigSet = new DevComponents.DotNetBar.ButtonX();
             this.btnScanTrigStart = new DevComponents.DotNetBar.ButtonX();
             this.btnScanTrigStop = new DevComponents.DotNetBar.ButtonX();
@@ -164,6 +162,7 @@
             this.expandablePanel1.SuspendLayout();
             this.expandablePanel2.SuspendLayout();
             this.expandablePanel3.SuspendLayout();
+            this.pnlScanTrigger.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tcAuto)).BeginInit();
             this.tcAuto.SuspendLayout();
             this.tcState.SuspendLayout();
@@ -1518,7 +1517,6 @@
             // 
             // tcState
             // 
-            this.tcState.Controls.Add(this.groupBoxScanTrigger);
             this.tcState.Controls.Add(this.groupBox3);
             this.tcState.Controls.Add(this.groupBox2);
             this.tcState.Controls.Add(this.groupBox1);
@@ -1531,290 +1529,725 @@
             this.tcState.TabIndex = 0;
             this.tcState.TabItem = this.superTabItem3;
             // 
-            // groupBoxScanTrigger
+            // pnlScanTrigger
             // 
-            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrig0);
-            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrig1);
-            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrig2);
-            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrig3);
-            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrigR0);
-            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrigR1);
-            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrigR2);
-            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrigR3);
-            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrigR4);
-            this.groupBoxScanTrigger.Controls.Add(this.lblcapScanTrigR5);
-            this.groupBoxScanTrigger.Controls.Add(this.txtScanTrigStart);
-            this.groupBoxScanTrigger.Controls.Add(this.txtScanTrigEnd);
-            this.groupBoxScanTrigger.Controls.Add(this.txtScanTrigPitch);
-            this.groupBoxScanTrigger.Controls.Add(this.txtScanTrigRate);
-            this.groupBoxScanTrigger.Controls.Add(this.lblScanTrigSpeed);
-            this.groupBoxScanTrigger.Controls.Add(this.lblScanTrigLines);
-            this.groupBoxScanTrigger.Controls.Add(this.lblScanTrigTime);
-            this.groupBoxScanTrigger.Controls.Add(this.lblScanTrigCounts);
-            this.groupBoxScanTrigger.Controls.Add(this.lblScanTrigState);
-            this.groupBoxScanTrigger.Controls.Add(this.lblScanTrigResult);
-            this.groupBoxScanTrigger.Controls.Add(this.btnScanTrigSet);
-            this.groupBoxScanTrigger.Controls.Add(this.btnScanTrigStart);
-            this.groupBoxScanTrigger.Controls.Add(this.btnScanTrigStop);
-            this.groupBoxScanTrigger.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxScanTrigger.Location = new System.Drawing.Point(810, 247);
-            this.groupBoxScanTrigger.Name = "groupBoxScanTrigger";
-            this.groupBoxScanTrigger.Size = new System.Drawing.Size(371, 150);
-            this.groupBoxScanTrigger.TabIndex = 200;
-            this.groupBoxScanTrigger.TabStop = false;
-            this.groupBoxScanTrigger.Text = "SCAN TRIGGER";
+            this.pnlScanTrigger.CanvasColor = System.Drawing.SystemColors.Control;
+            this.pnlScanTrigger.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnlScanTrigger.Controls.Add(this.btnTrigStart);
+            this.pnlScanTrigger.Controls.Add(this.lblTrigStart);
+            this.pnlScanTrigger.Controls.Add(this.btnTrigEnd);
+            this.pnlScanTrigger.Controls.Add(this.lblTrigEnd);
+            this.pnlScanTrigger.Controls.Add(this.btnTrigPitch);
+            this.pnlScanTrigger.Controls.Add(this.lblTrigPitch);
+            this.pnlScanTrigger.Controls.Add(this.btnTrigRate);
+            this.pnlScanTrigger.Controls.Add(this.lblTrigRate);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrigR0);
+            this.pnlScanTrigger.Controls.Add(this.lblScanTrigSpeed);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrigR1);
+            this.pnlScanTrigger.Controls.Add(this.lblScanTrigLines);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrigR2);
+            this.pnlScanTrigger.Controls.Add(this.lblScanTrigTime);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrigR3);
+            this.pnlScanTrigger.Controls.Add(this.lblScanTrigCounts);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrigR4);
+            this.pnlScanTrigger.Controls.Add(this.lblScanTrigState);
+            this.pnlScanTrigger.Controls.Add(this.btnScanTrigSet);
+            this.pnlScanTrigger.Controls.Add(this.btnScanTrigStart);
+            this.pnlScanTrigger.Controls.Add(this.btnScanTrigStop);
+            this.pnlScanTrigger.DisabledBackColor = System.Drawing.Color.Empty;
+            this.pnlScanTrigger.ExpandButtonVisible = false;
+            this.pnlScanTrigger.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.pnlScanTrigger.HideControlsWhenCollapsed = true;
+            this.pnlScanTrigger.Location = new System.Drawing.Point(3, 572);
+            this.pnlScanTrigger.Name = "pnlScanTrigger";
+            this.pnlScanTrigger.Size = new System.Drawing.Size(277, 345);
+            this.pnlScanTrigger.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.pnlScanTrigger.Style.BackColor1.Color = System.Drawing.Color.White;
+            this.pnlScanTrigger.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.pnlScanTrigger.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.pnlScanTrigger.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.pnlScanTrigger.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.pnlScanTrigger.Style.GradientAngle = 90;
+            this.pnlScanTrigger.TabIndex = 199;
+            this.pnlScanTrigger.TitleStyle.BackColor1.Color = System.Drawing.Color.Teal;
+            this.pnlScanTrigger.TitleStyle.BackColor2.Color = System.Drawing.Color.Teal;
+            this.pnlScanTrigger.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
+            this.pnlScanTrigger.TitleStyle.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.pnlScanTrigger.TitleStyle.ForeColor.Color = System.Drawing.Color.Black;
+            this.pnlScanTrigger.TitleStyle.GradientAngle = 90;
+            this.pnlScanTrigger.TitleStyleMouseDown.Alignment = System.Drawing.StringAlignment.Center;
+            this.pnlScanTrigger.TitleText = " SCAN TRIGGER";
             // 
-            // lblcapScanTrig0
+            // btnTrigStart
             // 
-            this.lblcapScanTrig0.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblcapScanTrig0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcapScanTrig0.Location = new System.Drawing.Point(8, 26);
-            this.lblcapScanTrig0.Name = "lblcapScanTrig0";
-            this.lblcapScanTrig0.Size = new System.Drawing.Size(58, 18);
-            this.lblcapScanTrig0.TabIndex = 201;
-            this.lblcapScanTrig0.Text = "Start";
+            this.btnTrigStart.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTrigStart.BackColor = System.Drawing.Color.Black;
+            this.btnTrigStart.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTrigStart.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrigStart.Location = new System.Drawing.Point(9, 32);
+            this.btnTrigStart.Name = "btnTrigStart";
+            this.btnTrigStart.Size = new System.Drawing.Size(124, 25);
+            this.btnTrigStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnTrigStart.TabIndex = 200;
+            this.btnTrigStart.Text = "Start (mm)";
+            this.btnTrigStart.TextColor = System.Drawing.Color.White;
+            this.btnTrigStart.ThemeAware = true;
+            this.btnTrigStart.Click += new System.EventHandler(this.btnTrigStart_Click);
             // 
-            // lblcapScanTrig1
+            // lblTrigStart
             // 
-            this.lblcapScanTrig1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblcapScanTrig1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcapScanTrig1.Location = new System.Drawing.Point(8, 46);
-            this.lblcapScanTrig1.Name = "lblcapScanTrig1";
-            this.lblcapScanTrig1.Size = new System.Drawing.Size(58, 18);
-            this.lblcapScanTrig1.TabIndex = 202;
-            this.lblcapScanTrig1.Text = "End";
+            this.lblTrigStart.BackColor = System.Drawing.SystemColors.Info;
             // 
-            // lblcapScanTrig2
             // 
-            this.lblcapScanTrig2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblcapScanTrig2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcapScanTrig2.Location = new System.Drawing.Point(8, 66);
-            this.lblcapScanTrig2.Name = "lblcapScanTrig2";
-            this.lblcapScanTrig2.Size = new System.Drawing.Size(58, 18);
-            this.lblcapScanTrig2.TabIndex = 203;
-            this.lblcapScanTrig2.Text = "Pitch";
             // 
-            // lblcapScanTrig3
+            this.lblTrigStart.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblTrigStart.BackgroundStyle.BackColor2 = System.Drawing.Color.DarkGray;
+            this.lblTrigStart.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblTrigStart.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigStart.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblTrigStart.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblTrigStart.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigStart.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblTrigStart.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblTrigStart.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigStart.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblTrigStart.BackgroundStyle.BorderRightWidth = 1;
+            this.lblTrigStart.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigStart.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblTrigStart.BackgroundStyle.BorderTopWidth = 1;
+            this.lblTrigStart.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblTrigStart.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblTrigStart.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblTrigStart.BackgroundStyle.BorderLightGradientAngle = 0;
+            this.lblTrigStart.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblTrigStart.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTrigStart.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblTrigStart.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrigStart.FontBold = true;
+            this.lblTrigStart.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblTrigStart.Location = new System.Drawing.Point(144, 32);
+            this.lblTrigStart.Name = "lblTrigStart";
+            this.lblTrigStart.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblTrigStart.Size = new System.Drawing.Size(124, 25);
+            this.lblTrigStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblTrigStart.TabIndex = 201;
+            this.lblTrigStart.Text = "0.000";
+            this.lblTrigStart.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
-            this.lblcapScanTrig3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblcapScanTrig3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcapScanTrig3.Location = new System.Drawing.Point(8, 86);
-            this.lblcapScanTrig3.Name = "lblcapScanTrig3";
-            this.lblcapScanTrig3.Size = new System.Drawing.Size(58, 18);
-            this.lblcapScanTrig3.TabIndex = 204;
-            this.lblcapScanTrig3.Text = "Rate";
+            // btnTrigEnd
+            // 
+            this.btnTrigEnd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTrigEnd.BackColor = System.Drawing.Color.Black;
+            this.btnTrigEnd.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTrigEnd.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrigEnd.Location = new System.Drawing.Point(9, 63);
+            this.btnTrigEnd.Name = "btnTrigEnd";
+            this.btnTrigEnd.Size = new System.Drawing.Size(124, 25);
+            this.btnTrigEnd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnTrigEnd.TabIndex = 202;
+            this.btnTrigEnd.Text = "End (mm)";
+            this.btnTrigEnd.TextColor = System.Drawing.Color.White;
+            this.btnTrigEnd.ThemeAware = true;
+            this.btnTrigEnd.Click += new System.EventHandler(this.btnTrigEnd_Click);
+            // 
+            // lblTrigEnd
+            // 
+            this.lblTrigEnd.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblTrigEnd.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblTrigEnd.BackgroundStyle.BackColor2 = System.Drawing.Color.DarkGray;
+            this.lblTrigEnd.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblTrigEnd.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigEnd.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblTrigEnd.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblTrigEnd.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigEnd.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblTrigEnd.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblTrigEnd.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigEnd.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblTrigEnd.BackgroundStyle.BorderRightWidth = 1;
+            this.lblTrigEnd.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigEnd.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblTrigEnd.BackgroundStyle.BorderTopWidth = 1;
+            this.lblTrigEnd.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblTrigEnd.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblTrigEnd.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblTrigEnd.BackgroundStyle.BorderLightGradientAngle = 0;
+            this.lblTrigEnd.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblTrigEnd.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTrigEnd.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblTrigEnd.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrigEnd.FontBold = true;
+            this.lblTrigEnd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblTrigEnd.Location = new System.Drawing.Point(144, 63);
+            this.lblTrigEnd.Name = "lblTrigEnd";
+            this.lblTrigEnd.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblTrigEnd.Size = new System.Drawing.Size(124, 25);
+            this.lblTrigEnd.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblTrigEnd.TabIndex = 203;
+            this.lblTrigEnd.Text = "0.000";
+            this.lblTrigEnd.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // btnTrigPitch
+            // 
+            this.btnTrigPitch.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTrigPitch.BackColor = System.Drawing.Color.Black;
+            this.btnTrigPitch.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTrigPitch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrigPitch.Location = new System.Drawing.Point(9, 94);
+            this.btnTrigPitch.Name = "btnTrigPitch";
+            this.btnTrigPitch.Size = new System.Drawing.Size(124, 25);
+            this.btnTrigPitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnTrigPitch.TabIndex = 204;
+            this.btnTrigPitch.Text = "Pitch (um)";
+            this.btnTrigPitch.TextColor = System.Drawing.Color.White;
+            this.btnTrigPitch.ThemeAware = true;
+            this.btnTrigPitch.Click += new System.EventHandler(this.btnTrigPitch_Click);
+            // 
+            // lblTrigPitch
+            // 
+            this.lblTrigPitch.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblTrigPitch.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblTrigPitch.BackgroundStyle.BackColor2 = System.Drawing.Color.DarkGray;
+            this.lblTrigPitch.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblTrigPitch.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigPitch.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblTrigPitch.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblTrigPitch.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigPitch.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblTrigPitch.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblTrigPitch.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigPitch.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblTrigPitch.BackgroundStyle.BorderRightWidth = 1;
+            this.lblTrigPitch.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigPitch.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblTrigPitch.BackgroundStyle.BorderTopWidth = 1;
+            this.lblTrigPitch.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblTrigPitch.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblTrigPitch.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblTrigPitch.BackgroundStyle.BorderLightGradientAngle = 0;
+            this.lblTrigPitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblTrigPitch.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTrigPitch.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblTrigPitch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrigPitch.FontBold = true;
+            this.lblTrigPitch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblTrigPitch.Location = new System.Drawing.Point(144, 94);
+            this.lblTrigPitch.Name = "lblTrigPitch";
+            this.lblTrigPitch.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblTrigPitch.Size = new System.Drawing.Size(124, 25);
+            this.lblTrigPitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblTrigPitch.TabIndex = 205;
+            this.lblTrigPitch.Text = "0.000";
+            this.lblTrigPitch.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // btnTrigRate
+            // 
+            this.btnTrigRate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnTrigRate.BackColor = System.Drawing.Color.Black;
+            this.btnTrigRate.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnTrigRate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrigRate.Location = new System.Drawing.Point(9, 125);
+            this.btnTrigRate.Name = "btnTrigRate";
+            this.btnTrigRate.Size = new System.Drawing.Size(124, 25);
+            this.btnTrigRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnTrigRate.TabIndex = 206;
+            this.btnTrigRate.Text = "Rate (kHz)";
+            this.btnTrigRate.TextColor = System.Drawing.Color.White;
+            this.btnTrigRate.ThemeAware = true;
+            this.btnTrigRate.Click += new System.EventHandler(this.btnTrigRate_Click);
+            // 
+            // lblTrigRate
+            // 
+            this.lblTrigRate.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblTrigRate.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblTrigRate.BackgroundStyle.BackColor2 = System.Drawing.Color.DarkGray;
+            this.lblTrigRate.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblTrigRate.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigRate.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblTrigRate.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblTrigRate.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigRate.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblTrigRate.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblTrigRate.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigRate.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblTrigRate.BackgroundStyle.BorderRightWidth = 1;
+            this.lblTrigRate.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblTrigRate.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblTrigRate.BackgroundStyle.BorderTopWidth = 1;
+            this.lblTrigRate.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblTrigRate.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblTrigRate.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblTrigRate.BackgroundStyle.BorderLightGradientAngle = 0;
+            this.lblTrigRate.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblTrigRate.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTrigRate.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblTrigRate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrigRate.FontBold = true;
+            this.lblTrigRate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblTrigRate.Location = new System.Drawing.Point(144, 125);
+            this.lblTrigRate.Name = "lblTrigRate";
+            this.lblTrigRate.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblTrigRate.Size = new System.Drawing.Size(124, 25);
+            this.lblTrigRate.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblTrigRate.TabIndex = 207;
+            this.lblTrigRate.Text = "0.000";
+            this.lblTrigRate.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // lblcapScanTrigR0
             // 
+            this.lblcapScanTrigR0.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblcapScanTrigR0.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblcapScanTrigR0.BackgroundStyle.BackColor2 = System.Drawing.Color.CornflowerBlue;
+            this.lblcapScanTrigR0.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderRightWidth = 1;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderTopWidth = 1;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblcapScanTrigR0.BackgroundStyle.BorderLightGradientAngle = 0;
             this.lblcapScanTrigR0.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblcapScanTrigR0.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcapScanTrigR0.Location = new System.Drawing.Point(152, 26);
+            this.lblcapScanTrigR0.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrigR0.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblcapScanTrigR0.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrigR0.FontBold = true;
+            this.lblcapScanTrigR0.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblcapScanTrigR0.Location = new System.Drawing.Point(9, 156);
             this.lblcapScanTrigR0.Name = "lblcapScanTrigR0";
-            this.lblcapScanTrigR0.Size = new System.Drawing.Size(74, 18);
-            this.lblcapScanTrigR0.TabIndex = 205;
+            this.lblcapScanTrigR0.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblcapScanTrigR0.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR0.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblcapScanTrigR0.TabIndex = 208;
             this.lblcapScanTrigR0.Text = "Speed";
-            // 
-            // lblcapScanTrigR1
-            // 
-            this.lblcapScanTrigR1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblcapScanTrigR1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcapScanTrigR1.Location = new System.Drawing.Point(152, 46);
-            this.lblcapScanTrigR1.Name = "lblcapScanTrigR1";
-            this.lblcapScanTrigR1.Size = new System.Drawing.Size(74, 18);
-            this.lblcapScanTrigR1.TabIndex = 206;
-            this.lblcapScanTrigR1.Text = "Lines";
-            // 
-            // lblcapScanTrigR2
-            // 
-            this.lblcapScanTrigR2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblcapScanTrigR2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcapScanTrigR2.Location = new System.Drawing.Point(152, 66);
-            this.lblcapScanTrigR2.Name = "lblcapScanTrigR2";
-            this.lblcapScanTrigR2.Size = new System.Drawing.Size(74, 18);
-            this.lblcapScanTrigR2.TabIndex = 207;
-            this.lblcapScanTrigR2.Text = "Time";
-            // 
-            // lblcapScanTrigR3
-            // 
-            this.lblcapScanTrigR3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblcapScanTrigR3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcapScanTrigR3.Location = new System.Drawing.Point(152, 86);
-            this.lblcapScanTrigR3.Name = "lblcapScanTrigR3";
-            this.lblcapScanTrigR3.Size = new System.Drawing.Size(74, 18);
-            this.lblcapScanTrigR3.TabIndex = 208;
-            this.lblcapScanTrigR3.Text = "Counts";
-            // 
-            // lblcapScanTrigR4
-            // 
-            this.lblcapScanTrigR4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblcapScanTrigR4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcapScanTrigR4.Location = new System.Drawing.Point(152, 106);
-            this.lblcapScanTrigR4.Name = "lblcapScanTrigR4";
-            this.lblcapScanTrigR4.Size = new System.Drawing.Size(74, 18);
-            this.lblcapScanTrigR4.TabIndex = 209;
-            this.lblcapScanTrigR4.Text = "State";
-            // 
-            // lblcapScanTrigR5
-            // 
-            this.lblcapScanTrigR5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblcapScanTrigR5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcapScanTrigR5.Location = new System.Drawing.Point(152, 126);
-            this.lblcapScanTrigR5.Name = "lblcapScanTrigR5";
-            this.lblcapScanTrigR5.Size = new System.Drawing.Size(74, 18);
-            this.lblcapScanTrigR5.TabIndex = 210;
-            this.lblcapScanTrigR5.Text = "Result";
-            // 
-            // txtScanTrigStart
-            // 
-            this.txtScanTrigStart.Border.Class = "TextBoxBorder";
-            this.txtScanTrigStart.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtScanTrigStart.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScanTrigStart.Location = new System.Drawing.Point(68, 26);
-            this.txtScanTrigStart.Name = "txtScanTrigStart";
-            this.txtScanTrigStart.PreventEnterBeep = true;
-            this.txtScanTrigStart.Size = new System.Drawing.Size(74, 18);
-            this.txtScanTrigStart.TabIndex = 211;
-            this.txtScanTrigStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtScanTrigEnd
-            // 
-            this.txtScanTrigEnd.Border.Class = "TextBoxBorder";
-            this.txtScanTrigEnd.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtScanTrigEnd.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScanTrigEnd.Location = new System.Drawing.Point(68, 46);
-            this.txtScanTrigEnd.Name = "txtScanTrigEnd";
-            this.txtScanTrigEnd.PreventEnterBeep = true;
-            this.txtScanTrigEnd.Size = new System.Drawing.Size(74, 18);
-            this.txtScanTrigEnd.TabIndex = 212;
-            this.txtScanTrigEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtScanTrigPitch
-            // 
-            this.txtScanTrigPitch.Border.Class = "TextBoxBorder";
-            this.txtScanTrigPitch.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtScanTrigPitch.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScanTrigPitch.Location = new System.Drawing.Point(68, 66);
-            this.txtScanTrigPitch.Name = "txtScanTrigPitch";
-            this.txtScanTrigPitch.PreventEnterBeep = true;
-            this.txtScanTrigPitch.Size = new System.Drawing.Size(74, 18);
-            this.txtScanTrigPitch.TabIndex = 213;
-            this.txtScanTrigPitch.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtScanTrigRate
-            // 
-            this.txtScanTrigRate.Border.Class = "TextBoxBorder";
-            this.txtScanTrigRate.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtScanTrigRate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScanTrigRate.Location = new System.Drawing.Point(68, 86);
-            this.txtScanTrigRate.Name = "txtScanTrigRate";
-            this.txtScanTrigRate.PreventEnterBeep = true;
-            this.txtScanTrigRate.Size = new System.Drawing.Size(74, 18);
-            this.txtScanTrigRate.TabIndex = 214;
-            this.txtScanTrigRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.lblcapScanTrigR0.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // lblScanTrigSpeed
             // 
+            this.lblScanTrigSpeed.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblScanTrigSpeed.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblScanTrigSpeed.BackgroundStyle.BackColor2 = System.Drawing.Color.DarkGray;
+            this.lblScanTrigSpeed.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderRightWidth = 1;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderTopWidth = 1;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblScanTrigSpeed.BackgroundStyle.BorderLightGradientAngle = 0;
             this.lblScanTrigSpeed.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblScanTrigSpeed.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScanTrigSpeed.Location = new System.Drawing.Point(230, 26);
+            this.lblScanTrigSpeed.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblScanTrigSpeed.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblScanTrigSpeed.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTrigSpeed.FontBold = true;
+            this.lblScanTrigSpeed.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblScanTrigSpeed.Location = new System.Drawing.Point(144, 156);
             this.lblScanTrigSpeed.Name = "lblScanTrigSpeed";
-            this.lblScanTrigSpeed.Size = new System.Drawing.Size(130, 18);
-            this.lblScanTrigSpeed.TabIndex = 215;
+            this.lblScanTrigSpeed.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblScanTrigSpeed.Size = new System.Drawing.Size(124, 25);
+            this.lblScanTrigSpeed.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblScanTrigSpeed.TabIndex = 209;
             this.lblScanTrigSpeed.Text = "-";
-            this.lblScanTrigSpeed.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.lblScanTrigSpeed.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // lblcapScanTrigR1
+            // 
+            this.lblcapScanTrigR1.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblcapScanTrigR1.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblcapScanTrigR1.BackgroundStyle.BackColor2 = System.Drawing.Color.CornflowerBlue;
+            this.lblcapScanTrigR1.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderRightWidth = 1;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderTopWidth = 1;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblcapScanTrigR1.BackgroundStyle.BorderLightGradientAngle = 0;
+            this.lblcapScanTrigR1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrigR1.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrigR1.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblcapScanTrigR1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrigR1.FontBold = true;
+            this.lblcapScanTrigR1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblcapScanTrigR1.Location = new System.Drawing.Point(9, 187);
+            this.lblcapScanTrigR1.Name = "lblcapScanTrigR1";
+            this.lblcapScanTrigR1.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblcapScanTrigR1.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblcapScanTrigR1.TabIndex = 210;
+            this.lblcapScanTrigR1.Text = "Lines";
+            this.lblcapScanTrigR1.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // lblScanTrigLines
             // 
+            this.lblScanTrigLines.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblScanTrigLines.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblScanTrigLines.BackgroundStyle.BackColor2 = System.Drawing.Color.DarkGray;
+            this.lblScanTrigLines.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblScanTrigLines.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigLines.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblScanTrigLines.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblScanTrigLines.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigLines.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblScanTrigLines.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblScanTrigLines.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigLines.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblScanTrigLines.BackgroundStyle.BorderRightWidth = 1;
+            this.lblScanTrigLines.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigLines.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblScanTrigLines.BackgroundStyle.BorderTopWidth = 1;
+            this.lblScanTrigLines.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblScanTrigLines.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblScanTrigLines.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblScanTrigLines.BackgroundStyle.BorderLightGradientAngle = 0;
             this.lblScanTrigLines.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblScanTrigLines.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScanTrigLines.Location = new System.Drawing.Point(230, 46);
+            this.lblScanTrigLines.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblScanTrigLines.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblScanTrigLines.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTrigLines.FontBold = true;
+            this.lblScanTrigLines.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblScanTrigLines.Location = new System.Drawing.Point(144, 187);
             this.lblScanTrigLines.Name = "lblScanTrigLines";
-            this.lblScanTrigLines.Size = new System.Drawing.Size(130, 18);
-            this.lblScanTrigLines.TabIndex = 216;
+            this.lblScanTrigLines.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblScanTrigLines.Size = new System.Drawing.Size(124, 25);
+            this.lblScanTrigLines.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblScanTrigLines.TabIndex = 211;
             this.lblScanTrigLines.Text = "-";
-            this.lblScanTrigLines.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.lblScanTrigLines.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // lblcapScanTrigR2
+            // 
+            this.lblcapScanTrigR2.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblcapScanTrigR2.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblcapScanTrigR2.BackgroundStyle.BackColor2 = System.Drawing.Color.CornflowerBlue;
+            this.lblcapScanTrigR2.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderRightWidth = 1;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderTopWidth = 1;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblcapScanTrigR2.BackgroundStyle.BorderLightGradientAngle = 0;
+            this.lblcapScanTrigR2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrigR2.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrigR2.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblcapScanTrigR2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrigR2.FontBold = true;
+            this.lblcapScanTrigR2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblcapScanTrigR2.Location = new System.Drawing.Point(9, 218);
+            this.lblcapScanTrigR2.Name = "lblcapScanTrigR2";
+            this.lblcapScanTrigR2.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblcapScanTrigR2.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR2.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblcapScanTrigR2.TabIndex = 212;
+            this.lblcapScanTrigR2.Text = "Scan Time";
+            this.lblcapScanTrigR2.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // lblScanTrigTime
             // 
+            this.lblScanTrigTime.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblScanTrigTime.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblScanTrigTime.BackgroundStyle.BackColor2 = System.Drawing.Color.DarkGray;
+            this.lblScanTrigTime.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblScanTrigTime.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigTime.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblScanTrigTime.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblScanTrigTime.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigTime.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblScanTrigTime.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblScanTrigTime.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigTime.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblScanTrigTime.BackgroundStyle.BorderRightWidth = 1;
+            this.lblScanTrigTime.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigTime.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblScanTrigTime.BackgroundStyle.BorderTopWidth = 1;
+            this.lblScanTrigTime.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblScanTrigTime.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblScanTrigTime.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblScanTrigTime.BackgroundStyle.BorderLightGradientAngle = 0;
             this.lblScanTrigTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblScanTrigTime.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScanTrigTime.Location = new System.Drawing.Point(230, 66);
+            this.lblScanTrigTime.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblScanTrigTime.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblScanTrigTime.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTrigTime.FontBold = true;
+            this.lblScanTrigTime.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblScanTrigTime.Location = new System.Drawing.Point(144, 218);
             this.lblScanTrigTime.Name = "lblScanTrigTime";
-            this.lblScanTrigTime.Size = new System.Drawing.Size(130, 18);
-            this.lblScanTrigTime.TabIndex = 217;
+            this.lblScanTrigTime.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblScanTrigTime.Size = new System.Drawing.Size(124, 25);
+            this.lblScanTrigTime.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblScanTrigTime.TabIndex = 213;
             this.lblScanTrigTime.Text = "-";
-            this.lblScanTrigTime.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.lblScanTrigTime.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // lblcapScanTrigR3
+            // 
+            this.lblcapScanTrigR3.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblcapScanTrigR3.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblcapScanTrigR3.BackgroundStyle.BackColor2 = System.Drawing.Color.CornflowerBlue;
+            this.lblcapScanTrigR3.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderRightWidth = 1;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderTopWidth = 1;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblcapScanTrigR3.BackgroundStyle.BorderLightGradientAngle = 0;
+            this.lblcapScanTrigR3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrigR3.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrigR3.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblcapScanTrigR3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrigR3.FontBold = true;
+            this.lblcapScanTrigR3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblcapScanTrigR3.Location = new System.Drawing.Point(9, 249);
+            this.lblcapScanTrigR3.Name = "lblcapScanTrigR3";
+            this.lblcapScanTrigR3.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblcapScanTrigR3.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR3.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblcapScanTrigR3.TabIndex = 214;
+            this.lblcapScanTrigR3.Text = "Enc Count";
+            this.lblcapScanTrigR3.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // lblScanTrigCounts
             // 
+            this.lblScanTrigCounts.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblScanTrigCounts.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblScanTrigCounts.BackgroundStyle.BackColor2 = System.Drawing.Color.DarkGray;
+            this.lblScanTrigCounts.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblScanTrigCounts.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigCounts.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblScanTrigCounts.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblScanTrigCounts.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigCounts.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblScanTrigCounts.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblScanTrigCounts.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigCounts.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblScanTrigCounts.BackgroundStyle.BorderRightWidth = 1;
+            this.lblScanTrigCounts.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigCounts.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblScanTrigCounts.BackgroundStyle.BorderTopWidth = 1;
+            this.lblScanTrigCounts.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblScanTrigCounts.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblScanTrigCounts.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblScanTrigCounts.BackgroundStyle.BorderLightGradientAngle = 0;
             this.lblScanTrigCounts.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblScanTrigCounts.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScanTrigCounts.Location = new System.Drawing.Point(230, 86);
+            this.lblScanTrigCounts.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblScanTrigCounts.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblScanTrigCounts.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTrigCounts.FontBold = true;
+            this.lblScanTrigCounts.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblScanTrigCounts.Location = new System.Drawing.Point(144, 249);
             this.lblScanTrigCounts.Name = "lblScanTrigCounts";
-            this.lblScanTrigCounts.Size = new System.Drawing.Size(130, 18);
-            this.lblScanTrigCounts.TabIndex = 218;
+            this.lblScanTrigCounts.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblScanTrigCounts.Size = new System.Drawing.Size(124, 25);
+            this.lblScanTrigCounts.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblScanTrigCounts.TabIndex = 215;
             this.lblScanTrigCounts.Text = "-";
-            this.lblScanTrigCounts.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.lblScanTrigCounts.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // lblcapScanTrigR4
+            // 
+            this.lblcapScanTrigR4.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblcapScanTrigR4.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblcapScanTrigR4.BackgroundStyle.BackColor2 = System.Drawing.Color.CornflowerBlue;
+            this.lblcapScanTrigR4.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderRightWidth = 1;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderTopWidth = 1;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblcapScanTrigR4.BackgroundStyle.BorderLightGradientAngle = 0;
+            this.lblcapScanTrigR4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblcapScanTrigR4.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrigR4.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblcapScanTrigR4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcapScanTrigR4.FontBold = true;
+            this.lblcapScanTrigR4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblcapScanTrigR4.Location = new System.Drawing.Point(9, 280);
+            this.lblcapScanTrigR4.Name = "lblcapScanTrigR4";
+            this.lblcapScanTrigR4.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblcapScanTrigR4.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR4.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblcapScanTrigR4.TabIndex = 216;
+            this.lblcapScanTrigR4.Text = "State";
+            this.lblcapScanTrigR4.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // lblScanTrigState
             // 
+            this.lblScanTrigState.BackColor = System.Drawing.SystemColors.Info;
+            // 
+            // 
+            // 
+            this.lblScanTrigState.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblScanTrigState.BackgroundStyle.BackColor2 = System.Drawing.Color.DarkGray;
+            this.lblScanTrigState.BackgroundStyle.BackColorGradientAngle = 90;
+            this.lblScanTrigState.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigState.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
+            this.lblScanTrigState.BackgroundStyle.BorderBottomWidth = 1;
+            this.lblScanTrigState.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigState.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
+            this.lblScanTrigState.BackgroundStyle.BorderLeftWidth = 1;
+            this.lblScanTrigState.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigState.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
+            this.lblScanTrigState.BackgroundStyle.BorderRightWidth = 1;
+            this.lblScanTrigState.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.lblScanTrigState.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
+            this.lblScanTrigState.BackgroundStyle.BorderTopWidth = 1;
+            this.lblScanTrigState.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
+            this.lblScanTrigState.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
+            this.lblScanTrigState.BackgroundStyle.BorderGradientAngle = 0;
+            this.lblScanTrigState.BackgroundStyle.BorderLightGradientAngle = 0;
             this.lblScanTrigState.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblScanTrigState.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScanTrigState.Location = new System.Drawing.Point(230, 106);
+            this.lblScanTrigState.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblScanTrigState.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.lblScanTrigState.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScanTrigState.FontBold = true;
+            this.lblScanTrigState.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblScanTrigState.Location = new System.Drawing.Point(144, 280);
             this.lblScanTrigState.Name = "lblScanTrigState";
-            this.lblScanTrigState.Size = new System.Drawing.Size(130, 18);
-            this.lblScanTrigState.TabIndex = 219;
+            this.lblScanTrigState.SingleLineColor = System.Drawing.Color.PaleTurquoise;
+            this.lblScanTrigState.Size = new System.Drawing.Size(124, 25);
+            this.lblScanTrigState.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
+            this.lblScanTrigState.TabIndex = 217;
             this.lblScanTrigState.Text = "-";
-            this.lblScanTrigState.TextAlignment = System.Drawing.StringAlignment.Far;
-            // 
-            // lblScanTrigResult
-            // 
-            this.lblScanTrigResult.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblScanTrigResult.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScanTrigResult.Location = new System.Drawing.Point(230, 126);
-            this.lblScanTrigResult.Name = "lblScanTrigResult";
-            this.lblScanTrigResult.Size = new System.Drawing.Size(130, 18);
-            this.lblScanTrigResult.TabIndex = 220;
-            this.lblScanTrigResult.Text = "-";
-            this.lblScanTrigResult.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.lblScanTrigState.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // btnScanTrigSet
             // 
             this.btnScanTrigSet.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnScanTrigSet.BackColor = System.Drawing.Color.Black;
             this.btnScanTrigSet.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnScanTrigSet.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScanTrigSet.Location = new System.Drawing.Point(8, 106);
+            this.btnScanTrigSet.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScanTrigSet.Location = new System.Drawing.Point(9, 311);
             this.btnScanTrigSet.Name = "btnScanTrigSet";
-            this.btnScanTrigSet.Size = new System.Drawing.Size(60, 18);
+            this.btnScanTrigSet.Size = new System.Drawing.Size(84, 25);
             this.btnScanTrigSet.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnScanTrigSet.TabIndex = 221;
+            this.btnScanTrigSet.TabIndex = 218;
             this.btnScanTrigSet.Text = "SET";
+            this.btnScanTrigSet.TextColor = System.Drawing.Color.White;
+            this.btnScanTrigSet.ThemeAware = true;
             this.btnScanTrigSet.Click += new System.EventHandler(this.btnScanTrigSet_Click);
             // 
             // btnScanTrigStart
             // 
             this.btnScanTrigStart.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnScanTrigStart.BackColor = System.Drawing.Color.Black;
             this.btnScanTrigStart.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnScanTrigStart.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScanTrigStart.Location = new System.Drawing.Point(8, 126);
+            this.btnScanTrigStart.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScanTrigStart.Location = new System.Drawing.Point(97, 311);
             this.btnScanTrigStart.Name = "btnScanTrigStart";
-            this.btnScanTrigStart.Size = new System.Drawing.Size(60, 18);
+            this.btnScanTrigStart.Size = new System.Drawing.Size(84, 25);
             this.btnScanTrigStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnScanTrigStart.TabIndex = 222;
+            this.btnScanTrigStart.TabIndex = 219;
             this.btnScanTrigStart.Text = "START";
+            this.btnScanTrigStart.TextColor = System.Drawing.Color.White;
+            this.btnScanTrigStart.ThemeAware = true;
             this.btnScanTrigStart.Click += new System.EventHandler(this.btnScanTrigStart_Click);
             // 
             // btnScanTrigStop
             // 
             this.btnScanTrigStop.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnScanTrigStop.BackColor = System.Drawing.Color.Black;
             this.btnScanTrigStop.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnScanTrigStop.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScanTrigStop.Location = new System.Drawing.Point(74, 126);
+            this.btnScanTrigStop.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScanTrigStop.Location = new System.Drawing.Point(185, 311);
             this.btnScanTrigStop.Name = "btnScanTrigStop";
-            this.btnScanTrigStop.Size = new System.Drawing.Size(60, 18);
+            this.btnScanTrigStop.Size = new System.Drawing.Size(84, 25);
             this.btnScanTrigStop.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnScanTrigStop.TabIndex = 223;
+            this.btnScanTrigStop.TabIndex = 220;
             this.btnScanTrigStop.Text = "STOP";
+            this.btnScanTrigStop.TextColor = System.Drawing.Color.White;
+            this.btnScanTrigStop.ThemeAware = true;
             this.btnScanTrigStop.Click += new System.EventHandler(this.btnScanTrigStop_Click);
             // 
             // groupBox3
@@ -3590,6 +4023,7 @@
             this.Controls.Add(this.expandablePanel4);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.tcAuto);
+            this.Controls.Add(this.pnlScanTrigger);
             this.Controls.Add(this.expandablePanel3);
             this.Controls.Add(this.expandablePanel2);
             this.Controls.Add(this.expandablePanel1);
@@ -3600,6 +4034,7 @@
             this.expandablePanel1.ResumeLayout(false);
             this.expandablePanel2.ResumeLayout(false);
             this.expandablePanel3.ResumeLayout(false);
+            this.pnlScanTrigger.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tcAuto)).EndInit();
             this.tcAuto.ResumeLayout(false);
             this.tcState.ResumeLayout(false);
@@ -3722,29 +4157,27 @@
         public DevComponents.DotNetBar.LabelX labelX2;
         public System.Windows.Forms.Label lblAir3;
         public DevComponents.DotNetBar.LabelX labelX14;
-        private System.Windows.Forms.GroupBox groupBoxScanTrigger;
-        public DevComponents.DotNetBar.Controls.TextBoxX txtScanTrigStart;
-        public DevComponents.DotNetBar.Controls.TextBoxX txtScanTrigEnd;
-        public DevComponents.DotNetBar.Controls.TextBoxX txtScanTrigPitch;
-        public DevComponents.DotNetBar.Controls.TextBoxX txtScanTrigRate;
+        public DevComponents.DotNetBar.ExpandablePanel pnlScanTrigger;
+        public DevComponents.DotNetBar.ButtonX btnTrigStart;
+        public DevComponents.DotNetBar.LabelX lblTrigStart;
+        public DevComponents.DotNetBar.ButtonX btnTrigEnd;
+        public DevComponents.DotNetBar.LabelX lblTrigEnd;
+        public DevComponents.DotNetBar.ButtonX btnTrigPitch;
+        public DevComponents.DotNetBar.LabelX lblTrigPitch;
+        public DevComponents.DotNetBar.ButtonX btnTrigRate;
+        public DevComponents.DotNetBar.LabelX lblTrigRate;
+        public DevComponents.DotNetBar.LabelX lblcapScanTrigR0;
         public DevComponents.DotNetBar.LabelX lblScanTrigSpeed;
+        public DevComponents.DotNetBar.LabelX lblcapScanTrigR1;
         public DevComponents.DotNetBar.LabelX lblScanTrigLines;
+        public DevComponents.DotNetBar.LabelX lblcapScanTrigR2;
         public DevComponents.DotNetBar.LabelX lblScanTrigTime;
+        public DevComponents.DotNetBar.LabelX lblcapScanTrigR3;
         public DevComponents.DotNetBar.LabelX lblScanTrigCounts;
+        public DevComponents.DotNetBar.LabelX lblcapScanTrigR4;
         public DevComponents.DotNetBar.LabelX lblScanTrigState;
-        public DevComponents.DotNetBar.LabelX lblScanTrigResult;
-        private DevComponents.DotNetBar.LabelX lblcapScanTrig0;
-        private DevComponents.DotNetBar.LabelX lblcapScanTrig1;
-        private DevComponents.DotNetBar.LabelX lblcapScanTrig2;
-        private DevComponents.DotNetBar.LabelX lblcapScanTrig3;
-        private DevComponents.DotNetBar.LabelX lblcapScanTrigR0;
-        private DevComponents.DotNetBar.LabelX lblcapScanTrigR1;
-        private DevComponents.DotNetBar.LabelX lblcapScanTrigR2;
-        private DevComponents.DotNetBar.LabelX lblcapScanTrigR3;
-        private DevComponents.DotNetBar.LabelX lblcapScanTrigR4;
-        private DevComponents.DotNetBar.LabelX lblcapScanTrigR5;
-        private DevComponents.DotNetBar.ButtonX btnScanTrigSet;
-        private DevComponents.DotNetBar.ButtonX btnScanTrigStart;
-        private DevComponents.DotNetBar.ButtonX btnScanTrigStop;
+        public DevComponents.DotNetBar.ButtonX btnScanTrigSet;
+        public DevComponents.DotNetBar.ButtonX btnScanTrigStart;
+        public DevComponents.DotNetBar.ButtonX btnScanTrigStop;
     }
 }
