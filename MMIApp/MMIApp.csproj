@@ -760,6 +760,22 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <!-- The recipe/parameter database. It used to exist only under bin\, which
+         .gitignore excludes, so a fresh clone had no DB at all: SQLiteDB.Open()
+         created an empty file, every query failed, and the failure was swallowed
+         until MainRecipeLoad() indexed an empty list. Kept as source here and
+         copied to the output folder instead.
+
+         PreserveNewest, not Always: the running application writes to the copy in
+         the output folder, which makes it newer than this one, so an operator's
+         recipes survive a rebuild. The flip side is that updating this file does
+         overwrite a machine's database once its timestamp is older, so treat it
+         as the seed rather than as the live data. -->
+    <None Include="DB\JetDB.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="bin\Debug\BMP\i3_logo2.bmp" />
   </ItemGroup>
   <ItemGroup>
