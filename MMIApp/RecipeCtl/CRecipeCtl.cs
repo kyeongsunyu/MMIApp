@@ -12,6 +12,10 @@ namespace MMI
         //
         public static CRcpMaterial CurMaterialRcp = new CRcpMaterial();
         public static CRcpMaterial EditMaterialRcp = new CRcpMaterial();
+
+        // Highest DeviceData index MainRecipeLoad() reads is 157, in the last of the four
+        // blocks (0.., 50.., 100.., 150..). LoadRcpMaterial() fills 200 on success.
+        private const int DeviceDataUsed = 158;
  
         public static void SetMainForm(FormMain Frm)
         {
@@ -44,6 +48,27 @@ namespace MMI
             frmMain.frmMotorSetting.RefreshData();
 
             //---------------------------- Share Memory
+
+            // LoadRcpMaterial() clears DeviceData and only refills it when the DEVICE row
+            // is actually read. A missing DB file, a missing table and a query that matches
+            // no row are all swallowed on that path, so the list stays empty and the first
+            // index below threw ArgumentOutOfRangeException - three layers away from the
+            // real problem. Material_NAME is null in exactly the same case, which is what
+            // the guard further down already tests before writing to shared memory.
+            if (CRecipeCtl.CurMaterialRcp.DeviceData.Count < DeviceDataUsed)
+            {
+                System.Windows.Forms.MessageBox.Show(
+                    "현재 레시피를 읽지 못했습니다. 레시피 값을 공유 메모리에 반영하지 않습니다.\n\n"
+                    + "DEVICE 테이블에서 읽은 항목: " + CRecipeCtl.CurMaterialRcp.DeviceData.Count.ToString()
+                    + " (필요: " + DeviceDataUsed.ToString() + ")\n"
+                    + "DB 경로: " + System.Windows.Forms.Application.StartupPath + "\\DB\\JetDB.db",
+                    "RECIPE LOAD",
+                    System.Windows.Forms.MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBoxIcon.Warning);
+
+                MmiGV.bDrawInfoGrid = true;
+                return;
+            }
 
             //for (int i = 0; i < CRecipeCtl.CurMaterialRcp.DeviceData.Count; i++)
             {
