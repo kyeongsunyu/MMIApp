@@ -228,10 +228,10 @@ namespace MMI
         }
 
         // The panel reads mm, mm, um and kHz because that is how the operator
-        // thinks about a scan. Pixel Resolution is the along-scan pitch - one
-        // line per that much travel - and it has to match the cross-scan
-        // resolution or the image comes out stretched. The shared memory recipe
-        // is mm and Hz throughout.
+        // thinks about a scan. Pixel Res is the along-scan resolution - one line
+        // per that much travel - and it has to match the cross-scan resolution
+        // or the image comes out stretched. The shared memory recipe is mm and
+        // Hz throughout.
         private bool SendScanTriggerRecipe(double dStart, double dEnd,
                                            double dPitchUm, double dRateKHz)
         {
