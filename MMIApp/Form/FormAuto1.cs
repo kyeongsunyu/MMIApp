@@ -43,8 +43,6 @@ namespace MMI
         public TimeSpan tsRun = new TimeSpan();
         public TimeSpan tsStop = new TimeSpan();
 
-        ToolTip toolTip = new ToolTip();
-        string strTip = "";
 
         //
         //
@@ -65,10 +63,6 @@ namespace MMI
         private void FormAuto1_Shown(object sender, EventArgs e)
         {
             lblTargetUPH.Text = MmiGV.iTragetUPH.ToString();
-
-            toolTip.OwnerDraw = true;
-            toolTip.Draw += new DrawToolTipEventHandler(toolTip_Draw);
-            toolTip.Popup += new PopupEventHandler(toolTip_Popup);
         }
 
         private void btnInit_Click(object sender, EventArgs e)
@@ -166,21 +160,6 @@ namespace MMI
                 MmiGV.pShMem.SetDM(2, tag);
                 MMILog.AddMMILog(p_Button.Text + " Clicked");
             }
-        }
-
-        void toolTip_Popup(object sender, PopupEventArgs e)
-        {
-            // on popip set the size of tool tip
-            e.ToolTipSize = TextRenderer.MeasureText(strTip, new Font("Tahoma", 16.0f));
-        }
-
-        void toolTip_Draw(object sender, DrawToolTipEventArgs e)
-        {
-            Font f = new Font("Tahoma", 14.0f);
-            e.DrawBackground();
-            e.DrawBorder();
-            strTip = e.ToolTipText;
-            e.Graphics.DrawString(e.ToolTipText, f, Brushes.Black, new PointF(2, 2));
         }
 
         #region SCAN TRIGGER

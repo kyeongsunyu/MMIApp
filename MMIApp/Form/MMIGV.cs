@@ -245,8 +245,6 @@ namespace MMI
         public static bool bFormHomeShow = false;
 
         //add by chs
-        public static bool bDrawInfoGrid = false;
-        public static bool bUpdateInfoGrid = false;
         #region FORM_VIEW
         public static Form ViewMainForm = null;
         public static Form bfViewMainForm = null;

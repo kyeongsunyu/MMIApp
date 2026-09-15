@@ -24,9 +24,6 @@ namespace MMI
 
         public static void MainRecipeLoad() //현재 Recipe Load
         {
-            MmiGV.bUpdateInfoGrid = false;
-            MmiGV.bDrawInfoGrid = false;
-            //
             MmiGV.InitData();
             frmMain.frmMotorSetting.LoadMotorSettingData();
 
@@ -66,7 +63,6 @@ namespace MMI
                     System.Windows.Forms.MessageBoxButtons.OK,
                     System.Windows.Forms.MessageBoxIcon.Warning);
 
-                MmiGV.bDrawInfoGrid = true;
                 return;
             }
 
@@ -148,8 +144,6 @@ namespace MMI
                 MmiGV.pShMem.WDeviceInfo.strDeviceName = CRecipeCtl.CurMaterialRcp.Material_NAME; //MmiGV.strCurrentDevName;
                 MmiGV.pShMem.SetDeviceInfo();
             }
-
-            MmiGV.bDrawInfoGrid = true;
         }
 
         public static void MainRecipeSelect(string RecipeNo)
