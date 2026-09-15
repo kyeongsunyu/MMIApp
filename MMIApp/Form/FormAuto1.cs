@@ -119,7 +119,6 @@ namespace MMI
                 lblStopTime.Text = $"{tsStop.Hours:D2}:{tsStop.Minutes:D2}:{tsStop.Seconds:D2}";
             }
 
-            ScanTriggerTick();
         }
 
         private void btnTargetUPH_Click(object sender, EventArgs e)
@@ -179,9 +178,20 @@ namespace MMI
         // one appears this becomes a selection rather than a constant.
         private const uint ScanTriggerAxis = 0;
 
-        // Set while a recipe has been accepted or a cycle is running, so the
-        // timer only reads shared memory when there is something to watch.
-        private bool bScanTriggerWatch = false;
+        // CThreadMain runs about nineteen MemPort round trips per pass and holds
+        // the comm mutex almost continuously. MemPort gives up after waiting a
+        // second for it, so one attempt from a button press can come back empty
+        // while SEQ is answering perfectly well. Try a few times before calling
+        // it a dead link.
+        private const int ScanTriggerTries = 3;
+
+        // Set while a recipe has been accepted or a cycle is running. Read by
+        // CThreadMain, which does the polling: every other shared memory read in
+        // this program goes through that thread, and MemPort takes a mutex the
+        // thread holds almost continuously, so a UI timer asking for the same
+        // mutex loses the race most of the time and reports a link that is fine
+        // as broken.
+        public volatile bool bScanTriggerWatch = false;
 
         private void ScanTriggerInput_TextChanged(object sender, EventArgs e)
         {
@@ -272,12 +282,22 @@ namespace MMI
             }
         }
 
-        // Returns the validate code so the caller can act on it, or -1 when the
-        // display could not be read at all.
+        // Reads shared memory, so it blocks; only a button press calls it.
+        // Returns the validate code, or -1 when the display could not be read.
         private int RefreshScanTriggerDisplay()
         {
             if (MmiGV.pShMem == null) return -1;
             if (!MmiGV.pShMem.GetScanTriggerDisplay()) return -1;
+
+            RenderScanTriggerDisplay();
+            return MmiGV.pShMem.RScanTriggerDisplay.nValidateCode;
+        }
+
+        // Paints whatever CSharedMemory last read. Touches no shared memory, so
+        // the comm thread can drive it through Invoke. UI thread only.
+        public void RenderScanTriggerDisplay()
+        {
+            if (MmiGV.pShMem == null) return;
 
             SharedMemDll.SCANTRIGGER_DISPLAY d = MmiGV.pShMem.RScanTriggerDisplay;
 
@@ -301,7 +321,21 @@ namespace MMI
             lblScanTrigCounts.Text = d.dPitchCounts.ToString("F2")
                                    + (d.bPitchIsInteger ? "" : " !");
 
-            return d.nValidateCode;
+            // The cycle has settled, so stop following it and leave the last
+            // reading on screen.
+            if (d.nState == 7 || d.nState == 8)          // DONE, ABORTED
+            {
+                bScanTriggerWatch = false;
+                lblScanTrigResult.Text = (d.nState == 7) ? "DONE" : "ABORTED";
+            }
+        }
+
+        // Called by the comm thread after several reads in a row have failed.
+        public void ScanTriggerLinkLost()
+        {
+            bScanTriggerWatch = false;
+            btnScanTrigStart.Enabled = false;
+            lblScanTrigResult.Text = "NO LINK";
         }
 
         private void btnScanTrigSet_Click(object sender, EventArgs e)
@@ -335,14 +369,17 @@ namespace MMI
                 return;
             }
 
-            if (!SendScanTriggerRecipe(dStart, dEnd, dPitch, dRate))
+            // Writing the same recipe twice is harmless, so the whole pair is
+            // what gets retried rather than each half separately.
+            int nCode = -1;
+            for (int k = 0; k < ScanTriggerTries && nCode < 0; k++)
             {
-                ClearScanTriggerDisplay();
-                lblScanTrigResult.Text = "NO LINK";
-                return;
+                if (SendScanTriggerRecipe(dStart, dEnd, dPitch, dRate))
+                {
+                    nCode = RefreshScanTriggerDisplay();
+                }
             }
 
-            int nCode = RefreshScanTriggerDisplay();
             if (nCode < 0)
             {
                 ClearScanTriggerDisplay();
@@ -366,9 +403,14 @@ namespace MMI
                 return;
             }
 
-            MmiGV.pShMem.SetScanTriggerStart();
-            bScanTriggerWatch = true;
-            lblScanTrigResult.Text = "START";
+            bool bSent = false;
+            for (int k = 0; k < ScanTriggerTries && !bSent; k++)
+            {
+                bSent = MmiGV.pShMem.SetScanTriggerStart();
+            }
+
+            bScanTriggerWatch = bSent;
+            lblScanTrigResult.Text = bSent ? "START" : "NO LINK";
         }
 
         private void btnScanTrigStop_Click(object sender, EventArgs e)
@@ -379,33 +421,14 @@ namespace MMI
                 return;
             }
 
-            MmiGV.pShMem.SetScanTriggerStop();
-            bScanTriggerWatch = true;
-            lblScanTrigResult.Text = "STOP";
-        }
-
-        // Driven from tmRun_Tick. Follows the cycle only while there is one to
-        // follow, and lets go once it has settled, so the last reading stays on
-        // screen instead of being polled over.
-        private void ScanTriggerTick()
-        {
-            if (!bScanTriggerWatch) return;
-
-            if (RefreshScanTriggerDisplay() < 0)
+            bool bSent = false;
+            for (int k = 0; k < ScanTriggerTries && !bSent; k++)
             {
-                bScanTriggerWatch = false;
-                btnScanTrigStart.Enabled = false;
-                lblScanTrigResult.Text = "NO LINK";
-                return;
+                bSent = MmiGV.pShMem.SetScanTriggerStop();
             }
 
-            int nState = MmiGV.pShMem.RScanTriggerDisplay.nState;
-
-            if (nState == 7 || nState == 8)     // DONE, ABORTED
-            {
-                bScanTriggerWatch = false;
-                lblScanTrigResult.Text = (nState == 7) ? "DONE" : "ABORTED";
-            }
+            bScanTriggerWatch = bSent;
+            lblScanTrigResult.Text = bSent ? "STOP" : "NO LINK";
         }
 
         #endregion

@@ -46,6 +46,12 @@ namespace MMI
         private static int m_iNextIndex = 0;
         private static double m_dNextPos = 0.0;
 
+        // A scan trigger read that comes back empty is a lost round, not a lost
+        // link: MemPort gives up after 500ms and this thread is contending with
+        // itself for the same mutex. Only a run of them means SEQ is gone.
+        private static int m_iScanTriggerMiss = 0;
+        private const int ScanTriggerMissLimit = 20;
+
         
         public static void ExecuteMainThred()
         {
@@ -453,6 +459,34 @@ namespace MMI
             MmiGV.pShMem.GetGoodTray2VisionResult();
             MmiGV.pShMem.GetReworkTrayVisionResult();
             MmiGV.pShMem.GetNGTrayVisionResult();
+
+            ScanTriggerRefresh();
+        }
+
+        // Only while the panel has something to watch - an accepted recipe or a
+        // running cycle. The rest of the time this costs nothing.
+        private static void ScanTriggerRefresh()
+        {
+            if (!MmiGV.frmMain.frmAuto1.bScanTriggerWatch) return;
+
+            if (MmiGV.pShMem.GetScanTriggerDisplay())
+            {
+                m_iScanTriggerMiss = 0;
+
+                MmiGV.frmMain.frmAuto1.lblScanTrigState.Invoke(new Action(() =>
+                {
+                    MmiGV.frmMain.frmAuto1.RenderScanTriggerDisplay();
+                }));
+            }
+            else if (++m_iScanTriggerMiss >= ScanTriggerMissLimit)
+            {
+                m_iScanTriggerMiss = 0;
+
+                MmiGV.frmMain.frmAuto1.lblScanTrigState.Invoke(new Action(() =>
+                {
+                    MmiGV.frmMain.frmAuto1.ScanTriggerLinkLost();
+                }));
+            }
         }
 
         

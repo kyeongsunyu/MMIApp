@@ -1513,7 +1513,7 @@
             this.pnlScanTrigger.ExpandButtonVisible = false;
             this.pnlScanTrigger.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.pnlScanTrigger.HideControlsWhenCollapsed = true;
-            this.pnlScanTrigger.Location = new System.Drawing.Point(14, 29);
+            this.pnlScanTrigger.Location = new System.Drawing.Point(0, 0);
             this.pnlScanTrigger.Name = "pnlScanTrigger";
             this.pnlScanTrigger.Size = new System.Drawing.Size(277, 438);
             this.pnlScanTrigger.Style.Alignment = System.Drawing.StringAlignment.Center;
