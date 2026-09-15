@@ -163,14 +163,34 @@ namespace MMI
             sBMP = gdAlarm[gdAlarm.Row, 6].ToString();
             //btnImageOpen.Text = sBMP;
 
-            if (Directory.Exists(sBMP))
+            // File.Exists, not Directory.Exists: sBMP is a path to a bitmap, so the
+            // old test could never be true and the alarm's own image was never
+            // shown - every alarm fell through to the default.
+            if (!File.Exists(sBMP))
             {
-                pictureBox.Load(sBMP);
+                sBMP = AppDomain.CurrentDomain.BaseDirectory + "ErrorImage\\Default.bmp";
+            }
+
+            // ErrorImage\ lives under the build output, which .gitignore excludes,
+            // so a fresh clone has neither the alarm images nor the default. The
+            // alarm code and its text are what the operator needs; a missing
+            // picture must not take the screen down with a DirectoryNotFound.
+            if (File.Exists(sBMP))
+            {
+                try
+                {
+                    pictureBox.Load(sBMP);
+                }
+                catch (Exception ex)
+                {
+                    pictureBox.Image = null;
+                    Console.WriteLine("Alarm image load failed: {0}", ex.Message);
+                }
             }
             else
             {
-                sBMP = AppDomain.CurrentDomain.BaseDirectory + "ErrorImage\\Default.bmp";
-                pictureBox.Load(sBMP);
+                pictureBox.Image = null;
+                Console.WriteLine("Alarm image not found: {0}", sBMP);
             }
 
             try

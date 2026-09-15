@@ -91,6 +91,17 @@ namespace MMI
             //XmlNode node;
 
             String file = AppDomain.CurrentDomain.BaseDirectory + "LANGUAGE\\LANG.xml";
+
+            // LANGUAGE\ is under the build output that .gitignore excludes, so a
+            // fresh clone has no LANG.xml. This runs on its own thread, where an
+            // unhandled exception takes the whole process down rather than one
+            // screen, so the captions stay as they are instead.
+            if (!System.IO.File.Exists(file))
+            {
+                Console.WriteLine("LANG.xml not found: {0}", file);
+                return;
+            }
+
             doc.Load(file);
 
             // 루트노드
