@@ -1,0 +1,32 @@
+using System;
+
+namespace Mapping
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum BinFormatType
+    {
+        /// <summary>
+        /// Single ASCII character.
+        /// </summary>
+        Ascii,
+
+        /// <summary>
+        /// 3 digit integer from 000-255.
+        /// </summary>
+        Decimal,
+
+        /// <summary>
+        /// 2 digit Hexadecimal value from 00-FF.
+        /// </summary>
+        HexaDecimal,
+
+        /// <summary>
+        /// 4 digit Hexadecimal value from 0000-FFFF.
+        /// </summary>
+        Integer2,
+    }
+}
+
+
