@@ -174,53 +174,11 @@ namespace MMI
         // from the recipe, and working them out a second time here would give the
         // operator two answers that can disagree.
         //
-        // The four inputs are entered through frm_NumPad rather than typed, the
-        // same way Target UPH is on the PRODUCT panel: the machine runs on a
-        // touch screen with no keyboard in front of it.
+        // The four inputs are typed straight into their text boxes. Editing any of
+        // them drops the computed rows, which are stale the moment an input moves.
 
-        private bool ReadScanTriggerNumPad(out double dValue)
+        private void ScanTriggerInput_TextChanged(object sender, EventArgs e)
         {
-            dValue = 0.0;
-
-            if (!frmMain.frm_NumPad.Display()) return false;
-
-            dValue = frmMain.frm_NumPad.GetValue();
-            return true;
-        }
-
-        private void btnTrigStart_Click(object sender, EventArgs e)
-        {
-            double dValue;
-            if (!ReadScanTriggerNumPad(out dValue)) return;
-
-            lblTrigStart.Text = dValue.ToString("F3");
-            ClearScanTriggerDisplay();
-        }
-
-        private void btnTrigEnd_Click(object sender, EventArgs e)
-        {
-            double dValue;
-            if (!ReadScanTriggerNumPad(out dValue)) return;
-
-            lblTrigEnd.Text = dValue.ToString("F3");
-            ClearScanTriggerDisplay();
-        }
-
-        private void btnTrigPitch_Click(object sender, EventArgs e)
-        {
-            double dValue;
-            if (!ReadScanTriggerNumPad(out dValue)) return;
-
-            lblTrigPitch.Text = dValue.ToString("F2");
-            ClearScanTriggerDisplay();
-        }
-
-        private void btnTrigRate_Click(object sender, EventArgs e)
-        {
-            double dValue;
-            if (!ReadScanTriggerNumPad(out dValue)) return;
-
-            lblTrigRate.Text = dValue.ToString("F2");
             ClearScanTriggerDisplay();
         }
 
@@ -229,10 +187,10 @@ namespace MMI
         {
             dStart = dEnd = dPitch = dRate = 0.0;
 
-            if (!double.TryParse(lblTrigStart.Text, out dStart)) return false;
-            if (!double.TryParse(lblTrigEnd.Text,   out dEnd))   return false;
-            if (!double.TryParse(lblTrigPitch.Text, out dPitch)) return false;
-            if (!double.TryParse(lblTrigRate.Text,  out dRate))  return false;
+            if (!double.TryParse(txtScanTrigStart.Text, out dStart)) return false;
+            if (!double.TryParse(txtScanTrigEnd.Text,   out dEnd))   return false;
+            if (!double.TryParse(txtScanTrigPitch.Text, out dPitch)) return false;
+            if (!double.TryParse(txtScanTrigRate.Text,  out dRate))  return false;
 
             return true;
         }
