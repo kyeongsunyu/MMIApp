@@ -1515,7 +1515,7 @@
             this.pnlScanTrigger.HideControlsWhenCollapsed = true;
             this.pnlScanTrigger.Location = new System.Drawing.Point(0, 0);
             this.pnlScanTrigger.Name = "pnlScanTrigger";
-            this.pnlScanTrigger.Size = new System.Drawing.Size(277, 438);
+            this.pnlScanTrigger.Size = new System.Drawing.Size(329, 438);
             this.pnlScanTrigger.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.pnlScanTrigger.Style.BackColor1.Color = System.Drawing.Color.White;
             this.pnlScanTrigger.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -1567,7 +1567,7 @@
             this.lblcapScanTrig0.Location = new System.Drawing.Point(9, 32);
             this.lblcapScanTrig0.Name = "lblcapScanTrig0";
             this.lblcapScanTrig0.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblcapScanTrig0.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrig0.Size = new System.Drawing.Size(176, 25);
             this.lblcapScanTrig0.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrig0.TabIndex = 200;
             this.lblcapScanTrig0.Text = "Start (mm)";
@@ -1583,7 +1583,7 @@
             this.txtScanTrigStart.DisabledBackColor = System.Drawing.Color.White;
             this.txtScanTrigStart.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtScanTrigStart.ForeColor = System.Drawing.Color.Black;
-            this.txtScanTrigStart.Location = new System.Drawing.Point(144, 32);
+            this.txtScanTrigStart.Location = new System.Drawing.Point(196, 32);
             this.txtScanTrigStart.Name = "txtScanTrigStart";
             this.txtScanTrigStart.PreventEnterBeep = true;
             this.txtScanTrigStart.Size = new System.Drawing.Size(124, 25);
@@ -1625,7 +1625,7 @@
             this.lblcapScanTrig1.Location = new System.Drawing.Point(9, 63);
             this.lblcapScanTrig1.Name = "lblcapScanTrig1";
             this.lblcapScanTrig1.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblcapScanTrig1.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrig1.Size = new System.Drawing.Size(176, 25);
             this.lblcapScanTrig1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrig1.TabIndex = 202;
             this.lblcapScanTrig1.Text = "End (mm)";
@@ -1641,7 +1641,7 @@
             this.txtScanTrigEnd.DisabledBackColor = System.Drawing.Color.White;
             this.txtScanTrigEnd.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtScanTrigEnd.ForeColor = System.Drawing.Color.Black;
-            this.txtScanTrigEnd.Location = new System.Drawing.Point(144, 63);
+            this.txtScanTrigEnd.Location = new System.Drawing.Point(196, 63);
             this.txtScanTrigEnd.Name = "txtScanTrigEnd";
             this.txtScanTrigEnd.PreventEnterBeep = true;
             this.txtScanTrigEnd.Size = new System.Drawing.Size(124, 25);
@@ -1683,10 +1683,10 @@
             this.lblcapScanTrig2.Location = new System.Drawing.Point(9, 94);
             this.lblcapScanTrig2.Name = "lblcapScanTrig2";
             this.lblcapScanTrig2.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblcapScanTrig2.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrig2.Size = new System.Drawing.Size(176, 25);
             this.lblcapScanTrig2.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrig2.TabIndex = 204;
-            this.lblcapScanTrig2.Text = "Pitch (um)";
+            this.lblcapScanTrig2.Text = "Pixel Resolution (um)";
             this.lblcapScanTrig2.TextAlignment = System.Drawing.StringAlignment.Center;
             // txtScanTrigPitch
             // 
@@ -1699,7 +1699,7 @@
             this.txtScanTrigPitch.DisabledBackColor = System.Drawing.Color.White;
             this.txtScanTrigPitch.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtScanTrigPitch.ForeColor = System.Drawing.Color.Black;
-            this.txtScanTrigPitch.Location = new System.Drawing.Point(144, 94);
+            this.txtScanTrigPitch.Location = new System.Drawing.Point(196, 94);
             this.txtScanTrigPitch.Name = "txtScanTrigPitch";
             this.txtScanTrigPitch.PreventEnterBeep = true;
             this.txtScanTrigPitch.Size = new System.Drawing.Size(124, 25);
@@ -1741,10 +1741,10 @@
             this.lblcapScanTrig3.Location = new System.Drawing.Point(9, 125);
             this.lblcapScanTrig3.Name = "lblcapScanTrig3";
             this.lblcapScanTrig3.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblcapScanTrig3.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrig3.Size = new System.Drawing.Size(176, 25);
             this.lblcapScanTrig3.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrig3.TabIndex = 206;
-            this.lblcapScanTrig3.Text = "Rate (kHz)";
+            this.lblcapScanTrig3.Text = "Line Rate (kHz)";
             this.lblcapScanTrig3.TextAlignment = System.Drawing.StringAlignment.Center;
             // txtScanTrigRate
             // 
@@ -1757,7 +1757,7 @@
             this.txtScanTrigRate.DisabledBackColor = System.Drawing.Color.White;
             this.txtScanTrigRate.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtScanTrigRate.ForeColor = System.Drawing.Color.Black;
-            this.txtScanTrigRate.Location = new System.Drawing.Point(144, 125);
+            this.txtScanTrigRate.Location = new System.Drawing.Point(196, 125);
             this.txtScanTrigRate.Name = "txtScanTrigRate";
             this.txtScanTrigRate.PreventEnterBeep = true;
             this.txtScanTrigRate.Size = new System.Drawing.Size(124, 25);
@@ -1799,7 +1799,7 @@
             this.lblcapScanTrigR0.Location = new System.Drawing.Point(9, 156);
             this.lblcapScanTrigR0.Name = "lblcapScanTrigR0";
             this.lblcapScanTrigR0.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblcapScanTrigR0.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR0.Size = new System.Drawing.Size(176, 25);
             this.lblcapScanTrigR0.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrigR0.TabIndex = 208;
             this.lblcapScanTrigR0.Text = "Speed";
@@ -1836,7 +1836,7 @@
             this.lblScanTrigSpeed.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScanTrigSpeed.FontBold = true;
             this.lblScanTrigSpeed.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblScanTrigSpeed.Location = new System.Drawing.Point(144, 156);
+            this.lblScanTrigSpeed.Location = new System.Drawing.Point(196, 156);
             this.lblScanTrigSpeed.Name = "lblScanTrigSpeed";
             this.lblScanTrigSpeed.SingleLineColor = System.Drawing.Color.PaleTurquoise;
             this.lblScanTrigSpeed.Size = new System.Drawing.Size(124, 25);
@@ -1879,7 +1879,7 @@
             this.lblcapScanTrigR1.Location = new System.Drawing.Point(9, 187);
             this.lblcapScanTrigR1.Name = "lblcapScanTrigR1";
             this.lblcapScanTrigR1.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblcapScanTrigR1.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR1.Size = new System.Drawing.Size(176, 25);
             this.lblcapScanTrigR1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrigR1.TabIndex = 210;
             this.lblcapScanTrigR1.Text = "Lines";
@@ -1916,7 +1916,7 @@
             this.lblScanTrigLines.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScanTrigLines.FontBold = true;
             this.lblScanTrigLines.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblScanTrigLines.Location = new System.Drawing.Point(144, 187);
+            this.lblScanTrigLines.Location = new System.Drawing.Point(196, 187);
             this.lblScanTrigLines.Name = "lblScanTrigLines";
             this.lblScanTrigLines.SingleLineColor = System.Drawing.Color.PaleTurquoise;
             this.lblScanTrigLines.Size = new System.Drawing.Size(124, 25);
@@ -1959,7 +1959,7 @@
             this.lblcapScanTrigR2.Location = new System.Drawing.Point(9, 218);
             this.lblcapScanTrigR2.Name = "lblcapScanTrigR2";
             this.lblcapScanTrigR2.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblcapScanTrigR2.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR2.Size = new System.Drawing.Size(176, 25);
             this.lblcapScanTrigR2.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrigR2.TabIndex = 212;
             this.lblcapScanTrigR2.Text = "Scan Time";
@@ -1996,7 +1996,7 @@
             this.lblScanTrigTime.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScanTrigTime.FontBold = true;
             this.lblScanTrigTime.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblScanTrigTime.Location = new System.Drawing.Point(144, 218);
+            this.lblScanTrigTime.Location = new System.Drawing.Point(196, 218);
             this.lblScanTrigTime.Name = "lblScanTrigTime";
             this.lblScanTrigTime.SingleLineColor = System.Drawing.Color.PaleTurquoise;
             this.lblScanTrigTime.Size = new System.Drawing.Size(124, 25);
@@ -2039,7 +2039,7 @@
             this.lblcapScanTrigR3.Location = new System.Drawing.Point(9, 311);
             this.lblcapScanTrigR3.Name = "lblcapScanTrigR3";
             this.lblcapScanTrigR3.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblcapScanTrigR3.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR3.Size = new System.Drawing.Size(176, 25);
             this.lblcapScanTrigR3.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrigR3.TabIndex = 214;
             this.lblcapScanTrigR3.Text = "Enc Count";
@@ -2076,7 +2076,7 @@
             this.lblScanTrigCounts.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScanTrigCounts.FontBold = true;
             this.lblScanTrigCounts.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblScanTrigCounts.Location = new System.Drawing.Point(144, 311);
+            this.lblScanTrigCounts.Location = new System.Drawing.Point(196, 311);
             this.lblScanTrigCounts.Name = "lblScanTrigCounts";
             this.lblScanTrigCounts.SingleLineColor = System.Drawing.Color.PaleTurquoise;
             this.lblScanTrigCounts.Size = new System.Drawing.Size(124, 25);
@@ -2119,7 +2119,7 @@
             this.lblcapScanTrigR4.Location = new System.Drawing.Point(9, 342);
             this.lblcapScanTrigR4.Name = "lblcapScanTrigR4";
             this.lblcapScanTrigR4.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblcapScanTrigR4.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR4.Size = new System.Drawing.Size(176, 25);
             this.lblcapScanTrigR4.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrigR4.TabIndex = 216;
             this.lblcapScanTrigR4.Text = "State";
@@ -2156,7 +2156,7 @@
             this.lblScanTrigState.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScanTrigState.FontBold = true;
             this.lblScanTrigState.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblScanTrigState.Location = new System.Drawing.Point(144, 342);
+            this.lblScanTrigState.Location = new System.Drawing.Point(196, 342);
             this.lblScanTrigState.Name = "lblScanTrigState";
             this.lblScanTrigState.SingleLineColor = System.Drawing.Color.PaleTurquoise;
             this.lblScanTrigState.Size = new System.Drawing.Size(124, 25);
@@ -2199,7 +2199,7 @@
             this.lblcapScanTrigR6.Location = new System.Drawing.Point(9, 249);
             this.lblcapScanTrigR6.Name = "lblcapScanTrigR6";
             this.lblcapScanTrigR6.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblcapScanTrigR6.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR6.Size = new System.Drawing.Size(176, 25);
             this.lblcapScanTrigR6.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrigR6.TabIndex = 230;
             this.lblcapScanTrigR6.Text = "Motion Start";
@@ -2236,7 +2236,7 @@
             this.lblScanTrigMotionStart.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScanTrigMotionStart.FontBold = true;
             this.lblScanTrigMotionStart.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblScanTrigMotionStart.Location = new System.Drawing.Point(144, 249);
+            this.lblScanTrigMotionStart.Location = new System.Drawing.Point(196, 249);
             this.lblScanTrigMotionStart.Name = "lblScanTrigMotionStart";
             this.lblScanTrigMotionStart.SingleLineColor = System.Drawing.Color.PaleTurquoise;
             this.lblScanTrigMotionStart.Size = new System.Drawing.Size(124, 25);
@@ -2279,7 +2279,7 @@
             this.lblcapScanTrigR7.Location = new System.Drawing.Point(9, 280);
             this.lblcapScanTrigR7.Name = "lblcapScanTrigR7";
             this.lblcapScanTrigR7.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblcapScanTrigR7.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR7.Size = new System.Drawing.Size(176, 25);
             this.lblcapScanTrigR7.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrigR7.TabIndex = 232;
             this.lblcapScanTrigR7.Text = "Motion End";
@@ -2316,7 +2316,7 @@
             this.lblScanTrigMotionEnd.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScanTrigMotionEnd.FontBold = true;
             this.lblScanTrigMotionEnd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblScanTrigMotionEnd.Location = new System.Drawing.Point(144, 280);
+            this.lblScanTrigMotionEnd.Location = new System.Drawing.Point(196, 280);
             this.lblScanTrigMotionEnd.Name = "lblScanTrigMotionEnd";
             this.lblScanTrigMotionEnd.SingleLineColor = System.Drawing.Color.PaleTurquoise;
             this.lblScanTrigMotionEnd.Size = new System.Drawing.Size(124, 25);
@@ -2359,7 +2359,7 @@
             this.lblcapScanTrigR5.Location = new System.Drawing.Point(9, 373);
             this.lblcapScanTrigR5.Name = "lblcapScanTrigR5";
             this.lblcapScanTrigR5.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblcapScanTrigR5.Size = new System.Drawing.Size(124, 25);
+            this.lblcapScanTrigR5.Size = new System.Drawing.Size(176, 25);
             this.lblcapScanTrigR5.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrigR5.TabIndex = 228;
             this.lblcapScanTrigR5.Text = "Result";
@@ -2396,7 +2396,7 @@
             this.lblScanTrigResult.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScanTrigResult.FontBold = true;
             this.lblScanTrigResult.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblScanTrigResult.Location = new System.Drawing.Point(144, 373);
+            this.lblScanTrigResult.Location = new System.Drawing.Point(196, 373);
             this.lblScanTrigResult.Name = "lblScanTrigResult";
             this.lblScanTrigResult.SingleLineColor = System.Drawing.Color.PaleTurquoise;
             this.lblScanTrigResult.Size = new System.Drawing.Size(124, 25);
@@ -2413,7 +2413,7 @@
             this.btnScanTrigSet.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnScanTrigSet.Location = new System.Drawing.Point(9, 404);
             this.btnScanTrigSet.Name = "btnScanTrigSet";
-            this.btnScanTrigSet.Size = new System.Drawing.Size(84, 25);
+            this.btnScanTrigSet.Size = new System.Drawing.Size(97, 25);
             this.btnScanTrigSet.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnScanTrigSet.TabIndex = 218;
             this.btnScanTrigSet.Text = "SET";
@@ -2428,9 +2428,9 @@
             this.btnScanTrigStart.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnScanTrigStart.Enabled = false;
             this.btnScanTrigStart.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScanTrigStart.Location = new System.Drawing.Point(97, 404);
+            this.btnScanTrigStart.Location = new System.Drawing.Point(116, 404);
             this.btnScanTrigStart.Name = "btnScanTrigStart";
-            this.btnScanTrigStart.Size = new System.Drawing.Size(84, 25);
+            this.btnScanTrigStart.Size = new System.Drawing.Size(97, 25);
             this.btnScanTrigStart.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnScanTrigStart.TabIndex = 219;
             this.btnScanTrigStart.Text = "START";
@@ -2444,9 +2444,9 @@
             this.btnScanTrigStop.BackColor = System.Drawing.Color.Black;
             this.btnScanTrigStop.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnScanTrigStop.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScanTrigStop.Location = new System.Drawing.Point(185, 404);
+            this.btnScanTrigStop.Location = new System.Drawing.Point(223, 404);
             this.btnScanTrigStop.Name = "btnScanTrigStop";
-            this.btnScanTrigStop.Size = new System.Drawing.Size(84, 25);
+            this.btnScanTrigStop.Size = new System.Drawing.Size(97, 25);
             this.btnScanTrigStop.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnScanTrigStop.TabIndex = 220;
             this.btnScanTrigStop.Text = "STOP";
