@@ -119,6 +119,7 @@ namespace MMI
                 lblStopTime.Text = $"{tsStop.Hours:D2}:{tsStop.Minutes:D2}:{tsStop.Seconds:D2}";
             }
 
+            ScanTriggerTick();
         }
 
         private void btnTargetUPH_Click(object sender, EventArgs e)
@@ -164,22 +165,30 @@ namespace MMI
 
         #region SCAN TRIGGER
 
-        // The panel is laid out and its inputs are collected here, but nothing is
-        // sent to SEQ yet: the shared memory DLL that carries the recipe has
-        // been extended in source and still has to be rebuilt and dropped into
-        // C:\WORK\DLL. SendScanTriggerRecipe() is the one place those calls go.
+        // The panel takes the four recipe numbers and hands them to SEQ, which
+        // owns every derived value. Nothing here recomputes a speed or a line
+        // count: SEQ works them out from the recipe and reports them back, and a
+        // second answer computed here could only disagree with the one the
+        // machine actually runs.
         //
-        // The computed rows - speed, line count, scan time, pitch in encoder
-        // counts - and the state row stay empty until then. Every one of them is SEQ's to work out
-        // from the recipe, and working them out a second time here would give the
-        // operator two answers that can disagree.
-        //
-        // The four inputs are typed straight into their text boxes. Editing any of
-        // them drops the computed rows, which are stale the moment an input moves.
+        // The four inputs are typed straight into their text boxes. Editing any
+        // of them drops the computed rows, which are stale the moment an input
+        // moves, and takes START away again until the recipe is re-sent.
+
+        // The axis the trigger runs on. Single scan axis for now; when a second
+        // one appears this becomes a selection rather than a constant.
+        private const uint ScanTriggerAxis = 0;
+
+        // Set while a recipe has been accepted or a cycle is running, so the
+        // timer only reads shared memory when there is something to watch.
+        private bool bScanTriggerWatch = false;
 
         private void ScanTriggerInput_TextChanged(object sender, EventArgs e)
         {
+            bScanTriggerWatch = false;
+            btnScanTrigStart.Enabled = false;
             ClearScanTriggerDisplay();
+            lblScanTrigResult.Text = "-";
         }
 
         private bool TryReadScanTriggerRecipe(out double dStart, out double dEnd,
@@ -199,33 +208,108 @@ namespace MMI
         // outcome of the last action and the caller writes it straight after.
         private void ClearScanTriggerDisplay()
         {
-            lblScanTrigSpeed.Text  = "-";
-            lblScanTrigLines.Text  = "-";
-            lblScanTrigTime.Text   = "-";
-            lblScanTrigCounts.Text = "-";
-            lblScanTrigState.Text  = "-";
+            lblScanTrigSpeed.Text       = "-";
+            lblScanTrigLines.Text       = "-";
+            lblScanTrigTime.Text        = "-";
+            lblScanTrigMotionStart.Text = "-";
+            lblScanTrigMotionEnd.Text   = "-";
+            lblScanTrigCounts.Text      = "-";
+            lblScanTrigState.Text       = "-";
         }
 
-        private void SendScanTriggerRecipe(double dStart, double dEnd,
-                                           double dPitch, double dRate)
+        // The panel reads mm, mm, um and kHz because that is how the operator
+        // thinks about a scan. The shared memory recipe is mm and Hz throughout.
+        private bool SendScanTriggerRecipe(double dStart, double dEnd,
+                                           double dPitchUm, double dRateKHz)
         {
-            // Once SharedMemDll carries the recipe:
-            //
-            //   MmiGV.pShMem.WScanTriggerRecipe.uAxisNo    = 0;
-            //   MmiGV.pShMem.WScanTriggerRecipe.dTrigStart = dStart;
-            //   MmiGV.pShMem.WScanTriggerRecipe.dTrigEnd   = dEnd;
-            //   MmiGV.pShMem.WScanTriggerRecipe.dPitch     = dPitch;
-            //   MmiGV.pShMem.WScanTriggerRecipe.dLineRate  = dRate;
-            //   MmiGV.pShMem.SetScanTriggerRecipe();
-            //   MmiGV.pShMem.GetScanTriggerDisplay();
-            //
-            // then fill the computed rows from RScanTriggerDisplay and enable
-            // START only when nValidateCode is 0.
+            MmiGV.pShMem.WScanTriggerRecipe.uAxisNo    = ScanTriggerAxis;
+            MmiGV.pShMem.WScanTriggerRecipe.dTrigStart = dStart;
+            MmiGV.pShMem.WScanTriggerRecipe.dTrigEnd   = dEnd;
+            MmiGV.pShMem.WScanTriggerRecipe.dPitch     = dPitchUm  / 1000.0;
+            MmiGV.pShMem.WScanTriggerRecipe.dLineRate  = dRateKHz  * 1000.0;
+
+            // Reserved in the struct and unused until an approach profile exists.
+            MmiGV.pShMem.WScanTriggerRecipe.dAccel     = 0.0;
+            MmiGV.pShMem.WScanTriggerRecipe.dDecel     = 0.0;
+            MmiGV.pShMem.WScanTriggerRecipe.nDirection = 0;
+
+            return MmiGV.pShMem.SetScanTriggerRecipe();
+        }
+
+        private static string ScanTriggerValidateText(int nCode)
+        {
+            switch (nCode)
+            {
+                case 0:  return "OK";
+                case 1:  return "AXIS";
+                case 2:  return "RANGE";
+                case 3:  return "PITCH";
+                case 4:  return "LINE RATE";
+                case 5:  return "PITCH FRAC";
+                case 6:  return "SPEED";
+                case 7:  return "LINE COUNT";
+                case 8:  return "NO COUNTER";
+                case 9:  return "PULSE RATE";
+                case 10: return "NOT HOMED";
+                default: return nCode.ToString();
+            }
+        }
+
+        private static string ScanTriggerStateText(int nState)
+        {
+            switch (nState)
+            {
+                case 0: return "IDLE";
+                case 1: return "GOTO START";
+                case 2: return "WAIT START";
+                case 3: return "ARM";
+                case 4: return "RUN";
+                case 5: return "WAIT END";
+                case 6: return "DISARM";
+                case 7: return "DONE";
+                case 8: return "ABORTED";
+                default: return nState.ToString();
+            }
+        }
+
+        // Returns the validate code so the caller can act on it, or -1 when the
+        // display could not be read at all.
+        private int RefreshScanTriggerDisplay()
+        {
+            if (MmiGV.pShMem == null) return -1;
+            if (!MmiGV.pShMem.GetScanTriggerDisplay()) return -1;
+
+            SharedMemDll.SCANTRIGGER_DISPLAY d = MmiGV.pShMem.RScanTriggerDisplay;
+
+            lblScanTrigSpeed.Text = d.dSpeed.ToString("F2");
+            lblScanTrigTime.Text  = d.dScanTime.ToString("F2");
+            lblScanTrigState.Text = ScanTriggerStateText(d.nState);
+
+            // Where the axis actually starts and stops, which is outside the
+            // trigger block by however much the ramps need.
+            lblScanTrigMotionStart.Text = d.dMotionStart.ToString("F3");
+            lblScanTrigMotionEnd.Text   = d.dMotionEnd.ToString("F3");
+
+            // Before a run there is only the expected count; once the counter has
+            // been read back, show what actually came out against it.
+            lblScanTrigLines.Text = (d.nTriggerCount >= 0)
+                ? d.nTriggerCount.ToString() + " / " + d.nLineCount.ToString()
+                : d.nLineCount.ToString();
+
+            // A pitch that is not a whole number of encoder counts is the one
+            // thing the operator can fix by changing a number, so mark it.
+            lblScanTrigCounts.Text = d.dPitchCounts.ToString("F2")
+                                   + (d.bPitchIsInteger ? "" : " !");
+
+            return d.nValidateCode;
         }
 
         private void btnScanTrigSet_Click(object sender, EventArgs e)
         {
             double dStart, dEnd, dPitch, dRate;
+
+            bScanTriggerWatch = false;
+            btnScanTrigStart.Enabled = false;
 
             if (!TryReadScanTriggerRecipe(out dStart, out dEnd, out dPitch, out dRate))
             {
@@ -236,7 +320,7 @@ namespace MMI
 
             // Only the checks that need no machine knowledge. Everything else -
             // whether the pitch is a whole number of encoder counts, whether the
-            // speed fits the axis - is SEQ's to judge.
+            // speed fits the axis, whether the axis is homed - is SEQ's to judge.
             if (dEnd <= dStart || dPitch <= 0.0 || dRate <= 0.0)
             {
                 ClearScanTriggerDisplay();
@@ -244,20 +328,84 @@ namespace MMI
                 return;
             }
 
-            SendScanTriggerRecipe(dStart, dEnd, dPitch, dRate);
-            lblScanTrigResult.Text = "NO DLL";
+            if (MmiGV.pShMem == null)
+            {
+                ClearScanTriggerDisplay();
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            if (!SendScanTriggerRecipe(dStart, dEnd, dPitch, dRate))
+            {
+                ClearScanTriggerDisplay();
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            int nCode = RefreshScanTriggerDisplay();
+            if (nCode < 0)
+            {
+                ClearScanTriggerDisplay();
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            lblScanTrigResult.Text = ScanTriggerValidateText(nCode);
+
+            // SEQ accepted it, so the cycle can be started and the state row is
+            // worth following from here on.
+            btnScanTrigStart.Enabled = (nCode == 0);
+            bScanTriggerWatch = true;
         }
 
         private void btnScanTrigStart_Click(object sender, EventArgs e)
         {
-            // MmiGV.pShMem.SetScanTriggerStart();
-            lblScanTrigResult.Text = "NO DLL";
+            if (MmiGV.pShMem == null)
+            {
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            MmiGV.pShMem.SetScanTriggerStart();
+            bScanTriggerWatch = true;
+            lblScanTrigResult.Text = "START";
         }
 
         private void btnScanTrigStop_Click(object sender, EventArgs e)
         {
-            // MmiGV.pShMem.SetScanTriggerStop();
-            lblScanTrigResult.Text = "NO DLL";
+            if (MmiGV.pShMem == null)
+            {
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            MmiGV.pShMem.SetScanTriggerStop();
+            bScanTriggerWatch = true;
+            lblScanTrigResult.Text = "STOP";
+        }
+
+        // Driven from tmRun_Tick. Follows the cycle only while there is one to
+        // follow, and lets go once it has settled, so the last reading stays on
+        // screen instead of being polled over.
+        private void ScanTriggerTick()
+        {
+            if (!bScanTriggerWatch) return;
+
+            if (RefreshScanTriggerDisplay() < 0)
+            {
+                bScanTriggerWatch = false;
+                btnScanTrigStart.Enabled = false;
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            int nState = MmiGV.pShMem.RScanTriggerDisplay.nState;
+
+            if (nState == 7 || nState == 8)     // DONE, ABORTED
+            {
+                bScanTriggerWatch = false;
+                lblScanTrigResult.Text = (nState == 7) ? "DONE" : "ABORTED";
+            }
         }
 
         #endregion
