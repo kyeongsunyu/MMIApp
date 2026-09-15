@@ -193,6 +193,29 @@ namespace MMI
         // as broken.
         public volatile bool bScanTriggerWatch = false;
 
+        // Called once the recipe is in memory - at start from MainRecipeLoad, and
+        // again whenever the device changes. Fills the panel only; it does not
+        // send anything to SEQ. SET stays a deliberate act, so the operator sees
+        // the verdict against the machine as it is right now rather than having
+        // a recipe pushed in behind them at start-up.
+        public void LoadScanTriggerFromRecipe()
+        {
+            CRcpMaterial rcp = CRecipeCtl.CurMaterialRcp;
+            if (rcp == null) return;
+
+            txtScanTrigStart.Text = rcp.ScanStart.ToString("F3");
+            txtScanTrigEnd.Text   = rcp.ScanEnd.ToString("F3");
+            txtScanTrigPitch.Text = rcp.ScanPixelRes.ToString("F2");
+            txtScanTrigRate.Text  = rcp.ScanLineRate.ToString("F4");
+
+            // Setting the text fires TextChanged, which does this too. Doing it
+            // here as well keeps the state right without depending on that.
+            bScanTriggerWatch = false;
+            btnScanTrigStart.Enabled = false;
+            ClearScanTriggerDisplay();
+            lblScanTrigResult.Text = "-";
+        }
+
         private void ScanTriggerInput_TextChanged(object sender, EventArgs e)
         {
             bScanTriggerWatch = false;
@@ -364,6 +387,15 @@ namespace MMI
                 lblScanTrigResult.Text = "BAD RANGE";
                 return;
             }
+
+            // Persist before sending. The refusals SEQ can still raise - not homed,
+            // no counter, speed beyond the axis - are machine states, not bad
+            // numbers, and the operator should not lose what they typed to one.
+            CRecipeCtl.CurMaterialRcp.ScanStart    = dStart;
+            CRecipeCtl.CurMaterialRcp.ScanEnd      = dEnd;
+            CRecipeCtl.CurMaterialRcp.ScanPixelRes = dPitch;
+            CRecipeCtl.CurMaterialRcp.ScanLineRate = dRate;
+            CRecipeCtl.CurMaterialRcp.SaveScanTrigger();
 
             if (MmiGV.pShMem == null)
             {

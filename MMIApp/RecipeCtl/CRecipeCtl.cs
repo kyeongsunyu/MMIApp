@@ -144,6 +144,14 @@ namespace MMI
                 MmiGV.pShMem.WDeviceInfo.strDeviceName = CRecipeCtl.CurMaterialRcp.Material_NAME; //MmiGV.strCurrentDevName;
                 MmiGV.pShMem.SetDeviceInfo();
             }
+
+            // The panel shows the stored scan settings for whichever device is
+            // now current. Nothing is sent to SEQ here - see the comment on
+            // LoadScanTriggerFromRecipe.
+            if (frmMain != null && frmMain.frmAuto1 != null)
+            {
+                frmMain.frmAuto1.LoadScanTriggerFromRecipe();
+            }
         }
 
         public static void MainRecipeSelect(string RecipeNo)

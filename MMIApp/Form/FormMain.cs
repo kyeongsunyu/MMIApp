@@ -531,6 +531,11 @@ namespace MMI
         private void FormMain_Load(object sender, EventArgs e)
         {
             SQLiteDB.Open();
+
+            // Before anything reads the DEVICE table: machines built before the
+            // scan trigger have no columns for it.
+            CRcpMaterial.EnsureScanTriggerColumns();
+
             CRecipeCtl.SetMainForm(this);
             //add by chs
             CRecipeCtl.MainRecipeLoad();
