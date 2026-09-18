@@ -193,6 +193,25 @@ namespace MMI
         // as broken.
         public volatile bool bScanTriggerWatch = false;
 
+        // MainRecipeLoad runs on the recipe loading thread and CThreadMain runs on
+        // its own, but WinForms only lets the thread that created a control touch
+        // it. Guard the entry points rather than trusting every caller to marshal:
+        // one that forgot took the program down during start-up, on the first
+        // label this panel writes.
+        //
+        // Before the handle exists there is no cross-thread rule to break and
+        // BeginInvoke would throw, so in that case the caller carries on and
+        // writes the controls directly.
+        private bool ScanTriggerToUiThread(MethodInvoker work)
+        {
+            if (IsHandleCreated && InvokeRequired)
+            {
+                BeginInvoke(work);
+                return true;
+            }
+            return false;
+        }
+
         // Called once the recipe is in memory - at start from MainRecipeLoad, and
         // again whenever the device changes. Fills the panel only; it does not
         // send anything to SEQ. SET stays a deliberate act, so the operator sees
@@ -200,6 +219,8 @@ namespace MMI
         // a recipe pushed in behind them at start-up.
         public void LoadScanTriggerFromRecipe()
         {
+            if (ScanTriggerToUiThread(LoadScanTriggerFromRecipe)) return;
+
             CRcpMaterial rcp = CRecipeCtl.CurMaterialRcp;
             if (rcp == null) return;
 
@@ -324,6 +345,8 @@ namespace MMI
         // the comm thread can drive it through Invoke. UI thread only.
         public void RenderScanTriggerDisplay()
         {
+            if (ScanTriggerToUiThread(RenderScanTriggerDisplay)) return;
+
             if (MmiGV.pShMem == null) return;
 
             SharedMemDll.SCANTRIGGER_DISPLAY d = MmiGV.pShMem.RScanTriggerDisplay;
@@ -360,6 +383,8 @@ namespace MMI
         // Called by the comm thread after several reads in a row have failed.
         public void ScanTriggerLinkLost()
         {
+            if (ScanTriggerToUiThread(ScanTriggerLinkLost)) return;
+
             bScanTriggerWatch = false;
             btnScanTrigStart.Enabled = false;
             lblScanTrigResult.Text = "NO LINK";
