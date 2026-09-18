@@ -102,6 +102,7 @@
             this.btnScanTrigSet = new DevComponents.DotNetBar.ButtonX();
             this.btnScanTrigStart = new DevComponents.DotNetBar.ButtonX();
             this.btnScanTrigStop = new DevComponents.DotNetBar.ButtonX();
+            this.btnScanTrigTest = new DevComponents.DotNetBar.ButtonX();
             this.tmRun = new System.Windows.Forms.Timer(this.components);
             this.btnTest = new DevComponents.DotNetBar.ButtonX();
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
@@ -1509,13 +1510,14 @@
             this.pnlScanTrigger.Controls.Add(this.btnScanTrigSet);
             this.pnlScanTrigger.Controls.Add(this.btnScanTrigStart);
             this.pnlScanTrigger.Controls.Add(this.btnScanTrigStop);
+            this.pnlScanTrigger.Controls.Add(this.btnScanTrigTest);
             this.pnlScanTrigger.DisabledBackColor = System.Drawing.Color.Empty;
             this.pnlScanTrigger.ExpandButtonVisible = false;
             this.pnlScanTrigger.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.pnlScanTrigger.HideControlsWhenCollapsed = true;
             this.pnlScanTrigger.Location = new System.Drawing.Point(0, 0);
             this.pnlScanTrigger.Name = "pnlScanTrigger";
-            this.pnlScanTrigger.Size = new System.Drawing.Size(339, 438);
+            this.pnlScanTrigger.Size = new System.Drawing.Size(339, 473);
             this.pnlScanTrigger.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.pnlScanTrigger.Style.BackColor1.Color = System.Drawing.Color.White;
             this.pnlScanTrigger.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -2453,6 +2455,22 @@
             this.btnScanTrigStop.TextColor = System.Drawing.Color.White;
             this.btnScanTrigStop.ThemeAware = true;
             this.btnScanTrigStop.Click += new System.EventHandler(this.btnScanTrigStop_Click);
+            // 
+            // btnScanTrigTest
+            // 
+            this.btnScanTrigTest.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnScanTrigTest.BackColor = System.Drawing.Color.Black;
+            this.btnScanTrigTest.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnScanTrigTest.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScanTrigTest.Location = new System.Drawing.Point(9, 435);
+            this.btnScanTrigTest.Name = "btnScanTrigTest";
+            this.btnScanTrigTest.Size = new System.Drawing.Size(320, 25);
+            this.btnScanTrigTest.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnScanTrigTest.TabIndex = 221;
+            this.btnScanTrigTest.Text = "OUTPUT TEST";
+            this.btnScanTrigTest.TextColor = System.Drawing.Color.White;
+            this.btnScanTrigTest.ThemeAware = true;
+            this.btnScanTrigTest.Click += new System.EventHandler(this.btnScanTrigTest_Click);
             // bar1
             // 
             this.bar1.AntiAlias = true;
@@ -2860,5 +2878,6 @@
         public DevComponents.DotNetBar.ButtonX btnScanTrigSet;
         public DevComponents.DotNetBar.ButtonX btnScanTrigStart;
         public DevComponents.DotNetBar.ButtonX btnScanTrigStop;
+        public DevComponents.DotNetBar.ButtonX btnScanTrigTest;
     }
 }

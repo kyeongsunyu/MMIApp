@@ -304,6 +304,7 @@ namespace MMI
                 case 6: return "DISARM";
                 case 7: return "DONE";
                 case 8: return "ABORTED";
+                case 9: return "OUT TEST";
                 default: return nState.ToString();
             }
         }
@@ -464,6 +465,29 @@ namespace MMI
 
             bScanTriggerWatch = bSent;
             lblScanTrigResult.Text = bSent ? "STOP" : "NO LINK";
+        }
+
+        // Commissioning aid. SEQ drives the trigger output pin directly for a
+        // few seconds so it can be probed on CON1; nothing moves and no recipe
+        // is needed, which is why this does not go through SET first.
+        private void btnScanTrigTest_Click(object sender, EventArgs e)
+        {
+            if (MmiGV.pShMem == null)
+            {
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            bool bSent = false;
+            for (int k = 0; k < ScanTriggerTries && !bSent; k++)
+            {
+                bSent = MmiGV.pShMem.SetScanTriggerTest();
+            }
+
+            // Follow it the same way a scan is followed, so the state row shows
+            // OUT TEST and the count row counts the pulses as they go out.
+            bScanTriggerWatch = bSent;
+            lblScanTrigResult.Text = bSent ? "OUT TEST" : "NO LINK";
         }
 
         #endregion
