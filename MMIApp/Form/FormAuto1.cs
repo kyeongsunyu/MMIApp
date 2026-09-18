@@ -472,6 +472,10 @@ namespace MMI
 
             bScanTriggerWatch = bSent;
             lblScanTrigResult.Text = bSent ? "START" : "NO LINK";
+
+            // A second press while the cycle runs only earns a refusal from SEQ
+            // and a SEND COMMAND ERROR in its log. SET turns this back on.
+            if (bSent) btnScanTrigStart.Enabled = false;
         }
 
         private void btnScanTrigStop_Click(object sender, EventArgs e)
