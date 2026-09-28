@@ -545,6 +545,15 @@ namespace MMI
             MmiGV.pShMem.SetMotorData();
             RefreshData();
 
+            // The AUTO screen's SCAN TRIGGER panel edits rows 50..53 of this same
+            // table, so it has to be told when they are changed from here.
+            // Otherwise it goes on showing what it last read, and the next SET
+            // writes that stale copy straight back over this one.
+            if (MmiGV.frmMain != null && MmiGV.frmMain.frmAuto1 != null)
+            {
+                MmiGV.frmMain.frmAuto1.LoadScanPositionsFromMotorTable();
+            }
+
         }
         
 

@@ -199,14 +199,16 @@ namespace MMI
         private const double ScanTriggerPulseMaxDuty = 0.4;
         private const double ScanTriggerPulseMinUs   = 1.0;
 
-        // The scan geometry lives in the motor index table, not here: the motor
-        // screen names and edits these four, and 50 and above are MOTOR_COMMON
-        // rows, so they belong to the machine rather than to one device. SET
-        // writes the scan speed into them and reads the positions back from SEQ.
+        // The scan geometry lives in the motor index table: 50 and above are
+        // MOTOR_COMMON rows, so they belong to the machine rather than to one
+        // device, and the motor screen names and edits the same four. SET writes
+        // all four positions and the scan speed into them, so the panel and the
+        // motor screen are two views of one table rather than two tables.
         //
         //   50 SCAN START / 51 SCAN TRIGGER START / 52 SCAN TRIGGER END / 53 SCAN END
         private const int ScanTriggerIdxFirst = 50;
         private const int ScanTriggerIdxLast  = 53;
+        private const int ScanTriggerIdxCount = ScanTriggerIdxLast - ScanTriggerIdxFirst + 1;
 
         // Set while a recipe has been accepted or a cycle is running. Read by
         // CThreadMain, which does the polling: every other shared memory read in
@@ -251,12 +253,34 @@ namespace MMI
             txtScanTrigSpeed.Text = rcp.ScanSpeed.ToString("F2");
             txtScanTrigPulse.Text = rcp.ScanPulseWidth.ToString("F2");
 
+            LoadScanPositionsFromMotorTable();
+
             // Setting the text fires TextChanged, which does this too. Doing it
             // here as well keeps the state right without depending on that.
             bScanTriggerWatch = false;
             btnScanTrigStart.Enabled = false;
             ClearScanTriggerDisplay();
             lblScanTrigResult.Text = "-";
+        }
+
+        // The four positions belong to the machine, not to the recipe, so they
+        // come from the motor table rather than from the material being run.
+        // Form_SystemInit has filled mtSettingData from MOTOR_COMMON long before
+        // the first recipe load, so this shows what the motor screen shows.
+        public void LoadScanPositionsFromMotorTable()
+        {
+            if (ScanTriggerToUiThread(LoadScanPositionsFromMotorTable)) return;
+
+            int nAxis = (int)ScanTriggerAxis;
+            if (MmiGV.mtSettingData == null) return;
+
+            double[] adPos = MmiGV.mtSettingData[nAxis].dPosArray;
+            if (adPos == null || adPos.Length <= ScanTriggerIdxLast) return;
+
+            txtScanTrigMotionStart.Text = adPos[ScanTriggerIdxFirst    ].ToString("F3");
+            txtScanTrigStart.Text       = adPos[ScanTriggerIdxFirst + 1].ToString("F3");
+            txtScanTrigEnd.Text         = adPos[ScanTriggerIdxFirst + 2].ToString("F3");
+            txtScanTrigMotionEnd.Text   = adPos[ScanTriggerIdxFirst + 3].ToString("F3");
         }
 
         private void ScanTriggerInput_TextChanged(object sender, EventArgs e)
@@ -267,35 +291,56 @@ namespace MMI
             lblScanTrigResult.Text = "-";
         }
 
-        private bool TryReadScanTriggerRecipe(out double dPitch, out double dSpeed,
-                                              out double dPulseUs)
+        // adPosMM comes back in index order - 50, 51, 52, 53 - which is also the
+        // order the stage passes them in.
+        private bool TryReadScanTriggerRecipe(out double[] adPosMM, out double dPitch,
+                                              out double dSpeed, out double dPulseUs)
         {
+            adPosMM = null;
             dPitch = dSpeed = dPulseUs = 0.0;
+
+            double[] adPos = new double[ScanTriggerIdxCount];
+            if (!double.TryParse(txtScanTrigMotionStart.Text, out adPos[0])) return false;
+            if (!double.TryParse(txtScanTrigStart.Text,       out adPos[1])) return false;
+            if (!double.TryParse(txtScanTrigEnd.Text,         out adPos[2])) return false;
+            if (!double.TryParse(txtScanTrigMotionEnd.Text,   out adPos[3])) return false;
 
             if (!double.TryParse(txtScanTrigPitch.Text, out dPitch))   return false;
             if (!double.TryParse(txtScanTrigSpeed.Text, out dSpeed))   return false;
             if (!double.TryParse(txtScanTrigPulse.Text, out dPulseUs)) return false;
 
+            adPosMM = adPos;
             return true;
         }
 
-        // The scan speed, into motor index table entries 50..53, so the motor
-        // screen shows what the scan will actually run at and the operator can
-        // see it next to the positions it belongs with.
+        // The scan geometry - four positions and the speed they are run at - into
+        // motor index table entries 50..53. This is the only copy: SEQ reads the
+        // positions out of the same table to work out the trigger block, and the
+        // motor screen edits the same rows, so there is nothing to keep in sync
+        // afterwards.
+        //
+        // Five copies of it have to move together all the same, because each one
+        // is read by something different:
+        //
+        //   WMotorData      what SEQ runs on, until the program restarts
+        //   MOTOR_COMMON    what survives the restart
+        //   mtSettingData   what the motor screen's SETTING columns are painted from
+        //   mtData          pulses, what the motor screen writes back out
+        //   RMotorData      what the motor screen's CURRENT columns are painted from
         //
         // CMD_WRITE_MOTORDATA replaces the whole hundred entry array, so sending
         // this side's own copy would overwrite anything SEQ holds that this copy
         // does not know about. Read SEQ's array back first and change only the
         // four, which is the difference between writing four numbers and
         // rewriting the table.
-        private bool WriteScanSpeedToMotorTable(double dSpeedMmS)
+        private bool WriteScanGeometryToMotorTable(double[] adPosMM, double dSpeedMmS)
         {
             int nAxis = (int)ScanTriggerAxis;
             if (MmiGV.pShMem == null) return false;
             if (!MmiGV.pShMem.GetMotorData(nAxis)) return false;
 
-            double dRate  = MmiGV.mtConfigData[nAxis].uPulseRate;
-            double dPulses = dSpeedMmS * dRate;
+            double dRate   = MmiGV.mtConfigData[nAxis].uPulseRate;
+            double dVelPul = dSpeedMmS * dRate;
 
             for (int i = 0; i < 100; i++)
             {
@@ -304,12 +349,16 @@ namespace MMI
             }
             for (int i = ScanTriggerIdxFirst; i <= ScanTriggerIdxLast; i++)
             {
-                MmiGV.pShMem.WMotorData.uVel[i] = dPulses;
+                double dPosMM  = adPosMM[i - ScanTriggerIdxFirst];
+                double dPosPul = dPosMM * dRate;
 
-                // The motor screen reads these, and SaveMotorSettingData writes
-                // them to MOTOR_COMMON, so keep all three copies in step.
+                MmiGV.pShMem.WMotorData.uPos[i] = dPosPul;
+                MmiGV.pShMem.WMotorData.uVel[i] = dVelPul;
+
+                MmiGV.mtSettingData[nAxis].dPosArray[i]   = dPosMM;
                 MmiGV.mtSettingData[nAxis].dSpeedArray[i] = dSpeedMmS;
-                MmiGV.mtData[nAxis].iSpeedArray[i]        = dPulses;
+                MmiGV.mtData[nAxis].iPosArray[i]          = dPosPul;
+                MmiGV.mtData[nAxis].iSpeedArray[i]        = dVelPul;
             }
 
             MmiGV.pShMem.WMotorData.uAxisNo = nAxis;
@@ -317,34 +366,41 @@ namespace MMI
 
             // Read it straight back. This refills RMotorData, which is what the
             // motor screen's CURRENT columns are painted from, so they show the
-            // new speed now instead of on whatever poll comes next - and a write
-            // that did not take is visible here rather than looking like it did.
+            // new geometry now instead of on whatever poll comes next - and a
+            // write that did not take is visible here rather than looking like
+            // it did.
             if (!MmiGV.pShMem.GetMotorData(nAxis)) return false;
 
+            // One pulse of slack: these are doubles carrying whole pulse counts,
+            // so anything larger than that is the write not having taken.
             for (int i = ScanTriggerIdxFirst; i <= ScanTriggerIdxLast; i++)
             {
-                if (Math.Abs(MmiGV.pShMem.RMotorData[nAxis].uVel[i] - dPulses) > 1.0)
-                {
-                    return false;
-                }
+                double dPosPul = adPosMM[i - ScanTriggerIdxFirst] * dRate;
+
+                if (Math.Abs(MmiGV.pShMem.RMotorData[nAxis].uPos[i] - dPosPul) > 1.0) return false;
+                if (Math.Abs(MmiGV.pShMem.RMotorData[nAxis].uVel[i] - dVelPul) > 1.0) return false;
             }
 
-            // MOTOR_COMMON row i holds array entry i + 50.
+            // MOTOR_COMMON row i holds array entry i + 50. ITEM is left alone:
+            // the row names are the motor screen's to give.
             for (int i = ScanTriggerIdxFirst; i <= ScanTriggerIdxLast; i++)
             {
                 // InvariantCulture: a locale with a comma decimal separator
                 // writes "198,9" and SQLite rejects the statement in silence.
-                string strSQL = "UPDATE MOTOR_COMMON SET SPD"
-                              + string.Format("{0:D2}", nAxis + 1) + "="
+                string strAxis = string.Format("{0:D2}", nAxis + 1);
+                string strSQL = "UPDATE MOTOR_COMMON SET "
+                              + " POS" + strAxis + "="
+                              + "'" + adPosMM[i - ScanTriggerIdxFirst].ToString(CultureInfo.InvariantCulture) + "'" + ","
+                              + " SPD" + strAxis + "="
                               + "'" + dSpeedMmS.ToString(CultureInfo.InvariantCulture) + "'"
-                              + " WHERE IDX=" + (i - 50).ToString(CultureInfo.InvariantCulture);
+                              + " WHERE IDX=" + (i - ScanTriggerIdxFirst).ToString(CultureInfo.InvariantCulture);
                 SQLiteDB.Execute(strSQL);
             }
 
             // The SETTING columns are painted from mtSettingData, and only when
             // something asks - nothing polls them, and opening the screen does
             // not either. Without this the motor screen keeps showing the old
-            // speed beside a CURRENT column that has already moved on, which is
+            // numbers beside a CURRENT column that has already moved on, which is
             // the two columns disagreeing about a value neither of them is wrong
             // about.
             if (MmiGV.frmMain != null && MmiGV.frmMain.frmMotorSetting != null)
@@ -354,19 +410,18 @@ namespace MMI
             return true;
         }
 
-        // Everything SEQ owns. The result row is not touched here: it carries the
-        // outcome of the last action and the caller writes it straight after.
+        // Everything SEQ owns. The four positions are not touched here - they are
+        // typed, not read back, and clearing what the operator is in the middle
+        // of entering would be its own bug. The result row is not touched either:
+        // it carries the outcome of the last action and the caller writes it
+        // straight after.
         private void ClearScanTriggerDisplay()
         {
-            txtScanTrigStart.Text       = "-";
-            txtScanTrigEnd.Text         = "-";
-            lblScanTrigRate.Text        = "-";
-            lblScanTrigLines.Text       = "-";
-            lblScanTrigTime.Text        = "-";
-            lblScanTrigMotionStart.Text = "-";
-            lblScanTrigMotionEnd.Text   = "-";
-            lblScanTrigCounts.Text      = "-";
-            lblScanTrigState.Text       = "-";
+            lblScanTrigRate.Text   = "-";
+            lblScanTrigLines.Text  = "-";
+            lblScanTrigTime.Text   = "-";
+            lblScanTrigCounts.Text = "-";
+            lblScanTrigState.Text  = "-";
         }
 
         // The panel reads mm, mm, um, mm/s and us because that is how the
@@ -457,13 +512,10 @@ namespace MMI
             lblScanTrigTime.Text = d.dScanTime.ToString("F2");
             lblScanTrigState.Text = ScanTriggerStateText(d.nState);
 
-            // All four come from the motor index table, so they are shown, not
-            // typed. Motion is 50..53 and the trigger block 51..52, which is the
-            // run-up and run-out that keep the ramps out of the block.
-            txtScanTrigStart.Text = d.dTrigStart.ToString("F3");
-            txtScanTrigEnd.Text   = d.dTrigEnd.ToString("F3");
-            lblScanTrigMotionStart.Text = d.dMotionStart.ToString("F3");
-            lblScanTrigMotionEnd.Text   = d.dMotionEnd.ToString("F3");
+            // The four positions are deliberately not painted from d. SET wrote
+            // them into the table that d was read out of, so they already agree,
+            // and this runs on every poll - it would overwrite whatever the
+            // operator is part way through typing for the next scan.
 
             // Before a run there is only the expected count; once the counter has
             // been read back, show what actually came out against it.
@@ -497,12 +549,13 @@ namespace MMI
 
         private void btnScanTrigSet_Click(object sender, EventArgs e)
         {
+            double[] adPos;
             double dPitch, dSpeed, dPulseUs;
 
             bScanTriggerWatch = false;
             btnScanTrigStart.Enabled = false;
 
-            if (!TryReadScanTriggerRecipe(out dPitch, out dSpeed, out dPulseUs))
+            if (!TryReadScanTriggerRecipe(out adPos, out dPitch, out dSpeed, out dPulseUs))
             {
                 ClearScanTriggerDisplay();
                 lblScanTrigResult.Text = "BAD NUMBER";
@@ -516,6 +569,21 @@ namespace MMI
             {
                 ClearScanTriggerDisplay();
                 lblScanTrigResult.Text = "BAD RANGE";
+                return;
+            }
+
+            // 50 <= 51 < 52 <= 53, the same test SEQ makes. It is made here as
+            // well because the write happens first: an out of order set would
+            // otherwise land in the motor table and stay there, refused.
+            // Zero length run-up or run-out is allowed - that is a scan with no
+            // room to accelerate outside the block - but the block itself has to
+            // have length.
+            if (adPos[1] <  adPos[0] ||
+                adPos[2] <= adPos[1] ||
+                adPos[3] <  adPos[2])
+            {
+                ClearScanTriggerDisplay();
+                lblScanTrigResult.Text = "BAD ORDER";
                 return;
             }
 
@@ -534,10 +602,11 @@ namespace MMI
                 return;
             }
 
-            // The speed goes into the motor index table before the recipe goes
-            // to SEQ, because the positions the recipe is judged against are in
-            // that same table and the two should not disagree even briefly.
-            if (!WriteScanSpeedToMotorTable(dSpeed))
+            // The geometry goes into the motor index table before the recipe
+            // goes to SEQ, because that table is what SEQ judges the recipe
+            // against - the line rate and the line count it sends back are
+            // worked out from these very positions.
+            if (!WriteScanGeometryToMotorTable(adPos, dSpeed))
             {
                 ClearScanTriggerDisplay();
                 lblScanTrigResult.Text = "NO LINK";
