@@ -315,6 +315,20 @@ namespace MMI
             MmiGV.pShMem.WMotorData.uAxisNo = nAxis;
             if (!MmiGV.pShMem.SetMotorData()) return false;
 
+            // Read it straight back. This refills RMotorData, which is what the
+            // motor screen's CURRENT columns are painted from, so they show the
+            // new speed now instead of on whatever poll comes next - and a write
+            // that did not take is visible here rather than looking like it did.
+            if (!MmiGV.pShMem.GetMotorData(nAxis)) return false;
+
+            for (int i = ScanTriggerIdxFirst; i <= ScanTriggerIdxLast; i++)
+            {
+                if (Math.Abs(MmiGV.pShMem.RMotorData[nAxis].uVel[i] - dPulses) > 1.0)
+                {
+                    return false;
+                }
+            }
+
             // MOTOR_COMMON row i holds array entry i + 50.
             for (int i = ScanTriggerIdxFirst; i <= ScanTriggerIdxLast; i++)
             {
@@ -325,6 +339,17 @@ namespace MMI
                               + "'" + dSpeedMmS.ToString(CultureInfo.InvariantCulture) + "'"
                               + " WHERE IDX=" + (i - 50).ToString(CultureInfo.InvariantCulture);
                 SQLiteDB.Execute(strSQL);
+            }
+
+            // The SETTING columns are painted from mtSettingData, and only when
+            // something asks - nothing polls them, and opening the screen does
+            // not either. Without this the motor screen keeps showing the old
+            // speed beside a CURRENT column that has already moved on, which is
+            // the two columns disagreeing about a value neither of them is wrong
+            // about.
+            if (MmiGV.frmMain != null && MmiGV.frmMain.frmMotorSetting != null)
+            {
+                MmiGV.frmMain.frmMotorSetting.RefreshData();
             }
             return true;
         }
