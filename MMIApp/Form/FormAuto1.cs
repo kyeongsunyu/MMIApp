@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace MMI
@@ -198,6 +199,15 @@ namespace MMI
         private const double ScanTriggerPulseMaxDuty = 0.4;
         private const double ScanTriggerPulseMinUs   = 1.0;
 
+        // The scan geometry lives in the motor index table, not here: the motor
+        // screen names and edits these four, and 50 and above are MOTOR_COMMON
+        // rows, so they belong to the machine rather than to one device. SET
+        // writes the scan speed into them and reads the positions back from SEQ.
+        //
+        //   50 SCAN START / 51 SCAN TRIGGER START / 52 SCAN TRIGGER END / 53 SCAN END
+        private const int ScanTriggerIdxFirst = 50;
+        private const int ScanTriggerIdxLast  = 53;
+
         // Set while a recipe has been accepted or a cycle is running. Read by
         // CThreadMain, which does the polling: every other shared memory read in
         // this program goes through that thread, and MemPort takes a mutex the
@@ -237,8 +247,6 @@ namespace MMI
             CRcpMaterial rcp = CRecipeCtl.CurMaterialRcp;
             if (rcp == null) return;
 
-            txtScanTrigStart.Text = rcp.ScanStart.ToString("F3");
-            txtScanTrigEnd.Text   = rcp.ScanEnd.ToString("F3");
             txtScanTrigPitch.Text = rcp.ScanPixelRes.ToString("F2");
             txtScanTrigSpeed.Text = rcp.ScanSpeed.ToString("F2");
             txtScanTrigPulse.Text = rcp.ScanPulseWidth.ToString("F2");
@@ -259,14 +267,11 @@ namespace MMI
             lblScanTrigResult.Text = "-";
         }
 
-        private bool TryReadScanTriggerRecipe(out double dStart, out double dEnd,
-                                              out double dPitch, out double dSpeed,
+        private bool TryReadScanTriggerRecipe(out double dPitch, out double dSpeed,
                                               out double dPulseUs)
         {
-            dStart = dEnd = dPitch = dSpeed = dPulseUs = 0.0;
+            dPitch = dSpeed = dPulseUs = 0.0;
 
-            if (!double.TryParse(txtScanTrigStart.Text, out dStart))   return false;
-            if (!double.TryParse(txtScanTrigEnd.Text,   out dEnd))     return false;
             if (!double.TryParse(txtScanTrigPitch.Text, out dPitch))   return false;
             if (!double.TryParse(txtScanTrigSpeed.Text, out dSpeed))   return false;
             if (!double.TryParse(txtScanTrigPulse.Text, out dPulseUs)) return false;
@@ -274,10 +279,62 @@ namespace MMI
             return true;
         }
 
+        // The scan speed, into motor index table entries 50..53, so the motor
+        // screen shows what the scan will actually run at and the operator can
+        // see it next to the positions it belongs with.
+        //
+        // CMD_WRITE_MOTORDATA replaces the whole hundred entry array, so sending
+        // this side's own copy would overwrite anything SEQ holds that this copy
+        // does not know about. Read SEQ's array back first and change only the
+        // four, which is the difference between writing four numbers and
+        // rewriting the table.
+        private bool WriteScanSpeedToMotorTable(double dSpeedMmS)
+        {
+            int nAxis = (int)ScanTriggerAxis;
+            if (MmiGV.pShMem == null) return false;
+            if (!MmiGV.pShMem.GetMotorData(nAxis)) return false;
+
+            double dRate  = MmiGV.mtConfigData[nAxis].uPulseRate;
+            double dPulses = dSpeedMmS * dRate;
+
+            for (int i = 0; i < 100; i++)
+            {
+                MmiGV.pShMem.WMotorData.uPos[i] = MmiGV.pShMem.RMotorData[nAxis].uPos[i];
+                MmiGV.pShMem.WMotorData.uVel[i] = MmiGV.pShMem.RMotorData[nAxis].uVel[i];
+            }
+            for (int i = ScanTriggerIdxFirst; i <= ScanTriggerIdxLast; i++)
+            {
+                MmiGV.pShMem.WMotorData.uVel[i] = dPulses;
+
+                // The motor screen reads these, and SaveMotorSettingData writes
+                // them to MOTOR_COMMON, so keep all three copies in step.
+                MmiGV.mtSettingData[nAxis].dSpeedArray[i] = dSpeedMmS;
+                MmiGV.mtData[nAxis].iSpeedArray[i]        = dPulses;
+            }
+
+            MmiGV.pShMem.WMotorData.uAxisNo = nAxis;
+            if (!MmiGV.pShMem.SetMotorData()) return false;
+
+            // MOTOR_COMMON row i holds array entry i + 50.
+            for (int i = ScanTriggerIdxFirst; i <= ScanTriggerIdxLast; i++)
+            {
+                // InvariantCulture: a locale with a comma decimal separator
+                // writes "198,9" and SQLite rejects the statement in silence.
+                string strSQL = "UPDATE MOTOR_COMMON SET SPD"
+                              + string.Format("{0:D2}", nAxis + 1) + "="
+                              + "'" + dSpeedMmS.ToString(CultureInfo.InvariantCulture) + "'"
+                              + " WHERE IDX=" + (i - 50).ToString(CultureInfo.InvariantCulture);
+                SQLiteDB.Execute(strSQL);
+            }
+            return true;
+        }
+
         // Everything SEQ owns. The result row is not touched here: it carries the
         // outcome of the last action and the caller writes it straight after.
         private void ClearScanTriggerDisplay()
         {
+            txtScanTrigStart.Text       = "-";
+            txtScanTrigEnd.Text         = "-";
             lblScanTrigRate.Text        = "-";
             lblScanTrigLines.Text       = "-";
             lblScanTrigTime.Text        = "-";
@@ -293,13 +350,10 @@ namespace MMI
         // resolution or the image comes out stretched. The pulse width is
         // whatever the camera datasheet asks for. The shared memory recipe is mm
         // and mm/s throughout, with the pulse width left in us.
-        private bool SendScanTriggerRecipe(double dStart, double dEnd,
-                                           double dPitchUm, double dSpeed,
+        private bool SendScanTriggerRecipe(double dPitchUm, double dSpeed,
                                            double dPulseUs)
         {
             MmiGV.pShMem.WScanTriggerRecipe.uAxisNo       = ScanTriggerAxis;
-            MmiGV.pShMem.WScanTriggerRecipe.dTrigStart    = dStart;
-            MmiGV.pShMem.WScanTriggerRecipe.dTrigEnd      = dEnd;
             MmiGV.pShMem.WScanTriggerRecipe.dPitch        = dPitchUm / 1000.0;
             MmiGV.pShMem.WScanTriggerRecipe.dSpeed        = dSpeed;
             MmiGV.pShMem.WScanTriggerRecipe.dPulseWidthUS = dPulseUs;
@@ -328,6 +382,7 @@ namespace MMI
                 case 9:  return "PULSE RATE";
                 case 10: return "NOT HOMED";
                 case 11: return "PULSE W";
+                case 12: return "IDX 50-53";
                 default: return nCode.ToString();
             }
         }
@@ -377,8 +432,11 @@ namespace MMI
             lblScanTrigTime.Text = d.dScanTime.ToString("F2");
             lblScanTrigState.Text = ScanTriggerStateText(d.nState);
 
-            // Where the axis actually starts and stops, which is outside the
-            // trigger block by however much the ramps need.
+            // All four come from the motor index table, so they are shown, not
+            // typed. Motion is 50..53 and the trigger block 51..52, which is the
+            // run-up and run-out that keep the ramps out of the block.
+            txtScanTrigStart.Text = d.dTrigStart.ToString("F3");
+            txtScanTrigEnd.Text   = d.dTrigEnd.ToString("F3");
             lblScanTrigMotionStart.Text = d.dMotionStart.ToString("F3");
             lblScanTrigMotionEnd.Text   = d.dMotionEnd.ToString("F3");
 
@@ -414,13 +472,12 @@ namespace MMI
 
         private void btnScanTrigSet_Click(object sender, EventArgs e)
         {
-            double dStart, dEnd, dPitch, dSpeed, dPulseUs;
+            double dPitch, dSpeed, dPulseUs;
 
             bScanTriggerWatch = false;
             btnScanTrigStart.Enabled = false;
 
-            if (!TryReadScanTriggerRecipe(out dStart, out dEnd, out dPitch,
-                                          out dSpeed, out dPulseUs))
+            if (!TryReadScanTriggerRecipe(out dPitch, out dSpeed, out dPulseUs))
             {
                 ClearScanTriggerDisplay();
                 lblScanTrigResult.Text = "BAD NUMBER";
@@ -430,7 +487,7 @@ namespace MMI
             // Only the checks that need no machine knowledge. Everything else -
             // whether the pitch is a whole number of encoder counts, whether the
             // speed fits the axis, whether the axis is homed - is SEQ's to judge.
-            if (dEnd <= dStart || dPitch <= 0.0 || dSpeed <= 0.0 || dPulseUs <= 0.0)
+            if (dPitch <= 0.0 || dSpeed <= 0.0 || dPulseUs <= 0.0)
             {
                 ClearScanTriggerDisplay();
                 lblScanTrigResult.Text = "BAD RANGE";
@@ -440,8 +497,6 @@ namespace MMI
             // Persist before sending. The refusals SEQ can still raise - not homed,
             // no counter, speed beyond the axis - are machine states, not bad
             // numbers, and the operator should not lose what they typed to one.
-            CRecipeCtl.CurMaterialRcp.ScanStart    = dStart;
-            CRecipeCtl.CurMaterialRcp.ScanEnd      = dEnd;
             CRecipeCtl.CurMaterialRcp.ScanPixelRes  = dPitch;
             CRecipeCtl.CurMaterialRcp.ScanSpeed     = dSpeed;
             CRecipeCtl.CurMaterialRcp.ScanPulseWidth = dPulseUs;
@@ -454,12 +509,22 @@ namespace MMI
                 return;
             }
 
+            // The speed goes into the motor index table before the recipe goes
+            // to SEQ, because the positions the recipe is judged against are in
+            // that same table and the two should not disagree even briefly.
+            if (!WriteScanSpeedToMotorTable(dSpeed))
+            {
+                ClearScanTriggerDisplay();
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
             // Writing the same recipe twice is harmless, so the whole pair is
             // what gets retried rather than each half separately.
             int nCode = -1;
             for (int k = 0; k < ScanTriggerTries && nCode < 0; k++)
             {
-                if (SendScanTriggerRecipe(dStart, dEnd, dPitch, dSpeed, dPulseUs))
+                if (SendScanTriggerRecipe(dPitch, dSpeed, dPulseUs))
                 {
                     nCode = RefreshScanTriggerDisplay();
                 }

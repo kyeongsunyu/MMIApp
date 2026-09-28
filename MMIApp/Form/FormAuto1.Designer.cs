@@ -1576,17 +1576,18 @@
             this.lblcapScanTrig0.Size = new System.Drawing.Size(160, 25);
             this.lblcapScanTrig0.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrig0.TabIndex = 200;
-            this.lblcapScanTrig0.Text = "Start (mm)";
+            this.lblcapScanTrig0.Text = "Trig Start (mm)";
             this.lblcapScanTrig0.TextAlignment = System.Drawing.StringAlignment.Center;
             // txtScanTrigStart
             // 
-            this.txtScanTrigStart.BackColor = System.Drawing.Color.White;
+            this.txtScanTrigStart.BackColor = System.Drawing.SystemColors.Info;
+            this.txtScanTrigStart.ReadOnly = true;
             // 
             // 
             // 
             this.txtScanTrigStart.Border.Class = "TextBoxBorder";
             this.txtScanTrigStart.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtScanTrigStart.DisabledBackColor = System.Drawing.Color.White;
+            this.txtScanTrigStart.DisabledBackColor = System.Drawing.SystemColors.Info;
             this.txtScanTrigStart.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtScanTrigStart.ForeColor = System.Drawing.Color.Black;
             this.txtScanTrigStart.Location = new System.Drawing.Point(180, 32);
@@ -1594,9 +1595,8 @@
             this.txtScanTrigStart.PreventEnterBeep = true;
             this.txtScanTrigStart.Size = new System.Drawing.Size(150, 25);
             this.txtScanTrigStart.TabIndex = 201;
-            this.txtScanTrigStart.Text = "0.000";
+            this.txtScanTrigStart.Text = "-";
             this.txtScanTrigStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtScanTrigStart.TextChanged += new System.EventHandler(this.ScanTriggerInput_TextChanged);
             // lblcapScanTrig1
             // 
             this.lblcapScanTrig1.BackColor = System.Drawing.SystemColors.Info;
@@ -1634,17 +1634,18 @@
             this.lblcapScanTrig1.Size = new System.Drawing.Size(160, 25);
             this.lblcapScanTrig1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblcapScanTrig1.TabIndex = 202;
-            this.lblcapScanTrig1.Text = "End (mm)";
+            this.lblcapScanTrig1.Text = "Trig End (mm)";
             this.lblcapScanTrig1.TextAlignment = System.Drawing.StringAlignment.Center;
             // txtScanTrigEnd
             // 
-            this.txtScanTrigEnd.BackColor = System.Drawing.Color.White;
+            this.txtScanTrigEnd.BackColor = System.Drawing.SystemColors.Info;
+            this.txtScanTrigEnd.ReadOnly = true;
             // 
             // 
             // 
             this.txtScanTrigEnd.Border.Class = "TextBoxBorder";
             this.txtScanTrigEnd.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtScanTrigEnd.DisabledBackColor = System.Drawing.Color.White;
+            this.txtScanTrigEnd.DisabledBackColor = System.Drawing.SystemColors.Info;
             this.txtScanTrigEnd.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtScanTrigEnd.ForeColor = System.Drawing.Color.Black;
             this.txtScanTrigEnd.Location = new System.Drawing.Point(180, 63);
@@ -1652,9 +1653,8 @@
             this.txtScanTrigEnd.PreventEnterBeep = true;
             this.txtScanTrigEnd.Size = new System.Drawing.Size(150, 25);
             this.txtScanTrigEnd.TabIndex = 203;
-            this.txtScanTrigEnd.Text = "0.000";
+            this.txtScanTrigEnd.Text = "-";
             this.txtScanTrigEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtScanTrigEnd.TextChanged += new System.EventHandler(this.ScanTriggerInput_TextChanged);
             // lblcapScanTrig2
             // 
             this.lblcapScanTrig2.BackColor = System.Drawing.SystemColors.Info;

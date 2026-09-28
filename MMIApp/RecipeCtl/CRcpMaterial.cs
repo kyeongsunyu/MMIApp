@@ -23,8 +23,11 @@ namespace MMI
         // number that has to agree with the other two is how they stop agreeing.
         // SCAN_LINE_RATE stays in the table so a downgrade still reads, but
         // nothing writes it any more.
-        public double ScanStart;
-        public double ScanEnd;
+        //
+        // Nor are the four positions. They are motor index table entries 50..53,
+        // which MOTOR_COMMON stores and the motor screen edits, so a scan
+        // geometry belongs to the machine rather than to one device.
+        // SCAN_START and SCAN_END stay in the table for the same reason.
         public double ScanPixelRes;
         public double ScanSpeed;        // mm/s
         public double ScanPulseWidth;   // us
@@ -78,13 +81,11 @@ namespace MMI
         public void SaveScanTrigger()
         {
             // InvariantCulture, or a locale with a comma decimal separator writes
-            // "SCAN_START = 10,0000" and the statement is silently rejected.
+            // "SCAN_SPEED = 198,9000" and the statement is silently rejected.
             CultureInfo ci = CultureInfo.InvariantCulture;
 
             string strSQL = " UPDATE DEVICE SET "
-                          + " SCAN_START = "      + ScanStart.ToString("F4", ci)
-                          + ", SCAN_END = "       + ScanEnd.ToString("F4", ci)
-                          + ", SCAN_PIXEL_RES = " + ScanPixelRes.ToString("F4", ci)
+                          + " SCAN_PIXEL_RES = " + ScanPixelRes.ToString("F4", ci)
                           + ", SCAN_SPEED = "     + ScanSpeed.ToString("F4", ci)
                           + ", SCAN_PULSE_US = "  + ScanPulseWidth.ToString("F4", ci)
                           + " WHERE IDX = "       + Material_IDX.ToString(ci);
@@ -115,8 +116,6 @@ namespace MMI
                     Material_IDX = int.TryParse(SQLiteDB.ReaderDeviceData["IDX"].ToString(), out iDevNo) ? iDevNo : 1;
                     Material_NAME = SQLiteDB.ReaderDeviceData["DEVICE_NAME"].ToString();
 
-                    ScanStart     = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_START");
-                    ScanEnd       = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_END");
                     ScanPixelRes   = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_PIXEL_RES");
                     ScanSpeed      = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_SPEED");
                     ScanPulseWidth = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_PULSE_US");
