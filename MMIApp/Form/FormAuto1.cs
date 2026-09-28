@@ -481,6 +481,8 @@ namespace MMI
                 case 7: return "DONE";
                 case 8: return "ABORTED";
                 case 9: return "OUT TEST";
+                case 10: return "RETURN";
+                case 11: return "WAIT RETURN";
                 default: return nState.ToString();
             }
         }
