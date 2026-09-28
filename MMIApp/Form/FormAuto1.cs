@@ -191,6 +191,13 @@ namespace MMI
         // it a dead link.
         private const int ScanTriggerTries = 3;
 
+        // Mirrors SCANTRIGGER_PULSE_MAX_DUTY and SCANTRIGGER_PULSE_MIN_US in
+        // SEQ04_ScanTrigger.cpp. SEQ owns the decision; this side only explains
+        // it, so if the two ever drift the result is a wrong explanation rather
+        // than a wrong refusal.
+        private const double ScanTriggerPulseMaxDuty = 0.4;
+        private const double ScanTriggerPulseMinUs   = 1.0;
+
         // Set while a recipe has been accepted or a cycle is running. Read by
         // CThreadMain, which does the polling: every other shared memory read in
         // this program goes through that thread, and MemPort takes a mutex the
@@ -467,6 +474,11 @@ namespace MMI
 
             lblScanTrigResult.Text = ScanTriggerValidateText(nCode);
 
+            // "PULSE W" in a 150 pixel cell says which number is wrong and
+            // nothing else. The operator can only fix it knowing what it is
+            // being measured against, so say so.
+            if (nCode == 11) ShowScanTriggerPulseWidthRefusal(dPulseUs);
+
             // SEQ accepted it, so the cycle can be started and the state row is
             // worth following from here on.
             btnScanTrigStart.Enabled = (nCode == 0);
@@ -511,6 +523,41 @@ namespace MMI
 
             bScanTriggerWatch = bSent;
             lblScanTrigResult.Text = bSent ? "STOP" : "NO LINK";
+        }
+
+        // SEQ refuses a pulse width under 1 us and one over 40 % of the line
+        // period, and reports one code for both. The line period is what decides
+        // which, and it came back in the display, so work out which bound was
+        // crossed here rather than leaving the operator to.
+        private void ShowScanTriggerPulseWidthRefusal(double dPulseUs)
+        {
+            if (MmiGV.pShMem == null) return;
+
+            double dRateHz = MmiGV.pShMem.RScanTriggerDisplay.dLineRate;
+            if (dRateHz <= 0.0) return;
+
+            double dPeriodUs = 1000000.0 / dRateHz;
+            double dMaxUs    = dPeriodUs * ScanTriggerPulseMaxDuty;
+
+            string strMsg;
+            if (dPulseUs > dMaxUs)
+            {
+                strMsg = "펄스폭이 듀티 40%를 넘었습니다.\n\n"
+                       + "라인 주기 : " + dPeriodUs.ToString("F1") + " us  ("
+                       + (dRateHz / 1000.0).ToString("F3") + " kHz)\n"
+                       + "허용 최대 : " + dMaxUs.ToString("F1") + " us\n"
+                       + "입력 값     : " + dPulseUs.ToString("F2") + " us  (듀티 "
+                       + (dPulseUs / dPeriodUs * 100.0).ToString("F0") + " %)";
+            }
+            else
+            {
+                strMsg = "펄스폭이 최소값 " + ScanTriggerPulseMinUs.ToString("F0")
+                       + " us 보다 좁습니다.\n\n"
+                       + "입력 값 : " + dPulseUs.ToString("F2") + " us";
+            }
+
+            MessageBox.Show(strMsg, "SCAN TRIGGER",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         // Commissioning aid. SEQ drives the trigger output pin directly for a
