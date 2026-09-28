@@ -14,14 +14,20 @@ namespace MMI
         public string Material_NAME;
 
         // Scan trigger settings, in the units the operator types on the panel:
-        // mm, mm, um, kHz. They are named columns rather than DATAxxx slots
+        // mm, mm, um, mm/s, us. They are named columns rather than DATAxxx slots
         // because FormDataRecipe.Save_Device() rebuilds all 200 slots from its
         // own screen and writes 0 into every one it does not own - anything
         // parked in a spare slot is erased the next time a recipe is saved.
+        //
+        // The line rate is not stored: it is speed / pitch, and keeping a third
+        // number that has to agree with the other two is how they stop agreeing.
+        // SCAN_LINE_RATE stays in the table so a downgrade still reads, but
+        // nothing writes it any more.
         public double ScanStart;
         public double ScanEnd;
         public double ScanPixelRes;
-        public double ScanLineRate;
+        public double ScanSpeed;        // mm/s
+        public double ScanPulseWidth;   // us
 
         // Machines built before the scan trigger have a DEVICE table without
         // these columns. Adding them is idempotent, so this can run at every
@@ -49,7 +55,8 @@ namespace MMI
         }
 
         private static readonly string[] ScanTriggerColumns =
-            { "SCAN_START", "SCAN_END", "SCAN_PIXEL_RES", "SCAN_LINE_RATE" };
+            { "SCAN_START", "SCAN_END", "SCAN_PIXEL_RES", "SCAN_LINE_RATE",
+              "SCAN_SPEED", "SCAN_PULSE_US" };
 
         private static double ReadDouble(System.Data.SQLite.SQLiteDataReader r, string strCol)
         {
@@ -78,7 +85,8 @@ namespace MMI
                           + " SCAN_START = "      + ScanStart.ToString("F4", ci)
                           + ", SCAN_END = "       + ScanEnd.ToString("F4", ci)
                           + ", SCAN_PIXEL_RES = " + ScanPixelRes.ToString("F4", ci)
-                          + ", SCAN_LINE_RATE = " + ScanLineRate.ToString("F4", ci)
+                          + ", SCAN_SPEED = "     + ScanSpeed.ToString("F4", ci)
+                          + ", SCAN_PULSE_US = "  + ScanPulseWidth.ToString("F4", ci)
                           + " WHERE IDX = "       + Material_IDX.ToString(ci);
 
             SQLiteDB.Execute(strSQL);
@@ -109,8 +117,19 @@ namespace MMI
 
                     ScanStart     = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_START");
                     ScanEnd       = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_END");
-                    ScanPixelRes  = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_PIXEL_RES");
-                    ScanLineRate  = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_LINE_RATE");
+                    ScanPixelRes   = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_PIXEL_RES");
+                    ScanSpeed      = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_SPEED");
+                    ScanPulseWidth = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_PULSE_US");
+
+                    // A device saved before the panel took a speed has a line
+                    // rate instead. Convert it once rather than making the
+                    // operator retype a recipe that was already correct.
+                    if (ScanSpeed <= 0.0 && ScanPixelRes > 0.0)
+                    {
+                        ScanSpeed = ReadDouble(SQLiteDB.ReaderDeviceData, "SCAN_LINE_RATE")
+                                    * 1000.0 * (ScanPixelRes / 1000.0);
+                    }
+                    if (ScanPulseWidth <= 0.0) ScanPulseWidth = 10.0;
 
                     for (int k = 1; k < 201; k++)
                     {

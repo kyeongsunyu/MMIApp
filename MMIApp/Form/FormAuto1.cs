@@ -170,9 +170,15 @@ namespace MMI
         // second answer computed here could only disagree with the one the
         // machine actually runs.
         //
-        // The four inputs are typed straight into their text boxes. Editing any
+        // The five inputs are typed straight into their text boxes. Editing any
         // of them drops the computed rows, which are stale the moment an input
         // moves, and takes START away again until the recipe is re-sent.
+        //
+        // Speed is entered and the line rate is computed, not the other way
+        // round: speed is what the machine is commanded to do and what the tact
+        // time is argued about in, while the line rate is what falls out of it
+        // and the pitch. The camera is then set from a number nobody had to
+        // work out by hand.
 
         // The axis the trigger runs on. Single scan axis for now; when a second
         // one appears this becomes a selection rather than a constant.
@@ -227,7 +233,8 @@ namespace MMI
             txtScanTrigStart.Text = rcp.ScanStart.ToString("F3");
             txtScanTrigEnd.Text   = rcp.ScanEnd.ToString("F3");
             txtScanTrigPitch.Text = rcp.ScanPixelRes.ToString("F2");
-            txtScanTrigRate.Text  = rcp.ScanLineRate.ToString("F4");
+            txtScanTrigSpeed.Text = rcp.ScanSpeed.ToString("F2");
+            txtScanTrigPulse.Text = rcp.ScanPulseWidth.ToString("F2");
 
             // Setting the text fires TextChanged, which does this too. Doing it
             // here as well keeps the state right without depending on that.
@@ -246,14 +253,16 @@ namespace MMI
         }
 
         private bool TryReadScanTriggerRecipe(out double dStart, out double dEnd,
-                                              out double dPitch, out double dRate)
+                                              out double dPitch, out double dSpeed,
+                                              out double dPulseUs)
         {
-            dStart = dEnd = dPitch = dRate = 0.0;
+            dStart = dEnd = dPitch = dSpeed = dPulseUs = 0.0;
 
-            if (!double.TryParse(txtScanTrigStart.Text, out dStart)) return false;
-            if (!double.TryParse(txtScanTrigEnd.Text,   out dEnd))   return false;
-            if (!double.TryParse(txtScanTrigPitch.Text, out dPitch)) return false;
-            if (!double.TryParse(txtScanTrigRate.Text,  out dRate))  return false;
+            if (!double.TryParse(txtScanTrigStart.Text, out dStart))   return false;
+            if (!double.TryParse(txtScanTrigEnd.Text,   out dEnd))     return false;
+            if (!double.TryParse(txtScanTrigPitch.Text, out dPitch))   return false;
+            if (!double.TryParse(txtScanTrigSpeed.Text, out dSpeed))   return false;
+            if (!double.TryParse(txtScanTrigPulse.Text, out dPulseUs)) return false;
 
             return true;
         }
@@ -262,7 +271,7 @@ namespace MMI
         // outcome of the last action and the caller writes it straight after.
         private void ClearScanTriggerDisplay()
         {
-            lblScanTrigSpeed.Text       = "-";
+            lblScanTrigRate.Text        = "-";
             lblScanTrigLines.Text       = "-";
             lblScanTrigTime.Text        = "-";
             lblScanTrigMotionStart.Text = "-";
@@ -271,19 +280,22 @@ namespace MMI
             lblScanTrigState.Text       = "-";
         }
 
-        // The panel reads mm, mm, um and kHz because that is how the operator
-        // thinks about a scan. Pixel Res is the along-scan resolution - one line
-        // per that much travel - and it has to match the cross-scan resolution
-        // or the image comes out stretched. The shared memory recipe is mm and
-        // Hz throughout.
+        // The panel reads mm, mm, um, mm/s and us because that is how the
+        // operator thinks about a scan. Pixel Res is the along-scan resolution -
+        // one line per that much travel - and it has to match the cross-scan
+        // resolution or the image comes out stretched. The pulse width is
+        // whatever the camera datasheet asks for. The shared memory recipe is mm
+        // and mm/s throughout, with the pulse width left in us.
         private bool SendScanTriggerRecipe(double dStart, double dEnd,
-                                           double dPitchUm, double dRateKHz)
+                                           double dPitchUm, double dSpeed,
+                                           double dPulseUs)
         {
-            MmiGV.pShMem.WScanTriggerRecipe.uAxisNo    = ScanTriggerAxis;
-            MmiGV.pShMem.WScanTriggerRecipe.dTrigStart = dStart;
-            MmiGV.pShMem.WScanTriggerRecipe.dTrigEnd   = dEnd;
-            MmiGV.pShMem.WScanTriggerRecipe.dPitch     = dPitchUm  / 1000.0;
-            MmiGV.pShMem.WScanTriggerRecipe.dLineRate  = dRateKHz  * 1000.0;
+            MmiGV.pShMem.WScanTriggerRecipe.uAxisNo       = ScanTriggerAxis;
+            MmiGV.pShMem.WScanTriggerRecipe.dTrigStart    = dStart;
+            MmiGV.pShMem.WScanTriggerRecipe.dTrigEnd      = dEnd;
+            MmiGV.pShMem.WScanTriggerRecipe.dPitch        = dPitchUm / 1000.0;
+            MmiGV.pShMem.WScanTriggerRecipe.dSpeed        = dSpeed;
+            MmiGV.pShMem.WScanTriggerRecipe.dPulseWidthUS = dPulseUs;
 
             // Reserved in the struct and unused until an approach profile exists.
             MmiGV.pShMem.WScanTriggerRecipe.dAccel     = 0.0;
@@ -301,13 +313,14 @@ namespace MMI
                 case 1:  return "AXIS";
                 case 2:  return "RANGE";
                 case 3:  return "PITCH";
-                case 4:  return "LINE RATE";
+                case 4:  return "SPEED";
                 case 5:  return "PITCH FRAC";
-                case 6:  return "SPEED";
+                case 6:  return "SPEED MAX";
                 case 7:  return "LINE COUNT";
                 case 8:  return "NO COUNTER";
                 case 9:  return "PULSE RATE";
                 case 10: return "NOT HOMED";
+                case 11: return "PULSE W";
                 default: return nCode.ToString();
             }
         }
@@ -351,8 +364,10 @@ namespace MMI
 
             SharedMemDll.SCANTRIGGER_DISPLAY d = MmiGV.pShMem.RScanTriggerDisplay;
 
-            lblScanTrigSpeed.Text = d.dSpeed.ToString("F2");
-            lblScanTrigTime.Text  = d.dScanTime.ToString("F2");
+            // kHz on screen, Hz on the wire - a 16K scan runs in the tens of
+            // thousands and reads better with the exponent taken out.
+            lblScanTrigRate.Text = (d.dLineRate / 1000.0).ToString("F3");
+            lblScanTrigTime.Text = d.dScanTime.ToString("F2");
             lblScanTrigState.Text = ScanTriggerStateText(d.nState);
 
             // Where the axis actually starts and stops, which is outside the
@@ -392,12 +407,13 @@ namespace MMI
 
         private void btnScanTrigSet_Click(object sender, EventArgs e)
         {
-            double dStart, dEnd, dPitch, dRate;
+            double dStart, dEnd, dPitch, dSpeed, dPulseUs;
 
             bScanTriggerWatch = false;
             btnScanTrigStart.Enabled = false;
 
-            if (!TryReadScanTriggerRecipe(out dStart, out dEnd, out dPitch, out dRate))
+            if (!TryReadScanTriggerRecipe(out dStart, out dEnd, out dPitch,
+                                          out dSpeed, out dPulseUs))
             {
                 ClearScanTriggerDisplay();
                 lblScanTrigResult.Text = "BAD NUMBER";
@@ -407,7 +423,7 @@ namespace MMI
             // Only the checks that need no machine knowledge. Everything else -
             // whether the pitch is a whole number of encoder counts, whether the
             // speed fits the axis, whether the axis is homed - is SEQ's to judge.
-            if (dEnd <= dStart || dPitch <= 0.0 || dRate <= 0.0)
+            if (dEnd <= dStart || dPitch <= 0.0 || dSpeed <= 0.0 || dPulseUs <= 0.0)
             {
                 ClearScanTriggerDisplay();
                 lblScanTrigResult.Text = "BAD RANGE";
@@ -419,8 +435,9 @@ namespace MMI
             // numbers, and the operator should not lose what they typed to one.
             CRecipeCtl.CurMaterialRcp.ScanStart    = dStart;
             CRecipeCtl.CurMaterialRcp.ScanEnd      = dEnd;
-            CRecipeCtl.CurMaterialRcp.ScanPixelRes = dPitch;
-            CRecipeCtl.CurMaterialRcp.ScanLineRate = dRate;
+            CRecipeCtl.CurMaterialRcp.ScanPixelRes  = dPitch;
+            CRecipeCtl.CurMaterialRcp.ScanSpeed     = dSpeed;
+            CRecipeCtl.CurMaterialRcp.ScanPulseWidth = dPulseUs;
             CRecipeCtl.CurMaterialRcp.SaveScanTrigger();
 
             if (MmiGV.pShMem == null)
@@ -435,7 +452,7 @@ namespace MMI
             int nCode = -1;
             for (int k = 0; k < ScanTriggerTries && nCode < 0; k++)
             {
-                if (SendScanTriggerRecipe(dStart, dEnd, dPitch, dRate))
+                if (SendScanTriggerRecipe(dStart, dEnd, dPitch, dSpeed, dPulseUs))
                 {
                     nCode = RefreshScanTriggerDisplay();
                 }
