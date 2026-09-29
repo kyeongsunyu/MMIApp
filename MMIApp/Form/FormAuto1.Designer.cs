@@ -105,11 +105,6 @@
             this.btnScanTrigStart = new DevComponents.DotNetBar.ButtonX();
             this.btnScanTrigStop = new DevComponents.DotNetBar.ButtonX();
             this.btnScanTrigTest = new DevComponents.DotNetBar.ButtonX();
-            this.pnlScanLog = new DevComponents.DotNetBar.ExpandablePanel();
-            this.lstScanLog = new System.Windows.Forms.ListBox();
-            this.lblScanLogCount = new DevComponents.DotNetBar.LabelX();
-            this.btnScanLogClear = new DevComponents.DotNetBar.ButtonX();
-            this.btnScanLogSave = new DevComponents.DotNetBar.ButtonX();
             this.tmRun = new System.Windows.Forms.Timer(this.components);
             this.btnTest = new DevComponents.DotNetBar.ButtonX();
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
@@ -127,7 +122,6 @@
             this.expandablePanel2.SuspendLayout();
             this.expandablePanel3.SuspendLayout();
             this.pnlScanTrigger.SuspendLayout();
-            this.pnlScanLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tcAuto)).BeginInit();
             this.tcAuto.SuspendLayout();
             this.tcState.SuspendLayout();
@@ -1479,7 +1473,6 @@
             // tcState
             // 
             this.tcState.Controls.Add(this.pnlScanTrigger);
-            this.tcState.Controls.Add(this.pnlScanLog);
             this.tcState.Controls.Add(this.bar1);
             this.tcState.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcState.Location = new System.Drawing.Point(0, 0);
@@ -2502,120 +2495,6 @@
             this.btnScanTrigTest.TextColor = System.Drawing.Color.White;
             this.btnScanTrigTest.ThemeAware = true;
             this.btnScanTrigTest.Click += new System.EventHandler(this.btnScanTrigTest_Click);
-            // 
-            // pnlScanLog
-            // 
-            this.pnlScanLog.CanvasColor = System.Drawing.SystemColors.Control;
-            this.pnlScanLog.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.pnlScanLog.Controls.Add(this.lstScanLog);
-            this.pnlScanLog.Controls.Add(this.lblScanLogCount);
-            this.pnlScanLog.Controls.Add(this.btnScanLogClear);
-            this.pnlScanLog.Controls.Add(this.btnScanLogSave);
-            this.pnlScanLog.DisabledBackColor = System.Drawing.Color.Empty;
-            this.pnlScanLog.ExpandButtonVisible = false;
-            this.pnlScanLog.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.pnlScanLog.HideControlsWhenCollapsed = true;
-            this.pnlScanLog.Location = new System.Drawing.Point(345, 0);
-            this.pnlScanLog.Name = "pnlScanLog";
-            this.pnlScanLog.Size = new System.Drawing.Size(760, 504);
-            this.pnlScanLog.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.pnlScanLog.Style.BackColor1.Color = System.Drawing.Color.White;
-            this.pnlScanLog.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.pnlScanLog.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.pnlScanLog.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.pnlScanLog.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.pnlScanLog.Style.GradientAngle = 90;
-            this.pnlScanLog.TabIndex = 240;
-            this.pnlScanLog.TitleStyle.BackColor1.Color = System.Drawing.Color.Teal;
-            this.pnlScanLog.TitleStyle.BackColor2.Color = System.Drawing.Color.Teal;
-            this.pnlScanLog.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.pnlScanLog.TitleStyle.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.pnlScanLog.TitleStyle.ForeColor.Color = System.Drawing.Color.Black;
-            this.pnlScanLog.TitleStyle.GradientAngle = 90;
-            this.pnlScanLog.TitleStyleMouseDown.Alignment = System.Drawing.StringAlignment.Center;
-            this.pnlScanLog.TitleText = " SCAN LOG";
-            // 
-            // lstScanLog
-            // 
-            this.lstScanLog.BackColor = System.Drawing.Color.Black;
-            this.lstScanLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lstScanLog.ForeColor = System.Drawing.Color.Lime;
-            this.lstScanLog.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstScanLog.FormattingEnabled = true;
-            this.lstScanLog.HorizontalScrollbar = true;
-            this.lstScanLog.IntegralHeight = false;
-            this.lstScanLog.ItemHeight = 15;
-            this.lstScanLog.Location = new System.Drawing.Point(9, 32);
-            this.lstScanLog.Name = "lstScanLog";
-            this.lstScanLog.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstScanLog.Size = new System.Drawing.Size(742, 396);
-            this.lstScanLog.TabIndex = 241;
-            // 
-            // lblScanLogCount
-            // 
-            this.lblScanLogCount.BackColor = System.Drawing.SystemColors.Info;
-            // 
-            // 
-            // 
-            this.lblScanLogCount.BackgroundStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.lblScanLogCount.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblScanLogCount.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
-            this.lblScanLogCount.BackgroundStyle.BorderBottomWidth = 1;
-            this.lblScanLogCount.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblScanLogCount.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
-            this.lblScanLogCount.BackgroundStyle.BorderLeftWidth = 1;
-            this.lblScanLogCount.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblScanLogCount.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
-            this.lblScanLogCount.BackgroundStyle.BorderRightWidth = 1;
-            this.lblScanLogCount.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblScanLogCount.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
-            this.lblScanLogCount.BackgroundStyle.BorderTopWidth = 1;
-            this.lblScanLogCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblScanLogCount.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblScanLogCount.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.lblScanLogCount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScanLogCount.FontBold = true;
-            this.lblScanLogCount.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblScanLogCount.Location = new System.Drawing.Point(229, 435);
-            this.lblScanLogCount.Name = "lblScanLogCount";
-            this.lblScanLogCount.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblScanLogCount.Size = new System.Drawing.Size(522, 25);
-            this.lblScanLogCount.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.lblScanLogCount.TabIndex = 242;
-            this.lblScanLogCount.Text = "0 lines";
-            this.lblScanLogCount.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // btnScanLogClear
-            // 
-            this.btnScanLogClear.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnScanLogClear.BackColor = System.Drawing.Color.Black;
-            this.btnScanLogClear.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnScanLogClear.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScanLogClear.Location = new System.Drawing.Point(9, 435);
-            this.btnScanLogClear.Name = "btnScanLogClear";
-            this.btnScanLogClear.Size = new System.Drawing.Size(100, 25);
-            this.btnScanLogClear.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnScanLogClear.TabIndex = 243;
-            this.btnScanLogClear.Text = "RESET";
-            this.btnScanLogClear.TextColor = System.Drawing.Color.White;
-            this.btnScanLogClear.ThemeAware = true;
-            this.btnScanLogClear.Click += new System.EventHandler(this.btnScanLogClear_Click);
-            // 
-            // btnScanLogSave
-            // 
-            this.btnScanLogSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnScanLogSave.BackColor = System.Drawing.Color.Black;
-            this.btnScanLogSave.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnScanLogSave.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScanLogSave.Location = new System.Drawing.Point(119, 435);
-            this.btnScanLogSave.Name = "btnScanLogSave";
-            this.btnScanLogSave.Size = new System.Drawing.Size(100, 25);
-            this.btnScanLogSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnScanLogSave.TabIndex = 244;
-            this.btnScanLogSave.Text = "SAVE";
-            this.btnScanLogSave.TextColor = System.Drawing.Color.White;
-            this.btnScanLogSave.ThemeAware = true;
-            this.btnScanLogSave.Click += new System.EventHandler(this.btnScanLogSave_Click);
             // bar1
             // 
             this.bar1.AntiAlias = true;
@@ -2927,7 +2806,6 @@
             this.expandablePanel2.ResumeLayout(false);
             this.expandablePanel3.ResumeLayout(false);
             this.pnlScanTrigger.ResumeLayout(false);
-            this.pnlScanLog.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tcAuto)).EndInit();
             this.tcAuto.ResumeLayout(false);
             this.tcState.ResumeLayout(false);
@@ -3027,10 +2905,5 @@
         public DevComponents.DotNetBar.ButtonX btnScanTrigStart;
         public DevComponents.DotNetBar.ButtonX btnScanTrigStop;
         public DevComponents.DotNetBar.ButtonX btnScanTrigTest;
-        public DevComponents.DotNetBar.ExpandablePanel pnlScanLog;
-        public System.Windows.Forms.ListBox lstScanLog;
-        public DevComponents.DotNetBar.LabelX lblScanLogCount;
-        public DevComponents.DotNetBar.ButtonX btnScanLogClear;
-        public DevComponents.DotNetBar.ButtonX btnScanLogSave;
     }
 }
