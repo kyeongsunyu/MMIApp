@@ -199,6 +199,36 @@ namespace MMI
         private const double ScanTriggerPulseMaxDuty = 0.4;
         private const double ScanTriggerPulseMinUs   = 1.0;
 
+        // SCANTRIGGER_MODE in SharedMemBase.h.
+        //
+        // PERIODIC is the encoder comparator: one pulse every N counts, and N
+        // is a whole number, so with a 1 um encoder the pixel resolution can
+        // only be a whole number of micrometres. 18.1 um is refused, not
+        // rounded, because rounding it costs 100 nm on every line in the same
+        // direction and comes out of the image as a 0.55 % stretch.
+        //
+        // TIMER is a free running oscillator. The rate is a whole number of Hz
+        // and nothing else is quantised, so SEQ rounds the rate and trims the
+        // speed to match - which makes any pixel resolution exact, to the
+        // nanometre and below. What it gives up is the encoder: the pitch is
+        // then only as good as the stage's velocity is steady, and the ends of
+        // the scan are found by software rather than by the comparator.
+        private const uint ScanTriggerModePeriodic = 0;
+        private const uint ScanTriggerModeTimer    = 1;
+
+        private uint ScanTriggerMode()
+        {
+            return rdoScanTrigTimer.Checked ? ScanTriggerModeTimer : ScanTriggerModePeriodic;
+        }
+
+        // Same as any other input: the recipe on screen no longer matches what
+        // SEQ was told, so SET has to be pressed again before START means
+        // anything.
+        private void ScanTriggerMode_CheckedChanged(object sender, EventArgs e)
+        {
+            ScanTriggerInput_TextChanged(sender, e);
+        }
+
         // The scan geometry lives in the motor index table: 50 and above are
         // MOTOR_COMMON rows, so they belong to the machine rather than to one
         // device, and the motor screen names and edits the same four. SET writes
@@ -437,6 +467,7 @@ namespace MMI
             MmiGV.pShMem.WScanTriggerRecipe.dPitch        = dPitchUm / 1000.0;
             MmiGV.pShMem.WScanTriggerRecipe.dSpeed        = dSpeed;
             MmiGV.pShMem.WScanTriggerRecipe.dPulseWidthUS = dPulseUs;
+            MmiGV.pShMem.WScanTriggerRecipe.uTriggerMode  = ScanTriggerMode();
 
             // Reserved in the struct and unused until an approach profile exists.
             MmiGV.pShMem.WScanTriggerRecipe.dAccel     = 0.0;
@@ -463,6 +494,7 @@ namespace MMI
                 case 10: return "NOT HOMED";
                 case 11: return "PULSE W";
                 case 12: return "IDX 50-53";
+                case 13: return "LINE RATE";
                 default: return nCode.ToString();
             }
         }
@@ -527,8 +559,25 @@ namespace MMI
 
             // A pitch that is not a whole number of encoder counts is the one
             // thing the operator can fix by changing a number, so mark it.
-            lblScanTrigCounts.Text = d.dPitchCounts.ToString("F2")
-                                   + (d.bPitchIsInteger ? "" : " !");
+            // This cell carries whatever the running mode is quantised by.
+            //
+            // PERIODIC is quantised by the encoder, so it shows the pitch in
+            // encoder counts and marks it when that is not a whole number -
+            // which is the thing that gets the recipe refused.
+            //
+            // TIMER is quantised by the rate instead, in whole Hz, and the
+            // encoder is not in the loop at all. Counts would be a number with
+            // no consequence, so it shows the rate that is actually programmed.
+            // The pitch is exact in that mode, so there is nothing to mark.
+            if (d.nTriggerMode == (int)ScanTriggerModeTimer)
+            {
+                lblScanTrigCounts.Text = d.dLineRate.ToString("F0") + " Hz";
+            }
+            else
+            {
+                lblScanTrigCounts.Text = d.dPitchCounts.ToString("F2")
+                                       + (d.bPitchIsInteger ? "" : " !");
+            }
 
             // The cycle has settled, so stop following it and leave the last
             // reading on screen.
@@ -639,6 +688,7 @@ namespace MMI
             // nothing else. The operator can only fix it knowing what it is
             // being measured against, so say so.
             if (nCode == 11) ShowScanTriggerPulseWidthRefusal(dPulseUs);
+            if (nCode == 5)  ShowScanTriggerPitchRefusal(dPitch);
 
             // SEQ accepted it, so the cycle can be started and the state row is
             // worth following from here on.
@@ -724,6 +774,34 @@ namespace MMI
         // Commissioning aid. SEQ drives the trigger output pin directly for a
         // few seconds so it can be probed on CON1; nothing moves and no recipe
         // is needed, which is why this does not go through SET first.
+        // "PITCH FRAC" in a 150 pixel cell says which number is wrong and
+        // nothing else. This one has a second answer the operator cannot guess
+        // at - the other mode will run it - so say both.
+        private void ShowScanTriggerPitchRefusal(double dPitchUm)
+        {
+            if (MmiGV.pShMem == null) return;
+
+            SharedMemDll.SCANTRIGGER_DISPLAY d = MmiGV.pShMem.RScanTriggerDisplay;
+
+            double dRoundedUm = d.dPitchAchieved * 1000.0;
+
+            string strMsg =
+                "PERIODIC 모드는 엔코더 카운트 단위로만 트리거를 낼 수 있습니다.\n\n"
+              + "입력 " + dPitchUm.ToString("F3") + " um "
+              + "= " + d.dPitchCounts.ToString("F3") + " counts (정수 아님)\n"
+              + "적용시 " + dRoundedUm.ToString("F3") + " um "
+              + "(" + d.dPitchErrorNM.ToString("+0.0;-0.0") + " nm / line)\n\n"
+              + "이 오차는 매 라인 같은 방향으로 쌓여 이미지 종횡비로 나타납니다.\n"
+              + "그래서 반올림하지 않고 거부합니다.\n\n"
+              + "TIMER 모드를 선택하면 이 값을 그대로 낼 수 있습니다. 주파수만\n"
+              + "정수 Hz로 맞추고 속도를 미세 조정하므로 피치는 정확합니다.\n"
+              + "대신 엔코더가 피치를 잡아주지 않으므로, 피치 정확도가\n"
+              + "스테이지 속도 안정도에 직접 좌우됩니다.";
+
+            MessageBox.Show(strMsg, "SCAN TRIGGER",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         private void btnScanTrigTest_Click(object sender, EventArgs e)
         {
             if (MmiGV.pShMem == null)

@@ -105,6 +105,8 @@
             this.btnScanTrigStart = new DevComponents.DotNetBar.ButtonX();
             this.btnScanTrigStop = new DevComponents.DotNetBar.ButtonX();
             this.btnScanTrigTest = new DevComponents.DotNetBar.ButtonX();
+            this.rdoScanTrigPeriodic = new System.Windows.Forms.RadioButton();
+            this.rdoScanTrigTimer = new System.Windows.Forms.RadioButton();
             this.tmRun = new System.Windows.Forms.Timer(this.components);
             this.btnTest = new DevComponents.DotNetBar.ButtonX();
             this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
@@ -1515,13 +1517,15 @@
             this.pnlScanTrigger.Controls.Add(this.btnScanTrigStart);
             this.pnlScanTrigger.Controls.Add(this.btnScanTrigStop);
             this.pnlScanTrigger.Controls.Add(this.btnScanTrigTest);
+            this.pnlScanTrigger.Controls.Add(this.rdoScanTrigPeriodic);
+            this.pnlScanTrigger.Controls.Add(this.rdoScanTrigTimer);
             this.pnlScanTrigger.DisabledBackColor = System.Drawing.Color.Empty;
             this.pnlScanTrigger.ExpandButtonVisible = false;
             this.pnlScanTrigger.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.pnlScanTrigger.HideControlsWhenCollapsed = true;
             this.pnlScanTrigger.Location = new System.Drawing.Point(0, 0);
             this.pnlScanTrigger.Name = "pnlScanTrigger";
-            this.pnlScanTrigger.Size = new System.Drawing.Size(339, 504);
+            this.pnlScanTrigger.Size = new System.Drawing.Size(339, 535);
             this.pnlScanTrigger.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.pnlScanTrigger.Style.BackColor1.Color = System.Drawing.Color.White;
             this.pnlScanTrigger.Style.BackColor2.Color = System.Drawing.Color.White;
@@ -2495,6 +2499,30 @@
             this.btnScanTrigTest.TextColor = System.Drawing.Color.White;
             this.btnScanTrigTest.ThemeAware = true;
             this.btnScanTrigTest.Click += new System.EventHandler(this.btnScanTrigTest_Click);
+            // 
+            // rdoScanTrigPeriodic
+            // 
+            this.rdoScanTrigPeriodic.Checked = true;
+            this.rdoScanTrigPeriodic.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoScanTrigPeriodic.Location = new System.Drawing.Point(9, 497);
+            this.rdoScanTrigPeriodic.Name = "rdoScanTrigPeriodic";
+            this.rdoScanTrigPeriodic.Size = new System.Drawing.Size(160, 25);
+            this.rdoScanTrigPeriodic.TabIndex = 222;
+            this.rdoScanTrigPeriodic.TabStop = true;
+            this.rdoScanTrigPeriodic.Text = "PERIODIC (enc)";
+            this.rdoScanTrigPeriodic.UseVisualStyleBackColor = true;
+            this.rdoScanTrigPeriodic.CheckedChanged += new System.EventHandler(this.ScanTriggerMode_CheckedChanged);
+            // 
+            // rdoScanTrigTimer
+            // 
+            this.rdoScanTrigTimer.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoScanTrigTimer.Location = new System.Drawing.Point(175, 497);
+            this.rdoScanTrigTimer.Name = "rdoScanTrigTimer";
+            this.rdoScanTrigTimer.Size = new System.Drawing.Size(155, 25);
+            this.rdoScanTrigTimer.TabIndex = 223;
+            this.rdoScanTrigTimer.Text = "TIMER (freq)";
+            this.rdoScanTrigTimer.UseVisualStyleBackColor = true;
+            this.rdoScanTrigTimer.CheckedChanged += new System.EventHandler(this.ScanTriggerMode_CheckedChanged);
             // bar1
             // 
             this.bar1.AntiAlias = true;
@@ -2905,5 +2933,7 @@
         public DevComponents.DotNetBar.ButtonX btnScanTrigStart;
         public DevComponents.DotNetBar.ButtonX btnScanTrigStop;
         public DevComponents.DotNetBar.ButtonX btnScanTrigTest;
+        public System.Windows.Forms.RadioButton rdoScanTrigPeriodic;
+        public System.Windows.Forms.RadioButton rdoScanTrigTimer;
     }
 }
