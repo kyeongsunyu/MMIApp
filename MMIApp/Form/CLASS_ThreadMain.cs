@@ -52,6 +52,20 @@ namespace MMI
         private static int m_iScanTriggerMiss = 0;
         private const int ScanTriggerMissLimit = 20;
 
+        // The log is read for a few more passes after the panel stops watching,
+        // so the lines the cycle prints as it finishes are collected. The watch
+        // clears on the pass that sees DONE, and those lines are written before
+        // the state is, so one pass would do - this is slack, not the mechanism.
+        private static int m_iScanLogDrain = 0;
+        private const int ScanLogDrainPasses = 3;
+
+        // ...and at a trickle the rest of the time, so an MMI that was started
+        // after a scan still picks up the log SEQ is already holding. One round
+        // trip every fifty passes against the nineteen this thread makes on each
+        // of them.
+        private static int m_iScanLogIdle = 0;
+        private const int ScanLogIdlePasses = 50;
+
         
         public static void ExecuteMainThred()
         {
@@ -467,24 +481,56 @@ namespace MMI
         // running cycle. The rest of the time this costs nothing.
         private static void ScanTriggerRefresh()
         {
-            if (!MmiGV.frmMain.frmAuto1.bScanTriggerWatch) return;
+            bool bWatch = MmiGV.frmMain.frmAuto1.bScanTriggerWatch;
 
-            if (MmiGV.pShMem.GetScanTriggerDisplay())
+            if (bWatch)
             {
-                m_iScanTriggerMiss = 0;
-
-                MmiGV.frmMain.frmAuto1.lblScanTrigState.Invoke(new Action(() =>
-                {
-                    MmiGV.frmMain.frmAuto1.RenderScanTriggerDisplay();
-                }));
+                m_iScanLogDrain = ScanLogDrainPasses;
             }
-            else if (++m_iScanTriggerMiss >= ScanTriggerMissLimit)
+            else if (m_iScanLogDrain > 0)
             {
-                m_iScanTriggerMiss = 0;
+                m_iScanLogDrain--;
+            }
+            else if (++m_iScanLogIdle < ScanLogIdlePasses)
+            {
+                return;
+            }
+            else
+            {
+                m_iScanLogIdle = 0;
+            }
 
-                MmiGV.frmMain.frmAuto1.lblScanTrigState.Invoke(new Action(() =>
+            if (bWatch)
+            {
+                if (MmiGV.pShMem.GetScanTriggerDisplay())
                 {
-                    MmiGV.frmMain.frmAuto1.ScanTriggerLinkLost();
+                    m_iScanTriggerMiss = 0;
+
+                    MmiGV.frmMain.frmAuto1.lblScanTrigState.Invoke(new Action(() =>
+                    {
+                        MmiGV.frmMain.frmAuto1.RenderScanTriggerDisplay();
+                    }));
+                }
+                else if (++m_iScanTriggerMiss >= ScanTriggerMissLimit)
+                {
+                    m_iScanTriggerMiss = 0;
+
+                    MmiGV.frmMain.frmAuto1.lblScanTrigState.Invoke(new Action(() =>
+                    {
+                        MmiGV.frmMain.frmAuto1.ScanTriggerLinkLost();
+                    }));
+                }
+            }
+
+            // After the display, so a read that catches the cycle finishing sees
+            // the lines it printed on its way to DONE. A round that comes back
+            // empty is a lost round, not a lost link - the display read above is
+            // what decides that - so nothing is counted here.
+            if (MmiGV.pShMem.GetScanTriggerLog())
+            {
+                MmiGV.frmMain.frmAuto1.lstScanLog.Invoke(new Action(() =>
+                {
+                    MmiGV.frmMain.frmAuto1.RenderScanLog();
                 }));
             }
         }

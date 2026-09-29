@@ -3,6 +3,8 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace MMI
@@ -464,6 +466,177 @@ namespace MMI
                 case 11: return "PULSE W";
                 case 12: return "IDX 50-53";
                 default: return nCode.ToString();
+            }
+        }
+
+        // ---- SCAN LOG ------------------------------------------------------
+        //
+        // What SEQ prints while a scan runs, shown here because on the machine
+        // nobody has SEQ's console window in front of them - and the lines that
+        // say whether the scan was any good are all in it: which way the counter
+        // ran, how far it travelled against what was commanded, how many pulses
+        // actually came out.
+        //
+        // SEQ keeps the lines in a ring and hands over the ones it still has,
+        // each with a sequence number. This side remembers the next number it
+        // wants, so a read that brings nothing new appends nothing, and a read
+        // whose oldest line is newer than that number means the ring overwrote
+        // lines that were never collected - which is worth saying rather than
+        // silently skipping.
+
+        // The panel holds more than SEQ's ring does, so a whole session's worth
+        // of scans stays readable here after SEQ has forgotten the early ones.
+        private const int ScanLogMaxLines = 2000;
+
+        // Where SAVE writes, following the convention the other log screens use.
+        private const string ScanLogDir = "C:\\Work\\LOG\\ScanTrigger\\";
+
+        private uint m_uScanLogNextSeq = 0;
+        private uint m_uScanLogSeqSeen   = 0;
+
+        // Called from CThreadMain after it has read the block. UI thread only.
+        public void RenderScanLog()
+        {
+            if (ScanTriggerToUiThread(RenderScanLog)) return;
+
+            if (MmiGV.pShMem == null) return;
+
+            SharedMemDll.SCANTRIGGER_LOG d = MmiGV.pShMem.RScanTriggerLog;
+            if (d == null || d.sLine == null) return;
+
+            m_uScanLogSeqSeen = d.uSeq;
+
+            // SEQ's counter went backwards, so SEQ restarted or the log was
+            // cleared there. Start again rather than waiting for numbers that
+            // will never come.
+            if (d.uSeq < m_uScanLogNextSeq)
+            {
+                lstScanLog.Items.Clear();
+                m_uScanLogNextSeq = 0;
+            }
+
+            if (d.uSeq == m_uScanLogNextSeq)
+            {
+                UpdateScanLogCount();
+                return;
+            }
+
+            uint uFrom = (d.uFirstSeq > m_uScanLogNextSeq) ? d.uFirstSeq : m_uScanLogNextSeq;
+
+            // Say so rather than leaving a silent hole: these are diagnostic
+            // lines, and one missing is the one that explained the fault.
+            if (d.uFirstSeq > m_uScanLogNextSeq && m_uScanLogNextSeq > 0)
+            {
+                lstScanLog.Items.Add("... " + (d.uFirstSeq - m_uScanLogNextSeq).ToString()
+                                   + " lines were dropped before this side read them");
+            }
+
+            lstScanLog.BeginUpdate();
+            for (uint u = uFrom; u < d.uSeq; u++)
+            {
+                uint uIdx = u - d.uFirstSeq;
+                if (uIdx >= (uint)d.sLine.Length) break;
+
+                string strLine = d.sLine[uIdx];
+                if (string.IsNullOrEmpty(strLine)) continue;
+
+                lstScanLog.Items.Add(strLine);
+            }
+
+            // Oldest first out, so what is on screen is always the tail.
+            while (lstScanLog.Items.Count > ScanLogMaxLines)
+            {
+                lstScanLog.Items.RemoveAt(0);
+            }
+            lstScanLog.EndUpdate();
+
+            m_uScanLogNextSeq = d.uSeq;
+
+            // Follow the tail, but only while nothing is selected: scrolling
+            // away from under somebody reading a line is worse than not
+            // following it.
+            if (lstScanLog.SelectedIndex < 0 && lstScanLog.Items.Count > 0)
+            {
+                lstScanLog.TopIndex = lstScanLog.Items.Count - 1;
+            }
+
+            UpdateScanLogCount();
+        }
+
+        // SEQ's own total as well as what is held here, so a panel that is not
+        // filling can be told apart from a SEQ that is not writing.
+        private void UpdateScanLogCount()
+        {
+            lblScanLogCount.Text = lstScanLog.Items.Count.ToString() + " lines"
+                                 + "   /   SEQ " + m_uScanLogSeqSeen.ToString();
+        }
+
+        // RESET throws away both copies. SEQ's has to go too, or the next read
+        // hands the same lines straight back.
+        private void btnScanLogClear_Click(object sender, EventArgs e)
+        {
+            bool bSent = false;
+            if (MmiGV.pShMem != null)
+            {
+                for (int k = 0; k < ScanTriggerTries && !bSent; k++)
+                {
+                    bSent = MmiGV.pShMem.SetScanTriggerLogClear();
+                }
+            }
+
+            lstScanLog.Items.Clear();
+            m_uScanLogNextSeq = 0;
+            m_uScanLogSeqSeen = 0;
+            UpdateScanLogCount();
+
+            // The screen is empty either way, but if SEQ did not hear the clear
+            // its lines come back on the next read, and that is worth knowing
+            // now rather than being surprised by it.
+            if (!bSent)
+            {
+                lblScanLogCount.Text = "0 lines (SEQ did not confirm the reset)";
+            }
+        }
+
+        private void btnScanLogSave_Click(object sender, EventArgs e)
+        {
+            if (lstScanLog.Items.Count == 0)
+            {
+                MessageBox.Show("저장할 로그가 없습니다.", "SCAN LOG",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string strPath = ScanLogDir + "ScanLog_"
+                           + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
+            try
+            {
+                if (!Directory.Exists(ScanLogDir))
+                {
+                    Directory.CreateDirectory(ScanLogDir);
+                }
+
+                // UTF8 with the preamble, so a Korean device name in the header
+                // opens correctly in Notepad as well as in an editor that guesses.
+                using (StreamWriter sw = new StreamWriter(strPath, false, new UTF8Encoding(true)))
+                {
+                    sw.WriteLine("SCAN TRIGGER LOG  " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    sw.WriteLine("DEVICE = " + MmiGV.strCurrentDevName);
+                    sw.WriteLine(new string('-', 78));
+
+                    foreach (object o in lstScanLog.Items)
+                    {
+                        sw.WriteLine(o.ToString());
+                    }
+                }
+
+                MessageBox.Show("로그를 저장했습니다.\n\n" + strPath, "SCAN LOG",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("로그를 저장하지 못했습니다.\n\n" + strPath + "\n\n" + ex.Message,
+                                "SCAN LOG", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
