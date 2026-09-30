@@ -590,13 +590,25 @@ namespace MMI
         }
 
         // Called by the comm thread after several reads in a row have failed.
+        // Distinct from the "NO LINK" a button press reports, and deliberately
+        // so. They are different faults with different answers, and while both
+        // said NO LINK the screen could not tell them apart:
+        //
+        //   NO LINK    a command this operator just sent did not get through
+        //   POLL LOST  SET succeeded, then the background poll stopped being
+        //              answered - so the numbers on screen are the last good
+        //              reading and START has been switched off
+        //
+        // POLL LOST with a fully populated display is the case that had us
+        // looking at the recipe: the recipe was fine and was accepted, and the
+        // link died afterwards.
         public void ScanTriggerLinkLost()
         {
             if (ScanTriggerToUiThread(ScanTriggerLinkLost)) return;
 
             bScanTriggerWatch = false;
             btnScanTrigStart.Enabled = false;
-            lblScanTrigResult.Text = "NO LINK";
+            lblScanTrigResult.Text = "POLL LOST";
         }
 
         private void btnScanTrigSet_Click(object sender, EventArgs e)
