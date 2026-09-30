@@ -604,6 +604,47 @@ namespace MMI
                 bScanTriggerWatch = false;
                 lblScanTrigResult.Text = (d.nState == 7) ? "DONE" : "ABORTED";
             }
+
+            // Last, so it overrides whatever the rest of this wrote.
+            //
+            // Every number above is derived from the recipe SEQ is holding,
+            // which is not necessarily the one in the boxes. A SET that never
+            // landed leaves a set of numbers that agree with each other and
+            // with nothing the operator typed, and reads exactly like a good
+            // measurement - which is what has made the last several faults
+            // impossible to tell apart without a console. SEQ echoes its recipe
+            // back so the panel can say it instead.
+            if (!ScanTriggerRecipeMatchesPanel(d))
+            {
+                lblScanTrigResult.Text = "SET REQUIRED";
+                btnScanTrigStart.Enabled = false;
+            }
+        }
+
+        // True when what SEQ says it is holding is what the panel is showing.
+        // Compared loosely: these have been through two round trips and the
+        // boxes carry three or four decimals, so an exact test would report a
+        // mismatch that is not one.
+        private bool ScanTriggerRecipeMatchesPanel(SharedMemDll.SCANTRIGGER_DISPLAY d)
+        {
+            double[] adPos;
+            double dPitchUm, dSpeed, dPulseUs;
+
+            // A box that will not parse is somebody typing, not a mismatch
+            // worth shouting about - SET refuses it with BAD NUMBER anyway.
+            if (!TryReadScanTriggerRecipe(out adPos, out dPitchUm, out dSpeed, out dPulseUs))
+            {
+                return true;
+            }
+            if (d.dRecipePitch <= 0.0)
+            {
+                return true;      // SEQ has not been given a recipe yet
+            }
+
+            return Math.Abs(d.dRecipePitch * 1000.0 - dPitchUm) < 0.0005
+                && Math.Abs(d.dRecipeSpeed - dSpeed)            < 0.005
+                && Math.Abs(d.dRecipePulseUS - dPulseUs)        < 0.005
+                && d.nTriggerMode == (int)ScanTriggerMode();
         }
 
         // Called by the comm thread after several reads in a row have failed.
