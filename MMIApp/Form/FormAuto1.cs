@@ -495,6 +495,7 @@ namespace MMI
                 case 11: return "PULSE W";
                 case 12: return "IDX 50-53";
                 case 13: return "LINE RATE";
+                case 14: return "AXIS MOVING";
                 default: return nCode.ToString();
             }
         }
@@ -710,12 +711,78 @@ namespace MMI
                 bSent = MmiGV.pShMem.SetScanTriggerStart();
             }
 
-            bScanTriggerWatch = bSent;
-            lblScanTrigResult.Text = bSent ? "START" : "NO LINK";
+            if (!bSent)
+            {
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            // The command arriving is not the cycle starting. SEQ can take it
+            // and still refuse - the axis not homed, the axis still moving -
+            // and until now that refusal went to SEQ's console and nowhere
+            // else, so the screen said START and the stage sat there.
+            //
+            // The state says which. ScanTriggerM() runs inside the command
+            // handler, so by the time this round trip is back it has either
+            // moved the state off IDLE or decided not to.
+            int nState = -1;
+            int nCode  = 0;
+            for (int k = 0; k < ScanTriggerTries && nState < 0; k++)
+            {
+                if (MmiGV.pShMem.GetScanTriggerDisplay())
+                {
+                    nState = MmiGV.pShMem.RScanTriggerDisplay.nState;
+                    nCode  = MmiGV.pShMem.RScanTriggerDisplay.nValidateCode;
+                }
+            }
+
+            if (nState == 0)        // IDLE: it was heard, and nothing started
+            {
+                bScanTriggerWatch = false;
+                lblScanTrigResult.Text = (nCode != 0)
+                                       ? ScanTriggerValidateText(nCode)
+                                       : "REFUSED";
+                ShowScanTriggerStartRefusal(nCode);
+                return;
+            }
+
+            bScanTriggerWatch = true;
+            lblScanTrigResult.Text = "START";
 
             // A second press while the cycle runs only earns a refusal from SEQ
             // and a SEND COMMAND ERROR in its log. SET turns this back on.
-            if (bSent) btnScanTrigStart.Enabled = false;
+            btnScanTrigStart.Enabled = false;
+        }
+
+        // The state row will read IDLE and the stage will not have moved, which
+        // on its own says nothing about why. These are the reasons SEQ can have
+        // that the recipe itself is fine.
+        private void ShowScanTriggerStartRefusal(int nCode)
+        {
+            string strMsg;
+
+            switch (nCode)
+            {
+                case 10:
+                    strMsg = "축이 원점복귀되지 않았습니다.\n\n"
+                           + "스캔은 절대위치(모터 인덱스 50~53)로 움직이므로\n"
+                           + "원점이 잡혀 있어야 합니다. ALL HOME 실행 후\n"
+                           + "다시 SET 하십시오.";
+                    break;
+                case 14:
+                    strMsg = "축이 아직 움직이고 있습니다.\n\n"
+                           + "스캔 사이클이 축을 직접 구동하므로 정지 상태에서만\n"
+                           + "시작할 수 있습니다. 정지 후 다시 SET 하십시오.";
+                    break;
+                default:
+                    strMsg = "SEQ가 START를 받았으나 사이클을 시작하지 않았습니다.\n\n"
+                           + "판정 코드 " + nCode.ToString() + "\n\n"
+                           + "SEQ 콘솔의 [SCANTRIGGER] 행에 사유가 있습니다.";
+                    break;
+            }
+
+            MessageBox.Show(strMsg, "SCAN TRIGGER",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void btnScanTrigStop_Click(object sender, EventArgs e)
