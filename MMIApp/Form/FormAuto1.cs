@@ -735,21 +735,50 @@ namespace MMI
                 return;
             }
 
-            // Writing the same recipe twice is harmless, so the whole pair is
-            // what gets retried rather than each half separately.
+            // Send it, then check SEQ is holding what was sent.
+            //
+            // SetScanTriggerRecipe() returning true means the round trip
+            // completed, not that SEQ took the recipe. Trusting it left the
+            // panel filled with the previous recipe's answers - after one scan,
+            // changing the speed changed nothing, and every number on screen
+            // still agreed with every other one. SEQ echoes its recipe back
+            // now, so the write can be confirmed rather than assumed, and
+            // retried when it is not.
+            //
+            // Writing the same recipe twice is harmless, which is what makes
+            // the retry safe.
             int nCode = -1;
-            for (int k = 0; k < ScanTriggerTries && nCode < 0; k++)
+            bool bHeld = false;
+
+            for (int k = 0; k < ScanTriggerTries && !bHeld; k++)
             {
-                if (SendScanTriggerRecipe(dPitch, dSpeed, dPulseUs))
+                if (!SendScanTriggerRecipe(dPitch, dSpeed, dPulseUs))
                 {
-                    nCode = RefreshScanTriggerDisplay();
+                    continue;
                 }
+
+                nCode = RefreshScanTriggerDisplay();
+                if (nCode < 0)
+                {
+                    continue;
+                }
+
+                bHeld = ScanTriggerRecipeMatchesPanel(MmiGV.pShMem.RScanTriggerDisplay);
             }
 
             if (nCode < 0)
             {
                 ClearScanTriggerDisplay();
                 lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            // The link is up and SEQ answered, but it is answering about a
+            // different recipe. Saying so is the whole point of the echo: this
+            // used to be indistinguishable from a good SET.
+            if (!bHeld)
+            {
+                lblScanTrigResult.Text = "SET FAILED";
                 return;
             }
 
