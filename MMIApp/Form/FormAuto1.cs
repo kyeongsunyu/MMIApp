@@ -447,6 +447,11 @@ namespace MMI
         // straight after.
         private void ClearScanTriggerDisplay()
         {
+            // Nothing has been read back, so the row carries the caption the
+            // selected mode will fill it with rather than the last one's.
+            lblcapScanTrigR3.Text = (ScanTriggerMode() == ScanTriggerModeTimer)
+                                  ? "Act Speed" : "Enc Count";
+
             lblScanTrigRate.Text   = "-";
             lblScanTrigLines.Text  = "-";
             lblScanTrigTime.Text   = "-";
@@ -560,22 +565,34 @@ namespace MMI
 
             // A pitch that is not a whole number of encoder counts is the one
             // thing the operator can fix by changing a number, so mark it.
-            // This cell carries whatever the running mode is quantised by.
+            // This row means something different in each mode, caption included.
             //
             // PERIODIC is quantised by the encoder, so it shows the pitch in
             // encoder counts and marks it when that is not a whole number -
-            // which is the thing that gets the recipe refused.
+            // the thing that gets the recipe refused.
             //
-            // TIMER is quantised by the rate instead, in whole Hz, and the
-            // encoder is not in the loop at all. Counts would be a number with
-            // no consequence, so it shows the rate that is actually programmed.
-            // The pitch is exact in that mode, so there is nothing to mark.
+            // TIMER does not use the encoder at all, so counts would be a
+            // number with no consequence. What the operator needs there is the
+            // speed the stage is actually being run at, which is NOT the one
+            // they typed: the board's rate points are a fixed clock divided by
+            // a whole number, so SEQ takes the rate it can really have and
+            // drives the stage at pitch x that rate, keeping the pitch exact.
+            //
+            // 253,164.56 Hz comes with 199.7468 mm/s against an entered 200.00,
+            // and the entered box keeps saying 200.00 because it is an input.
+            // Without this the difference was only visible as Scan Time moving.
+            //
+            // The rate itself is already on the Line Rate row above, so showing
+            // it here as well was saying one thing twice and the other not at
+            // all.
             if (d.nTriggerMode == (int)ScanTriggerModeTimer)
             {
-                lblScanTrigCounts.Text = d.dLineRate.ToString("F0") + " Hz";
+                lblcapScanTrigR3.Text  = "Act Speed";
+                lblScanTrigCounts.Text = d.dSpeedAdjusted.ToString("F4");
             }
             else
             {
+                lblcapScanTrigR3.Text  = "Enc Count";
                 lblScanTrigCounts.Text = d.dPitchCounts.ToString("F2")
                                        + (d.bPitchIsInteger ? "" : " !");
             }
