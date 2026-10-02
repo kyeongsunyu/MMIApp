@@ -154,11 +154,19 @@ namespace MMI
 
             string sBMP = "";
 
-            iAlarmCode = int.Parse(gdAlarm[gdAlarm.Row, 0].ToString());
-            txtOccurrenceFactor.Text = gdAlarm[gdAlarm.Row, 2].ToString();
-            txtTroubleShooting.Text = gdAlarm[gdAlarm.Row, 3].ToString();
+            // The header row ("CODE") and an empty line are not alarms.
+            int iCode;
+            if (gdAlarm.Row < gdAlarm.Rows.Fixed ||
+                !int.TryParse(Convert.ToString(gdAlarm[gdAlarm.Row, 0]), out iCode))
+            {
+                return;
+            }
 
-            sBMP = gdAlarm[gdAlarm.Row, 6].ToString();
+            iAlarmCode = iCode;
+            txtOccurrenceFactor.Text = Convert.ToString(gdAlarm[gdAlarm.Row, 2]);
+            txtTroubleShooting.Text = Convert.ToString(gdAlarm[gdAlarm.Row, 3]);
+
+            sBMP = Convert.ToString(gdAlarm[gdAlarm.Row, 6]);
             //btnImageOpen.Text = sBMP;
 
             // File.Exists, not Directory.Exists: sBMP is a path to a bitmap, so the
@@ -191,29 +199,13 @@ namespace MMI
                 Console.WriteLine("Alarm image not found: {0}", sBMP);
             }
 
-            try
-            {
-                iErrPosX = int.Parse(gdAlarm[gdAlarm.Row, 7].ToString());
-            }
-            catch (FormatException ex)
-            {
-                iErrPosX = 0;
-                Console.WriteLine("Format Exception Error : {0}", ex.Message);
-            }
-
-            try
-            {
-                iErrPosY = int.Parse(gdAlarm[gdAlarm.Row, 8].ToString());
-            }
-            catch (FormatException ex)
-            {
-                iErrPosY = 0;
-                Console.WriteLine("Format Exception Error : {0}", ex.Message);
-            }
+            // An alarm whose position was never marked has empty cells here.
+            if (!int.TryParse(Convert.ToString(gdAlarm[gdAlarm.Row, 7]), out iErrPosX)) iErrPosX = 0;
+            if (!int.TryParse(Convert.ToString(gdAlarm[gdAlarm.Row, 8]), out iErrPosY)) iErrPosY = 0;
             pictureErrPoint.Left = iErrPosX - pictureErrPoint.Width / 2;
             pictureErrPoint.Top = iErrPosY - pictureErrPoint.Height / 2;
 
-            string strAlarm = gdAlarm[gdAlarm.Row, 1].ToString().Trim();
+            string strAlarm = Convert.ToString(gdAlarm[gdAlarm.Row, 1]).Trim();
             if(string.IsNullOrEmpty(strAlarm) || strAlarm=="")
             {
                 pictureErrPoint.Visible = false;
@@ -358,9 +350,10 @@ namespace MMI
 
         private void btnMP3Play_Click(object sender, EventArgs e)
         {
-            if (gdAlarm.Row > 0)
+            int iErrorCode;
+            if (gdAlarm.Row >= gdAlarm.Rows.Fixed &&
+                int.TryParse(Convert.ToString(gdAlarm[gdAlarm.Row, 0]), out iErrorCode))
             {
-                int iErrorCode = int.Parse(gdAlarm[gdAlarm.Row, 0].ToString());
                 PlayMP3(iErrorCode);
             }
         }

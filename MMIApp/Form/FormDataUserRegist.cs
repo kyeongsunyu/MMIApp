@@ -80,7 +80,7 @@ namespace MMI
             if (SQLiteDB.ReaderPassword == null) return;
             SQLiteDB.ReaderPassword.Close();
 
-            iLevel = int.Parse(gdUser[gdUser.Row, 2].ToString());
+            iLevel = int.TryParse(Convert.ToString(gdUser[gdUser.Row, 2]), out iLevel) ? iLevel : 0;
             switch (iLevel)
             {
                 case 1:
