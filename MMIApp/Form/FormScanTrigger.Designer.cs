@@ -198,7 +198,7 @@
             this.pnlCycle.Controls.Add(this.lblLineRateCaption);
             this.pnlCycle.Controls.Add(this.lblMode);
             this.pnlCycle.Controls.Add(this.lblModeCaption);
-            this.pnlCycle.Location = new System.Drawing.Point(0, 116);
+            this.pnlCycle.Location = new System.Drawing.Point(0, 86);
             this.pnlCycle.Size = new System.Drawing.Size(400, 696);
             this.pnlCycle.TitleText = "Scan Cycle";
             this.pnlCycle.Name = "pnlCycle";
@@ -550,7 +550,7 @@
             // pnlGeometry
             // 
             this.pnlGeometry.Controls.Add(this.pnlGeometryView);
-            this.pnlGeometry.Location = new System.Drawing.Point(412, 116);
+            this.pnlGeometry.Location = new System.Drawing.Point(412, 86);
             this.pnlGeometry.Size = new System.Drawing.Size(640, 250);
             this.pnlGeometry.TitleText = "Scan Geometry  (motor index 50 - 53)";
             this.pnlGeometry.Name = "pnlGeometry";
@@ -585,7 +585,7 @@
             this.pnlCounter.Controls.Add(this.lblEncCountCaption);
             this.pnlCounter.Controls.Add(this.lblEncPos);
             this.pnlCounter.Controls.Add(this.lblEncPosCaption);
-            this.pnlCounter.Location = new System.Drawing.Point(412, 378);
+            this.pnlCounter.Location = new System.Drawing.Point(412, 348);
             this.pnlCounter.Size = new System.Drawing.Size(640, 564);
             this.pnlCounter.TitleText = "Live Counter";
             this.pnlCounter.Name = "pnlCounter";
@@ -844,7 +844,7 @@
             this.pnlHwCfg.Controls.Add(this.lblEncInputCaption);
             this.pnlHwCfg.Controls.Add(this.cbChannel);
             this.pnlHwCfg.Controls.Add(this.lblChannelCaption);
-            this.pnlHwCfg.Location = new System.Drawing.Point(1064, 116);
+            this.pnlHwCfg.Location = new System.Drawing.Point(1064, 86);
             this.pnlHwCfg.Size = new System.Drawing.Size(580, 470);
             this.pnlHwCfg.TitleText = "Counter H/W Config";
             this.pnlHwCfg.Name = "pnlHwCfg";
@@ -1113,7 +1113,7 @@
             // 
             this.pnlLog.Controls.Add(this.lstLog);
             this.pnlLog.Controls.Add(this.pnlLogButtons);
-            this.pnlLog.Location = new System.Drawing.Point(0, 824);
+            this.pnlLog.Location = new System.Drawing.Point(0, 794);
             this.pnlLog.Size = new System.Drawing.Size(400, 118);
             this.pnlLog.TitleText = "Trigger Log";
             this.pnlLog.Name = "pnlLog";
@@ -1149,13 +1149,13 @@
             this.pnlMotor.Controls.Add(this.cbAxis);
             this.pnlMotor.Controls.Add(this.lblAxisCaption);
             this.pnlMotor.Location = new System.Drawing.Point(0, 0);
-            this.pnlMotor.Size = new System.Drawing.Size(1644, 104);
-            this.pnlMotor.TitleText = "Motor";
+            this.pnlMotor.Size = new System.Drawing.Size(1644, 74);
+            this.pnlMotor.TitleText = "";
             this.pnlMotor.Name = "pnlMotor";
             // 
             // lblAxisCaption
             // 
-            this.lblAxisCaption.Location = new System.Drawing.Point(14, 38);
+            this.lblAxisCaption.Location = new System.Drawing.Point(14, 8);
             this.lblAxisCaption.Size = new System.Drawing.Size(130, 28);
             this.lblAxisCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblAxisCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
@@ -1166,7 +1166,7 @@
             // 
             // cbAxis
             // 
-            this.cbAxis.Location = new System.Drawing.Point(14, 66);
+            this.cbAxis.Location = new System.Drawing.Point(14, 36);
             this.cbAxis.Size = new System.Drawing.Size(316, 28);
             this.cbAxis.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1179,7 +1179,7 @@
             // 
             // lblCurIdxCaption
             // 
-            this.lblCurIdxCaption.Location = new System.Drawing.Point(348, 38);
+            this.lblCurIdxCaption.Location = new System.Drawing.Point(348, 8);
             this.lblCurIdxCaption.Size = new System.Drawing.Size(134, 28);
             this.lblCurIdxCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCurIdxCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
@@ -1190,7 +1190,7 @@
             // 
             // lblCurIdx
             // 
-            this.lblCurIdx.Location = new System.Drawing.Point(486, 38);
+            this.lblCurIdx.Location = new System.Drawing.Point(486, 8);
             this.lblCurIdx.Size = new System.Drawing.Size(110, 28);
             this.lblCurIdx.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCurIdx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -1202,7 +1202,7 @@
             // 
             // lblNextIdxCaption
             // 
-            this.lblNextIdxCaption.Location = new System.Drawing.Point(612, 38);
+            this.lblNextIdxCaption.Location = new System.Drawing.Point(612, 8);
             this.lblNextIdxCaption.Size = new System.Drawing.Size(112, 28);
             this.lblNextIdxCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblNextIdxCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
@@ -1213,7 +1213,7 @@
             // 
             // lblNextIdx
             // 
-            this.lblNextIdx.Location = new System.Drawing.Point(728, 38);
+            this.lblNextIdx.Location = new System.Drawing.Point(728, 8);
             this.lblNextIdx.Size = new System.Drawing.Size(110, 28);
             this.lblNextIdx.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblNextIdx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -1225,7 +1225,7 @@
             // 
             // lblCurPosCaption
             // 
-            this.lblCurPosCaption.Location = new System.Drawing.Point(348, 68);
+            this.lblCurPosCaption.Location = new System.Drawing.Point(348, 38);
             this.lblCurPosCaption.Size = new System.Drawing.Size(134, 28);
             this.lblCurPosCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCurPosCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
@@ -1236,7 +1236,7 @@
             // 
             // lblCurPos
             // 
-            this.lblCurPos.Location = new System.Drawing.Point(486, 68);
+            this.lblCurPos.Location = new System.Drawing.Point(486, 38);
             this.lblCurPos.Size = new System.Drawing.Size(110, 28);
             this.lblCurPos.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCurPos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -1248,7 +1248,7 @@
             // 
             // lblNextPosCaption
             // 
-            this.lblNextPosCaption.Location = new System.Drawing.Point(612, 68);
+            this.lblNextPosCaption.Location = new System.Drawing.Point(612, 38);
             this.lblNextPosCaption.Size = new System.Drawing.Size(112, 28);
             this.lblNextPosCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblNextPosCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
@@ -1259,7 +1259,7 @@
             // 
             // lblNextPos
             // 
-            this.lblNextPos.Location = new System.Drawing.Point(728, 68);
+            this.lblNextPos.Location = new System.Drawing.Point(728, 38);
             this.lblNextPos.Size = new System.Drawing.Size(110, 28);
             this.lblNextPos.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblNextPos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -1271,7 +1271,7 @@
             // 
             // lblStsMinusLimit
             // 
-            this.lblStsMinusLimit.Location = new System.Drawing.Point(858, 38);
+            this.lblStsMinusLimit.Location = new System.Drawing.Point(858, 8);
             this.lblStsMinusLimit.Size = new System.Drawing.Size(98, 28);
             this.lblStsMinusLimit.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblStsMinusLimit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
@@ -1282,7 +1282,7 @@
             // 
             // lblStsPlusLimit
             // 
-            this.lblStsPlusLimit.Location = new System.Drawing.Point(962, 38);
+            this.lblStsPlusLimit.Location = new System.Drawing.Point(962, 8);
             this.lblStsPlusLimit.Size = new System.Drawing.Size(98, 28);
             this.lblStsPlusLimit.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblStsPlusLimit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
@@ -1293,7 +1293,7 @@
             // 
             // lblStsOrg
             // 
-            this.lblStsOrg.Location = new System.Drawing.Point(1066, 38);
+            this.lblStsOrg.Location = new System.Drawing.Point(1066, 8);
             this.lblStsOrg.Size = new System.Drawing.Size(98, 28);
             this.lblStsOrg.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblStsOrg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
@@ -1304,7 +1304,7 @@
             // 
             // lblStsHome
             // 
-            this.lblStsHome.Location = new System.Drawing.Point(858, 68);
+            this.lblStsHome.Location = new System.Drawing.Point(858, 38);
             this.lblStsHome.Size = new System.Drawing.Size(98, 28);
             this.lblStsHome.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblStsHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
@@ -1315,7 +1315,7 @@
             // 
             // lblStsMoving
             // 
-            this.lblStsMoving.Location = new System.Drawing.Point(962, 68);
+            this.lblStsMoving.Location = new System.Drawing.Point(962, 38);
             this.lblStsMoving.Size = new System.Drawing.Size(98, 28);
             this.lblStsMoving.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblStsMoving.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
@@ -1326,7 +1326,7 @@
             // 
             // lblStsAlarm
             // 
-            this.lblStsAlarm.Location = new System.Drawing.Point(1066, 68);
+            this.lblStsAlarm.Location = new System.Drawing.Point(1066, 38);
             this.lblStsAlarm.Size = new System.Drawing.Size(98, 28);
             this.lblStsAlarm.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblStsAlarm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
@@ -1337,7 +1337,7 @@
             // 
             // btnServo
             // 
-            this.btnServo.Location = new System.Drawing.Point(1180, 38);
+            this.btnServo.Location = new System.Drawing.Point(1180, 8);
             this.btnServo.Size = new System.Drawing.Size(142, 56);
             this.btnServo.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnServo.Text = "SERVO ON/OFF";
@@ -1346,7 +1346,7 @@
             // 
             // btnHome
             // 
-            this.btnHome.Location = new System.Drawing.Point(1332, 38);
+            this.btnHome.Location = new System.Drawing.Point(1332, 8);
             this.btnHome.Size = new System.Drawing.Size(142, 56);
             this.btnHome.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnHome.Text = "HOME";
@@ -1356,7 +1356,7 @@
             // 
             // btnAlarmReset
             // 
-            this.btnAlarmReset.Location = new System.Drawing.Point(1484, 38);
+            this.btnAlarmReset.Location = new System.Drawing.Point(1484, 8);
             this.btnAlarmReset.Size = new System.Drawing.Size(142, 56);
             this.btnAlarmReset.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAlarmReset.Text = "ALARM RESET";
@@ -1386,7 +1386,7 @@
             this.pnlJog.Controls.Add(this.lblStep);
             this.pnlJog.Controls.Add(this.lblStepCaption);
             this.pnlJog.Controls.Add(this.btnJogEnable);
-            this.pnlJog.Location = new System.Drawing.Point(1064, 598);
+            this.pnlJog.Location = new System.Drawing.Point(1064, 568);
             this.pnlJog.Size = new System.Drawing.Size(580, 344);
             this.pnlJog.TitleText = "Jog";
             this.pnlJog.Name = "pnlJog";
@@ -1643,7 +1643,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
-            this.ClientSize = new System.Drawing.Size(1644, 942);
+            this.ClientSize = new System.Drawing.Size(1644, 912);
             this.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
