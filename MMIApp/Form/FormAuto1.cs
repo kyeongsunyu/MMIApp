@@ -69,16 +69,8 @@ namespace MMI
         private void btnInit_Click(object sender, EventArgs e)
         {
 
-            if (!MmiGV.bFormHomeShow)
-            {
-                MmiGV.bFormHomeShow = true;
-                Form_Home frm_Home = new Form_Home();
-
-                frm_Home.TopMost = true;
-                frm_Home.TopLevel = true;
-
-                frm_Home.Show();
-            }
+            CPopup.Get<Form_Home>().TopMost = true;
+            CPopup.Show<Form_Home>();
         }
 
         // Double clicking the tab strip pops the laser panel out of the tab,

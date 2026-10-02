@@ -73,11 +73,6 @@ namespace MMI
             btnMTAxis[43] = btnAxis43;
             btnMTAxis[44] = btnAxis44;
         }
-        private void Form_Home_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            MmiGV.bFormHomeShow = false;
-        }
-
         private void btnAllHome_Click(object sender, EventArgs e)
         {
             MmiGV.pShMem.SetTenKey(99);

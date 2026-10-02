@@ -42,6 +42,9 @@ namespace MMI
 
         public string SHOW()
         {
+            // The one instance is shown again and again; start from today
+            // each time rather than from the last pick.
+            btnDATE.Text = DateTime.Today.ToString("yyyy-MM-dd");
             this.ShowDialog();
             return btnDATE.Text;
         }

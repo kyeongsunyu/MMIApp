@@ -269,28 +269,22 @@ namespace MMI
 
         private void btnStartDate_Click(object sender, EventArgs e)
         {
-            Form_Calendar frmCalendar = new Form_Calendar();
-
-            btnStartDate.Text = frmCalendar.SHOW();
+            btnStartDate.Text = CPopup.Get<Form_Calendar>().SHOW();
         }
 
         private void btnEndDate_Click(object sender, EventArgs e)
         {
-            Form_Calendar frmCalendar = new Form_Calendar();
-
-            btnEndDate.Text = frmCalendar.SHOW();
+            btnEndDate.Text = CPopup.Get<Form_Calendar>().SHOW();
         }
 
         private void btnStartTime_Click(object sender, EventArgs e)
         {
-            Form_TimeInput frmTimeInput = new Form_TimeInput();
-            btnStartTime.Text = frmTimeInput.SHOW();
+            btnStartTime.Text = CPopup.Get<Form_TimeInput>().SHOW();
         }
 
         private void btnEndTime_Click(object sender, EventArgs e)
         {
-            Form_TimeInput frmTimeInput = new Form_TimeInput();
-            btnEndTime.Text = frmTimeInput.SHOW();
+            btnEndTime.Text = CPopup.Get<Form_TimeInput>().SHOW();
         }
 
         private void rbNewDB_Click(object sender, EventArgs e)

@@ -119,6 +119,7 @@ namespace MMI
             InitializeComponent();
 
             MmiGV.frmMain = this;
+            CPopup.Owner = this;
 
             this.Text = "MMIApp";
             FormInitialize();
@@ -183,32 +184,36 @@ namespace MMI
             m_dicSubMenu[(int)eScreenGroup.LOG]     = flpSubLog;
 
             #region SUB_FORM
-            frm_NumAdd = new Form_NumAdd(this);
-            frm_NumPad      = new Form_NumPad(this);
-            frm_DataCopy    = new Form_DataCopy(this);
-            frm_MotorCalc   = new Form_MotorCalc(this);
-            frm_PM          = new Form_PM(this);
+            // The pop-ups are the single instances CPopup keeps; the fields
+            // are there so existing code can keep reaching them through the
+            // frame.
+            frm_NumAdd      = CPopup.Get<Form_NumAdd>();
+            frm_NumPad      = CPopup.Get<Form_NumPad>();
+            frm_DataCopy    = CPopup.Get<Form_DataCopy>();
+            frm_MotorCalc   = CPopup.Get<Form_MotorCalc>();
+            frm_PM          = CPopup.Get<Form_PM>();
 
-            frm_PWD         = new Form_PWD(this);
+            frm_PWD         = CPopup.Get<Form_PWD>();
             frm_PWD.TopMost = true;
             frm_PWD.TopLevel = true;
 
-            frm_UserLogIn = new Form_UserLogIn(this);
-            frm_Msg = new Form_Msg(this);
-            frm_SystemInit = new Form_SystemInit(this);
+            frm_UserLogIn   = CPopup.Get<Form_UserLogIn>();
+            frm_Msg         = CPopup.Get<Form_Msg>();
+            frm_SystemInit  = CPopup.Get<Form_SystemInit>();
+            frm_Language    = CPopup.Get<Form_Language>();
 
-            frm_Language = new Form_Language(this);
-
+            // Not a pop-up: the laser panel lives in a tab of the Auto screen
+            // and floats out of it on request.
             frm_Laser = new Form_Laser();
             frm_Laser.TopLevel = false;
             frm_Laser.Visible = true;
             frm_Laser.Parent = frmAuto1.tcComm;
 
-            frm_LotInput = new Form_LotInput();
+            frm_LotInput = CPopup.Get<Form_LotInput>();
             frm_LotInput.TopMost = true;
             frm_LotInput.TopLevel = true;
 
-            frmLogHistory = new FormLogHistory(this);
+            frmLogHistory = CPopup.Get<FormLogHistory>();
             #endregion SUB_FORM
 
             ShowScreen((int)MmiGV.eSCRNO.AUTO1, false);
@@ -228,9 +233,14 @@ namespace MMI
             pnlContent.Controls.Add(frm);
 
             HmiTheme.Apply(frm);
+            CKeyboard.Attach(frm);
             // Some screens add controls in their Load (the IO channel combos
             // go onto the grid there), so theme again once that has run.
-            frm.Load += (s, e) => HmiTheme.Apply(frm);
+            frm.Load += (s, e) =>
+            {
+                HmiTheme.Apply(frm);
+                CKeyboard.Attach(frm);
+            };
 
             m_dicScreen[nScreenNo] = new ScreenEntry
             {
@@ -649,9 +659,7 @@ namespace MMI
 
         private void btnTenKey_Click(object sender, EventArgs e)
         {
-            frm_TenKey = new Form_TenKey(this);
-
-            frm_TenKey.DISPLAY();
+            frm_TenKey = CPopup.Show<Form_TenKey>();
         }
 
         private void btnPM_Click(object sender, EventArgs e)
@@ -760,10 +768,11 @@ namespace MMI
             {
                 CLanguage.Apply(entry.Screen);
             }
-            foreach (Form popup in Popups())
+            foreach (Form popup in CPopup.All)
             {
                 CLanguage.Apply(popup);
             }
+            CLanguage.Apply(frm_Laser);
 
             // The captions the frame sets in code.
             btnUserLogIn.Text = CLanguage.Text(btnUserLogIn.Checked ? "Log Out" : "Log In");
@@ -772,19 +781,6 @@ namespace MMI
             if (MmiGV.iErrorCode == 0) ShowAlarm(0, "", "");
 
             CLanguage.RaiseChanged();
-        }
-
-        // The pop-ups the frame holds in its fields, whatever they are.
-        private IEnumerable<Form> Popups()
-        {
-            foreach (System.Reflection.FieldInfo fi in GetType().GetFields(
-                         System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public))
-            {
-                if (!typeof(Form).IsAssignableFrom(fi.FieldType)) continue;
-                Form frm = fi.GetValue(this) as Form;
-                if (frm == null || frm.Parent == pnlContent) continue;
-                yield return frm;
-            }
         }
 
         #endregion LANGUAGE

@@ -227,7 +227,9 @@ namespace MMI
         public static TUseSkipData UseSkipData = new TUseSkipData(32);
         public static uint[,] LampBuzzerData = new uint[1000, 10];
 
-        public static FormMain frmMain = new FormMain();
+        // Set by FormMain itself. Making one here as well built a second,
+        // hidden main frame with every screen and timer in it.
+        public static FormMain frmMain;
 
         public static ConcurrentDictionary<int, TErrorBuff> dicErrorList = new ConcurrentDictionary<int, TErrorBuff>();
 
@@ -236,7 +238,6 @@ namespace MMI
         public static readonly ConcurrentQueue<string> MmiLogQueue = new ConcurrentQueue<string>();
         public static readonly ConcurrentQueue<string> SeqLogQueue = new ConcurrentQueue<string>();
 
-        public static bool bFormHomeShow = false;
 
 
 
