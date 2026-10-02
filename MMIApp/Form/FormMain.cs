@@ -31,7 +31,6 @@ namespace MMI
         public Form_Language    frm_Language;
 
         public FormAuto1        frmAuto1;
-        public FormAuto2        frmAuto2;
 
         public FormManualList   frmManualList;
         public FormManualOP     frmManualOP;
@@ -128,7 +127,6 @@ namespace MMI
         private void FormInitialize()
         {
             frmAuto1 = new FormAuto1(this);
-            frmAuto2 = new FormAuto2(this);
 
             frmManualList = new FormManualList(this);
             frmManualOP = new FormManualOP(this);
@@ -156,11 +154,10 @@ namespace MMI
             frmCalib = new FormCalibration(this);
 
             RegisterScreen((int)MmiGV.eSCRNO.AUTO1,             "PRODUCTION",    frmAuto1);
-            RegisterScreen((int)MmiGV.eSCRNO.AUTO2,             "AUTO 2",        frmAuto2);
+            RegisterScreen((int)MmiGV.eSCRNO.AUTO_TRIGGER,      "TRIGGER",       frmScanTrigger);
             RegisterScreen((int)MmiGV.eSCRNO.MANUAL_LIST,       "MANUAL LIST",   frmManualList);
             RegisterScreen((int)MmiGV.eSCRNO.MANUAL_OP,         "MANUAL OP",     frmManualOP);
             RegisterScreen((int)MmiGV.eSCRNO.MOTOR_SETTING,     "MOTOR SETTING", frmMotorSetting);
-            RegisterScreen((int)MmiGV.eSCRNO.MOTOR_SCANTRIGGER, "SCAN TRIGGER",  frmScanTrigger);
             RegisterScreen((int)MmiGV.eSCRNO.DATA_RECIPE,       "DATA_RECIPE",   frmDataRecipe);
             RegisterScreen((int)MmiGV.eSCRNO.DATA_SYSTEM,       "SYSTEM DATA",   frmDataSystem);
             RegisterScreen((int)MmiGV.eSCRNO.DATA_OPTION,       "DATA_OPTION",   frmDataOption);
@@ -178,7 +175,6 @@ namespace MMI
 
             m_dicSubMenu[(int)eScreenGroup.AUTO]    = flpSubAuto;
             m_dicSubMenu[(int)eScreenGroup.MANUAL]  = flpSubManual;
-            m_dicSubMenu[(int)eScreenGroup.MOTOR]   = flpSubMotor;
             m_dicSubMenu[(int)eScreenGroup.DATA]    = flpSubData;
             m_dicSubMenu[(int)eScreenGroup.MONITOR] = flpSubIO;
             m_dicSubMenu[(int)eScreenGroup.LOG]     = flpSubLog;
@@ -385,7 +381,35 @@ namespace MMI
             int nScreenNo;
             if (!m_dicLastScreenOfGroup.TryGetValue(nGroup, out nScreenNo)) return;
 
+            // The last screen of the group may be one this level cannot open
+            // (TRIGGER after an engineer logged out); open the group's first.
+            if (!IsScreenAllowed(nScreenNo))
+            {
+                nScreenNo = FirstScreenOfGroup(nGroup);
+            }
             ShowScreen(nScreenNo, true);
+        }
+
+        // A screen behind a disabled sub menu button is closed to this level.
+        private bool IsScreenAllowed(int nScreenNo)
+        {
+            FlowLayoutPanel flp;
+            if (!m_dicSubMenu.TryGetValue(GroupOf(nScreenNo), out flp)) return true;
+            foreach (Control c in flp.Controls)
+            {
+                if (Convert.ToInt32(c.Tag) == nScreenNo) return c.Enabled;
+            }
+            return true;
+        }
+
+        private int FirstScreenOfGroup(int nGroup)
+        {
+            int nFirst = int.MaxValue;
+            foreach (int nScreenNo in m_dicScreen.Keys)
+            {
+                if (GroupOf(nScreenNo) == nGroup && nScreenNo < nFirst) nFirst = nScreenNo;
+            }
+            return nFirst;
         }
 
         private void btnSubMenuClick(object sender, EventArgs e)
@@ -568,6 +592,10 @@ namespace MMI
             btnSubMotorCfg.Enabled    = bEngineer;
             btnSubLifeTime.Enabled    = bMaintenance;
 
+            // The scan trigger screen sits in the Auto group, which everyone
+            // can open, but it stays at the engineer level it had under Motor.
+            btnSubTrigger.Enabled     = bEngineer;
+
             TimerUserLevel.Enabled = (iLevel != (int)MmiGV.eUserLevel.USER_LEVEL_NONE);
 
             // A level that cannot see the screen in front of it goes back to
@@ -575,7 +603,7 @@ namespace MMI
             if (m_CurScreen != null)
             {
                 Control rail = RailOf(GroupOf(m_CurScreen.ScreenNo));
-                if (rail != null && !rail.Enabled)
+                if ((rail != null && !rail.Enabled) || !IsScreenAllowed(m_CurScreen.ScreenNo))
                 {
                     ShowScreen((int)MmiGV.eSCRNO.AUTO1, true);
                 }

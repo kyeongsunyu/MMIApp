@@ -35,7 +35,7 @@ namespace MMI
         {
             AUTO_VIEW       = 1,
             AUTO1           = 11,
-            AUTO2           = 12,
+            AUTO_TRIGGER    = 12,   // the scan trigger screen
 
             MANUAL_VIEW     = 2,
             MANUAL_LIST     = 21,
@@ -43,7 +43,6 @@ namespace MMI
 
             MOTOR_VIEW      = 3,
             MOTOR_SETTING   = 31,
-            MOTOR_SCANTRIGGER = 32,
 
             DATA_VIEW       = 4,
             DATA_RECIPE     = 41,

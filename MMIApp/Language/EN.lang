@@ -260,8 +260,6 @@ YYYY-MM-DD|YYYY-MM-DD
 Alarm|Alarm
 Auto|Auto
 AUTO|AUTO
-Auto 2|Auto 2
-Axis|Axis
 Bit / DM|Bit / DM
 Buzzer Off|Buzzer Off
 Data|Data
@@ -287,6 +285,7 @@ Show/Hide Console|Show/Hide Console
 System Data|System Data
 Teach|Teach
 Ten Key|Ten Key
+TRIGGER|TRIGGER
 USE / SKIP|USE / SKIP
 User Regist|User Regist
 ● Operator|● Operator

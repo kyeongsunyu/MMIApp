@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace MMI
 {
-    // SCAN TRIGGER engineer screen (Motor > Scan Trigger, engineer level).
+    // SCAN TRIGGER engineer screen (Auto > TRIGGER, screen 12, engineer level).
     //
     // The Auto screen keeps the recipe, SET and START: that is where an
     // operator runs a scan and where the recipe checks already live, and a

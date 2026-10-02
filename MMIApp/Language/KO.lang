@@ -260,8 +260,6 @@ YYYY-MM-DD|YYYY-MM-DD
 Alarm|알람
 Auto|자동
 AUTO|자동
-Auto 2|자동 2
-Axis|축
 Bit / DM|비트 / DM
 Buzzer Off|부저 끄기
 Data|데이터
@@ -287,6 +285,7 @@ Show/Hide Console|콘솔 보이기/숨기기
 System Data|시스템 데이터
 Teach|티칭
 Ten Key|텐키
+TRIGGER|트리거
 USE / SKIP|사용 / 스킵
 User Regist|사용자 등록
 ● Operator|● 작업자

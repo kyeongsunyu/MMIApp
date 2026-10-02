@@ -260,8 +260,6 @@ YYYY-MM-DD|YYYY-MM-DD
 Alarm|报警
 Auto|自动
 AUTO|自动
-Auto 2|自动 2
-Axis|轴
 Bit / DM|位 / DM
 Buzzer Off|关闭蜂鸣器
 Data|数据
@@ -287,6 +285,7 @@ Show/Hide Console|显示/隐藏控制台
 System Data|系统数据
 Teach|示教
 Ten Key|数字键
+TRIGGER|触发
 USE / SKIP|使用 / 跳过
 User Regist|用户注册
 ● Operator|● 操作员

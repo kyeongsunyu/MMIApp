@@ -15,7 +15,7 @@ namespace MMI
         enum eSCR : int
         {
             SCREEN_AUTO1 = 11,
-            SCREEN_AUTO2 = 12,
+            SCREEN_AUTO_TRIGGER = 12,
 
             SCREEN_MANUAL_LIST = 21,
             SCREEN_MANUAL_OP = 22,
@@ -323,14 +323,12 @@ namespace MMI
                 case (int)eSCR.SCREEN_AUTO1:
                     Auto1Refresh();
                     break;
-                case (int)eSCR.SCREEN_AUTO2:
+                case (int)eSCR.SCREEN_AUTO_TRIGGER:
+                    ScanTriggerEngineerRefresh();
                     break;
                 case (int)eSCR.SCREEN_MANUAL_LIST:
                     break;
                 case (int)eSCR.SCREEN_MANUAL_OP:
-                    break;
-                case (int)MmiGV.eSCRNO.MOTOR_SCANTRIGGER:
-                    ScanTriggerEngineerRefresh();
                     break;
                 case (int)eSCR.SCREEN_MOTOR_SETTING:
                     MmiGV.pShMem.GetMotorData(MmiGV.iCurrAxis);
