@@ -40,7 +40,8 @@ namespace MMI
         public FormScanTrigger  frmScanTrigger;
 
         public FormDataRecipe   frmDataRecipe;
-        public FormDataSysParam frmDataSysParam;
+        public FormDataSystem   frmDataSystem;
+        public FormDataLifeTime frmDataLifeTime;
         public FormDataOption   frmDataOption;
         public FormDataLampBuzzer frmDataLampBuzzer;
         public FormDataUserRegist frmDataUserRegist;
@@ -135,7 +136,8 @@ namespace MMI
             frmScanTrigger = new FormScanTrigger(this);
 
             frmDataRecipe = new FormDataRecipe(this);
-            frmDataSysParam = new FormDataSysParam(this);
+            frmDataSystem = new FormDataSystem(this);
+            frmDataLifeTime = new FormDataLifeTime(this);
             frmDataOption = new FormDataOption(this);
             frmDataLampBuzzer = new FormDataLampBuzzer(this);
             frmDataUserRegist = new FormDataUserRegist(this);
@@ -159,11 +161,12 @@ namespace MMI
             RegisterScreen((int)MmiGV.eSCRNO.MOTOR_SETTING,     "MOTOR SETTING", frmMotorSetting);
             RegisterScreen((int)MmiGV.eSCRNO.MOTOR_SCANTRIGGER, "SCAN TRIGGER",  frmScanTrigger);
             RegisterScreen((int)MmiGV.eSCRNO.DATA_RECIPE,       "DATA_RECIPE",   frmDataRecipe);
-            RegisterScreen((int)MmiGV.eSCRNO.DATA_SYSTEMPARAM,  "DATA_SYSTEMPARAM", frmDataSysParam);
+            RegisterScreen((int)MmiGV.eSCRNO.DATA_SYSTEM,       "SYSTEM DATA",   frmDataSystem);
             RegisterScreen((int)MmiGV.eSCRNO.DATA_OPTION,       "DATA_OPTION",   frmDataOption);
             RegisterScreen((int)MmiGV.eSCRNO.DATA_LAMPBUZZER,   "DATA_LAMPBUZZER", frmDataLampBuzzer);
             RegisterScreen((int)MmiGV.eSCRNO.DATA_USERREGIST,   "DATA_USERREGIST", frmDataUserRegist);
             RegisterScreen((int)MmiGV.eSCRNO.DATA_MOTOR_CONFIG, "DATA_MOTOR_CONFIG", frmDataMotorCFG);
+            RegisterScreen((int)MmiGV.eSCRNO.DATA_LIFETIME,     "LIFE TIME",     frmDataLifeTime);
             RegisterScreen((int)MmiGV.eSCRNO.MONITOR_IO,        "MONITOR_IO",    frmMonitorIO);
             RegisterScreen((int)MmiGV.eSCRNO.MONITOR_DMBIT,     "MONITOR_DMBIT", frmMonitorBitDM);
             RegisterScreen((int)MmiGV.eSCRNO.ALARM_LIST,        "ALARM_LIST",    frmAlarmList);
@@ -254,6 +257,8 @@ namespace MMI
             // Before anything reads the DEVICE table: machines built before the
             // scan trigger have no columns for it.
             CRcpMaterial.EnsureScanTriggerColumns();
+            FormDataLifeTime.EnsureItemNames();
+            EnsurePasswordLevel((int)MmiGV.eSCRNO.DATA_LIFETIME, "LIFE TIME", 2);
 
             CRecipeCtl.SetMainForm(this);
             //add by chs
@@ -273,6 +278,17 @@ namespace MMI
             CThread.CreateThread(CThread.ThreadMMILogMsg, ThreadPriority.Normal);
 
             udp_server.StartAsServer("127.0.0.1", "9999");
+
+            CLogRetention.Start();
+        }
+
+        // Form_PWD refuses a screen that has no PWDLEVEL row, so a screen added
+        // after the DB was made gets its row here.
+        private static void EnsurePasswordLevel(int nScreenNo, string strName, int nUserLevel)
+        {
+            if (SQLiteDB.RecCount("SELECT COUNT(*) FROM PWDLEVEL WHERE SCR_INDEX = " + nScreenNo) != 0) return;
+            SQLiteDB.Execute("INSERT INTO PWDLEVEL (SCR_INDEX, SCR_NAME, ITEM_INDEX, USER_LEVEL) VALUES ("
+                           + nScreenNo + ", '" + strName + "', " + nScreenNo + ", " + nUserLevel + ")");
         }
 
         public void DisplayCurDevice()
@@ -302,6 +318,7 @@ namespace MMI
                 strSQL += $" WHERE EMARK ='**'";
                 SQLiteDB.Execute(strSQL);
 
+                CLogRetention.Stop();
                 MmiGV.bProgramExit = true;
                 MmiGV.pShMem.SetExitProgram();
 
@@ -529,11 +546,12 @@ namespace MMI
             btnTenKey.Enabled      = bOperator;
 
             btnSubRecipe.Enabled      = bOperator;
-            btnSubSysParam.Enabled    = bEngineer;
+            btnSubSysData.Enabled     = bEngineer;
             btnSubUseSkip.Enabled     = bEngineer;
             btnSubLampBuzzer.Enabled  = bEngineer;
             btnSubUserRegist.Enabled  = bEngineer;
             btnSubMotorCfg.Enabled    = bEngineer;
+            btnSubLifeTime.Enabled    = bMaintenance;
 
             TimerUserLevel.Enabled = (iLevel != (int)MmiGV.eUserLevel.USER_LEVEL_NONE);
 
@@ -703,13 +721,17 @@ namespace MMI
                 MmiGV.iTragetUPH = iniHelper.ReadInteger("TARGET UPH", "UPH");
             }
 
-            // The machine name heads the top bar. Written once with a default
-            // so it can be found and changed in the file.
-            if (!iniHelper.KeyExists("NAME", "MACHINE"))
-            {
-                iniHelper.WriteString("NAME", "MMI", "MACHINE");
-            }
-            lblMachine.Text = iniHelper.ReadString("NAME", "MACHINE");
+            // The System Data settings: machine name, log keep period, life
+            // time warning, keyboard and start-up language.
+            CSystemConfig.Load();
+            ApplySystemConfig();
+        }
+
+        // Puts the System Data settings into effect. Called at start-up and
+        // again when System Data applies a change.
+        public void ApplySystemConfig()
+        {
+            lblMachine.Text = CSystemConfig.MachineName;
         }
 
         private void UILanguageUpdate()

@@ -153,7 +153,6 @@ namespace MMI
                 //DirPath = Directory.GetCurrentDirectory() + @"\LOG\SEQ\PROCESS\" +
                 //                 DateTime.Today.ToString("yyyy_MM_dd") + @"\" +
                 //                 SeqGV.DeviceInfo.strDeviceName;
-                //deleteFolder(@"\LOG\SEQ\PROCESS\");
             }
             else if (target == "MMI")
             {
@@ -164,7 +163,6 @@ namespace MMI
                 DirPath = Directory.GetCurrentDirectory() + @"\LOG\MMI\PROCESS\" +
                           DateTime.Today.ToString("yyyy_MM_dd") + @"\" +
                           MmiGV.DeviceInfo.strDeviceName;
-                deleteFolder(@"\LOG\MMI\PROCESS\");
             }
 
             DirectoryInfo di = new DirectoryInfo(DirPath);
@@ -246,55 +244,6 @@ namespace MMI
             catch (Exception ex)
             {
                 ex.Message.ToString();
-            }
-        }
-
-        public static void deleteFolder(string folderDir)
-        {
-            try
-            {
-                int deleteDay = 60;
-                DirectoryInfo di = new DirectoryInfo(folderDir);
-                if (di.Exists)
-                {
-                    DirectoryInfo[] dirInfo = di.GetDirectories();
-                    string IDate = DateTime.Today.AddDays(- deleteDay).ToString("yyyyMMdd");
-
-                    foreach (DirectoryInfo dir in dirInfo)
-                    {
-                        if (IDate.CompareTo(dir.LastWriteTime.ToString("yyyMMdd")) > 0)
-                        {
-                            // 폴더 속성에 읽기, 쓰기 설정에 따라 삭제가 안될 수 있음
-                            // 때문에 미리 속성 Normal 로 설정
-                            dir.Attributes = FileAttributes.Normal;
-                            dir.Delete(true);
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                e.Message.ToString();
-            }
-        }
-
-        public static void DelFile(string delPath)
-        {
-            int deleteDay = 60;
-            DateTime fileCreatedTime;
-            string strDate = DateTime.Now.AddDays(-deleteDay).ToString("yyyyMMdd");
-
-            DateTime cmpTime = DateTime.ParseExact(strDate, "yyyyMMdd", null);
-            DirectoryInfo dirInfo = new DirectoryInfo(delPath);
-            foreach (FileInfo file in dirInfo.GetFiles())
-            {
-                fileCreatedTime = file.CreationTime;
-
-                //파일생성날짜가 strDate보다 이전이면 파일을 삭제한다. 예제에서는 7일전이면 삭제
-                if (DateTime.Compare(fileCreatedTime, cmpTime) > 0)
-                {
-                    File.Delete(file.FullName);
-                }
             }
         }
 

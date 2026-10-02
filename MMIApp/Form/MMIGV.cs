@@ -52,11 +52,12 @@ namespace MMI
 
             DATA_VIEW       = 4,
             DATA_RECIPE     = 41,
-            DATA_SYSTEMPARAM= 42,
+            DATA_SYSTEM     = 42,
             DATA_OPTION     = 43,
             DATA_LAMPBUZZER = 44,
             DATA_USERREGIST = 45,
             DATA_MOTOR_CONFIG = 46,
+            DATA_LIFETIME   = 47,
 
             MONITOR_VIEW    = 5,
             MONITOR_IO      = 51,

@@ -80,8 +80,9 @@
             this.btnSubScanTrigger = new MMI.HmiButton();
             this.flpSubData = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSubRecipe = new MMI.HmiButton();
-            this.btnSubSysParam = new MMI.HmiButton();
+            this.btnSubSysData = new MMI.HmiButton();
             this.btnSubUseSkip = new MMI.HmiButton();
+            this.btnSubLifeTime = new MMI.HmiButton();
             this.btnSubLampBuzzer = new MMI.HmiButton();
             this.btnSubUserRegist = new MMI.HmiButton();
             this.btnSubMotorCfg = new MMI.HmiButton();
@@ -626,8 +627,9 @@
             // flpSubData
             // 
             this.flpSubData.Controls.Add(this.btnSubRecipe);
-            this.flpSubData.Controls.Add(this.btnSubSysParam);
+            this.flpSubData.Controls.Add(this.btnSubSysData);
             this.flpSubData.Controls.Add(this.btnSubUseSkip);
+            this.flpSubData.Controls.Add(this.btnSubLifeTime);
             this.flpSubData.Controls.Add(this.btnSubLampBuzzer);
             this.flpSubData.Controls.Add(this.btnSubUserRegist);
             this.flpSubData.Controls.Add(this.btnSubMotorCfg);
@@ -649,16 +651,16 @@
             this.btnSubRecipe.Name = "btnSubRecipe";
             this.btnSubRecipe.Click += new System.EventHandler(this.btnSubMenuClick);
             // 
-            // btnSubSysParam
+            // btnSubSysData
             // 
-            this.btnSubSysParam.Size = new System.Drawing.Size(168, 44);
-            this.btnSubSysParam.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
-            this.btnSubSysParam.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSubSysParam.Text = "System Param";
-            this.btnSubSysParam.Tag = "42";
-            this.btnSubSysParam.TabStop = false;
-            this.btnSubSysParam.Name = "btnSubSysParam";
-            this.btnSubSysParam.Click += new System.EventHandler(this.btnSubMenuClick);
+            this.btnSubSysData.Size = new System.Drawing.Size(168, 44);
+            this.btnSubSysData.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubSysData.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubSysData.Text = "System Data";
+            this.btnSubSysData.Tag = "42";
+            this.btnSubSysData.TabStop = false;
+            this.btnSubSysData.Name = "btnSubSysData";
+            this.btnSubSysData.Click += new System.EventHandler(this.btnSubMenuClick);
             // 
             // btnSubUseSkip
             // 
@@ -670,6 +672,17 @@
             this.btnSubUseSkip.TabStop = false;
             this.btnSubUseSkip.Name = "btnSubUseSkip";
             this.btnSubUseSkip.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubLifeTime
+            // 
+            this.btnSubLifeTime.Size = new System.Drawing.Size(168, 44);
+            this.btnSubLifeTime.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubLifeTime.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubLifeTime.Text = "Life Time";
+            this.btnSubLifeTime.Tag = "47";
+            this.btnSubLifeTime.TabStop = false;
+            this.btnSubLifeTime.Name = "btnSubLifeTime";
+            this.btnSubLifeTime.Click += new System.EventHandler(this.btnSubMenuClick);
             // 
             // btnSubLampBuzzer
             // 
@@ -887,8 +900,9 @@
         public MMI.HmiButton btnSubScanTrigger;
         private System.Windows.Forms.FlowLayoutPanel flpSubData;
         public MMI.HmiButton btnSubRecipe;
-        public MMI.HmiButton btnSubSysParam;
+        public MMI.HmiButton btnSubSysData;
         public MMI.HmiButton btnSubUseSkip;
+        public MMI.HmiButton btnSubLifeTime;
         public MMI.HmiButton btnSubLampBuzzer;
         public MMI.HmiButton btnSubUserRegist;
         public MMI.HmiButton btnSubMotorCfg;

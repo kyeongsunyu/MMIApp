@@ -231,6 +231,8 @@
     <Compile Include="Util\TCP\TcpServerAsync.cs" />
     <Compile Include="Util\Thread.cs" />
     <Compile Include="Util\FileLog.cs" />
+    <Compile Include="Util\LogRetention.cs" />
+    <Compile Include="Util\SystemConfig.cs" />
     <Compile Include="Form\Form_PM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,11 +342,17 @@
     <Compile Include="Form\FormDataOption.Designer.cs">
       <DependentUpon>FormDataOption.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FormDataSysParam.cs">
+    <Compile Include="Form\FormDataSystem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FormDataSysParam.Designer.cs">
-      <DependentUpon>FormDataSysParam.cs</DependentUpon>
+    <Compile Include="Form\FormDataSystem.Designer.cs">
+      <DependentUpon>FormDataSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormDataLifeTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormDataLifeTime.Designer.cs">
+      <DependentUpon>FormDataLifeTime.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\FormDataRecipe.cs">
       <SubType>Form</SubType>
@@ -448,9 +456,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FormDataOption.resx">
       <DependentUpon>FormDataOption.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormDataSysParam.resx">
-      <DependentUpon>FormDataSysParam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FormDataRecipe.resx">
       <DependentUpon>FormDataRecipe.cs</DependentUpon>
