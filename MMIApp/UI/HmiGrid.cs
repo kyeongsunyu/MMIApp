@@ -455,9 +455,37 @@ namespace MMI
             AfterEdit?.Invoke(this, new RowColEventArgs(e.RowIndex, e.ColumnIndex));
         }
 
+        // FlexGrid never puts its cursor on a fixed (header) row or column, and
+        // the screens read Row as a data row: the Recipe screen loads device
+        // Row, and row 0 is no device. A DataGridView does land there - when
+        // rows are first added, or on a click on the header - so the cursor is
+        // moved to the nearest data cell and SelChange is raised only for that.
         protected override void OnCurrentCellChanged(EventArgs e)
         {
             base.OnCurrentCellChanged(e);
+
+            DataGridViewCell cell = CurrentCell;
+            if (cell != null && IsFixed(cell.RowIndex, cell.ColumnIndex))
+            {
+                int r = Math.Max(cell.RowIndex, _fixedRows);
+                int c = Math.Max(cell.ColumnIndex, _fixedCols);
+                // Changing CurrentCell from inside its own change event is a
+                // reentrant call the DataGridView refuses, so do it next.
+                if (r < RowCount && c < ColumnCount && IsHandleCreated)
+                {
+                    BeginInvoke(new MethodInvoker(() =>
+                    {
+                        if (CurrentCell == null || !IsFixed(CurrentCell.RowIndex, CurrentCell.ColumnIndex)) return;
+                        int cv = c;
+                        while (cv < ColumnCount && !Columns[cv].Visible) cv++;
+                        if (r < RowCount && cv < ColumnCount && base.Rows[r].Visible)
+                        {
+                            CurrentCell = base.Rows[r].Cells[cv];
+                        }
+                    }));
+                }
+                return;
+            }
             SelChange?.Invoke(this, EventArgs.Empty);
         }
 

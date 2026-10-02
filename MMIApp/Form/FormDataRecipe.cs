@@ -21,6 +21,9 @@ namespace MMI
         private FormMain frmMain = null;
         private int iSelectedDevice;
 
+        // Load_Device() reads DeviceData up to index 157.
+        private const int DeviceDataCount = 158;
+
         Label[] dDev;
         Label[] dCnt;
         Label[] dDelay;
@@ -146,6 +149,9 @@ namespace MMI
 
         private void SelectLoadData()
         {
+            // Row 0 is the header, not a device.
+            if (gdDevice.Row < gdDevice.Rows.Fixed) return;
+
             iSelectedDevice = gdDevice.Row;
             Load_Device(iSelectedDevice);
         }
@@ -482,6 +488,15 @@ namespace MMI
         {
             CRecipeCtl.EditMaterialRcp.Material_IDX = idx;
             CRecipeCtl.EditMaterialRcp.LoadRcpMaterial();
+
+            // No DEVICE row with this IDX (an empty grid line, or a DB with
+            // fewer devices): LoadRcpMaterial leaves DeviceData empty, and the
+            // screen keeps showing the device it had.
+            if (CRecipeCtl.EditMaterialRcp.DeviceData.Count < DeviceDataCount)
+            {
+                CThreadMMILog.GetInstance.AddMMILog("Recipe: no device data for IDX " + idx);
+                return;
+            }
 
             //for (int k = 0; k < dDev.Length; k++)
             //{
