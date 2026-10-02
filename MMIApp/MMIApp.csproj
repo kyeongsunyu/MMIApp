@@ -172,6 +172,7 @@
     <Compile Include="Form\CLASS_ScanTimer.cs" />
     <Compile Include="Form\CLASS_ThreadLog.cs" />
     <Compile Include="Form\CLASS_ThreadMain.cs" />
+    <Compile Include="Form\CLASS_ThreadSeqEvent.cs" />
     <Compile Include="Form\Form_Home.cs">
       <SubType>Form</SubType>
     </Compile>

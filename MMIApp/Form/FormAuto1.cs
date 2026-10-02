@@ -677,6 +677,20 @@ namespace MMI
             lblScanTrigResult.Text = "POLL LOST";
         }
 
+        // SEQ said through its event channel (CThreadSeqEvent) that the cycle
+        // ended. bRead says the display was read just now; if SEQ had already
+        // gone back to IDLE that read shows IDLE, so the end state is written
+        // over it.
+        public void ScanTriggerFinished(int nState, bool bRead)
+        {
+            if (ScanTriggerToUiThread(() => ScanTriggerFinished(nState, bRead))) return;
+
+            if (bRead) RenderScanTriggerDisplay();
+            bScanTriggerWatch = false;
+            lblScanTrigState.Text = ScanTriggerStateText(nState);
+            lblScanTrigResult.Text = (nState == 7) ? "DONE" : "ABORTED";
+        }
+
         private void btnScanTrigSet_Click(object sender, EventArgs e)
         {
             double[] adPos;

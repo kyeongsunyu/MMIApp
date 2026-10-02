@@ -289,6 +289,9 @@ namespace MMI
             CThread.ThreadMMILogMsg = new Thread(() => { MMILog.ExcuteMMILogMsg(); });
             CThread.CreateThread(CThread.ThreadMMILogMsg, ThreadPriority.Normal);
 
+            CThread.ThreadSeqEvent = new Thread(() => { CThreadSeqEvent.Execute(); });
+            CThread.CreateThread(CThread.ThreadSeqEvent, ThreadPriority.Normal);
+
             udp_server.StartAsServer("127.0.0.1", "9999");
 
             CLogRetention.Start();

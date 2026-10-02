@@ -24,6 +24,7 @@ namespace MMI
 
         public static Thread ThreadSeqLogMsg = null;
         public static Thread ThreadMMILogMsg = null;
+        public static Thread ThreadSeqEvent = null;
 
         public static Thread[] TH = new Thread[20];
 
