@@ -39,10 +39,7 @@ namespace MMI
             MethodInvoker miShow = new MethodInvoker(this.Show);
             frmMain.Invoke(miShow);
 
-            frmMain.lblError.Invoke(new Action(() =>
-            {
-                frmMain.lblError.Text = " System Initializing...";
-            }));
+            frmMain.ShowBannerText("System Initializing...");
             Application.DoEvents();
 
             iPercent = 0;
@@ -329,10 +326,7 @@ namespace MMI
 
             #endregion
 
-            frmMain.lblError.Invoke(new Action(() =>
-            {
-                frmMain.lblError.Text = "";
-            }));
+            frmMain.ShowAlarm(MmiGV.iErrorCode, "", "");
 
             MmiGV.pShMem.WUserInfo.strUserName = MmiGV.UserInfo.strUserName;
             MmiGV.pShMem.SetUserInfo();

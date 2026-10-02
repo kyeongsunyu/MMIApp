@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>MMI</RootNamespace>
     <AssemblyName>MMIApp</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -163,6 +163,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefineData.cs" />
+    <Compile Include="UI\HmiButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\HmiCard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\HmiTheme.cs" />
     <Compile Include="Form\FormCalibration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,12 +185,6 @@
     <Compile Include="Form\CLASS_ScanTimer.cs" />
     <Compile Include="Form\CLASS_ThreadLog.cs" />
     <Compile Include="Form\CLASS_ThreadMain.cs" />
-    <Compile Include="Form\FormCalView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormCalView.Designer.cs">
-      <DependentUpon>FormCalView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\Form_Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -310,29 +311,11 @@
     <Compile Include="Form\FormLog.Designer.cs">
       <DependentUpon>FormLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FormLogMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormLogMenu.Designer.cs">
-      <DependentUpon>FormLogMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\FormLogView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormLogView.Designer.cs">
-      <DependentUpon>FormLogView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\FormAlarmList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\FormAlarmList.Designer.cs">
       <DependentUpon>FormAlarmList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\FormAlarmMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormAlarmMenu.Designer.cs">
-      <DependentUpon>FormAlarmMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\FormMonitorBitDM.cs">
       <SubType>Form</SubType>
@@ -345,12 +328,6 @@
     </Compile>
     <Compile Include="Form\FormMonitorIO.Designer.cs">
       <DependentUpon>FormMonitorIO.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\FormMonitorMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormMonitorMenu.Designer.cs">
-      <DependentUpon>FormMonitorMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\FormDataMotorCFG.cs">
       <SubType>Form</SubType>
@@ -388,23 +365,11 @@
     <Compile Include="Form\FormDataRecipe.Designer.cs">
       <DependentUpon>FormDataRecipe.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FormDataMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormDataMenu.Designer.cs">
-      <DependentUpon>FormDataMenu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\FormMotorSetting.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\FormMotorSetting.Designer.cs">
       <DependentUpon>FormMotorSetting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\FormMotorMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormMotorMenu.Designer.cs">
-      <DependentUpon>FormMotorMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\FormManualOP.cs">
       <SubType>Form</SubType>
@@ -418,12 +383,6 @@
     <Compile Include="Form\FormManualList.Designer.cs">
       <DependentUpon>FormManualList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FormManualMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormManualMenu.Designer.cs">
-      <DependentUpon>FormManualMenu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\FormAuto2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -435,48 +394,6 @@
     </Compile>
     <Compile Include="Form\FormAuto1.Designer.cs">
       <DependentUpon>FormAuto1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\FormAutoMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormAutoMenu.Designer.cs">
-      <DependentUpon>FormAutoMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\FormAlarmView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormAlarmView.Designer.cs">
-      <DependentUpon>FormAlarmView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\FormMonitorView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormMonitorView.Designer.cs">
-      <DependentUpon>FormMonitorView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\FormDataView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormDataView.Designer.cs">
-      <DependentUpon>FormDataView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\FormMotorView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormMotorView.Designer.cs">
-      <DependentUpon>FormMotorView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\FormManualView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormManualView.Designer.cs">
-      <DependentUpon>FormManualView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\FormAutoView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\FormAutoView.Designer.cs">
-      <DependentUpon>FormAutoView.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Form_Language.cs">
       <SubType>Form</SubType>
@@ -516,18 +433,8 @@
     <EmbeddedResource Include="Form\FormLog.resx">
       <DependentUpon>FormLog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormLogMenu.resx">
-      <DependentUpon>FormLogMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormLogView.resx">
-      <DependentUpon>FormLogView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\FormAlarmList.resx">
       <DependentUpon>FormAlarmList.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormAlarmMenu.resx">
-      <DependentUpon>FormAlarmMenu.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FormMonitorBitDM.resx">
@@ -536,9 +443,6 @@
     <EmbeddedResource Include="Form\FormMonitorIO.resx">
       <DependentUpon>FormMonitorIO.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormMonitorMenu.resx">
-      <DependentUpon>FormMonitorMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FormDataMotorCFG.resx">
       <DependentUpon>FormDataMotorCFG.cs</DependentUpon>
@@ -559,32 +463,11 @@
       <DependentUpon>FormDataRecipe.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormDataMenu.resx">
-      <DependentUpon>FormDataMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormMotorMenu.resx">
-      <DependentUpon>FormMotorMenu.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\FormAuto2.resx">
       <DependentUpon>FormAuto2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FormAuto1.resx">
       <DependentUpon>FormAuto1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormAlarmView.resx">
-      <DependentUpon>FormAlarmView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormAutoMenu.resx">
-      <DependentUpon>FormAutoMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormAutoView.resx">
-      <DependentUpon>FormAutoView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormDataView.resx">
-      <DependentUpon>FormDataView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormCalView.resx">
-      <DependentUpon>FormCalView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Form_Calendar.resx">
       <DependentUpon>Form_Calendar.cs</DependentUpon>
@@ -601,23 +484,11 @@
     <EmbeddedResource Include="Form\FormManualList.resx">
       <DependentUpon>FormManualList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormManualMenu.resx">
-      <DependentUpon>FormManualMenu.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\FormManualOP.resx">
       <DependentUpon>FormManualOP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormManualView.resx">
-      <DependentUpon>FormManualView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormMonitorView.resx">
-      <DependentUpon>FormMonitorView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\FormMotorSetting.resx">
       <DependentUpon>FormMotorSetting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormMotorView.resx">
-      <DependentUpon>FormMotorView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Form_Laser.resx">
       <DependentUpon>Form_Laser.cs</DependentUpon>

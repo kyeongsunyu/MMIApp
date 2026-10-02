@@ -1,54 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Runtime.Remoting.Channels;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
-using static MMI.MmiGV;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace MMI
 {
+    // L11 main frame.
+    //
+    //   top bar      machine, device, SEQ / peripheral / SECS-GEM links, user,
+    //                and the frame-wide commands (EMO, reset, buzzer, ten key)
+    //   alarm banner the current alarm, always in the same place
+    //   rail         one entry per screen group
+    //   sub menu     the screens inside the selected group, shown only when
+    //                the group has more than one
+    //   content      the screen itself
+    //
+    // Every screen is a Form parented into pnlContent with TopLevel off, and
+    // the frame switches between them. The screen number written to DM 7 and
+    // read by CThreadMain is the same number the old menu forms used, so the
+    // polling side did not have to change.
     public partial class FormMain : Form
     {
         #region FORM_DEFINE
         public Form_Language    frm_Language;
 
-        public FormAutoView     frmAutoView;
-        public FormManualView   frmManualView;
-        public FormMotorView    frmMotorView;
-        public FormDataView     frmDataView;
-        public FormMonitorView  frmMonitorView;
-        public FormAlarmView    frmAlarmView;
-        public FormLogView      frmLogView;
-       
-        public FormCalView      frmCalView;
-        public FormCalibration  frmCalib;
-
-
-        public FormAutoMenu     frmAutoMenu;
         public FormAuto1        frmAuto1;
         public FormAuto2        frmAuto2;
 
-        public FormManualMenu   frmManualMenu;
         public FormManualList   frmManualList;
         public FormManualOP     frmManualOP;
 
-        public FormMotorMenu    frmMotorMenu;
         public FormMotorSetting frmMotorSetting;
 
-        public FormDataMenu     frmDataMenu;
         public FormDataRecipe   frmDataRecipe;
         public FormDataSysParam frmDataSysParam;
         public FormDataOption   frmDataOption;
@@ -56,17 +45,16 @@ namespace MMI
         public FormDataUserRegist frmDataUserRegist;
         public FormDataMotorCFG frmDataMotorCFG;
 
-        public FormMonitorMenu  frmMonitorMenu;
         public FormMonitorIO    frmMonitorIO;
         public FormMonitorBitDM frmMonitorBitDM;
 
-        public FormAlarmMenu    frmAlarmMenu;
         public FormAlarmList    frmAlarmList;
 
-        public FormLogMenu      frmLogMenu;
         public FormLog          frmLog;
         public FormLogError     frmLogError;
         public FormLogMTBA      frmLogMTBA;
+
+        public FormCalibration  frmCalib;
         #endregion FORM_DEFINE
 
         #region SUB_FORM_DEFINE
@@ -85,18 +73,36 @@ namespace MMI
         public FormLogHistory   frmLogHistory;
         #endregion SUB_FORM
 
+        // The rail groups. The values are the old main menu tags, which the
+        // screen numbers are built on: screen 41 lives in group 4.
+        private enum eScreenGroup
+        {
+            AUTO    = 1,
+            MANUAL  = 2,
+            MOTOR   = 3,
+            DATA    = 4,
+            MONITOR = 5,
+            ALARM   = 6,
+            LOG     = 7,
+            CALIB   = 8,
+        }
 
-        private DevComponents.DotNetBar.ButtonX p_Button = null;
-        private DevComponents.DotNetBar.ButtonX p_bfButton = null;
+        private sealed class ScreenEntry
+        {
+            public int ScreenNo;
+            public string Caption;
+            public Form Screen;
+        }
+
+        private readonly Dictionary<int, ScreenEntry> m_dicScreen = new Dictionary<int, ScreenEntry>();
+        private readonly Dictionary<int, int> m_dicLastScreenOfGroup = new Dictionary<int, int>();
+        private readonly Dictionary<int, FlowLayoutPanel> m_dicSubMenu = new Dictionary<int, FlowLayoutPanel>();
+        private ScreenEntry m_CurScreen = null;
 
         bool bIsShowConsole = false;
 
-        private int ibfButtonTag = 1;
         private int iSeqLinkCount = 0;
         private int iSetSeqLinkCount = 2;
-        //private int m_iLampStatus = 0;
-        //private int m_iRunning = 0;
-        //private int m_iDeviceNo = 0;
         private bool bSeqLinked = false;
 
         DateTime dtUserLevelStartTime;
@@ -105,28 +111,7 @@ namespace MMI
         private CFileLog FileLog = CFileLog.GetInstance;
 
         public UDP_Server udp_server = new UDP_Server();
-        enum eSCR:int
-        {
-            SCREEN_AUTO1 = 11,
-            SCREEN_AUTO2 = 12,
 
-            SCREEN_MANUAL_LIST = 21,
-            SCREEN_MANUAL_OP = 22,
-
-            SCREEN_MOTOR_SETTING = 31,
-
-            SCREEN_DATA = 41,
-            SCREEN_SYSTEM_PARAM = 42,
-            SCREEN_USE_SKIP = 43,
-            SCREEN_LAMP_BUZZER = 44,
-            SCREEN_USER_REGIST = 45,
-            SCREEN_MOTOR_CFG = 46,
-
-            SCREEN_IO = 51,
-            SCREEN_DM_BIT = 52,
-
-            SCREEN_ALARM = 61,
-        }
         public FormMain()
         {
             InitializeComponent();
@@ -139,332 +124,56 @@ namespace MMI
 
         private void FormInitialize()
         {
-            #region FORM_LANGUAGE
-            //frm_Language = new Form_Language(this);
-            //frm_Language.ShowDialog();
-            #endregion FORM_LANGUAGE
-
-            #region FORM_MAIN_STATUS
-            //frmMainStatus = new FormMainStatus(this);
-            //frmMainStatus.StartPosition = FormStartPosition.Manual;
-            //frmMainStatus.Location = new Point(0, 0);
-            //frmMainStatus.TopLevel = false;
-            //this.Controls.Add(frmMainStatus);
-            //frmMainStatus.BringToFront();
-            //frmMainStatus.Show();
-            #endregion FORM_MAIN_STATUS
-
-            #region FORM_MAIN_MENU
-            //frmMainMenu = new FormMainMenu(this);
-            //frmMainMenu.StartPosition = FormStartPosition.Manual;
-            //frmMainMenu.Location = new Point(0, 1480);
-            //frmMainMenu.TopLevel = false;
-            //this.Controls.Add(frmMainMenu);
-            //frmMainMenu.Show();
-            #endregion FORM_MAIN_MENU
-
-            #region FORM_AUTO_VIEW
-            frmAutoView = new FormAutoView(this);
-            frmAutoView.StartPosition = FormStartPosition.Manual;
-            frmAutoView.Location = new Point(0, 100);
-            frmAutoView.TopLevel = false;
-            this.Controls.Add(frmAutoView);
-            frmAutoView.Show();
-            #endregion FORM_AUTO_VIEW
-
-            #region FORM_MANUAL_VIEW
-            frmManualView = new FormManualView(this);
-            frmManualView.StartPosition = FormStartPosition.Manual;
-            frmManualView.Location = new Point(0, 100);
-            frmManualView.TopLevel = false;
-            this.Controls.Add(frmManualView);
-            #endregion FORM_MANUAL_VIEW
-
-            #region FORM_MOTOR_VIEW
-            frmMotorView = new FormMotorView(this);
-            frmMotorView.StartPosition = FormStartPosition.Manual;
-            frmMotorView.Location = new Point(0, 100);
-            frmMotorView.TopLevel = false;
-            this.Controls.Add(frmMotorView);
-            #endregion FORM_MOTOR_VIEW
-
-            #region FORM_DATA_VIEW
-            frmDataView = new FormDataView(this);
-            frmDataView.StartPosition = FormStartPosition.Manual;
-            frmDataView.Location = new Point(0, 100);
-            frmDataView.TopLevel = false;
-            this.Controls.Add(frmDataView);
-            #endregion FORM_DATA_VIEW
-
-            #region FORM_MONITOR_VIEW
-            frmMonitorView = new FormMonitorView(this);
-            frmMonitorView.StartPosition = FormStartPosition.Manual;
-            frmMonitorView.Location = new Point(0, 100);
-            frmMonitorView.TopLevel = false;
-            this.Controls.Add(frmMonitorView);
-            #endregion FORM_MONITOR_VIEW
-
-            #region FORM_ALARM_VIEW
-            frmAlarmView = new FormAlarmView(this);
-            frmAlarmView.StartPosition = FormStartPosition.Manual;
-            frmAlarmView.Location = new Point(0, 100);
-            frmAlarmView.TopLevel = false;
-            this.Controls.Add(frmAlarmView);
-            #endregion FORM_ALARM_VIEW
-
-
-            frmCalView = new FormCalView(this);
-            frmCalView.StartPosition = FormStartPosition.Manual;
-            frmCalView.Location = new Point(0, 100);
-            frmCalView.TopLevel = false;
-            this.Controls.Add(frmCalView);
-
-
-            #region FORM_LOG_VIEW
-            frmLogView = new FormLogView(this);
-            frmLogView.StartPosition = FormStartPosition.Manual;
-            frmLogView.Location = new Point(0, 100);
-            frmLogView.TopLevel = false;
-            this.Controls.Add(frmLogView);
-            #endregion FORM_LOG_VIEW
-
-            #region FORM_AUTO_MENU
-            frmAutoMenu = new FormAutoMenu(this);
-            frmAutoMenu.StartPosition = FormStartPosition.Manual;
-            frmAutoMenu.Location = new Point(1480, 0);
-            frmAutoMenu.TopLevel = false;
-            frmAutoView.Controls.Add(frmAutoMenu);
-            frmAutoMenu.Show();
-            #endregion FORM_AUTO_MENU
-
-            #region FORM_AUTO1
             frmAuto1 = new FormAuto1(this);
-            frmAuto1.StartPosition = FormStartPosition.Manual;
-            frmAuto1.Location = new Point(0, 0);
-            frmAuto1.TopLevel = false;
-            frmAutoView.Controls.Add(frmAuto1);
-            frmAuto1.BringToFront();
-            frmAuto1.Show();
-            #endregion FORM_AUTO1
-
-            #region FORM_AUTO2
             frmAuto2 = new FormAuto2(this);
-            frmAuto2.StartPosition = FormStartPosition.Manual;
-            frmAuto2.Location = new Point(0, 0);
-            frmAuto2.TopLevel = false;
-            frmAutoView.Controls.Add(frmAuto2);
-            //frmAuto2.BringToFront();
-            frmAuto2.Show();
-            #endregion FORM_AUTO2
 
-            #region FORM_MANUAL_MENU
-            frmManualMenu = new FormManualMenu(this);
-            frmManualMenu.StartPosition = FormStartPosition.Manual;
-            frmManualMenu.Location = new Point(1480, 0);//(1160, 0)
-            frmManualMenu.TopLevel = false;
-            frmManualView.Controls.Add(frmManualMenu);
-            frmManualMenu.Show();
-            #endregion FORM_MANUAL_MENU
-
-            #region FORM_MANUAL_LIST
             frmManualList = new FormManualList(this);
-            frmManualList.StartPosition = FormStartPosition.Manual;
-            frmManualList.Location = new Point(0, 0);
-            frmManualList.TopLevel = false;
-            frmManualView.Controls.Add(frmManualList);
-            frmManualList.BringToFront();
-            frmManualList.Show();
-            #endregion FORM_MANUAL_LIST
-
-            #region FORM_MANUAL_OP
             frmManualOP = new FormManualOP(this);
-            frmManualOP.StartPosition = FormStartPosition.Manual;
-            frmManualOP.Location = new Point(0, 0);
-            frmManualOP.TopLevel = false;
-            frmManualView.Controls.Add(frmManualOP);
-            frmManualOP.Show();
-            #endregion FORM_MANUAL_OP
 
-            #region FORM_MOTORL_MENU
-            frmMotorMenu = new FormMotorMenu(this);
-            frmMotorMenu.StartPosition = FormStartPosition.Manual;
-            frmMotorMenu.Location = new Point(1480, 0);
-            frmMotorMenu.TopLevel = false;
-            frmMotorView.Controls.Add(frmMotorMenu);
-            frmMotorMenu.Show();
-            #endregion FORM_MOTORL_MENU
-
-            #region FORM_MOTOR_SETTING
             frmMotorSetting = new FormMotorSetting(this);
-            frmMotorSetting.StartPosition = FormStartPosition.Manual;
-            frmMotorSetting.Location = new Point(0, 0);
-            frmMotorSetting.TopLevel = false;
-            frmMotorView.Controls.Add(frmMotorSetting);
-            frmMotorSetting.BringToFront();
-            frmMotorSetting.Show();
-            #endregion FORM_MOTOR_SETTING
 
-            #region FORM_DATA_MENU
-            frmDataMenu = new FormDataMenu(this);
-            frmDataMenu.StartPosition = FormStartPosition.Manual;
-            //frmDataMenu.Location = new Point(1160, 0);
-
-            frmDataMenu.Location = new Point(1480, 0);
-            frmDataMenu.TopLevel = false;
-            frmDataView.Controls.Add(frmDataMenu);
-            frmDataMenu.Show();
-            #endregion FORM_DATA_MENU
-
-            #region FORM_DATA_RECIPE
             frmDataRecipe = new FormDataRecipe(this);
-            frmDataRecipe.StartPosition = FormStartPosition.Manual;
-            frmDataRecipe.Location = new Point(0, 0);
-            frmDataRecipe.TopLevel = false;
-            frmDataView.Controls.Add(frmDataRecipe);
-            frmDataRecipe.BringToFront();
-            frmDataRecipe.Show();
-            #endregion FORM_DATA_RECIPE
-
-            #region FORM_DATA_SYSTEM_PARAM
             frmDataSysParam = new FormDataSysParam(this);
-            frmDataSysParam.StartPosition = FormStartPosition.Manual;
-            frmDataSysParam.Location = new Point(0, 0);
-            frmDataSysParam.TopLevel = false;
-            frmDataView.Controls.Add(frmDataSysParam);
-            frmDataSysParam.Show();
-            #endregion FORM_DATA_SYSTEM_PARAM
-
-            #region FORM_DATA_OPTION
             frmDataOption = new FormDataOption(this);
-            frmDataOption.StartPosition = FormStartPosition.Manual;
-            frmDataOption.Location = new Point(0, 0);
-            frmDataOption.TopLevel = false;
-            frmDataView.Controls.Add(frmDataOption);
-            frmDataOption.Show();
-            #endregion FORM_DATA_OPTION
-
-            #region FORM_DATA_LAMP_BUZZER
             frmDataLampBuzzer = new FormDataLampBuzzer(this);
-            frmDataLampBuzzer.StartPosition = FormStartPosition.Manual;
-            frmDataLampBuzzer.Location = new Point(0, 0);
-            frmDataLampBuzzer.TopLevel = false;
-            frmDataView.Controls.Add(frmDataLampBuzzer);
-            frmDataLampBuzzer.Show();
-            #endregion FORM_DATA_LAMP_BUZZER
-
-            #region FORM_DATA_USER_REGIST
             frmDataUserRegist = new FormDataUserRegist(this);
-            frmDataUserRegist.StartPosition = FormStartPosition.Manual;
-            frmDataUserRegist.Location = new Point(0, 0);
-            frmDataUserRegist.TopLevel = false;
-            frmDataView.Controls.Add(frmDataUserRegist);
-            frmDataUserRegist.Show();
-            #endregion FORM_DATA_USER_REGIST
-
-            #region FORM_DATA_MOTOR_CONFIG
             frmDataMotorCFG = new FormDataMotorCFG(this);
-            frmDataMotorCFG.StartPosition = FormStartPosition.Manual;
-            frmDataMotorCFG.Location = new Point(0, 0);
-            frmDataMotorCFG.TopLevel = false;
-            frmDataView.Controls.Add(frmDataMotorCFG);
-            frmDataMotorCFG.Show();
-            #endregion FORM_DATA_MOTOR_CONFIG
 
-            #region FORM_MONITOR_MENU
-            frmMonitorMenu = new FormMonitorMenu(this);
-            frmMonitorMenu.StartPosition = FormStartPosition.Manual;
-            frmMonitorMenu.Location = new Point(1480, 0);  //(1160, 0)
-            frmMonitorMenu.TopLevel = false;
-            frmMonitorView.Controls.Add(frmMonitorMenu);
-            frmMonitorMenu.Show();
-            #endregion FORM_MONITOR_MENU
-
-            #region FORM_MONITOR_IO
             frmMonitorIO = new FormMonitorIO(this);
-            frmMonitorIO.StartPosition = FormStartPosition.Manual;
-            frmMonitorIO.Location = new Point(0, 0);
-            frmMonitorIO.TopLevel = false;
-            frmMonitorView.Controls.Add(frmMonitorIO);
-            frmMonitorIO.BringToFront();
-            frmMonitorIO.Show();
-            #endregion FORM_MONITOR_IO
-
-            #region FORM_MONITOR_BIT_DM
             frmMonitorBitDM = new FormMonitorBitDM(this);
-            frmMonitorBitDM.StartPosition = FormStartPosition.Manual;
-            frmMonitorBitDM.Location = new Point(0, 0);
-            frmMonitorBitDM.TopLevel = false;
-            frmMonitorView.Controls.Add(frmMonitorBitDM);
-            frmMonitorBitDM.Show();
-            #endregion FORM_MONITOR_BIT_DM
 
-            #region FORM_ALARM_MENU
-            frmAlarmMenu = new FormAlarmMenu(this);
-            frmAlarmMenu.StartPosition = FormStartPosition.Manual;
-            frmAlarmMenu.Location = new Point(1480, 0);
-            frmAlarmMenu.TopLevel = false;
-            frmAlarmView.Controls.Add(frmAlarmMenu);
-            frmAlarmMenu.Show();
-            #endregion FORM_ALARM_MENU
-
-            #region FORM_ALARM_LIST
             frmAlarmList = new FormAlarmList(this);
-            frmAlarmList.StartPosition = FormStartPosition.Manual;
-            frmAlarmList.Location = new Point(0, 0);
-            frmAlarmList.TopLevel = false;
-            frmAlarmView.Controls.Add(frmAlarmList);
-            frmAlarmList.BringToFront();
-            frmAlarmList.Show();
-            #endregion FORM_ALARM_LIST
 
-            #region FORM_LOG_MENU
-            frmLogMenu = new FormLogMenu(this);
-            frmLogMenu.StartPosition = FormStartPosition.Manual;
-            frmLogMenu.Location = new Point(1480, 0); //(1160, 0)
-            frmLogMenu.TopLevel = false;
-            frmLogView.Controls.Add(frmLogMenu);
-            frmLogMenu.Show();
-            #endregion FORM_LOG_MENU
-
-            #region FORM_LOG
             frmLog = new FormLog(this);
-            frmLog.StartPosition = FormStartPosition.Manual;
-            frmLog.Location = new Point(0, 0);
-            frmLog.TopLevel = false;
-            frmLogView.Controls.Add(frmLog);
-            frmLog.BringToFront();
-            frmLog.Show();
-            #endregion FORM_LOG
-
-            #region FORM_LOG_ERROR
             frmLogError = new FormLogError(this);
-            frmLogError.StartPosition = FormStartPosition.Manual;
-            frmLogError.Location = new Point(0, 0);
-            frmLogError.TopLevel = false;
-            frmLogView.Controls.Add(frmLogError);
-            frmLogError.Show();
-            #endregion FORM_LOG_ERROR
-
-            #region FORM_LOG_MTBA_MTBF
             frmLogMTBA = new FormLogMTBA(this);
-            frmLogMTBA.StartPosition = FormStartPosition.Manual;
-            frmLogMTBA.Location = new Point(0, 0);
-            frmLogMTBA.TopLevel = false;
-            frmLogView.Controls.Add(frmLogMTBA);
-            frmLogMTBA.Show();
-            #endregion FORM_LOG_MTBA_MTBF
-
 
             frmCalib = new FormCalibration(this);
-            frmCalib.StartPosition = FormStartPosition.Manual;
-            frmCalib.Location = new Point(0, 0);
-            frmCalib.TopLevel = false;
-            frmCalView.Controls.Add(frmCalib);
-            frmCalib.BringToFront();
-            frmCalib.Show();
 
+            RegisterScreen((int)MmiGV.eSCRNO.AUTO1,             "PRODUCTION",    frmAuto1);
+            RegisterScreen((int)MmiGV.eSCRNO.AUTO2,             "AUTO 2",        frmAuto2);
+            RegisterScreen((int)MmiGV.eSCRNO.MANUAL_LIST,       "MANUAL LIST",   frmManualList);
+            RegisterScreen((int)MmiGV.eSCRNO.MANUAL_OP,         "MANUAL OP",     frmManualOP);
+            RegisterScreen((int)MmiGV.eSCRNO.MOTOR_SETTING,     "MOTOR SETTING", frmMotorSetting);
+            RegisterScreen((int)MmiGV.eSCRNO.DATA_RECIPE,       "DATA_RECIPE",   frmDataRecipe);
+            RegisterScreen((int)MmiGV.eSCRNO.DATA_SYSTEMPARAM,  "DATA_SYSTEMPARAM", frmDataSysParam);
+            RegisterScreen((int)MmiGV.eSCRNO.DATA_OPTION,       "DATA_OPTION",   frmDataOption);
+            RegisterScreen((int)MmiGV.eSCRNO.DATA_LAMPBUZZER,   "DATA_LAMPBUZZER", frmDataLampBuzzer);
+            RegisterScreen((int)MmiGV.eSCRNO.DATA_USERREGIST,   "DATA_USERREGIST", frmDataUserRegist);
+            RegisterScreen((int)MmiGV.eSCRNO.DATA_MOTOR_CONFIG, "DATA_MOTOR_CONFIG", frmDataMotorCFG);
+            RegisterScreen((int)MmiGV.eSCRNO.MONITOR_IO,        "MONITOR_IO",    frmMonitorIO);
+            RegisterScreen((int)MmiGV.eSCRNO.MONITOR_DMBIT,     "MONITOR_DMBIT", frmMonitorBitDM);
+            RegisterScreen((int)MmiGV.eSCRNO.ALARM_LIST,        "ALARM_LIST",    frmAlarmList);
+            RegisterScreen((int)MmiGV.eSCRNO.LOG,               "LOG",           frmLog);
+            RegisterScreen((int)MmiGV.eSCRNO.LOG_ERROR,         "LOG_ERROR",     frmLogError);
+            RegisterScreen((int)MmiGV.eSCRNO.LOG_MTBAMTBF,      "LOG_MTBAMTBF",  frmLogMTBA);
+            RegisterScreen((int)MmiGV.eSCRNO.CALIB,             "TEACH",         frmCalib);
 
-
+            m_dicSubMenu[(int)eScreenGroup.AUTO]    = flpSubAuto;
+            m_dicSubMenu[(int)eScreenGroup.MANUAL]  = flpSubManual;
+            m_dicSubMenu[(int)eScreenGroup.DATA]    = flpSubData;
+            m_dicSubMenu[(int)eScreenGroup.MONITOR] = flpSubIO;
+            m_dicSubMenu[(int)eScreenGroup.LOG]     = flpSubLog;
 
             #region SUB_FORM
             frm_NumAdd = new Form_NumAdd(this);
@@ -491,41 +200,44 @@ namespace MMI
             frm_LotInput.TopLevel = true;
 
             frmLogHistory = new FormLogHistory(this);
-
             #endregion SUB_FORM
 
-            #region FORM_VIEW_POINT_INIT
-            MmiGV.ViewMainForm = frmAutoView;
-            MmiGV.bfViewMainForm = frmAutoView;
+            ShowScreen((int)MmiGV.eSCRNO.AUTO1, false);
 
-            MmiGV.ViewAutoForm = frmAuto1;
-            MmiGV.bfViewAutoForm = frmAuto1;
+            // The standard asks for the program to come up logged in as an
+            // operator rather than with every screen locked.
+            LogInAsOperator();
+        }
 
-            MmiGV.ViewManualForm = frmManualList;
-            MmiGV.bfViewManualForm = frmManualList;
+        private void RegisterScreen(int nScreenNo, string strCaption, Form frm)
+        {
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            frm.AutoScroll = true;
+            frm.Visible = false;
+            pnlContent.Controls.Add(frm);
 
-            MmiGV.ViewMotorForm = frmMotorSetting;
-            MmiGV.bfViewMotorForm = frmMotorSetting;
+            HmiTheme.Apply(frm);
 
-            MmiGV.ViewDataForm = frmDataRecipe;
-            MmiGV.bfViewDataForm = frmDataRecipe;
+            m_dicScreen[nScreenNo] = new ScreenEntry
+            {
+                ScreenNo = nScreenNo,
+                Caption = strCaption,
+                Screen = frm,
+            };
 
-            MmiGV.ViewMonitorForm = frmMonitorIO;
-            MmiGV.bfViewMonitorForm = frmMonitorIO;
+            int nGroup = GroupOf(nScreenNo);
+            if (!m_dicLastScreenOfGroup.ContainsKey(nGroup))
+            {
+                m_dicLastScreenOfGroup[nGroup] = nScreenNo;
+            }
+        }
 
-            MmiGV.ViewAlarmForm = frmAlarmList;
-            MmiGV.bfViewAlarmForm = frmAlarmList;
-
-            MmiGV.ViewLogForm = frmLog;
-            MmiGV.bfViewLogForm = frmLog;
-            #endregion FORM_VIEW_POINT_INIT
-
-
-            p_bfButton = btnMenuAuto;
-            btnMenuAuto.Checked = true;
-
-            //SetMenuButtonEnable((int)MmiGV.eUserLevel.USER_LEVEL_NONE);
-            //UILanguageUpdate();
+        // 41 -> 4, 8 -> 8. Teach is a single digit screen number of its own.
+        private static int GroupOf(int nScreenNo)
+        {
+            return (nScreenNo >= 10) ? nScreenNo / 10 : nScreenNo;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -541,13 +253,8 @@ namespace MMI
             CRecipeCtl.MainRecipeLoad();
 
             OpenConfigFile();
-            //DisplayCurDevice();
-            //FileLog.LOG_TRACE("Machine Start...");
 
             MmiGV.bProgramExit = false;
-
-
-            //frm_SystemInit.SystemInitialize();
 
             CThread.ThreadMain = new Thread(() => { CThreadMain.ExecuteMainThred(); });
             CThread.CreateThread(CThread.ThreadMain, ThreadPriority.Normal);
@@ -558,25 +265,21 @@ namespace MMI
             CThread.ThreadMMILogMsg = new Thread(() => { MMILog.ExcuteMMILogMsg(); });
             CThread.CreateThread(CThread.ThreadMMILogMsg, ThreadPriority.Normal);
 
-            //Thread thdUDPServer = new Thread(new ThreadStart(UDPServerSeqLogThread));
-            //thdUDPServer.Start();
-
             udp_server.StartAsServer("127.0.0.1", "9999");
         }
 
         public void DisplayCurDevice()
         {
             string strDevice;
-            strDevice = " [" + string.Format("{0:D3}", MmiGV.iDevNo) + "]";
+            strDevice = "[" + string.Format("{0:D3}", MmiGV.iDevNo) + "] ";
             strDevice += MmiGV.strCurrentDevName;
             lblDevice.Text = strDevice;
         }
 
         private void FormMain_Shown(object sender, EventArgs e)
         {
-            
-
         }
+
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             string strSQL;
@@ -596,15 +299,6 @@ namespace MMI
                 MmiGV.pShMem.SetExitProgram();
 
                 Thread.Sleep(2000);
-                //if (CThread.ThreadMain != null)
-                //{
-                //    CThread.ThreadMain.Abort();
-                //}
-
-                //if(CThread.ThreadMMILogMsg!=null)
-                //{
-                //    CThread.ThreadMMILogMsg.Abort();
-                //}
 
                 e.Cancel = false;
             }
@@ -612,15 +306,7 @@ namespace MMI
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //MmiGV.bProgramExit = true;
             SQLiteDB.Close();
-
-            //SEQ_EXIT seq_exit = new SEQ_EXIT()
-            //{
-            //    bExit = true,
-            //};
-
-            //WIN32Helper.SendCopyData(WIN32Helper.WM_COPYDATA, seq_exit);
         }
 
         private void showHideConsoleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -650,321 +336,291 @@ namespace MMI
             }
         }
 
+        #region NAVIGATION
+
+        // Rail entry: back to whichever screen of that group was open last.
         private void btnMenuClick(object sender, EventArgs e)
         {
-            CThreadMMILog MMILog = CThreadMMILog.GetInstance;
-            Debug.Assert(MMILog!=null);
+            int nGroup = Convert.ToInt32(((Control)sender).Tag);
 
-            p_Button = sender as DevComponents.DotNetBar.ButtonX;
+            int nScreenNo;
+            if (!m_dicLastScreenOfGroup.TryGetValue(nGroup, out nScreenNo)) return;
 
-            if (ibfButtonTag == Convert.ToInt16(p_Button.Tag))
-                return;
-
-            MmiGV.bfViewMainForm.Visible = false;
-
-            int nTag = Convert.ToInt16(p_Button.Tag);
-            switch (nTag)
-            {
-                case (int)MmiGV.eSCRNO.AUTO_VIEW:
-                    MmiGV.ViewMainForm = frmAutoView;
-                    break;
-                case (int)MmiGV.eSCRNO.MANUAL_VIEW:
-                    MmiGV.ViewMainForm = frmManualView;
-                    break;
-                case (int)MmiGV.eSCRNO.MOTOR_VIEW:
-                    MmiGV.ViewMainForm = frmMotorView;
-                    break;
-                case (int)MmiGV.eSCRNO.DATA_VIEW:
-                    MmiGV.ViewMainForm = frmDataView;
-                    break;
-                case (int)MmiGV.eSCRNO.MONITOR_VIEW:
-                    MmiGV.ViewMainForm = frmMonitorView;
-                    break;
-                case (int)MmiGV.eSCRNO.ALARM_VIEW:
-                    MmiGV.ViewMainForm = frmAlarmView;
-                    break;
-                case (int)MmiGV.eSCRNO.LOG_VIEW:
-                    MmiGV.ViewMainForm = frmLogView;
-                    break;
-                case (int)MmiGV.eSCRNO.CALIB:
-                    frmCalView.Controls.Clear();
-                    frmCalib.Load3Point();
-                    frmCalView.Controls.Add(frmCalib);
-                    MmiGV.ViewMainForm = frmCalView;
-                    break;
-            }
-
-            MmiGV.ViewMainForm.Visible = true;
-            MmiGV.bfViewMainForm = MmiGV.ViewMainForm;
-
-            p_bfButton.Checked = false;
-            p_Button.Checked = true;
-            p_bfButton = p_Button;
-            ibfButtonTag = nTag;
-
-            frmMotorSetting.bTenkeyJogMode = false;
-            frmMotorSetting.btnTenkeyJog.Checked = false;
-            MmiGV.pShMem.SetTenKeyJog(MmiGV.iCurrAxis, frmMotorSetting.bTenkeyJogMode);
-
-            #region SCREEN_NO
-            if (MmiGV.ViewMainForm == frmAutoView)
-            {
-                if (MmiGV.ViewAutoForm == frmAuto1)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.AUTO1;
-                    MMILog.AddMMILog("Change Screen : AUTO1");
-                }
-                else if (MmiGV.ViewAutoForm == frmAuto2)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.AUTO2;
-                    MMILog.AddMMILog("Change Screen : AUTO2");
-                }
-            }
-            else if (MmiGV.ViewMainForm == frmManualView)
-            {
-                if (MmiGV.ViewManualForm == frmManualList)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.MANUAL_LIST;
-                    MMILog.AddMMILog("Change Screen : MANUAL_LIST");
-                }
-                else if (MmiGV.ViewManualForm == frmManualOP)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.MANUAL_OP;
-                    MMILog.AddMMILog("Change Screen : MANUAL_OP");
-                }
-            }
-            else if (MmiGV.ViewMainForm == frmMotorView)
-            {
-                if (MmiGV.ViewMotorForm == frmMotorSetting)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.MOTOR_SETTING;
-                    MMILog.AddMMILog("Change Screen : MOTOR_SETTING");
-                }
-            }
-            else if (MmiGV.ViewMainForm == frmDataView)
-            {
-                if (MmiGV.ViewDataForm == frmDataRecipe)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.DATA_RECIPE;
-                    MMILog.AddMMILog("Change Screen : DATA_RECIPE");
-                }
-                else if (MmiGV.ViewDataForm == frmDataSysParam)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.DATA_SYSTEMPARAM;
-                    MMILog.AddMMILog("Change Screen : DATA_SYSTEMPARAM");
-                }
-                else if (MmiGV.ViewDataForm == frmDataOption)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.DATA_OPTION;
-                    MMILog.AddMMILog("Change Screen : DATA_OPTION");
-                }
-                else if (MmiGV.ViewDataForm == frmDataLampBuzzer)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.DATA_LAMPBUZZER;
-                    MMILog.AddMMILog("Change Screen : DATA_LAMPBUZZER");
-                }
-                else if (MmiGV.ViewDataForm == frmDataUserRegist)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.DATA_USERREGIST;
-                    MMILog.AddMMILog("Change Screen : DATA_USERREGIST");
-                }
-                else if (MmiGV.ViewDataForm == frmDataMotorCFG)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.DATA_MOTOR_CONFIG;
-                    MMILog.AddMMILog("Change Screen : DATA_MOTOR_CONFIG");
-                }
-            }
-            else if (MmiGV.ViewMainForm == frmMonitorView)
-            {
-                if (MmiGV.ViewMonitorForm == frmMonitorIO)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.MONITOR_IO;
-                    MMILog.AddMMILog("Change Screen : MONITOR_IO");
-                }
-                else if (MmiGV.ViewMonitorForm == frmMonitorBitDM)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.MONITOR_DMBIT;
-                    MMILog.AddMMILog("Change Screen : MONITOR_DMBIT");
-                }
-            }
-            else if (MmiGV.ViewMainForm == frmAlarmView)
-            {
-                if (MmiGV.ViewAlarmForm == frmAlarmList)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.ALARM_LIST;
-                    MMILog.AddMMILog("Change Screen : ALARM_LIST");
-                }
-            }
-            else if (MmiGV.ViewMainForm == frmLogView)
-            {
-                if (MmiGV.ViewLogForm == frmLog)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.LOG;
-                    MMILog.AddMMILog("Change Screen : LOG");
-                }
-                else if (MmiGV.ViewLogForm == frmLogError)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.LOG_ERROR;
-                    MMILog.AddMMILog("Change Screen : LOG_ERROR");
-                }
-                else if (MmiGV.ViewLogForm == frmLogMTBA)
-                {
-                    MmiGV.iScreenNo = (int)MmiGV.eSCRNO.LOG_MTBAMTBF;
-                    MMILog.AddMMILog("Change Screen : LOG_MTBAMTBF");
-                }
-            }
-            MmiGV.pShMem.SetDM(7, (uint)MmiGV.iScreenNo);
-            #endregion SCREEN_NO
+            ShowScreen(nScreenNo, true);
         }
+
+        private void btnSubMenuClick(object sender, EventArgs e)
+        {
+            ShowScreen(Convert.ToInt32(((Control)sender).Tag), true);
+        }
+
+        public void ShowScreen(int nScreenNo, bool bLog)
+        {
+            ScreenEntry next;
+            if (!m_dicScreen.TryGetValue(nScreenNo, out next)) return;
+            if (next == m_CurScreen) return;
+
+            // Motor config has been behind a fixed code since before the
+            // standard; it stays behind it rather than behind the user level.
+            if (nScreenNo == (int)MmiGV.eSCRNO.DATA_MOTOR_CONFIG)
+            {
+                if (!frm_NumPad.Display()) return;
+                if (frm_NumPad.GetValue() != 4899) return;
+            }
+
+            if (nScreenNo == (int)MmiGV.eSCRNO.CALIB)
+            {
+                frmCalib.Load3Point();
+            }
+
+            if (m_CurScreen != null)
+            {
+                m_CurScreen.Screen.Visible = false;
+            }
+            next.Screen.Visible = true;
+            next.Screen.BringToFront();
+            m_CurScreen = next;
+
+            int nGroup = GroupOf(nScreenNo);
+            m_dicLastScreenOfGroup[nGroup] = nScreenNo;
+
+            UpdateRail(nGroup);
+            UpdateSubMenu(nGroup, nScreenNo);
+
+            if (frmMotorSetting != null && frmMotorSetting.bTenkeyJogMode)
+            {
+                frmMotorSetting.bTenkeyJogMode = false;
+                frmMotorSetting.btnTenkeyJog.Checked = false;
+                MmiGV.pShMem.SetTenKeyJog(MmiGV.iCurrAxis, frmMotorSetting.bTenkeyJogMode);
+            }
+
+            MmiGV.iScreenNo = nScreenNo;
+            if (MmiGV.pShMem != null)
+            {
+                MmiGV.pShMem.SetDM(7, (uint)MmiGV.iScreenNo);
+            }
+
+            if (bLog)
+            {
+                CThreadMMILog MMILog = CThreadMMILog.GetInstance;
+                MMILog.AddMMILog("Change Screen : " + next.Caption);
+            }
+        }
+
+        private void UpdateRail(int nGroup)
+        {
+            foreach (Control c in pnlRail.Controls)
+            {
+                HmiRailButton btn = c as HmiRailButton;
+                if (btn == null) continue;
+                btn.Checked = (Convert.ToInt32(btn.Tag) == nGroup);
+            }
+        }
+
+        private void UpdateSubMenu(int nGroup, int nScreenNo)
+        {
+            FlowLayoutPanel flp;
+            bool bHasSub = m_dicSubMenu.TryGetValue(nGroup, out flp);
+
+            pnlSubMenu.Visible = bHasSub;
+            if (!bHasSub) return;
+
+            foreach (FlowLayoutPanel other in m_dicSubMenu.Values)
+            {
+                other.Visible = (other == flp);
+            }
+            foreach (Control c in flp.Controls)
+            {
+                HmiButton btn = c as HmiButton;
+                if (btn == null) continue;
+                btn.Checked = (Convert.ToInt32(btn.Tag) == nScreenNo);
+            }
+
+            foreach (Control c in pnlRail.Controls)
+            {
+                if (Convert.ToInt32(c.Tag) == nGroup) lblSubTitle.Text = c.Text.ToUpper();
+            }
+        }
+
+        #endregion NAVIGATION
+
+        #region ALARM_BANNER
+
+        // The banner is the one place the current alarm is shown. Grey and
+        // quiet with no alarm; red with the code and the message when there is
+        // one. Clicking it opens the alarm screen for the trouble shooting.
+        public void ShowAlarm(uint uCode, string strName, string strMessage)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => ShowAlarm(uCode, strName, strMessage)));
+                return;
+            }
+
+            if (uCode == 0)
+            {
+                pnlAlarmBanner.BackColor = Color.FromArgb(0x1E, 0x21, 0x25);
+                lblAlarmStripe.BackColor = HmiTheme.TextDisabled;
+                lblError.ForeColor = HmiTheme.TextMuted;
+                lblError.Text = "No Alarm";
+                lblErrorMessage.ForeColor = HmiTheme.TextMuted;
+                lblErrorMessage.Text = "";
+                return;
+            }
+
+            pnlAlarmBanner.BackColor = HmiTheme.AlarmBanner;
+            lblAlarmStripe.BackColor = HmiTheme.Alarm;
+            lblError.ForeColor = HmiTheme.Alarm;
+            lblError.Text = $"Alarm: E{uCode:0000}";
+            lblErrorMessage.ForeColor = HmiTheme.AlarmBannerText;
+            lblErrorMessage.Text = string.IsNullOrEmpty(strMessage) ? strName : strName + "  -  " + strMessage;
+        }
+
+        // System initialisation borrows the banner for its progress text.
+        public void ShowBannerText(string strText)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => ShowBannerText(strText)));
+                return;
+            }
+            lblError.ForeColor = HmiTheme.Accent;
+            lblError.Text = "System";
+            lblErrorMessage.ForeColor = HmiTheme.Text;
+            lblErrorMessage.Text = strText;
+        }
+
+        private void lblErrorMessage_Click(object sender, EventArgs e)
+        {
+            if (MmiGV.iErrorCode == 0) return;
+            if (!btnMenuAlarm.Enabled) return;
+            ShowScreen((int)MmiGV.eSCRNO.ALARM_LIST, true);
+        }
+
+        #endregion ALARM_BANNER
+
+        #region USER_LEVEL
 
         private void SetMenuButtonEnable(int iLevel)
         {
-            switch (iLevel)
+            bool bOperator    = iLevel >= (int)MmiGV.eUserLevel.USER_LEVEL_OPERATOR;
+            bool bMaintenance = iLevel >= (int)MmiGV.eUserLevel.USER_LEVEL_MAINTENANCE;
+            bool bEngineer    = iLevel >= (int)MmiGV.eUserLevel.USER_LEVEL_ENGINEER;
+
+            btnMenuAuto.Enabled    = true;
+            btnMenuManual.Enabled  = bMaintenance;
+            btnMenuMotor.Enabled   = bEngineer;
+            btnMenuData.Enabled    = bOperator;
+            btnMenuMonitor.Enabled = bOperator;
+            btnMenuAlarm.Enabled   = bOperator;
+            btnMenuLog.Enabled     = bOperator;
+            btnMenuCalib.Enabled   = bEngineer;
+            btnTenKey.Enabled      = bOperator;
+
+            btnSubRecipe.Enabled      = bOperator;
+            btnSubSysParam.Enabled    = bEngineer;
+            btnSubUseSkip.Enabled     = bEngineer;
+            btnSubLampBuzzer.Enabled  = bEngineer;
+            btnSubUserRegist.Enabled  = bEngineer;
+            btnSubMotorCfg.Enabled    = bEngineer;
+
+            TimerUserLevel.Enabled = (iLevel != (int)MmiGV.eUserLevel.USER_LEVEL_NONE);
+
+            // A level that cannot see the screen in front of it goes back to
+            // the production screen rather than leaving it on display.
+            if (m_CurScreen != null)
             {
-                case (int)MmiGV.eUserLevel.USER_LEVEL_NONE:
-                    btnMenuAuto.Enabled = true;
-                    btnMenuManual.Enabled = false;
-                    btnMenuMotor.Enabled = false;
-                    btnMenuData.Enabled = false;
-                    btnMenuMonitor.Enabled = false;
-                    btnMenuAlarm.Enabled = false;
-                    btnMenuLog.Enabled = false;
-                    btnTenKey.Enabled = false;
-
-                    //TimerUserLevel.Enabled = true;
-                    break;
-                case (int)MmiGV.eUserLevel.USER_LEVEL_OPERATOR:
-                    btnMenuAuto.Enabled = true;
-                    btnMenuManual.Enabled = false;
-                    btnMenuMotor.Enabled = false;
-
-                    btnMenuData.Enabled = true;
-                    frmDataMenu.btnMenuRecipe.Enabled = true;
-                    frmDataMenu.btnMenuSysParam.Enabled = false;
-                    frmDataMenu.btnOption.Enabled = false;
-                    frmDataMenu.btnMenuLampBuzzer.Enabled = false;
-                    frmDataMenu.btnMenuUserRegist.Enabled = false;
-                    frmDataMenu.btnMenuMTCFG.Enabled = false;
-
-                    btnMenuMonitor.Enabled = true;
-                    btnMenuAlarm.Enabled = true;
-                    btnMenuLog.Enabled = true;
-                    btnTenKey.Enabled = true;
-
-                    TimerUserLevel.Enabled = true;
-                    break;
-                case (int)MmiGV.eUserLevel.USER_LEVEL_MAINTENANCE:
-                    btnMenuAuto.Enabled = true;
-                    btnMenuManual.Enabled = true;
-                    btnMenuMotor.Enabled = false;
-
-                    btnMenuData.Enabled = true;
-                    frmDataMenu.btnMenuRecipe.Enabled = true;
-                    frmDataMenu.btnMenuSysParam.Enabled = false;
-                    frmDataMenu.btnOption.Enabled = false;
-                    frmDataMenu.btnMenuLampBuzzer.Enabled = false;
-                    frmDataMenu.btnMenuUserRegist.Enabled = false;
-                    frmDataMenu.btnMenuMTCFG.Enabled = false;
-
-                    btnMenuMonitor.Enabled = true;
-                    btnMenuAlarm.Enabled = true;
-                    btnMenuLog.Enabled = true;
-                    btnTenKey.Enabled = true;
-
-                    TimerUserLevel.Enabled = true;
-                    break;
-                case (int)MmiGV.eUserLevel.USER_LEVEL_ENGINEER:
-                    btnMenuAuto.Enabled = true;
-                    btnMenuManual.Enabled = true;
-                    btnMenuMotor.Enabled = true;
-
-                    frmDataMenu.btnMenuRecipe.Enabled = true;
-                    frmDataMenu.btnMenuSysParam.Enabled = true;
-                    frmDataMenu.btnOption.Enabled = true;
-                    frmDataMenu.btnMenuLampBuzzer.Enabled = true;
-                    frmDataMenu.btnMenuUserRegist.Enabled = true;
-                    frmDataMenu.btnMenuMTCFG.Enabled = true;
-
-                    btnMenuMonitor.Enabled = true;
-                    btnMenuAlarm.Enabled = true;
-                    btnMenuLog.Enabled = true;
-                    btnTenKey.Enabled = true;
-
-                    TimerUserLevel.Enabled = true;
-                    break;
-                case (int)MmiGV.eUserLevel.USER_LEVEL_MASTER:
-                    btnMenuAuto.Enabled = true;
-                    btnMenuManual.Enabled = true;
-                    btnMenuMotor.Enabled = true;
-
-                    frmDataMenu.btnMenuRecipe.Enabled = true;
-                    frmDataMenu.btnMenuSysParam.Enabled = true;
-                    frmDataMenu.btnOption.Enabled = true;
-                    frmDataMenu.btnMenuLampBuzzer.Enabled = true;
-                    frmDataMenu.btnMenuUserRegist.Enabled = true;
-                    frmDataMenu.btnMenuMTCFG.Enabled = true;
-
-                    btnMenuMonitor.Enabled = true;
-                    btnMenuAlarm.Enabled = true;
-                    btnMenuLog.Enabled = true;
-                    btnTenKey.Enabled = true;
-
-                    TimerUserLevel.Enabled = true;
-                    break;
+                Control rail = RailOf(GroupOf(m_CurScreen.ScreenNo));
+                if (rail != null && !rail.Enabled)
+                {
+                    ShowScreen((int)MmiGV.eSCRNO.AUTO1, true);
+                }
             }
         }
+
+        private Control RailOf(int nGroup)
+        {
+            foreach (Control c in pnlRail.Controls)
+            {
+                if (Convert.ToInt32(c.Tag) == nGroup) return c;
+            }
+            return null;
+        }
+
+        private static string UserLevelText(int iLevel)
+        {
+            switch (iLevel)
+            {
+                case (int)MmiGV.eUserLevel.USER_LEVEL_OPERATOR:    return "Operator";
+                case (int)MmiGV.eUserLevel.USER_LEVEL_MAINTENANCE: return "Maintenance";
+                case (int)MmiGV.eUserLevel.USER_LEVEL_ENGINEER:    return "Engineer";
+                case (int)MmiGV.eUserLevel.USER_LEVEL_MASTER:      return "Master";
+                default: return "No User";
+            }
+        }
+
+        private void ShowUser()
+        {
+            lblUserName.Text = "● " + UserLevelText(MmiGV.UserInfo.iUserLevel)
+                             + "  " + MmiGV.UserInfo.strUserName;
+        }
+
+        private void LogInAsOperator()
+        {
+            MmiGV.UserInfo.iUserLevel = (int)MmiGV.eUserLevel.USER_LEVEL_OPERATOR;
+            MmiGV.UserInfo.strUserName = "OPERATOR";
+
+            btnUserLogIn.Checked = false;
+            btnUserLogIn.Text = "Log In";
+            dtUserLevelStartTime = DateTime.Now;
+
+            SetMenuButtonEnable(MmiGV.UserInfo.iUserLevel);
+            ShowUser();
+
+            if (MmiGV.pShMem != null)
+            {
+                MmiGV.pShMem.WUserInfo.strUserName = MmiGV.UserInfo.strUserName;
+                MmiGV.pShMem.SetUserInfo();
+            }
+        }
+
+        // Log In raises the level from the operator default; Log Out drops it
+        // back to operator, never below.
+        private void btnUserLogIn_Click(object sender, EventArgs e)
+        {
+            if (btnUserLogIn.Checked)
+            {
+                LogInAsOperator();
+                return;
+            }
+
+            if (frm_UserLogIn.DISPLAY((int)MmiGV.eFormShowMode.MODAL))
+            {
+                btnUserLogIn.Checked = true;
+                btnUserLogIn.Text = "Log Out";
+
+                dtUserLevelStartTime = DateTime.Now;
+                SetMenuButtonEnable(MmiGV.UserInfo.iUserLevel);
+                ShowUser();
+
+                MmiGV.pShMem.WUserInfo.strUserName = MmiGV.UserInfo.strUserName;
+                MmiGV.pShMem.SetUserInfo();
+            }
+        }
+
+        private void TimerUserLevel_Tick(object sender, EventArgs e)
+        {
+            TimeSpan tsDiff = DateTime.Now - dtUserLevelStartTime;
+            lblUserTime.Text = tsDiff.ToString(@"hh\:mm\:ss");
+        }
+
+        #endregion USER_LEVEL
 
         private void btnTenKey_Click(object sender, EventArgs e)
         {
             frm_TenKey = new Form_TenKey(this);
 
             frm_TenKey.DISPLAY();
-        }
-
-       
-        private void btnUserLogIn_Click(object sender, EventArgs e)
-        {
-            if (btnUserLogIn.Checked)
-            {
-                btnUserLogIn.Checked = false;
-                btnUserLogIn.Text = "LOG IN";
-                lblUserName.Text = "NO USER";
-
-                SetMenuButtonEnable((int)MmiGV.eUserLevel.USER_LEVEL_NONE);
-                TimerUserLevel.Enabled = false;
-
-                MmiGV.pShMem.WUserInfo.strUserName = MmiGV.UserInfo.strUserName = "NO_USER";
-                MmiGV.pShMem.SetUserInfo();
-
-                //USER_INFO user_info = new USER_INFO()
-                //{
-                //    strUserName = MmiGV.UserInfo.strUserName,
-                //};
-                //WIN32Helper.SendCopyData(WIN32Helper.WM_USER_LOG_OUT_REQ, user_info);
-
-            }
-            else
-            {
-                if (frm_UserLogIn.DISPLAY((int)MmiGV.eFormShowMode.MODAL))
-                {
-                    btnUserLogIn.Checked = true;
-                    btnUserLogIn.Text = "LOG OUT";
-                    lblUserName.Text = MmiGV.UserInfo.strUserName;
-
-                    dtUserLevelStartTime = DateTime.Now;
-                    SetMenuButtonEnable(MmiGV.UserInfo.iUserLevel);
-
-                    MmiGV.pShMem.WUserInfo.strUserName = MmiGV.UserInfo.strUserName;
-                    MmiGV.pShMem.SetUserInfo();
-
-                    //USER_INFO user_info = new USER_INFO()
-                    //{
-                    //    strUserName = MmiGV.UserInfo.strUserName,
-                    //};
-                    //WIN32Helper.SendCopyData(WIN32Helper.WM_USER_LOG_IN_REQ, user_info);
-
-                }
-            }
         }
 
         private void btnPM_Click(object sender, EventArgs e)
@@ -1035,11 +691,23 @@ namespace MMI
             {
                 MmiGV.iTragetUPH = iniHelper.ReadInteger("TARGET UPH", "UPH");
             }
+
+            // The machine name heads the top bar. Written once with a default
+            // so it can be found and changed in the file.
+            if (!iniHelper.KeyExists("NAME", "MACHINE"))
+            {
+                iniHelper.WriteString("NAME", "MMI", "MACHINE");
+            }
+            lblMachine.Text = iniHelper.ReadString("NAME", "MACHINE");
         }
 
         private void UILanguageUpdate()
         {
-            btnMenuAuto.Text = MmiGV.m_dicUICaption[(int)MmiGV.eCAPTION_NAME.CAPTION_MAIN_MENU_AUTO];
+            string strCaption;
+            if (MmiGV.m_dicUICaption.TryGetValue((int)MmiGV.eCAPTION_NAME.CAPTION_MAIN_MENU_AUTO, out strCaption))
+            {
+                btnMenuAuto.Text = strCaption;
+            }
         }
 
         private void btnLanguageSET_Click(object sender, EventArgs e)
@@ -1050,36 +718,45 @@ namespace MMI
             UILanguageUpdate();
         }
 
-
         private void btnRESET_Click(object sender, EventArgs e)
         {
-            //frm_Msg.ShowMessage("test");
-
             CThreadMMILog MMILog = CThreadMMILog.GetInstance;
             Debug.Assert(MMILog != null);
 
-            DevComponents.DotNetBar.ButtonX p_Button = sender as DevComponents.DotNetBar.ButtonX;
-
             MmiGV.pShMem.SetTenKey(0);
-            MMILog.AddMMILog(p_Button.Text + " Clicked");
+            MMILog.AddMMILog(((Control)sender).Text + " Clicked");
         }
 
-        private void TimerUserLevel_Tick(object sender, EventArgs e)
+        #region LINK_STATUS
+
+        private void ShowSeqLink(bool bLinked)
         {
-            TimeSpan tsDiff = DateTime.Now - dtUserLevelStartTime;
+            lblSeqLink.Text = bLinked ? "● SEQ: Connected" : "● SEQ: Disconnected";
+            lblSeqLink.ForeColor = bLinked ? HmiTheme.Text : HmiTheme.Alarm;
+        }
 
-            lblUserTime.Text = "USER\n" + tsDiff.ToString(@"hh\:mm\:ss");
-            //if (tsDiff.TotalMinutes > MmiGV.iUserLevelTimeOut)
-            //{
-            //    TimerUserLevel.Enabled = false;
-            //    lblUserName.Text = "NO USER";
-            //    lblUserTime.Text = "USER\n" + "00:00:00";
+        // Peripheral and SECS/GEM states are set by whichever module owns the
+        // connection. Until EzGem is wired in, SECS/GEM reads Offline.
+        public void ShowPeripheralLink(string strName, bool bConnected)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => ShowPeripheralLink(strName, bConnected)));
+                return;
+            }
+            lblPeripheral.Text = "● " + strName + (bConnected ? ": OK" : ": NG");
+            lblPeripheral.ForeColor = bConnected ? HmiTheme.Text : HmiTheme.Alarm;
+        }
 
-            //    MmiGV.UserInfo.strUserName = "nouser";
-            //    MmiGV.UserInfo.strUserPassword = "";
-            //    MmiGV.UserInfo.iUserLevel = (int)MmiGV.eUserLevel.USER_LEVEL_NONE;
-            //    SetMenuButtonEnable((int)MmiGV.eUserLevel.USER_LEVEL_NONE);
-            //}
+        public void ShowSecsGemState(string strState, bool bOnline)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => ShowSecsGemState(strState, bOnline)));
+                return;
+            }
+            lblSecsGem.Text = "● SECS/GEM: " + strState;
+            lblSecsGem.ForeColor = bOnline ? HmiTheme.Text : HmiTheme.TextMuted;
         }
 
         private void TimerSeqLink_Tick(object sender, EventArgs e)
@@ -1090,8 +767,8 @@ namespace MMI
             {
                 if (iSeqLinkCount > iSetSeqLinkCount)
                 {
-                    btnSEQLink.ImageIndex = 1;
                     bSeqLinked = false;
+                    ShowSeqLink(false);
                 }
 
                 WIN32Helper.SendPostMessage(WIN32Helper.WM_APP_LINK_REQ, (uint)WIN32Helper.eMessageTarget.SEQ_MODULE);
@@ -1100,7 +777,7 @@ namespace MMI
             else
             {
                 bSeqLinked = false;
-                btnSEQLink.ImageIndex = 1;
+                ShowSeqLink(false);
             }
         }
 
@@ -1115,28 +792,20 @@ namespace MMI
                         SEQ_NOTIFY_MSG notify_msg = (SEQ_NOTIFY_MSG)Marshal.PtrToStructure(cp.lpData, typeof(SEQ_NOTIFY_MSG));
                         frm_Msg.ShowMessage(notify_msg.strMsg);
                     }
-                    //if (cp.dwData == WIN32helper.WM_LINK_TEST_REQ)
-                    //{
-                    //    //CSHARP_TEST test = (CSHARP_TEST)Marshal.PtrToStructure(cp.lpData, typeof(CSHARP_TEST));
-                    //    //int size = Marshal.SizeOf(test);
-                    //    //listView1.Items.Add(test.strLotID);
-                    //    //listView1.Items.Add(test.nLotCount.ToString());
-                    //    //WIN32helper.SendPostMessage(WIN32helper.WM_LINK_TEST_RSP, (uint)WIN32helper.eMessageTarget.MMI_MODULE);
-                    //}
                     break;
                 case var value when value == WIN32Helper.WM_APP_LINK_RSP:
                     iSeqLinkCount = 0;
                     bSeqLinked = true;
-                    btnSEQLink.ImageIndex = 0;
+                    ShowSeqLink(true);
                     break;
                 default:
-
                     break;
-
             }
 
             base.WndProc(ref message);
         }
+
+        #endregion LINK_STATUS
 
         public void UDPServerSeqLogThread()
         {
@@ -1151,7 +820,6 @@ namespace MMI
                 Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
                 string returnData = Encoding.ASCII.GetString(receiveBytes);
                 MMILog.AddSEQLog(returnData);
-                //Console.WriteLine($"{returnData}");
             }
         }
 
@@ -1175,10 +843,7 @@ namespace MMI
                         strSQL2 += "DMVALUE= ";
                         strSQL2 += MmiGV.dmData.DMValue[iIdx].ToString();
                         strSQL2 += " WHERE IDX=" + iIdx.ToString();
-                        if (SQLiteDB.Execute(strSQL2))
-                        {
-                            // MessageBox.Show("저장되었습니다");
-                        }
+                        SQLiteDB.Execute(strSQL2);
                     }
                 }
             }
@@ -1194,13 +859,10 @@ namespace MMI
             strSQL += " USESKIP2 =" + MmiGV.pShMem.GetDM(17).ToString();
             strSQL += " WHERE IDX =1";
 
-            if (SQLiteDB.Execute(strSQL))
-            {
-                // MessageBox.show("저장되었습니다");
-            }
+            SQLiteDB.Execute(strSQL);
         }
 
-        private void pictureEMO_Click(object sender, EventArgs e)
+        private void btnEMO_Click(object sender, EventArgs e)
         {
             MmiGV.pShMem.SetEStop();
         }

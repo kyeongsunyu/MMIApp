@@ -183,38 +183,24 @@ namespace MMI
         {
 
         }
+        // The alarm banner shows the name from the alarm table. The trouble
+        // shooting text stays on the alarm screen, one click away.
         private static void ErrorRefresh()
         {
-            if (MmiGV.frmMain.lblError.InvokeRequired)
+            if (MmiGV.iErrorCode == 0)
             {
-                MmiGV.frmMain.lblError.Invoke(new Action(() => { MmiGV.frmMain.lblError.Text = ""; }));
-            }
-            else
-            {
-                MmiGV.frmMain.lblError.Text = "";
+                MmiGV.frmMain.ShowAlarm(0, "", "");
+                return;
             }
 
-            if (MmiGV.iErrorCode > 0)
+            var errbuff = new MmiGV.TErrorBuff();
+            if (MmiGV.dicErrorList.TryGetValue((int)MmiGV.iErrorCode, out errbuff))
             {
-                var errbuff = new MmiGV.TErrorBuff();
-                if (MmiGV.dicErrorList.TryGetValue((int)MmiGV.iErrorCode, out errbuff))
-                {
-                    MmiGV.frmMain.lblError.Invoke(new Action(() =>
-                    {
-                        MmiGV.frmMain.lblError.Text = $@"[{MmiGV.iErrorCode:000}] {errbuff.name}";
-                        MmiGV.frmMain.lblError.BackgroundStyle.BackColor = Color.Sienna;
-                        MmiGV.frmMain.lblError.BackgroundStyle.BackColor2 = SystemColors.Info;
-                    }));
-                }
+                MmiGV.frmMain.ShowAlarm(MmiGV.iErrorCode, errbuff.name, "");
             }
             else
             {
-                MmiGV.frmMain.lblError.Invoke(new Action(() =>
-                {
-                    MmiGV.frmMain.lblError.Text = $@"[{MmiGV.iErrorCode:000}]";
-                    MmiGV.frmMain.lblError.BackgroundStyle.BackColor = Color.Silver;
-                    MmiGV.frmMain.lblError.BackgroundStyle.BackColor2 = SystemColors.Info;
-                }));
+                MmiGV.frmMain.ShowAlarm(MmiGV.iErrorCode, "Unknown alarm", "");
             }
         }
 

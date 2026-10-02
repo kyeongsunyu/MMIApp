@@ -3,14 +3,14 @@
     partial class FormMain
     {
         /// <summary>
-        /// 필수 디자이너 변수입니다.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// 사용 중인 모든 리소스를 정리합니다.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,414 +20,151 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form 디자이너에서 생성한 코드
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// 디자이너 지원에 필요한 메서드입니다. 
-        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.pnMainMenu = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.lbTLGreen = new System.Windows.Forms.Label();
-            this.lbTLOrg = new System.Windows.Forms.Label();
-            this.lbTLRed = new System.Windows.Forms.Label();
-            this.imageConnect = new System.Windows.Forms.ImageList(this.components);
-            this.lblUserName = new DevComponents.DotNetBar.LabelX();
-            this.lblUserTime = new DevComponents.DotNetBar.LabelX();
-            this.lblError = new DevComponents.DotNetBar.LabelX();
-            this.lblDevice = new DevComponents.DotNetBar.LabelX();
-            this.labelX4 = new DevComponents.DotNetBar.LabelX();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.pnlTopBar = new System.Windows.Forms.Panel();
+            this.pnlAlarmBanner = new System.Windows.Forms.Panel();
+            this.pnlRail = new System.Windows.Forms.Panel();
+            this.pnlSubMenu = new System.Windows.Forms.Panel();
+            this.pnlContent = new System.Windows.Forms.Panel();
             this.TimerUserLevel = new System.Windows.Forms.Timer(this.components);
             this.TimerSeqLink = new System.Windows.Forms.Timer(this.components);
-            this.TrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.showHideConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerConsole = new System.Windows.Forms.Timer(this.components);
-            this.btnSEQLink = new System.Windows.Forms.Button();
-            this.pictureLOGO = new System.Windows.Forms.PictureBox();
-            this.btnPM = new DevComponents.DotNetBar.ButtonX();
-            this.btnUserLogIn = new DevComponents.DotNetBar.ButtonX();
-            this.btnBuzzerOff = new DevComponents.DotNetBar.ButtonX();
-            this.pictureEMO = new System.Windows.Forms.PictureBox();
-            this.btnMenuCalib = new DevComponents.DotNetBar.ButtonX();
-            this.btnLanguageSET = new DevComponents.DotNetBar.ButtonX();
-            this.btnRESET = new DevComponents.DotNetBar.ButtonX();
-            this.btnTenKey = new DevComponents.DotNetBar.ButtonX();
-            this.btnMenuLog = new DevComponents.DotNetBar.ButtonX();
-            this.btnMenuAlarm = new DevComponents.DotNetBar.ButtonX();
-            this.btnMenuMonitor = new DevComponents.DotNetBar.ButtonX();
-            this.btnMenuData = new DevComponents.DotNetBar.ButtonX();
-            this.btnMenuMotor = new DevComponents.DotNetBar.ButtonX();
-            this.btnMenuManual = new DevComponents.DotNetBar.ButtonX();
-            this.btnMenuAuto = new DevComponents.DotNetBar.ButtonX();
-            this.pnMainMenu.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.contextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureLOGO)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEMO)).BeginInit();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.TrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.flpTopButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpTopStatus = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblMachine = new System.Windows.Forms.Label();
+            this.lblDeviceCaption = new System.Windows.Forms.Label();
+            this.lblDevice = new System.Windows.Forms.Label();
+            this.lblSeqLink = new System.Windows.Forms.Label();
+            this.lblPeripheral = new System.Windows.Forms.Label();
+            this.lblSecsGem = new System.Windows.Forms.Label();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.lblUserTime = new System.Windows.Forms.Label();
+            this.btnEMO = new MMI.HmiButton();
+            this.btnRESET = new MMI.HmiButton();
+            this.btnBuzzerOff = new MMI.HmiButton();
+            this.btnTenKey = new MMI.HmiButton();
+            this.btnPM = new MMI.HmiButton();
+            this.btnLanguageSET = new MMI.HmiButton();
+            this.btnUserLogIn = new MMI.HmiButton();
+            this.lblAlarmStripe = new System.Windows.Forms.Label();
+            this.lblError = new System.Windows.Forms.Label();
+            this.lblErrorMessage = new System.Windows.Forms.Label();
+            this.btnMenuAuto = new MMI.HmiRailButton();
+            this.btnMenuManual = new MMI.HmiRailButton();
+            this.btnMenuMotor = new MMI.HmiRailButton();
+            this.btnMenuData = new MMI.HmiRailButton();
+            this.btnMenuMonitor = new MMI.HmiRailButton();
+            this.btnMenuAlarm = new MMI.HmiRailButton();
+            this.btnMenuLog = new MMI.HmiRailButton();
+            this.btnMenuCalib = new MMI.HmiRailButton();
+            this.lblSubTitle = new System.Windows.Forms.Label();
+            this.flpSubAuto = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSubAuto1 = new MMI.HmiButton();
+            this.btnSubAuto2 = new MMI.HmiButton();
+            this.flpSubManual = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSubManualList = new MMI.HmiButton();
+            this.btnSubManualOP = new MMI.HmiButton();
+            this.flpSubData = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSubRecipe = new MMI.HmiButton();
+            this.btnSubSysParam = new MMI.HmiButton();
+            this.btnSubUseSkip = new MMI.HmiButton();
+            this.btnSubLampBuzzer = new MMI.HmiButton();
+            this.btnSubUserRegist = new MMI.HmiButton();
+            this.btnSubMotorCfg = new MMI.HmiButton();
+            this.flpSubIO = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSubIO = new MMI.HmiButton();
+            this.btnSubBitDM = new MMI.HmiButton();
+            this.flpSubLog = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSubLog = new MMI.HmiButton();
+            this.btnSubErrorHistory = new MMI.HmiButton();
+            this.btnSubMTBA = new MMI.HmiButton();
+            this.showHideConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlTopBar.SuspendLayout();
+            this.pnlAlarmBanner.SuspendLayout();
+            this.pnlRail.SuspendLayout();
+            this.pnlSubMenu.SuspendLayout();
+            this.pnlContent.SuspendLayout();
+            this.flpTopButtons.SuspendLayout();
+            this.flpTopStatus.SuspendLayout();
+            this.flpSubAuto.SuspendLayout();
+            this.flpSubManual.SuspendLayout();
+            this.flpSubData.SuspendLayout();
+            this.flpSubIO.SuspendLayout();
+            this.flpSubLog.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnMainMenu
+            // pnlTopBar
             // 
-            this.pnMainMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnMainMenu.Controls.Add(this.btnBuzzerOff);
-            this.pnMainMenu.Controls.Add(this.pictureEMO);
-            this.pnMainMenu.Controls.Add(this.btnMenuCalib);
-            this.pnMainMenu.Controls.Add(this.btnLanguageSET);
-            this.pnMainMenu.Controls.Add(this.btnRESET);
-            this.pnMainMenu.Controls.Add(this.btnTenKey);
-            this.pnMainMenu.Controls.Add(this.btnMenuLog);
-            this.pnMainMenu.Controls.Add(this.btnMenuAlarm);
-            this.pnMainMenu.Controls.Add(this.btnMenuMonitor);
-            this.pnMainMenu.Controls.Add(this.btnMenuData);
-            this.pnMainMenu.Controls.Add(this.btnMenuMotor);
-            this.pnMainMenu.Controls.Add(this.btnMenuManual);
-            this.pnMainMenu.Controls.Add(this.btnMenuAuto);
-            this.pnMainMenu.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnMainMenu.Location = new System.Drawing.Point(0, 1031);
-            this.pnMainMenu.Name = "pnMainMenu";
-            this.pnMainMenu.Size = new System.Drawing.Size(1604, 100);
-            this.pnMainMenu.TabIndex = 0;
+            this.pnlTopBar.Controls.Add(this.flpTopStatus);
+            this.pnlTopBar.Controls.Add(this.flpTopButtons);
+            this.pnlTopBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(20)))), ((int)(((byte)(23)))));
+            this.pnlTopBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTopBar.Size = new System.Drawing.Size(1920, 44);
+            this.pnlTopBar.Padding = new System.Windows.Forms.Padding(12, 0, 6, 0);
+            this.pnlTopBar.Name = "pnlTopBar";
             // 
-            // panel1
+            // pnlAlarmBanner
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.labelX1);
-            this.panel1.Controls.Add(this.lbTLGreen);
-            this.panel1.Controls.Add(this.lbTLOrg);
-            this.panel1.Controls.Add(this.lbTLRed);
-            this.panel1.Controls.Add(this.btnSEQLink);
-            this.panel1.Controls.Add(this.lblUserName);
-            this.panel1.Controls.Add(this.lblUserTime);
-            this.panel1.Controls.Add(this.pictureLOGO);
-            this.panel1.Controls.Add(this.btnPM);
-            this.panel1.Controls.Add(this.btnUserLogIn);
-            this.panel1.Controls.Add(this.lblError);
-            this.panel1.Controls.Add(this.lblDevice);
-            this.panel1.Controls.Add(this.labelX4);
-            this.panel1.Controls.Add(this.labelX3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1604, 100);
-            this.panel1.TabIndex = 1;
+            this.pnlAlarmBanner.Controls.Add(this.lblErrorMessage);
+            this.pnlAlarmBanner.Controls.Add(this.lblError);
+            this.pnlAlarmBanner.Controls.Add(this.lblAlarmStripe);
+            this.pnlAlarmBanner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(33)))), ((int)(((byte)(37)))));
+            this.pnlAlarmBanner.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlAlarmBanner.Size = new System.Drawing.Size(1920, 34);
+            this.pnlAlarmBanner.Name = "pnlAlarmBanner";
             // 
-            // labelX1
+            // pnlRail
             // 
-            this.labelX1.BackColor = System.Drawing.Color.Black;
+            this.pnlRail.Controls.Add(this.btnMenuCalib);
+            this.pnlRail.Controls.Add(this.btnMenuLog);
+            this.pnlRail.Controls.Add(this.btnMenuAlarm);
+            this.pnlRail.Controls.Add(this.btnMenuMonitor);
+            this.pnlRail.Controls.Add(this.btnMenuData);
+            this.pnlRail.Controls.Add(this.btnMenuMotor);
+            this.pnlRail.Controls.Add(this.btnMenuManual);
+            this.pnlRail.Controls.Add(this.btnMenuAuto);
+            this.pnlRail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(24)))), ((int)(((byte)(27)))));
+            this.pnlRail.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlRail.Size = new System.Drawing.Size(72, 1002);
+            this.pnlRail.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.pnlRail.Name = "pnlRail";
             // 
+            // pnlSubMenu
             // 
+            this.pnlSubMenu.Controls.Add(this.flpSubLog);
+            this.pnlSubMenu.Controls.Add(this.flpSubIO);
+            this.pnlSubMenu.Controls.Add(this.flpSubData);
+            this.pnlSubMenu.Controls.Add(this.flpSubManual);
+            this.pnlSubMenu.Controls.Add(this.flpSubAuto);
+            this.pnlSubMenu.Controls.Add(this.lblSubTitle);
+            this.pnlSubMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(34)))), ((int)(((byte)(38)))));
+            this.pnlSubMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlSubMenu.Size = new System.Drawing.Size(188, 1002);
+            this.pnlSubMenu.Padding = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.pnlSubMenu.Name = "pnlSubMenu";
             // 
-            this.labelX1.BackgroundStyle.BackColor = System.Drawing.Color.Transparent;
-            this.labelX1.BackgroundStyle.BackColor2 = System.Drawing.Color.CornflowerBlue;
-            this.labelX1.BackgroundStyle.BackColorGradientAngle = 90;
-            this.labelX1.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labelX1.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
-            this.labelX1.BackgroundStyle.BorderBottomWidth = 1;
-            this.labelX1.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
-            this.labelX1.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
-            this.labelX1.BackgroundStyle.BorderGradientAngle = 0;
-            this.labelX1.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labelX1.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
-            this.labelX1.BackgroundStyle.BorderLeftWidth = 1;
-            this.labelX1.BackgroundStyle.BorderLightGradientAngle = 0;
-            this.labelX1.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labelX1.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
-            this.labelX1.BackgroundStyle.BorderRightWidth = 1;
-            this.labelX1.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labelX1.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
-            this.labelX1.BackgroundStyle.BorderTopWidth = 1;
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelX1.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.labelX1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX1.ForeColor = System.Drawing.Color.White;
-            this.labelX1.Location = new System.Drawing.Point(7, 52);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(98, 40);
-            this.labelX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.labelX1.TabIndex = 1180;
-            this.labelX1.Text = "STAGE";
-            this.labelX1.TextAlignment = System.Drawing.StringAlignment.Center;
+            // pnlContent
             // 
-            // lbTLGreen
-            // 
-            this.lbTLGreen.BackColor = System.Drawing.Color.Green;
-            this.lbTLGreen.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTLGreen.ForeColor = System.Drawing.Color.White;
-            this.lbTLGreen.Location = new System.Drawing.Point(1276, 67);
-            this.lbTLGreen.Name = "lbTLGreen";
-            this.lbTLGreen.Size = new System.Drawing.Size(19, 28);
-            this.lbTLGreen.TabIndex = 1179;
-            this.lbTLGreen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbTLOrg
-            // 
-            this.lbTLOrg.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.lbTLOrg.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTLOrg.ForeColor = System.Drawing.Color.White;
-            this.lbTLOrg.Location = new System.Drawing.Point(1276, 38);
-            this.lbTLOrg.Name = "lbTLOrg";
-            this.lbTLOrg.Size = new System.Drawing.Size(19, 28);
-            this.lbTLOrg.TabIndex = 1178;
-            this.lbTLOrg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbTLRed
-            // 
-            this.lbTLRed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lbTLRed.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTLRed.ForeColor = System.Drawing.Color.White;
-            this.lbTLRed.Location = new System.Drawing.Point(1276, 8);
-            this.lbTLRed.Name = "lbTLRed";
-            this.lbTLRed.Size = new System.Drawing.Size(19, 28);
-            this.lbTLRed.TabIndex = 1177;
-            this.lbTLRed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // imageConnect
-            // 
-            this.imageConnect.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageConnect.ImageStream")));
-            this.imageConnect.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageConnect.Images.SetKeyName(0, "connected.bmp");
-            this.imageConnect.Images.SetKeyName(1, "disconnected.bmp");
-            // 
-            // lblUserName
-            // 
-            this.lblUserName.BackColor = System.Drawing.SystemColors.Info;
-            // 
-            // 
-            // 
-            this.lblUserName.BackgroundStyle.BackColor = System.Drawing.Color.Transparent;
-            this.lblUserName.BackgroundStyle.BackColor2 = System.Drawing.Color.OliveDrab;
-            this.lblUserName.BackgroundStyle.BackColorGradientAngle = 90;
-            this.lblUserName.BackgroundStyle.BackgroundImageAlpha = ((byte)(90));
-            this.lblUserName.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblUserName.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
-            this.lblUserName.BackgroundStyle.BorderBottomWidth = 1;
-            this.lblUserName.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
-            this.lblUserName.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
-            this.lblUserName.BackgroundStyle.BorderGradientAngle = 0;
-            this.lblUserName.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblUserName.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
-            this.lblUserName.BackgroundStyle.BorderLeftWidth = 1;
-            this.lblUserName.BackgroundStyle.BorderLightGradientAngle = 0;
-            this.lblUserName.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblUserName.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
-            this.lblUserName.BackgroundStyle.BorderRightWidth = 1;
-            this.lblUserName.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblUserName.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
-            this.lblUserName.BackgroundStyle.BorderTopWidth = 1;
-            this.lblUserName.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblUserName.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblUserName.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.lblUserName.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.ForeColor = System.Drawing.Color.Blue;
-            this.lblUserName.Location = new System.Drawing.Point(1302, 54);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(111, 40);
-            this.lblUserName.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.lblUserName.TabIndex = 30;
-            this.lblUserName.Text = "NO USER";
-            this.lblUserName.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // lblUserTime
-            // 
-            this.lblUserTime.BackColor = System.Drawing.SystemColors.Info;
-            // 
-            // 
-            // 
-            this.lblUserTime.BackgroundStyle.BackColor = System.Drawing.Color.Transparent;
-            this.lblUserTime.BackgroundStyle.BackColor2 = System.Drawing.Color.OliveDrab;
-            this.lblUserTime.BackgroundStyle.BackColorGradientAngle = 90;
-            this.lblUserTime.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblUserTime.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
-            this.lblUserTime.BackgroundStyle.BorderBottomWidth = 1;
-            this.lblUserTime.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
-            this.lblUserTime.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
-            this.lblUserTime.BackgroundStyle.BorderGradientAngle = 0;
-            this.lblUserTime.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblUserTime.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
-            this.lblUserTime.BackgroundStyle.BorderLeftWidth = 1;
-            this.lblUserTime.BackgroundStyle.BorderLightGradientAngle = 0;
-            this.lblUserTime.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblUserTime.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
-            this.lblUserTime.BackgroundStyle.BorderRightWidth = 1;
-            this.lblUserTime.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblUserTime.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
-            this.lblUserTime.BackgroundStyle.BorderTopWidth = 1;
-            this.lblUserTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblUserTime.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblUserTime.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.lblUserTime.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserTime.ForeColor = System.Drawing.Color.Black;
-            this.lblUserTime.Location = new System.Drawing.Point(1302, 8);
-            this.lblUserTime.Name = "lblUserTime";
-            this.lblUserTime.Size = new System.Drawing.Size(111, 40);
-            this.lblUserTime.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.lblUserTime.TabIndex = 29;
-            this.lblUserTime.Text = "USER \r\n00:00:00";
-            this.lblUserTime.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // lblError
-            // 
-            this.lblError.BackColor = System.Drawing.SystemColors.Desktop;
-            // 
-            // 
-            // 
-            this.lblError.BackgroundStyle.BackColor = System.Drawing.Color.Sienna;
-            this.lblError.BackgroundStyle.BackColor2 = System.Drawing.SystemColors.Info;
-            this.lblError.BackgroundStyle.BackColorGradientAngle = 90;
-            this.lblError.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblError.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
-            this.lblError.BackgroundStyle.BorderBottomWidth = 1;
-            this.lblError.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
-            this.lblError.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
-            this.lblError.BackgroundStyle.BorderGradientAngle = 0;
-            this.lblError.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblError.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
-            this.lblError.BackgroundStyle.BorderLeftWidth = 1;
-            this.lblError.BackgroundStyle.BorderLightGradientAngle = 0;
-            this.lblError.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblError.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
-            this.lblError.BackgroundStyle.BorderRightWidth = 1;
-            this.lblError.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblError.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
-            this.lblError.BackgroundStyle.BorderTopWidth = 1;
-            this.lblError.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblError.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblError.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.lblError.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError.FontBold = true;
-            this.lblError.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblError.Location = new System.Drawing.Point(228, 52);
-            this.lblError.Name = "lblError";
-            this.lblError.SingleLineColor = System.Drawing.SystemColors.HighlightText;
-            this.lblError.Size = new System.Drawing.Size(727, 40);
-            this.lblError.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.lblError.TabIndex = 25;
-            // 
-            // lblDevice
-            // 
-            this.lblDevice.BackColor = System.Drawing.SystemColors.Info;
-            // 
-            // 
-            // 
-            this.lblDevice.BackgroundStyle.BackColor = System.Drawing.Color.DarkGray;
-            this.lblDevice.BackgroundStyle.BackColor2 = System.Drawing.Color.DarkGray;
-            this.lblDevice.BackgroundStyle.BackColorGradientAngle = 90;
-            this.lblDevice.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblDevice.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
-            this.lblDevice.BackgroundStyle.BorderBottomWidth = 1;
-            this.lblDevice.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
-            this.lblDevice.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
-            this.lblDevice.BackgroundStyle.BorderGradientAngle = 0;
-            this.lblDevice.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblDevice.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
-            this.lblDevice.BackgroundStyle.BorderLeftWidth = 1;
-            this.lblDevice.BackgroundStyle.BorderLightGradientAngle = 0;
-            this.lblDevice.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblDevice.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
-            this.lblDevice.BackgroundStyle.BorderRightWidth = 1;
-            this.lblDevice.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblDevice.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
-            this.lblDevice.BackgroundStyle.BorderTopWidth = 1;
-            this.lblDevice.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblDevice.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblDevice.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.lblDevice.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDevice.FontBold = true;
-            this.lblDevice.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblDevice.Location = new System.Drawing.Point(228, 6);
-            this.lblDevice.Name = "lblDevice";
-            this.lblDevice.SingleLineColor = System.Drawing.Color.PaleTurquoise;
-            this.lblDevice.Size = new System.Drawing.Size(727, 40);
-            this.lblDevice.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
-            this.lblDevice.TabIndex = 24;
-            // 
-            // labelX4
-            // 
-            this.labelX4.BackColor = System.Drawing.SystemColors.Info;
-            // 
-            // 
-            // 
-            this.labelX4.BackgroundStyle.BackColor = System.Drawing.Color.Transparent;
-            this.labelX4.BackgroundStyle.BackColor2 = System.Drawing.Color.CornflowerBlue;
-            this.labelX4.BackgroundStyle.BackColorGradientAngle = 90;
-            this.labelX4.BackgroundStyle.BackgroundImageAlpha = ((byte)(90));
-            this.labelX4.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labelX4.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
-            this.labelX4.BackgroundStyle.BorderBottomWidth = 1;
-            this.labelX4.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
-            this.labelX4.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
-            this.labelX4.BackgroundStyle.BorderGradientAngle = 0;
-            this.labelX4.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labelX4.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
-            this.labelX4.BackgroundStyle.BorderLeftWidth = 1;
-            this.labelX4.BackgroundStyle.BorderLightGradientAngle = 0;
-            this.labelX4.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labelX4.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
-            this.labelX4.BackgroundStyle.BorderRightWidth = 1;
-            this.labelX4.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labelX4.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
-            this.labelX4.BackgroundStyle.BorderTopWidth = 1;
-            this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelX4.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.labelX4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX4.ForeColor = System.Drawing.Color.Red;
-            this.labelX4.Location = new System.Drawing.Point(111, 52);
-            this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(111, 40);
-            this.labelX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.labelX4.TabIndex = 23;
-            this.labelX4.Text = "ERROR";
-            this.labelX4.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // labelX3
-            // 
-            this.labelX3.BackColor = System.Drawing.SystemColors.Info;
-            // 
-            // 
-            // 
-            this.labelX3.BackgroundStyle.BackColor = System.Drawing.Color.Transparent;
-            this.labelX3.BackgroundStyle.BackColor2 = System.Drawing.Color.CornflowerBlue;
-            this.labelX3.BackgroundStyle.BackColorGradientAngle = 90;
-            this.labelX3.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labelX3.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
-            this.labelX3.BackgroundStyle.BorderBottomWidth = 1;
-            this.labelX3.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
-            this.labelX3.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
-            this.labelX3.BackgroundStyle.BorderGradientAngle = 0;
-            this.labelX3.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labelX3.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
-            this.labelX3.BackgroundStyle.BorderLeftWidth = 1;
-            this.labelX3.BackgroundStyle.BorderLightGradientAngle = 0;
-            this.labelX3.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labelX3.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
-            this.labelX3.BackgroundStyle.BorderRightWidth = 1;
-            this.labelX3.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.labelX3.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
-            this.labelX3.BackgroundStyle.BorderTopWidth = 1;
-            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.labelX3.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.labelX3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX3.ForeColor = System.Drawing.Color.Blue;
-            this.labelX3.Location = new System.Drawing.Point(111, 6);
-            this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(111, 40);
-            this.labelX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.labelX3.TabIndex = 22;
-            this.labelX3.Text = "DEVICE";
-            this.labelX3.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.pnlContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.Size = new System.Drawing.Size(1660, 1002);
+            this.pnlContent.Padding = new System.Windows.Forms.Padding(8);
+            this.pnlContent.Name = "pnlContent";
             // 
             // TimerUserLevel
             // 
+            this.TimerUserLevel.Interval = 1000;
             this.TimerUserLevel.Tick += new System.EventHandler(this.TimerUserLevel_Tick);
             // 
             // TimerSeqLink
@@ -436,404 +173,689 @@
             this.TimerSeqLink.Interval = 5000;
             this.TimerSeqLink.Tick += new System.EventHandler(this.TimerSeqLink_Tick);
             // 
-            // TrayIcon
-            // 
-            this.TrayIcon.ContextMenuStrip = this.contextMenuStrip;
-            this.TrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("TrayIcon.Icon")));
-            this.TrayIcon.Text = "notifyIcon1";
-            this.TrayIcon.Visible = true;
-            // 
-            // contextMenuStrip
-            // 
-            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showHideConsoleToolStripMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(182, 26);
-            // 
-            // showHideConsoleToolStripMenuItem
-            // 
-            this.showHideConsoleToolStripMenuItem.Name = "showHideConsoleToolStripMenuItem";
-            this.showHideConsoleToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.showHideConsoleToolStripMenuItem.Text = "Show/Hide Console";
-            this.showHideConsoleToolStripMenuItem.Click += new System.EventHandler(this.showHideConsoleToolStripMenuItem_Click);
-            // 
             // timerConsole
             // 
             this.timerConsole.Interval = 10000;
             this.timerConsole.Tick += new System.EventHandler(this.timerConsole_Tick);
             // 
-            // btnSEQLink
+            // contextMenuStrip
             // 
-            this.btnSEQLink.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSEQLink.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSEQLink.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSEQLink.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSEQLink.ImageIndex = 1;
-            this.btnSEQLink.ImageList = this.imageConnect;
-            this.btnSEQLink.Location = new System.Drawing.Point(1183, 8);
-            this.btnSEQLink.Name = "btnSEQLink";
-            this.btnSEQLink.Size = new System.Drawing.Size(87, 40);
-            this.btnSEQLink.TabIndex = 31;
-            this.btnSEQLink.Text = "SEQ.";
-            this.btnSEQLink.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSEQLink.UseVisualStyleBackColor = false;
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showHideConsoleToolStripMenuItem});
+            this.contextMenuStrip.Size = new System.Drawing.Size(182, 26);
             // 
-            // pictureLOGO
+            // TrayIcon
             // 
-            this.pictureLOGO.BackColor = System.Drawing.Color.White;
-            this.pictureLOGO.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureLOGO.ErrorImage = null;
-            this.pictureLOGO.Image = global::MMI.Properties.Resources.keoc_logo;
-            this.pictureLOGO.InitialImage = global::MMI.Properties.Resources.keoc_logo1;
-            this.pictureLOGO.Location = new System.Drawing.Point(7, 6);
-            this.pictureLOGO.Name = "pictureLOGO";
-            this.pictureLOGO.Size = new System.Drawing.Size(98, 40);
-            this.pictureLOGO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureLOGO.TabIndex = 28;
-            this.pictureLOGO.TabStop = false;
+            this.TrayIcon.ContextMenuStrip = this.contextMenuStrip;
+            this.TrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("TrayIcon.Icon")));
+            this.TrayIcon.Text = "MMIApp";
+            this.TrayIcon.Visible = true;
             // 
-            // btnPM
+            // flpTopButtons
             // 
-            this.btnPM.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnPM.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnPM.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPM.Image = global::MMI.Properties.Resources.configure_2;
-            this.btnPM.ImageAlt = global::MMI.Properties.Resources.configure_2;
-            this.btnPM.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnPM.Location = new System.Drawing.Point(1518, 8);
-            this.btnPM.Name = "btnPM";
-            this.btnPM.Size = new System.Drawing.Size(74, 86);
-            this.btnPM.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnPM.TabIndex = 27;
-            this.btnPM.Text = "PM";
-            this.btnPM.Click += new System.EventHandler(this.btnPM_Click);
+            this.flpTopButtons.Controls.Add(this.btnEMO);
+            this.flpTopButtons.Controls.Add(this.btnRESET);
+            this.flpTopButtons.Controls.Add(this.btnBuzzerOff);
+            this.flpTopButtons.Controls.Add(this.btnTenKey);
+            this.flpTopButtons.Controls.Add(this.btnPM);
+            this.flpTopButtons.Controls.Add(this.btnLanguageSET);
+            this.flpTopButtons.Controls.Add(this.btnUserLogIn);
+            this.flpTopButtons.AutoSize = true;
+            this.flpTopButtons.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flpTopButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flpTopButtons.WrapContents = false;
+            this.flpTopButtons.Size = new System.Drawing.Size(574, 44);
+            this.flpTopButtons.Margin = new System.Windows.Forms.Padding(0);
+            this.flpTopButtons.Name = "flpTopButtons";
             // 
-            // btnUserLogIn
+            // flpTopStatus
             // 
-            this.btnUserLogIn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnUserLogIn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnUserLogIn.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUserLogIn.Image = global::MMI.Properties.Resources.system_users_3;
-            this.btnUserLogIn.ImageAlt = global::MMI.Properties.Resources.system_users_3;
-            this.btnUserLogIn.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnUserLogIn.Location = new System.Drawing.Point(1422, 8);
-            this.btnUserLogIn.Name = "btnUserLogIn";
-            this.btnUserLogIn.Size = new System.Drawing.Size(90, 86);
-            this.btnUserLogIn.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnUserLogIn.TabIndex = 26;
-            this.btnUserLogIn.Text = "LOG IN";
-            this.btnUserLogIn.Click += new System.EventHandler(this.btnUserLogIn_Click);
+            this.flpTopStatus.Controls.Add(this.lblMachine);
+            this.flpTopStatus.Controls.Add(this.lblDeviceCaption);
+            this.flpTopStatus.Controls.Add(this.lblDevice);
+            this.flpTopStatus.Controls.Add(this.lblSeqLink);
+            this.flpTopStatus.Controls.Add(this.lblPeripheral);
+            this.flpTopStatus.Controls.Add(this.lblSecsGem);
+            this.flpTopStatus.Controls.Add(this.lblUserName);
+            this.flpTopStatus.Controls.Add(this.lblUserTime);
+            this.flpTopStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpTopStatus.WrapContents = false;
+            this.flpTopStatus.Size = new System.Drawing.Size(1330, 44);
+            this.flpTopStatus.Margin = new System.Windows.Forms.Padding(0);
+            this.flpTopStatus.Name = "flpTopStatus";
             // 
-            // btnBuzzerOff
+            // lblMachine
             // 
-            this.btnBuzzerOff.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnBuzzerOff.BackColor = System.Drawing.Color.Black;
-            this.btnBuzzerOff.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnBuzzerOff.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuzzerOff.Image = global::MMI.Properties.Resources.buzzer31;
-            this.btnBuzzerOff.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBuzzerOff.Location = new System.Drawing.Point(1237, 13);
-            this.btnBuzzerOff.Name = "btnBuzzerOff";
-            this.btnBuzzerOff.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnBuzzerOff.Size = new System.Drawing.Size(90, 75);
-            this.btnBuzzerOff.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnBuzzerOff.TabIndex = 30;
-            this.btnBuzzerOff.Tag = "7";
-            this.btnBuzzerOff.Text = "OFF";
-            this.btnBuzzerOff.ThemeAware = true;
-            this.btnBuzzerOff.Click += new System.EventHandler(this.btnBuzzerOff_Click);
+            this.lblMachine.AutoSize = false;
+            this.lblMachine.Size = new System.Drawing.Size(150, 44);
+            this.lblMachine.Margin = new System.Windows.Forms.Padding(0);
+            this.lblMachine.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblMachine.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblMachine.Text = "MMI";
+            this.lblMachine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblMachine.Name = "lblMachine";
             // 
-            // pictureEMO
+            // lblDeviceCaption
             // 
-            this.pictureEMO.BackColor = System.Drawing.Color.White;
-            this.pictureEMO.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureEMO.ErrorImage = null;
-            this.pictureEMO.Image = global::MMI.Properties.Resources.EMO1;
-            this.pictureEMO.InitialImage = global::MMI.Properties.Resources.i3_logo2;
-            this.pictureEMO.Location = new System.Drawing.Point(1497, 3);
-            this.pictureEMO.Name = "pictureEMO";
-            this.pictureEMO.Size = new System.Drawing.Size(100, 92);
-            this.pictureEMO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureEMO.TabIndex = 29;
-            this.pictureEMO.TabStop = false;
-            this.pictureEMO.Click += new System.EventHandler(this.pictureEMO_Click);
+            this.lblDeviceCaption.AutoSize = false;
+            this.lblDeviceCaption.Size = new System.Drawing.Size(56, 44);
+            this.lblDeviceCaption.Margin = new System.Windows.Forms.Padding(0);
+            this.lblDeviceCaption.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblDeviceCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblDeviceCaption.Text = "Device";
+            this.lblDeviceCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDeviceCaption.Name = "lblDeviceCaption";
             // 
-            // btnMenuCalib
+            // lblDevice
             // 
-            this.btnMenuCalib.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnMenuCalib.BackColor = System.Drawing.Color.Black;
-            this.btnMenuCalib.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnMenuCalib.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuCalib.Image = global::MMI.Properties.Resources.configure_2;
-            this.btnMenuCalib.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuCalib.Location = new System.Drawing.Point(389, 13);
-            this.btnMenuCalib.Name = "btnMenuCalib";
-            this.btnMenuCalib.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnMenuCalib.Size = new System.Drawing.Size(98, 75);
-            this.btnMenuCalib.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnMenuCalib.TabIndex = 19;
-            this.btnMenuCalib.Tag = "8";
-            this.btnMenuCalib.Text = "Teach";
-            this.btnMenuCalib.ThemeAware = true;
-            this.btnMenuCalib.Click += new System.EventHandler(this.btnMenuClick);
+            this.lblDevice.AutoSize = false;
+            this.lblDevice.Size = new System.Drawing.Size(280, 44);
+            this.lblDevice.Margin = new System.Windows.Forms.Padding(0);
+            this.lblDevice.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblDevice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblDevice.Text = "[00] -";
+            this.lblDevice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDevice.Name = "lblDevice";
             // 
-            // btnLanguageSET
+            // lblSeqLink
             // 
-            this.btnLanguageSET.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnLanguageSET.BackColor = System.Drawing.Color.Black;
-            this.btnLanguageSET.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnLanguageSET.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLanguageSET.Image = global::MMI.Properties.Resources.preferences_desktop_keyboard;
-            this.btnLanguageSET.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnLanguageSET.Location = new System.Drawing.Point(1801, 12);
-            this.btnLanguageSET.Name = "btnLanguageSET";
-            this.btnLanguageSET.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnLanguageSET.Size = new System.Drawing.Size(90, 75);
-            this.btnLanguageSET.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnLanguageSET.TabIndex = 18;
-            this.btnLanguageSET.Tag = "7";
-            this.btnLanguageSET.Text = "LANGUAGE";
-            this.btnLanguageSET.ThemeAware = true;
-            this.btnLanguageSET.Visible = false;
-            this.btnLanguageSET.Click += new System.EventHandler(this.btnLanguageSET_Click);
+            this.lblSeqLink.AutoSize = false;
+            this.lblSeqLink.Size = new System.Drawing.Size(176, 44);
+            this.lblSeqLink.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSeqLink.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSeqLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblSeqLink.Text = "● SEQ: Disconnected";
+            this.lblSeqLink.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSeqLink.Name = "lblSeqLink";
+            // 
+            // lblPeripheral
+            // 
+            this.lblPeripheral.AutoSize = false;
+            this.lblPeripheral.Size = new System.Drawing.Size(176, 44);
+            this.lblPeripheral.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPeripheral.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPeripheral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblPeripheral.Text = "● Peripheral: -";
+            this.lblPeripheral.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPeripheral.Name = "lblPeripheral";
+            // 
+            // lblSecsGem
+            // 
+            this.lblSecsGem.AutoSize = false;
+            this.lblSecsGem.Size = new System.Drawing.Size(196, 44);
+            this.lblSecsGem.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSecsGem.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSecsGem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblSecsGem.Text = "● SECS/GEM: Offline";
+            this.lblSecsGem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSecsGem.Name = "lblSecsGem";
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = false;
+            this.lblUserName.Size = new System.Drawing.Size(230, 44);
+            this.lblUserName.Margin = new System.Windows.Forms.Padding(0);
+            this.lblUserName.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblUserName.Text = "● Operator";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblUserName.Name = "lblUserName";
+            // 
+            // lblUserTime
+            // 
+            this.lblUserTime.AutoSize = false;
+            this.lblUserTime.Size = new System.Drawing.Size(76, 44);
+            this.lblUserTime.Margin = new System.Windows.Forms.Padding(0);
+            this.lblUserTime.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblUserTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblUserTime.Text = "00:00:00";
+            this.lblUserTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblUserTime.Name = "lblUserTime";
+            // 
+            // btnEMO
+            // 
+            this.btnEMO.Size = new System.Drawing.Size(64, 32);
+            this.btnEMO.Margin = new System.Windows.Forms.Padding(6, 6, 0, 6);
+            this.btnEMO.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnEMO.Text = "EMO";
+            this.btnEMO.CornerRadius = 4;
+            this.btnEMO.TabStop = false;
+            this.btnEMO.Role = MMI.HmiButtonRole.Danger;
+            this.btnEMO.Name = "btnEMO";
+            this.btnEMO.Click += new System.EventHandler(this.btnEMO_Click);
             // 
             // btnRESET
             // 
-            this.btnRESET.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnRESET.BackColor = System.Drawing.Color.Black;
-            this.btnRESET.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnRESET.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRESET.Image = global::MMI.Properties.Resources.view_refresh_2;
-            this.btnRESET.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnRESET.Location = new System.Drawing.Point(1124, 13);
+            this.btnRESET.Size = new System.Drawing.Size(76, 32);
+            this.btnRESET.Margin = new System.Windows.Forms.Padding(6, 6, 0, 6);
+            this.btnRESET.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnRESET.Text = "Reset";
+            this.btnRESET.CornerRadius = 4;
+            this.btnRESET.TabStop = false;
             this.btnRESET.Name = "btnRESET";
-            this.btnRESET.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnRESET.Size = new System.Drawing.Size(90, 75);
-            this.btnRESET.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnRESET.TabIndex = 17;
-            this.btnRESET.Tag = "7";
-            this.btnRESET.Text = "RESET";
-            this.btnRESET.ThemeAware = true;
             this.btnRESET.Click += new System.EventHandler(this.btnRESET_Click);
+            // 
+            // btnBuzzerOff
+            // 
+            this.btnBuzzerOff.Size = new System.Drawing.Size(84, 32);
+            this.btnBuzzerOff.Margin = new System.Windows.Forms.Padding(6, 6, 0, 6);
+            this.btnBuzzerOff.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBuzzerOff.Text = "Buzzer Off";
+            this.btnBuzzerOff.CornerRadius = 4;
+            this.btnBuzzerOff.TabStop = false;
+            this.btnBuzzerOff.Name = "btnBuzzerOff";
+            this.btnBuzzerOff.Click += new System.EventHandler(this.btnBuzzerOff_Click);
             // 
             // btnTenKey
             // 
-            this.btnTenKey.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnTenKey.BackColor = System.Drawing.Color.Black;
-            this.btnTenKey.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnTenKey.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTenKey.Image = global::MMI.Properties.Resources.accessories_calculator_3;
-            this.btnTenKey.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnTenKey.Location = new System.Drawing.Point(1355, 13);
+            this.btnTenKey.Size = new System.Drawing.Size(76, 32);
+            this.btnTenKey.Margin = new System.Windows.Forms.Padding(6, 6, 0, 6);
+            this.btnTenKey.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnTenKey.Text = "Ten Key";
+            this.btnTenKey.CornerRadius = 4;
+            this.btnTenKey.TabStop = false;
             this.btnTenKey.Name = "btnTenKey";
-            this.btnTenKey.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnTenKey.Size = new System.Drawing.Size(90, 75);
-            this.btnTenKey.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnTenKey.TabIndex = 16;
-            this.btnTenKey.Tag = "7";
-            this.btnTenKey.Text = "TEN KEY";
-            this.btnTenKey.ThemeAware = true;
             this.btnTenKey.Click += new System.EventHandler(this.btnTenKey_Click);
             // 
-            // btnMenuLog
+            // btnPM
             // 
-            this.btnMenuLog.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnMenuLog.BackColor = System.Drawing.Color.Black;
-            this.btnMenuLog.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnMenuLog.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuLog.Image = global::MMI.Properties.Resources.TextEdit_app;
-            this.btnMenuLog.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuLog.Location = new System.Drawing.Point(882, 12);
-            this.btnMenuLog.Name = "btnMenuLog";
-            this.btnMenuLog.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnMenuLog.Size = new System.Drawing.Size(98, 75);
-            this.btnMenuLog.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnMenuLog.TabIndex = 15;
-            this.btnMenuLog.Tag = "7";
-            this.btnMenuLog.Text = "LOG";
-            this.btnMenuLog.ThemeAware = true;
-            this.btnMenuLog.Click += new System.EventHandler(this.btnMenuClick);
+            this.btnPM.Size = new System.Drawing.Size(56, 32);
+            this.btnPM.Margin = new System.Windows.Forms.Padding(6, 6, 0, 6);
+            this.btnPM.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPM.Text = "PM";
+            this.btnPM.CornerRadius = 4;
+            this.btnPM.TabStop = false;
+            this.btnPM.Name = "btnPM";
+            this.btnPM.Click += new System.EventHandler(this.btnPM_Click);
             // 
-            // btnMenuAlarm
+            // btnLanguageSET
             // 
-            this.btnMenuAlarm.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnMenuAlarm.BackColor = System.Drawing.Color.Black;
-            this.btnMenuAlarm.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnMenuAlarm.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuAlarm.Image = global::MMI.Properties.Resources.terminator;
-            this.btnMenuAlarm.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuAlarm.Location = new System.Drawing.Point(756, 13);
-            this.btnMenuAlarm.Name = "btnMenuAlarm";
-            this.btnMenuAlarm.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnMenuAlarm.Size = new System.Drawing.Size(98, 75);
-            this.btnMenuAlarm.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnMenuAlarm.TabIndex = 14;
-            this.btnMenuAlarm.Tag = "6";
-            this.btnMenuAlarm.Text = "ALARM";
-            this.btnMenuAlarm.ThemeAware = true;
-            this.btnMenuAlarm.Click += new System.EventHandler(this.btnMenuClick);
+            this.btnLanguageSET.Size = new System.Drawing.Size(60, 32);
+            this.btnLanguageSET.Margin = new System.Windows.Forms.Padding(6, 6, 0, 6);
+            this.btnLanguageSET.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLanguageSET.Text = "Lang";
+            this.btnLanguageSET.CornerRadius = 4;
+            this.btnLanguageSET.TabStop = false;
+            this.btnLanguageSET.Name = "btnLanguageSET";
+            this.btnLanguageSET.Click += new System.EventHandler(this.btnLanguageSET_Click);
             // 
-            // btnMenuMonitor
+            // btnUserLogIn
             // 
-            this.btnMenuMonitor.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnMenuMonitor.BackColor = System.Drawing.Color.Black;
-            this.btnMenuMonitor.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnMenuMonitor.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuMonitor.Image = global::MMI.Properties.Resources.utilities_system_monitor_2;
-            this.btnMenuMonitor.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuMonitor.Location = new System.Drawing.Point(630, 12);
-            this.btnMenuMonitor.Name = "btnMenuMonitor";
-            this.btnMenuMonitor.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnMenuMonitor.Size = new System.Drawing.Size(98, 75);
-            this.btnMenuMonitor.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnMenuMonitor.TabIndex = 13;
-            this.btnMenuMonitor.Tag = "5";
-            this.btnMenuMonitor.Text = "MONITOR";
-            this.btnMenuMonitor.ThemeAware = true;
-            this.btnMenuMonitor.Click += new System.EventHandler(this.btnMenuClick);
+            this.btnUserLogIn.Size = new System.Drawing.Size(76, 32);
+            this.btnUserLogIn.Margin = new System.Windows.Forms.Padding(6, 6, 0, 6);
+            this.btnUserLogIn.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUserLogIn.Text = "Log In";
+            this.btnUserLogIn.CornerRadius = 4;
+            this.btnUserLogIn.TabStop = false;
+            this.btnUserLogIn.Name = "btnUserLogIn";
+            this.btnUserLogIn.Click += new System.EventHandler(this.btnUserLogIn_Click);
             // 
-            // btnMenuData
+            // lblAlarmStripe
             // 
-            this.btnMenuData.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnMenuData.BackColor = System.Drawing.Color.Black;
-            this.btnMenuData.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnMenuData.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuData.Image = global::MMI.Properties.Resources.kate_4;
-            this.btnMenuData.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuData.Location = new System.Drawing.Point(504, 12);
-            this.btnMenuData.Name = "btnMenuData";
-            this.btnMenuData.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnMenuData.Size = new System.Drawing.Size(98, 75);
-            this.btnMenuData.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnMenuData.TabIndex = 12;
-            this.btnMenuData.Tag = "4";
-            this.btnMenuData.Text = "DATA";
-            this.btnMenuData.ThemeAware = true;
-            this.btnMenuData.Click += new System.EventHandler(this.btnMenuClick);
+            this.lblAlarmStripe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(100)))), ((int)(((byte)(107)))));
+            this.lblAlarmStripe.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblAlarmStripe.Size = new System.Drawing.Size(4, 34);
+            this.lblAlarmStripe.Margin = new System.Windows.Forms.Padding(0);
+            this.lblAlarmStripe.Name = "lblAlarmStripe";
             // 
-            // btnMenuMotor
+            // lblError
             // 
-            this.btnMenuMotor.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnMenuMotor.BackColor = System.Drawing.Color.Black;
-            this.btnMenuMotor.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnMenuMotor.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuMotor.Image = global::MMI.Properties.Resources.system_run_3;
-            this.btnMenuMotor.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuMotor.Location = new System.Drawing.Point(275, 12);
-            this.btnMenuMotor.Name = "btnMenuMotor";
-            this.btnMenuMotor.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnMenuMotor.Size = new System.Drawing.Size(98, 75);
-            this.btnMenuMotor.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnMenuMotor.TabIndex = 11;
-            this.btnMenuMotor.Tag = "3";
-            this.btnMenuMotor.Text = "MOTOR";
-            this.btnMenuMotor.ThemeAware = true;
-            this.btnMenuMotor.Click += new System.EventHandler(this.btnMenuClick);
+            this.lblError.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblError.Size = new System.Drawing.Size(160, 34);
+            this.lblError.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblError.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.lblError.Text = "No Alarm";
+            this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblError.Name = "lblError";
             // 
-            // btnMenuManual
+            // lblErrorMessage
             // 
-            this.btnMenuManual.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnMenuManual.BackColor = System.Drawing.Color.Black;
-            this.btnMenuManual.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnMenuManual.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuManual.Image = global::MMI.Properties.Resources.touchpad;
-            this.btnMenuManual.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuManual.Location = new System.Drawing.Point(149, 12);
-            this.btnMenuManual.Name = "btnMenuManual";
-            this.btnMenuManual.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnMenuManual.Size = new System.Drawing.Size(98, 75);
-            this.btnMenuManual.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnMenuManual.TabIndex = 10;
-            this.btnMenuManual.Tag = "2";
-            this.btnMenuManual.Text = "MANUAL";
-            this.btnMenuManual.ThemeAware = true;
-            this.btnMenuManual.Click += new System.EventHandler(this.btnMenuClick);
+            this.lblErrorMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblErrorMessage.Size = new System.Drawing.Size(1756, 34);
+            this.lblErrorMessage.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblErrorMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblErrorMessage.AutoEllipsis = true;
+            this.lblErrorMessage.Text = "";
+            this.lblErrorMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblErrorMessage.Name = "lblErrorMessage";
+            this.lblErrorMessage.Click += new System.EventHandler(this.lblErrorMessage_Click);
             // 
             // btnMenuAuto
             // 
-            this.btnMenuAuto.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnMenuAuto.BackColor = System.Drawing.Color.Black;
-            this.btnMenuAuto.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnMenuAuto.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuAuto.Image = global::MMI.Properties.Resources.aim;
-            this.btnMenuAuto.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnMenuAuto.Location = new System.Drawing.Point(23, 12);
-            this.btnMenuAuto.Name = "btnMenuAuto";
-            this.btnMenuAuto.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
-            this.btnMenuAuto.Size = new System.Drawing.Size(98, 75);
-            this.btnMenuAuto.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnMenuAuto.TabIndex = 9;
+            this.btnMenuAuto.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuAuto.Size = new System.Drawing.Size(72, 64);
+            this.btnMenuAuto.Glyph = "\uE768";
+            this.btnMenuAuto.Text = "Auto";
             this.btnMenuAuto.Tag = "1";
-            this.btnMenuAuto.Text = "AUTO";
-            this.btnMenuAuto.ThemeAware = true;
+            this.btnMenuAuto.TabStop = false;
+            this.btnMenuAuto.Name = "btnMenuAuto";
             this.btnMenuAuto.Click += new System.EventHandler(this.btnMenuClick);
+            // 
+            // btnMenuManual
+            // 
+            this.btnMenuManual.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuManual.Size = new System.Drawing.Size(72, 64);
+            this.btnMenuManual.Glyph = "\uE90F";
+            this.btnMenuManual.Text = "Manual";
+            this.btnMenuManual.Tag = "2";
+            this.btnMenuManual.TabStop = false;
+            this.btnMenuManual.Name = "btnMenuManual";
+            this.btnMenuManual.Click += new System.EventHandler(this.btnMenuClick);
+            // 
+            // btnMenuMotor
+            // 
+            this.btnMenuMotor.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuMotor.Size = new System.Drawing.Size(72, 64);
+            this.btnMenuMotor.Glyph = "\uE713";
+            this.btnMenuMotor.Text = "Motor";
+            this.btnMenuMotor.Tag = "3";
+            this.btnMenuMotor.TabStop = false;
+            this.btnMenuMotor.Name = "btnMenuMotor";
+            this.btnMenuMotor.Click += new System.EventHandler(this.btnMenuClick);
+            // 
+            // btnMenuData
+            // 
+            this.btnMenuData.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuData.Size = new System.Drawing.Size(72, 64);
+            this.btnMenuData.Glyph = "\uE8F1";
+            this.btnMenuData.Text = "Data";
+            this.btnMenuData.Tag = "4";
+            this.btnMenuData.TabStop = false;
+            this.btnMenuData.Name = "btnMenuData";
+            this.btnMenuData.Click += new System.EventHandler(this.btnMenuClick);
+            // 
+            // btnMenuMonitor
+            // 
+            this.btnMenuMonitor.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuMonitor.Size = new System.Drawing.Size(72, 64);
+            this.btnMenuMonitor.Glyph = "\uE9D9";
+            this.btnMenuMonitor.Text = "IO";
+            this.btnMenuMonitor.Tag = "5";
+            this.btnMenuMonitor.TabStop = false;
+            this.btnMenuMonitor.Name = "btnMenuMonitor";
+            this.btnMenuMonitor.Click += new System.EventHandler(this.btnMenuClick);
+            // 
+            // btnMenuAlarm
+            // 
+            this.btnMenuAlarm.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuAlarm.Size = new System.Drawing.Size(72, 64);
+            this.btnMenuAlarm.Glyph = "\uE7BA";
+            this.btnMenuAlarm.Text = "Alarm";
+            this.btnMenuAlarm.Tag = "6";
+            this.btnMenuAlarm.TabStop = false;
+            this.btnMenuAlarm.Name = "btnMenuAlarm";
+            this.btnMenuAlarm.Click += new System.EventHandler(this.btnMenuClick);
+            // 
+            // btnMenuLog
+            // 
+            this.btnMenuLog.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuLog.Size = new System.Drawing.Size(72, 64);
+            this.btnMenuLog.Glyph = "\uE81C";
+            this.btnMenuLog.Text = "Log";
+            this.btnMenuLog.Tag = "7";
+            this.btnMenuLog.TabStop = false;
+            this.btnMenuLog.Name = "btnMenuLog";
+            this.btnMenuLog.Click += new System.EventHandler(this.btnMenuClick);
+            // 
+            // btnMenuCalib
+            // 
+            this.btnMenuCalib.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuCalib.Size = new System.Drawing.Size(72, 64);
+            this.btnMenuCalib.Glyph = "\uE707";
+            this.btnMenuCalib.Text = "Teach";
+            this.btnMenuCalib.Tag = "8";
+            this.btnMenuCalib.TabStop = false;
+            this.btnMenuCalib.Name = "btnMenuCalib";
+            this.btnMenuCalib.Click += new System.EventHandler(this.btnMenuClick);
+            // 
+            // lblSubTitle
+            // 
+            this.lblSubTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblSubTitle.Size = new System.Drawing.Size(168, 40);
+            this.lblSubTitle.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSubTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblSubTitle.Text = "AUTO";
+            this.lblSubTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSubTitle.Name = "lblSubTitle";
+            // 
+            // flpSubAuto
+            // 
+            this.flpSubAuto.Controls.Add(this.btnSubAuto1);
+            this.flpSubAuto.Controls.Add(this.btnSubAuto2);
+            this.flpSubAuto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpSubAuto.Size = new System.Drawing.Size(168, 950);
+            this.flpSubAuto.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpSubAuto.WrapContents = false;
+            this.flpSubAuto.Visible = false;
+            this.flpSubAuto.Name = "flpSubAuto";
+            // 
+            // btnSubAuto1
+            // 
+            this.btnSubAuto1.Size = new System.Drawing.Size(168, 44);
+            this.btnSubAuto1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubAuto1.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubAuto1.Text = "Production";
+            this.btnSubAuto1.Tag = "11";
+            this.btnSubAuto1.TabStop = false;
+            this.btnSubAuto1.Name = "btnSubAuto1";
+            this.btnSubAuto1.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubAuto2
+            // 
+            this.btnSubAuto2.Size = new System.Drawing.Size(168, 44);
+            this.btnSubAuto2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubAuto2.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubAuto2.Text = "Auto 2";
+            this.btnSubAuto2.Tag = "12";
+            this.btnSubAuto2.TabStop = false;
+            this.btnSubAuto2.Name = "btnSubAuto2";
+            this.btnSubAuto2.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // flpSubManual
+            // 
+            this.flpSubManual.Controls.Add(this.btnSubManualList);
+            this.flpSubManual.Controls.Add(this.btnSubManualOP);
+            this.flpSubManual.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpSubManual.Size = new System.Drawing.Size(168, 950);
+            this.flpSubManual.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpSubManual.WrapContents = false;
+            this.flpSubManual.Visible = false;
+            this.flpSubManual.Name = "flpSubManual";
+            // 
+            // btnSubManualList
+            // 
+            this.btnSubManualList.Size = new System.Drawing.Size(168, 44);
+            this.btnSubManualList.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubManualList.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubManualList.Text = "List";
+            this.btnSubManualList.Tag = "21";
+            this.btnSubManualList.TabStop = false;
+            this.btnSubManualList.Name = "btnSubManualList";
+            this.btnSubManualList.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubManualOP
+            // 
+            this.btnSubManualOP.Size = new System.Drawing.Size(168, 44);
+            this.btnSubManualOP.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubManualOP.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubManualOP.Text = "Operation";
+            this.btnSubManualOP.Tag = "22";
+            this.btnSubManualOP.TabStop = false;
+            this.btnSubManualOP.Name = "btnSubManualOP";
+            this.btnSubManualOP.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // flpSubData
+            // 
+            this.flpSubData.Controls.Add(this.btnSubRecipe);
+            this.flpSubData.Controls.Add(this.btnSubSysParam);
+            this.flpSubData.Controls.Add(this.btnSubUseSkip);
+            this.flpSubData.Controls.Add(this.btnSubLampBuzzer);
+            this.flpSubData.Controls.Add(this.btnSubUserRegist);
+            this.flpSubData.Controls.Add(this.btnSubMotorCfg);
+            this.flpSubData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpSubData.Size = new System.Drawing.Size(168, 950);
+            this.flpSubData.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpSubData.WrapContents = false;
+            this.flpSubData.Visible = false;
+            this.flpSubData.Name = "flpSubData";
+            // 
+            // btnSubRecipe
+            // 
+            this.btnSubRecipe.Size = new System.Drawing.Size(168, 44);
+            this.btnSubRecipe.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubRecipe.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubRecipe.Text = "Recipe";
+            this.btnSubRecipe.Tag = "41";
+            this.btnSubRecipe.TabStop = false;
+            this.btnSubRecipe.Name = "btnSubRecipe";
+            this.btnSubRecipe.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubSysParam
+            // 
+            this.btnSubSysParam.Size = new System.Drawing.Size(168, 44);
+            this.btnSubSysParam.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubSysParam.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubSysParam.Text = "System Param";
+            this.btnSubSysParam.Tag = "42";
+            this.btnSubSysParam.TabStop = false;
+            this.btnSubSysParam.Name = "btnSubSysParam";
+            this.btnSubSysParam.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubUseSkip
+            // 
+            this.btnSubUseSkip.Size = new System.Drawing.Size(168, 44);
+            this.btnSubUseSkip.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubUseSkip.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubUseSkip.Text = "USE / SKIP";
+            this.btnSubUseSkip.Tag = "43";
+            this.btnSubUseSkip.TabStop = false;
+            this.btnSubUseSkip.Name = "btnSubUseSkip";
+            this.btnSubUseSkip.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubLampBuzzer
+            // 
+            this.btnSubLampBuzzer.Size = new System.Drawing.Size(168, 44);
+            this.btnSubLampBuzzer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubLampBuzzer.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubLampBuzzer.Text = "Lamp Buzzer";
+            this.btnSubLampBuzzer.Tag = "44";
+            this.btnSubLampBuzzer.TabStop = false;
+            this.btnSubLampBuzzer.Name = "btnSubLampBuzzer";
+            this.btnSubLampBuzzer.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubUserRegist
+            // 
+            this.btnSubUserRegist.Size = new System.Drawing.Size(168, 44);
+            this.btnSubUserRegist.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubUserRegist.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubUserRegist.Text = "User Regist";
+            this.btnSubUserRegist.Tag = "45";
+            this.btnSubUserRegist.TabStop = false;
+            this.btnSubUserRegist.Name = "btnSubUserRegist";
+            this.btnSubUserRegist.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubMotorCfg
+            // 
+            this.btnSubMotorCfg.Size = new System.Drawing.Size(168, 44);
+            this.btnSubMotorCfg.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubMotorCfg.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubMotorCfg.Text = "Motor Config";
+            this.btnSubMotorCfg.Tag = "46";
+            this.btnSubMotorCfg.TabStop = false;
+            this.btnSubMotorCfg.Name = "btnSubMotorCfg";
+            this.btnSubMotorCfg.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // flpSubIO
+            // 
+            this.flpSubIO.Controls.Add(this.btnSubIO);
+            this.flpSubIO.Controls.Add(this.btnSubBitDM);
+            this.flpSubIO.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpSubIO.Size = new System.Drawing.Size(168, 950);
+            this.flpSubIO.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpSubIO.WrapContents = false;
+            this.flpSubIO.Visible = false;
+            this.flpSubIO.Name = "flpSubIO";
+            // 
+            // btnSubIO
+            // 
+            this.btnSubIO.Size = new System.Drawing.Size(168, 44);
+            this.btnSubIO.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubIO.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubIO.Text = "Input / Output";
+            this.btnSubIO.Tag = "51";
+            this.btnSubIO.TabStop = false;
+            this.btnSubIO.Name = "btnSubIO";
+            this.btnSubIO.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubBitDM
+            // 
+            this.btnSubBitDM.Size = new System.Drawing.Size(168, 44);
+            this.btnSubBitDM.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubBitDM.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubBitDM.Text = "Bit / DM";
+            this.btnSubBitDM.Tag = "52";
+            this.btnSubBitDM.TabStop = false;
+            this.btnSubBitDM.Name = "btnSubBitDM";
+            this.btnSubBitDM.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // flpSubLog
+            // 
+            this.flpSubLog.Controls.Add(this.btnSubLog);
+            this.flpSubLog.Controls.Add(this.btnSubErrorHistory);
+            this.flpSubLog.Controls.Add(this.btnSubMTBA);
+            this.flpSubLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpSubLog.Size = new System.Drawing.Size(168, 950);
+            this.flpSubLog.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpSubLog.WrapContents = false;
+            this.flpSubLog.Visible = false;
+            this.flpSubLog.Name = "flpSubLog";
+            // 
+            // btnSubLog
+            // 
+            this.btnSubLog.Size = new System.Drawing.Size(168, 44);
+            this.btnSubLog.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubLog.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubLog.Text = "Log";
+            this.btnSubLog.Tag = "71";
+            this.btnSubLog.TabStop = false;
+            this.btnSubLog.Name = "btnSubLog";
+            this.btnSubLog.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubErrorHistory
+            // 
+            this.btnSubErrorHistory.Size = new System.Drawing.Size(168, 44);
+            this.btnSubErrorHistory.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubErrorHistory.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubErrorHistory.Text = "Error History";
+            this.btnSubErrorHistory.Tag = "72";
+            this.btnSubErrorHistory.TabStop = false;
+            this.btnSubErrorHistory.Name = "btnSubErrorHistory";
+            this.btnSubErrorHistory.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubMTBA
+            // 
+            this.btnSubMTBA.Size = new System.Drawing.Size(168, 44);
+            this.btnSubMTBA.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubMTBA.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubMTBA.Text = "MTBA / MTBF";
+            this.btnSubMTBA.Tag = "73";
+            this.btnSubMTBA.TabStop = false;
+            this.btnSubMTBA.Name = "btnSubMTBA";
+            this.btnSubMTBA.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // showHideConsoleToolStripMenuItem
+            // 
+            this.showHideConsoleToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.showHideConsoleToolStripMenuItem.Text = "Show/Hide Console";
+            this.showHideConsoleToolStripMenuItem.Name = "showHideConsoleToolStripMenuItem";
+            this.showHideConsoleToolStripMenuItem.Click += new System.EventHandler(this.showHideConsoleToolStripMenuItem_Click);
             // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(1604, 1131);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnMainMenu);
-            this.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
-            this.Name = "FormMain";
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.ClientSize = new System.Drawing.Size(1920, 1041);
+            this.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.MinimumSize = new System.Drawing.Size(1280, 800);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MMIApp";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Controls.Add(this.pnlContent);
+            this.Controls.Add(this.pnlSubMenu);
+            this.Controls.Add(this.pnlRail);
+            this.Controls.Add(this.pnlAlarmBanner);
+            this.Controls.Add(this.pnlTopBar);
+            this.Name = "FormMain";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.Shown += new System.EventHandler(this.FormMain_Shown);
-            this.pnMainMenu.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.contextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureLOGO)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEMO)).EndInit();
+            this.flpSubLog.ResumeLayout(false);
+            this.flpSubLog.PerformLayout();
+            this.flpSubIO.ResumeLayout(false);
+            this.flpSubIO.PerformLayout();
+            this.flpSubData.ResumeLayout(false);
+            this.flpSubData.PerformLayout();
+            this.flpSubManual.ResumeLayout(false);
+            this.flpSubManual.PerformLayout();
+            this.flpSubAuto.ResumeLayout(false);
+            this.flpSubAuto.PerformLayout();
+            this.flpTopStatus.ResumeLayout(false);
+            this.flpTopStatus.PerformLayout();
+            this.flpTopButtons.ResumeLayout(false);
+            this.flpTopButtons.PerformLayout();
+            this.pnlContent.ResumeLayout(false);
+            this.pnlSubMenu.ResumeLayout(false);
+            this.pnlRail.ResumeLayout(false);
+            this.pnlAlarmBanner.ResumeLayout(false);
+            this.pnlTopBar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel pnMainMenu;
-        private System.Windows.Forms.Panel panel1;
-        private DevComponents.DotNetBar.LabelX lblUserName;
-        private DevComponents.DotNetBar.LabelX lblUserTime;
-        private System.Windows.Forms.PictureBox pictureLOGO;
-        private DevComponents.DotNetBar.ButtonX btnPM;
-        private DevComponents.DotNetBar.ButtonX btnUserLogIn;
-        public DevComponents.DotNetBar.LabelX lblError;
-        public DevComponents.DotNetBar.LabelX lblDevice;
-        private DevComponents.DotNetBar.LabelX labelX4;
-        private DevComponents.DotNetBar.LabelX labelX3;
+        private System.Windows.Forms.Panel pnlTopBar;
+        private System.Windows.Forms.Panel pnlAlarmBanner;
+        private System.Windows.Forms.Panel pnlRail;
+        private System.Windows.Forms.Panel pnlSubMenu;
+        private System.Windows.Forms.Panel pnlContent;
         private System.Windows.Forms.Timer TimerUserLevel;
         private System.Windows.Forms.Timer TimerSeqLink;
-        private System.Windows.Forms.Button btnSEQLink;
-        private System.Windows.Forms.ImageList imageConnect;
-        private System.Windows.Forms.NotifyIcon TrayIcon;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem showHideConsoleToolStripMenuItem;
         private System.Windows.Forms.Timer timerConsole;
-        private System.Windows.Forms.Label lbTLGreen;
-        private System.Windows.Forms.Label lbTLOrg;
-        private System.Windows.Forms.Label lbTLRed;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        public DevComponents.DotNetBar.ButtonX btnRESET;
-        public DevComponents.DotNetBar.ButtonX btnTenKey;
-        public DevComponents.DotNetBar.ButtonX btnMenuLog;
-        public DevComponents.DotNetBar.ButtonX btnMenuAlarm;
-        public DevComponents.DotNetBar.ButtonX btnMenuMonitor;
-        public DevComponents.DotNetBar.ButtonX btnMenuData;
-        public DevComponents.DotNetBar.ButtonX btnMenuMotor;
-        public DevComponents.DotNetBar.ButtonX btnMenuManual;
-        public DevComponents.DotNetBar.ButtonX btnMenuAuto;
-        public DevComponents.DotNetBar.ButtonX btnLanguageSET;
-        public DevComponents.DotNetBar.ButtonX btnMenuCalib;
-        private System.Windows.Forms.PictureBox pictureEMO;
-        public DevComponents.DotNetBar.ButtonX btnBuzzerOff;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.NotifyIcon TrayIcon;
+        private System.Windows.Forms.FlowLayoutPanel flpTopButtons;
+        private System.Windows.Forms.FlowLayoutPanel flpTopStatus;
+        private System.Windows.Forms.Label lblMachine;
+        private System.Windows.Forms.Label lblDeviceCaption;
+        public System.Windows.Forms.Label lblDevice;
+        public System.Windows.Forms.Label lblSeqLink;
+        public System.Windows.Forms.Label lblPeripheral;
+        public System.Windows.Forms.Label lblSecsGem;
+        public System.Windows.Forms.Label lblUserName;
+        public System.Windows.Forms.Label lblUserTime;
+        public MMI.HmiButton btnEMO;
+        public MMI.HmiButton btnRESET;
+        public MMI.HmiButton btnBuzzerOff;
+        public MMI.HmiButton btnTenKey;
+        private MMI.HmiButton btnPM;
+        public MMI.HmiButton btnLanguageSET;
+        private MMI.HmiButton btnUserLogIn;
+        private System.Windows.Forms.Label lblAlarmStripe;
+        public System.Windows.Forms.Label lblError;
+        public System.Windows.Forms.Label lblErrorMessage;
+        public MMI.HmiRailButton btnMenuAuto;
+        public MMI.HmiRailButton btnMenuManual;
+        public MMI.HmiRailButton btnMenuMotor;
+        public MMI.HmiRailButton btnMenuData;
+        public MMI.HmiRailButton btnMenuMonitor;
+        public MMI.HmiRailButton btnMenuAlarm;
+        public MMI.HmiRailButton btnMenuLog;
+        public MMI.HmiRailButton btnMenuCalib;
+        private System.Windows.Forms.Label lblSubTitle;
+        private System.Windows.Forms.FlowLayoutPanel flpSubAuto;
+        public MMI.HmiButton btnSubAuto1;
+        public MMI.HmiButton btnSubAuto2;
+        private System.Windows.Forms.FlowLayoutPanel flpSubManual;
+        public MMI.HmiButton btnSubManualList;
+        public MMI.HmiButton btnSubManualOP;
+        private System.Windows.Forms.FlowLayoutPanel flpSubData;
+        public MMI.HmiButton btnSubRecipe;
+        public MMI.HmiButton btnSubSysParam;
+        public MMI.HmiButton btnSubUseSkip;
+        public MMI.HmiButton btnSubLampBuzzer;
+        public MMI.HmiButton btnSubUserRegist;
+        public MMI.HmiButton btnSubMotorCfg;
+        private System.Windows.Forms.FlowLayoutPanel flpSubIO;
+        public MMI.HmiButton btnSubIO;
+        public MMI.HmiButton btnSubBitDM;
+        private System.Windows.Forms.FlowLayoutPanel flpSubLog;
+        public MMI.HmiButton btnSubLog;
+        public MMI.HmiButton btnSubErrorHistory;
+        public MMI.HmiButton btnSubMTBA;
+        private System.Windows.Forms.ToolStripMenuItem showHideConsoleToolStripMenuItem;
     }
 }
-

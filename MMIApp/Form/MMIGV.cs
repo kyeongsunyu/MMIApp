@@ -244,33 +244,7 @@ namespace MMI
 
         public static bool bFormHomeShow = false;
 
-        //add by chs
-        #region FORM_VIEW
-        public static Form ViewMainForm = null;
-        public static Form bfViewMainForm = null;
 
-        public static Form ViewAutoForm = null;
-        public static Form bfViewAutoForm = null;
-
-        public static Form ViewManualForm = null;
-        public static Form bfViewManualForm = null;
-
-        public static Form ViewMotorForm = null;
-        public static Form bfViewMotorForm = null;
-
-        public static Form ViewDataForm = null;
-        public static Form bfViewDataForm = null;
-
-        public static Form ViewMonitorForm = null;
-        public static Form bfViewMonitorForm = null;
-
-        public static Form ViewAlarmForm = null;
-        public static Form bfViewAlarmForm = null;
-
-        public static Form ViewLogForm = null;
-        public static Form bfViewLogForm = null;
-
-        #endregion FORM_VIEW
 
 
 
