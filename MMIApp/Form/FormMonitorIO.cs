@@ -1,6 +1,4 @@
-﻿using C1.Win.C1FlexGrid;
-using DevComponents.Instrumentation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-using static C1.Util.Win.Win32;
 
 namespace MMI
 {
@@ -120,7 +117,6 @@ namespace MMI
             gdIO.Cols[5].AllowEditing = false;
 
 
-            gdIO.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
             CellRange rng = gdIO.GetCellRange(0, 0, 1, 0);
             gdIO.MergedRanges.Add(rng);
 
@@ -218,14 +214,6 @@ namespace MMI
             }
         }
 
-        private void cbInputCh_DropDownChange(object sender, bool Expanded)
-        {
-            //indi_IN.Value = cbInputCh.SelectedIndex;
-            //indi_IN.Text = string.Format("{0:D2}", (int)indi_IN.Value);
-            lblInCh.Text = string.Format("{0:D2}", cbInputCh.SelectedIndex);
-
-            LoadItem();
-        }
 
         private void cbInputCh_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -233,11 +221,6 @@ namespace MMI
             LoadItem();
         }
 
-        private void cbOutputCh_DropDownChange(object sender, bool Expanded)
-        {
-            lblOutCh.Text = string.Format("{0:D2}", (int)cbOutputCh.SelectedIndex);
-            LoadItem();
-        }
 
         private void cbOutputCh_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -300,7 +283,7 @@ namespace MMI
                 if (e.Col == 3 || e.Col == 7)
                 {
                     gdIO.Cols[e.Col].ImageAlign = ImageAlignEnum.CenterCenter;
-                    gdIO.Cols[e.Col].ImageAlign = C1.Win.C1FlexGrid.ImageAlignEnum.TileStretch;
+                    gdIO.Cols[e.Col].ImageAlign = ImageAlignEnum.TileStretch;
                 }
             }
         }

@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
-using C1.Win.C1FlexGrid;
 
 namespace MMI
 {
     public partial class FormDataSysParam : Form
     {
         private FormMain frmMain = null;
-        DevComponents.DotNetBar.LabelX[] dSys;
+        Label[] dSys;
 
         public FormDataSysParam()
         {
@@ -26,7 +25,7 @@ namespace MMI
             InitializeComponent();
 
             this.frmMain = frm;
-            dSys = new DevComponents.DotNetBar.LabelX[21];
+            dSys = new Label[21];
 
             int cnt = 0;
             dSys[cnt] = lblSys001; cnt++;
@@ -154,9 +153,9 @@ namespace MMI
                 dVelData = frmMain.frm_NumPad.GetValue();
 
                 if (isFloat)
-                { ((DevComponents.DotNetBar.LabelX)sender).Text = dVelData.ToString("F2"); }
+                { ((Label)sender).Text = dVelData.ToString("F2"); }
                 else
-                { ((DevComponents.DotNetBar.LabelX)sender).Text = dVelData.ToString("F0"); }
+                { ((Label)sender).Text = dVelData.ToString("F0"); }
             }
         }
 
@@ -246,7 +245,7 @@ namespace MMI
                 uint LifeTimeCnt = MmiGV.pShMem.GetDM(100 + i);
                 string name = "lblCurrVal" + $"{i+1:000}";
 
-                DevComponents.DotNetBar.LabelX lbl = (DevComponents.DotNetBar.LabelX)this.Controls.Find(name, true)[0];
+                Label lbl = (Label)this.Controls.Find(name, true)[0];
                 if (lbl != null)
                 {
                     lbl.Text = $"{LifeTimeCnt:N000}";
@@ -260,7 +259,7 @@ namespace MMI
 
             if (frmMain.frm_PWD.GetPassWord(MmiGV.iScreenNo))
             {
-                string lblname = ((DevComponents.DotNetBar.LabelX)sender).Name;
+                string lblname = ((Label)sender).Name;
                 string result = Regex.Replace(lblname, @"[^0-9]", "");
                 int dmnum = 100 + int.Parse(result) - 1;
                 MmiGV.pShMem.SetDM( dmnum, 0);

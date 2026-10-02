@@ -1,5 +1,4 @@
-﻿using C1.Win.C1FlexGrid;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using static C1.Util.Win.Win32;
 
 namespace MMI
 {
@@ -79,7 +77,6 @@ namespace MMI
             gdBit.Cols[1].TextAlign = TextAlignEnum.CenterCenter;
             gdBit.Cols[2].TextAlign = TextAlignEnum.LeftCenter;
 
-            gdBit.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
             CellRange rng = gdBit.GetCellRange(0, 0, 1, 0);
             gdBit.MergedRanges.Add(rng);
 
@@ -132,7 +129,7 @@ namespace MMI
                 if (e.Col == 0 )
                 {
                     gdBit.Cols[e.Col].ImageAlign = ImageAlignEnum.CenterCenter;
-                    gdBit.Cols[e.Col].ImageAlign = C1.Win.C1FlexGrid.ImageAlignEnum.TileStretch;
+                    gdBit.Cols[e.Col].ImageAlign = ImageAlignEnum.TileStretch;
                 }
             }
         }
@@ -244,7 +241,6 @@ namespace MMI
             gdDM.Cols[2].TextAlign = TextAlignEnum.LeftCenter;
 
 
-            gdDM.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
             CellRange rng = gdDM.GetCellRange(0, 0, 0, 3);
             gdDM.MergedRanges.Add(rng);
 

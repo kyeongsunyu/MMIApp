@@ -29,50 +29,40 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDataMotorCFG));
-            this.gdMotorCFG = new C1.Win.C1FlexGrid.C1FlexGrid();
-            this.btnSave = new DevComponents.DotNetBar.ButtonX();
+            this.gdMotorCFG = new MMI.HmiGrid();
+            this.btnSave = new MMI.HmiButton();
             ((System.ComponentModel.ISupportInitialize)(this.gdMotorCFG)).BeginInit();
             this.SuspendLayout();
             // 
             // gdMotorCFG
             // 
-            this.gdMotorCFG.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None;
             this.gdMotorCFG.ColumnInfo = resources.GetString("gdMotorCFG.ColumnInfo");
             this.gdMotorCFG.Location = new System.Drawing.Point(59, 32);
             this.gdMotorCFG.Name = "gdMotorCFG";
             this.gdMotorCFG.Rows.Count = 62;
             this.gdMotorCFG.Rows.DefaultSize = 25;
             this.gdMotorCFG.Rows.Fixed = 2;
-            this.gdMotorCFG.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Cell;
             this.gdMotorCFG.Size = new System.Drawing.Size(1225, 880);
-            this.gdMotorCFG.StyleInfo = resources.GetString("gdMotorCFG.StyleInfo");
             this.gdMotorCFG.TabIndex = 35;
-            this.gdMotorCFG.VisualStyle = C1.Win.C1FlexGrid.VisualStyle.Office2010Black;
             // 
             // btnSave
             // 
-            this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSave.BackColor = System.Drawing.Color.Black;
-            this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnSave.Location = new System.Drawing.Point(1339, 828);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
             this.btnSave.Size = new System.Drawing.Size(111, 83);
             this.btnSave.TabIndex = 46;
             this.btnSave.Tag = "1";
             this.btnSave.Text = "SAVE";
-            this.btnSave.TextColor = System.Drawing.Color.White;
-            this.btnSave.ThemeAware = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FormDataMotorCFG
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(1480, 930);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gdMotorCFG);
-            this.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormDataMotorCFG";
             this.Load += new System.EventHandler(this.FormDataMotorCFG_Load);
@@ -83,7 +73,7 @@
         }
 
         #endregion
-        private C1.Win.C1FlexGrid.C1FlexGrid gdMotorCFG;
-        private DevComponents.DotNetBar.ButtonX btnSave;
+        private MMI.HmiGrid gdMotorCFG;
+        private MMI.HmiButton btnSave;
     }
 }

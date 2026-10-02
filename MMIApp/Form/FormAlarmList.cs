@@ -1,5 +1,4 @@
-﻿using C1.Win.C1FlexGrid;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static C1.Util.Win.Win32;
 using WMPLib;
 
 namespace MMI
@@ -231,7 +229,7 @@ namespace MMI
             DisplayData();
         }
 
-        private void gdAlarm_AfterEdit(object sender, C1.Win.C1FlexGrid.RowColEventArgs e)
+        private void gdAlarm_AfterEdit(object sender, RowColEventArgs e)
         {
             String strSQL = "";
 

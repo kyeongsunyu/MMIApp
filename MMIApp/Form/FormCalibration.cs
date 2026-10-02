@@ -8,25 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
-using C1.Win.C1FlexGrid;
 
 namespace MMI
 {
     public partial class FormCalibration : Form
     {
         private FormMain frmMain = null;
-        private C1.Win.C1FlexGrid.C1FlexGrid[] gd_F;
-        private C1.Win.C1FlexGrid.C1FlexGrid[] gd_R;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx[] SelectUnit;
+        private HmiGrid[] gd_F;
+        private HmiGrid[] gd_R;
+        private ComboBox[] SelectUnit;
         private CDev3Point dev3P;
         private CDevPckCen devCen;
 
-        private DevComponents.DotNetBar.PanelEx[] F_Panel;
-        private DevComponents.DotNetBar.PanelEx F_BfPanel;
-        private DevComponents.DotNetBar.PanelEx[] R_Panel;
-        private DevComponents.DotNetBar.PanelEx R_BfPanel;
+        private HmiCard[] F_Panel;
+        private HmiCard F_BfPanel;
+        private HmiCard[] R_Panel;
+        private HmiCard R_BfPanel;
 
-        private C1.Win.C1FlexGrid.C1FlexGrid[] Grid_Cen;
+        private HmiGrid[] Grid_Cen;
 
         //0:Front, 1:Rear, 2:BTM Y
         private int MoveBtnTag;
@@ -172,7 +171,7 @@ namespace MMI
 
         private void InitGrid()
         {
-            Grid_Cen = new C1FlexGrid[2];
+            Grid_Cen = new HmiGrid[2];
             Grid_Cen[0] = Grid_F_Center;
             Grid_Cen[1] = Grid_R_Center;
             string str = "";
@@ -193,13 +192,13 @@ namespace MMI
             }
 
             //--------------------------
-            gd_F = new C1.Win.C1FlexGrid.C1FlexGrid[6];
-            gd_R = new C1.Win.C1FlexGrid.C1FlexGrid[6];
+            gd_F = new HmiGrid[6];
+            gd_R = new HmiGrid[6];
 
-            F_Panel = new DevComponents.DotNetBar.PanelEx[6];
-            R_Panel = new DevComponents.DotNetBar.PanelEx[6];
+            F_Panel = new HmiCard[6];
+            R_Panel = new HmiCard[6];
 
-            SelectUnit = new DevComponents.DotNetBar.Controls.ComboBoxEx[2];
+            SelectUnit = new ComboBox[2];
 
             gd_F[0] = gd_F_Pal1;
             gd_F[1] = gd_F_Pal2;
@@ -278,7 +277,6 @@ namespace MMI
                     { gd_F[k].Cols[m].AllowEditing = gd_R[k].Cols[m].AllowEditing = false; }
                 }
 
-                gd_F[k].AllowMerging = gd_R[k].AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
 
                 rng = gd_F[k].GetCellRange(0, 1, 0, 3);
                 gd_F[k].MergedRanges.Add(rng);
@@ -325,31 +323,27 @@ namespace MMI
         }
         private void Unit_F_CmbBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            F_BfPanel.Style.BackColor1.Color = Color.White;
-            F_BfPanel.Style.BackColor2.Color = Color.White;
+            F_BfPanel.BackColor = HmiTheme.Card;
 
             int idx = Unit_F_CmbBox.SelectedIndex;
-            F_Panel[idx].Style.BackColor1.Color = Color.Lime;
-            F_Panel[idx].Style.BackColor2.Color = Color.Lime;
+            F_Panel[idx].BackColor = HmiTheme.Selection;
 
             F_BfPanel = F_Panel[idx];
         }
 
         private void Unit_R_CmbBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            R_BfPanel.Style.BackColor1.Color = Color.White;
-            R_BfPanel.Style.BackColor2.Color = Color.White;
+            R_BfPanel.BackColor = HmiTheme.Card;
 
             int idx = Unit_R_CmbBox.SelectedIndex;
-            R_Panel[idx].Style.BackColor1.Color = Color.Lime;
-            R_Panel[idx].Style.BackColor2.Color = Color.Lime;
+            R_Panel[idx].BackColor = HmiTheme.Selection;
 
             R_BfPanel = R_Panel[idx];
         }
 
         private void Do3Point_Click(object sender, EventArgs e)
         {
-            DevComponents.DotNetBar.ButtonX pButton = sender as DevComponents.DotNetBar.ButtonX;
+            HmiButton pButton = sender as HmiButton;
 
             int pktype = -1;
             int target = -1;

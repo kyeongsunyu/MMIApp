@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Collections.Specialized.BitVector32;
-using C1.Win.C1FlexGrid;
 
 namespace MMI
 {

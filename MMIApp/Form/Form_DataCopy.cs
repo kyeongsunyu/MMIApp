@@ -29,7 +29,7 @@ namespace MMI
 
             this.frmMain = frm;
 
-            cbSourceDevice.DropDownChange += comboDroDown;
+            cbSourceDevice.SelectedIndexChanged += (s, e) => comboDroDown(s, false);
         }
 
         private void Form_DataCopy_Load(object sender, EventArgs e)
@@ -78,10 +78,6 @@ namespace MMI
             comboDroDown(cbSourceDevice, false);
         }
 
-        private void cbSourceDevice_DropDownChange(object sender, bool Expanded)
-        {
-            comboDroDown(sender, Expanded);
-        }
         private void comboDroDown(object sender, bool Expanded)
         {
             string sSQL;

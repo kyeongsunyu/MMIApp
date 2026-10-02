@@ -1,5 +1,4 @@
-﻿using C1.Framework;
-using Mapping;
+﻿using Mapping;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

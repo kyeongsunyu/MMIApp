@@ -29,7 +29,7 @@ namespace MMI
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblNum = new DevComponents.DotNetBar.LabelX();
+            this.lblNum = new System.Windows.Forms.Label();
             this.btn_Enter = new System.Windows.Forms.Button();
             this.btn_DEL = new System.Windows.Forms.Button();
             this.btnNO_0 = new System.Windows.Forms.Button();
@@ -47,25 +47,20 @@ namespace MMI
             // 
             // lblNum
             // 
-            this.lblNum.BackColor = System.Drawing.Color.Black;
-            // 
-            // 
-            // 
-            this.lblNum.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblNum.Font = new System.Drawing.Font("Thomas Digital", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNum.ForeColor = System.Drawing.Color.Lime;
+            this.lblNum.Font = new System.Drawing.Font("Malgun Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNum.Location = new System.Drawing.Point(2, 3);
             this.lblNum.Name = "lblNum";
+            this.lblNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblNum.Size = new System.Drawing.Size(224, 66);
             this.lblNum.TabIndex = 96;
             this.lblNum.Text = "00000000";
-            this.lblNum.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.lblNum.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btn_Enter
             // 
             this.btn_Enter.BackColor = System.Drawing.Color.MediumBlue;
             this.btn_Enter.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Enter.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn_Enter.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn_Enter.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btn_Enter.Location = new System.Drawing.Point(4, 299);
             this.btn_Enter.Name = "btn_Enter";
@@ -80,7 +75,7 @@ namespace MMI
             // 
             this.btn_DEL.BackColor = System.Drawing.Color.Brown;
             this.btn_DEL.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_DEL.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn_DEL.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn_DEL.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btn_DEL.Location = new System.Drawing.Point(158, 243);
             this.btn_DEL.Name = "btn_DEL";
@@ -95,7 +90,7 @@ namespace MMI
             // 
             this.btnNO_0.BackColor = System.Drawing.SystemColors.ControlText;
             this.btnNO_0.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNO_0.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNO_0.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNO_0.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNO_0.Location = new System.Drawing.Point(81, 243);
             this.btnNO_0.Name = "btnNO_0";
@@ -110,7 +105,7 @@ namespace MMI
             // 
             this.btn_DOT.BackColor = System.Drawing.SystemColors.ControlText;
             this.btn_DOT.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_DOT.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn_DOT.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn_DOT.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btn_DOT.Location = new System.Drawing.Point(4, 243);
             this.btn_DOT.Name = "btn_DOT";
@@ -125,7 +120,7 @@ namespace MMI
             // 
             this.btnNO_3.BackColor = System.Drawing.SystemColors.ControlText;
             this.btnNO_3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNO_3.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNO_3.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNO_3.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNO_3.Location = new System.Drawing.Point(158, 187);
             this.btnNO_3.Name = "btnNO_3";
@@ -140,7 +135,7 @@ namespace MMI
             // 
             this.btnNO_2.BackColor = System.Drawing.SystemColors.ControlText;
             this.btnNO_2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNO_2.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNO_2.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNO_2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNO_2.Location = new System.Drawing.Point(81, 187);
             this.btnNO_2.Name = "btnNO_2";
@@ -155,7 +150,7 @@ namespace MMI
             // 
             this.btnNO_1.BackColor = System.Drawing.SystemColors.ControlText;
             this.btnNO_1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNO_1.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNO_1.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNO_1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNO_1.Location = new System.Drawing.Point(4, 187);
             this.btnNO_1.Name = "btnNO_1";
@@ -170,7 +165,7 @@ namespace MMI
             // 
             this.btnNO_6.BackColor = System.Drawing.SystemColors.ControlText;
             this.btnNO_6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNO_6.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNO_6.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNO_6.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNO_6.Location = new System.Drawing.Point(158, 131);
             this.btnNO_6.Name = "btnNO_6";
@@ -185,7 +180,7 @@ namespace MMI
             // 
             this.btnNO_5.BackColor = System.Drawing.SystemColors.ControlText;
             this.btnNO_5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNO_5.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNO_5.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNO_5.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNO_5.Location = new System.Drawing.Point(81, 131);
             this.btnNO_5.Name = "btnNO_5";
@@ -200,7 +195,7 @@ namespace MMI
             // 
             this.btnNO_4.BackColor = System.Drawing.SystemColors.ControlText;
             this.btnNO_4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNO_4.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNO_4.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNO_4.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNO_4.Location = new System.Drawing.Point(4, 131);
             this.btnNO_4.Name = "btnNO_4";
@@ -215,7 +210,7 @@ namespace MMI
             // 
             this.btnNO_9.BackColor = System.Drawing.SystemColors.ControlText;
             this.btnNO_9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNO_9.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNO_9.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNO_9.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNO_9.Location = new System.Drawing.Point(158, 75);
             this.btnNO_9.Name = "btnNO_9";
@@ -230,7 +225,7 @@ namespace MMI
             // 
             this.btnNO_8.BackColor = System.Drawing.SystemColors.ControlText;
             this.btnNO_8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNO_8.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNO_8.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNO_8.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNO_8.Location = new System.Drawing.Point(81, 75);
             this.btnNO_8.Name = "btnNO_8";
@@ -245,7 +240,7 @@ namespace MMI
             // 
             this.btnNO_7.BackColor = System.Drawing.SystemColors.ControlText;
             this.btnNO_7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNO_7.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNO_7.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNO_7.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNO_7.Location = new System.Drawing.Point(4, 75);
             this.btnNO_7.Name = "btnNO_7";
@@ -260,7 +255,7 @@ namespace MMI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(227, 355);
             this.Controls.Add(this.lblNum);
             this.Controls.Add(this.btn_Enter);
@@ -287,7 +282,7 @@ namespace MMI
 
         #endregion
 
-        private DevComponents.DotNetBar.LabelX lblNum;
+        private System.Windows.Forms.Label lblNum;
         private System.Windows.Forms.Button btn_Enter;
         private System.Windows.Forms.Button btn_DEL;
         private System.Windows.Forms.Button btnNO_0;

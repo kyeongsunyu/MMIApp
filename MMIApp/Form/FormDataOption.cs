@@ -1,5 +1,4 @@
-﻿using C1.Win.C1FlexGrid;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -86,7 +85,6 @@ namespace MMI
             gdOption.Cols[5].TextAlign = TextAlignEnum.CenterCenter;
 
 
-            gdOption.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
             rng = gdOption.GetCellRange(0, 0, 1, 0);
             gdOption.MergedRanges.Add(rng);
             rng.Data = "NO";

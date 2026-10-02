@@ -62,14 +62,14 @@ namespace MMI
 
         private static void ApplyOne(Control c)
         {
-            if (c is HmiButton || c is HmiCard) return;
+            if (c is HmiButton || c is HmiCard || c is HmiGrid) return;
 
             if (c is Form || c is UserControl)
             {
                 c.BackColor = Background;
                 c.ForeColor = Text;
             }
-            else if (c is TextBox || c is ComboBox || c is NumericUpDown || c is ListBox)
+            else if (c is TextBox || c is ComboBox || c is NumericUpDown || c is ListBox || c is TreeView)
             {
                 c.BackColor = Input;
                 c.ForeColor = Text;
@@ -78,12 +78,27 @@ namespace MMI
             }
             else if (c is CheckBox || c is RadioButton)
             {
-                c.ForeColor = Text;
+                c.ForeColor = MapLegacyFore(c.ForeColor);
                 c.BackColor = Color.Transparent;
             }
             else if (c is Label)
             {
-                c.ForeColor = Text;
+                // A label that never had its own background takes its
+                // parent's; only an explicit, legacy one is translated.
+                c.ForeColor = MapLegacyFore(c.ForeColor);
+                if (c.Parent != null && c.BackColor != Color.Transparent && c.BackColor != c.Parent.BackColor)
+                {
+                    c.BackColor = MapLegacyBack(c.BackColor);
+                }
+            }
+            else if (c is Panel || c is GroupBox || c is TabPage)
+            {
+                Color m = MapLegacyBack(c.BackColor);
+                if (m == Input || m == GridHeader || c.BackColor.Name == "Control" || c.BackColor.Name == "Info")
+                {
+                    c.BackColor = Color.Transparent;
+                }
+                c.ForeColor = c is GroupBox ? TextMuted : Text;
             }
             else if (c is Button)
             {
@@ -94,10 +109,6 @@ namespace MMI
                 b.BackColor = Control;
                 b.ForeColor = Text;
             }
-            else if (c is GroupBox)
-            {
-                c.ForeColor = TextMuted;
-            }
             else if (c is DataGridView)
             {
                 StyleGrid((DataGridView)c);
@@ -107,6 +118,61 @@ namespace MMI
                 c.BackColor = Input;
                 c.ForeColor = Text;
             }
+        }
+
+        // The screens were written against a light palette: white, bisque and
+        // honeydew for cells that can be edited, greys for headers and locked
+        // cells, and saturated colours for state. Those are translated into
+        // their dark theme equivalents so that what they meant survives;
+        // anything else is passed through.
+        public static Color MapLegacyBack(Color c)
+        {
+            if (c.IsEmpty) return c;
+            switch (c.Name)
+            {
+                case "White": case "Bisque": case "Honeydew": case "Beige": case "Ivory":
+                case "LightYellow": case "Info": case "Window": case "Lavender": case "AliceBlue":
+                case "LightCyan": case "PowderBlue": case "Cornsilk": case "OldLace": case "FloralWhite":
+                    return Input;
+                case "Gray": case "DimGray": case "DarkGray": case "Silver": case "Control":
+                case "Gainsboro": case "LightGray": case "ControlDark": case "ControlLight":
+                    return GridHeader;
+                case "Black":
+                    return TopBar;
+                case "Lime": case "Green": case "LimeGreen": case "ForestGreen": case "SpringGreen":
+                    return Normal;
+                case "Red": case "Crimson": case "OrangeRed":
+                    return Alarm;
+                case "Yellow": case "Orange": case "Gold":
+                    return Warning;
+            }
+            return c;
+        }
+
+        public static Color MapLegacyFore(Color c)
+        {
+            if (c.IsEmpty) return c;
+            switch (c.Name)
+            {
+                case "Black": case "ControlText": case "InfoText": case "ActiveCaptionText":
+                case "WindowText": case "White": case "Window":
+                    return Text;
+                case "Gray": case "DimGray": case "DarkGray": case "GrayText":
+                    return TextMuted;
+                case "Red": case "Crimson":
+                    return Alarm;
+                case "Blue": case "DodgerBlue": case "RoyalBlue":
+                    return Accent;
+                case "Lime": case "Green": case "LimeGreen":
+                    return Normal;
+            }
+            return c;
+        }
+
+        public static Font MapLegacyFont(Font f)
+        {
+            if (f == null) return null;
+            return new Font(FontName, f.Size, f.Style);
         }
 
         public static void StyleGrid(DataGridView g)

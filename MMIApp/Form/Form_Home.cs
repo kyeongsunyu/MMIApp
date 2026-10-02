@@ -19,13 +19,13 @@ namespace MMI
     }
     public partial class Form_Home : Form
     {
-        private DevComponents.DotNetBar.ButtonX p_Button = null;
+        private HmiButton p_Button = null;
 
-        private DevComponents.DotNetBar.ButtonX[] btnMTAxis;
+        private HmiButton[] btnMTAxis;
         public Form_Home()
         {
             InitializeComponent();
-            btnMTAxis = new DevComponents.DotNetBar.ButtonX[50];
+            btnMTAxis = new HmiButton[50];
 
             btnMTAxis[0] = btnAxis00;
             btnMTAxis[1] = btnAxis01;
@@ -90,7 +90,7 @@ namespace MMI
 
         private void btnHome(object sender, EventArgs e)
         {
-            p_Button = sender as DevComponents.DotNetBar.ButtonX;
+            p_Button = sender as HmiButton;
 
             int nTag = int.TryParse(p_Button.Tag.ToString(), out nTag) ? nTag:-1;
             if (nTag >= 0)

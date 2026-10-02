@@ -97,25 +97,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="C1.Win.4, Version=4.0.20221.548, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04, processorArchitecture=MSIL" />
-    <Reference Include="C1.Win.4.5.2, Version=4.5.20221.548, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
-    <Reference Include="C1.Win.C1Command.4, Version=4.0.20221.548, Culture=neutral, PublicKeyToken=e808566f358766d8" />
-    <Reference Include="C1.Win.C1Command.4.5.2, Version=4.5.20221.548, Culture=neutral, PublicKeyToken=e808566f358766d8" />
-    <Reference Include="C1.Win.C1FlexGrid.4, Version=4.0.20221.548, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
-    <Reference Include="C1.Win.C1FlexGrid.ImportExport.4, Version=4.0.20221.548, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
-    <Reference Include="C1.Win.C1FlexGrid.SearchPanel.4, Version=4.0.20221.548, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
-    <Reference Include="C1.Win.C1Input.4, Version=4.0.20221.548, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a, processorArchitecture=MSIL" />
-    <Reference Include="C1.Win.C1Input.4.5.2, Version=4.5.20221.548, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a, processorArchitecture=MSIL" />
-    <Reference Include="DevComponents.DotNetBar.Schedule, Version=14.1.0.37, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
-    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=14.1.0.37, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
-    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.37, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevComponents.Instrumentation, Version=14.1.0.37, Culture=neutral, PublicKeyToken=f90dc37c26666a67, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.Instrumentation.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -170,6 +151,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\HmiTheme.cs" />
+    <Compile Include="UI\HmiGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\HmiTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form\FormCalibration.cs">
       <SubType>Form</SubType>
     </Compile>

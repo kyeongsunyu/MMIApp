@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.btnClose = new DevComponents.DotNetBar.ButtonX();
+            this.btnClose = new MMI.HmiButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,29 +47,23 @@
             // 
             // btnClose
             // 
-            this.btnClose.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnClose.BackColor = System.Drawing.Color.Black;
-            this.btnClose.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnClose.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Font = new System.Drawing.Font("Malgun Gothic", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Location = new System.Drawing.Point(794, 923);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
             this.btnClose.Size = new System.Drawing.Size(293, 95);
-            this.btnClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnClose.TabIndex = 1;
             this.btnClose.Tag = "1";
             this.btnClose.Text = "CLOSE";
-            this.btnClose.ThemeAware = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // Form_PM
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(1920, 1030);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pictureBox);
-            this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form_PM";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -83,6 +77,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox;
-        private DevComponents.DotNetBar.ButtonX btnClose;
+        private MMI.HmiButton btnClose;
     }
 }

@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Collections.Specialized.BitVector32;
-using C1.Win.C1FlexGrid;
 
 namespace MMI
 {
     public partial class FormManualOP : Form
     {
         private FormMain frmMain = null;
-        private DevComponents.DotNetBar.ButtonX p_Button = null;
+        private HmiButton p_Button = null;
 
         public FormManualOP()
         {
@@ -35,7 +34,7 @@ namespace MMI
 
             LoadSection();
 
-            tabControl1.SelectedTabIndex = 0;
+            tabControl1.SelectedIndex = 0;
         }
 
         private void InitGRidTenKeySection()
@@ -83,14 +82,14 @@ namespace MMI
             String strSectionNo = gdTenKeySection[gdTenKeySection.Row, 0].ToString();
             String strSection = "tabSection" + strSectionNo;
 
-            tabControl1.SelectedTabIndex = int.Parse(strSectionNo)-1;
+            tabControl1.SelectedIndex = int.Parse(strSectionNo)-1;
         }
 
         private void TenKey(object sender, EventArgs e)
         {
             if (MmiGV.dmData.DMValue[1] == 1) return;
 
-            p_Button = sender as DevComponents.DotNetBar.ButtonX;
+            p_Button = sender as HmiButton;
 
             int nTag = int.TryParse(p_Button.Tag.ToString(), out nTag) ? nTag : -1;
             if (nTag >= 0)

@@ -9,8 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Automation.Text;
 using System.Windows.Forms;
-using C1.Win.C1FlexGrid;
-using DevComponents.Instrumentation;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace MMI
@@ -89,7 +87,6 @@ namespace MMI
             gdMotor.Cols[4].AllowEditing = false;
             gdMotor.Cols[5].AllowEditing = false;
 
-            gdMotor.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
             CellRange rng = gdMotor.GetCellRange(0, 0, 1, 0);
             gdMotor.MergedRanges.Add(rng);
             rng.Data = "\nNO";
@@ -159,7 +156,6 @@ namespace MMI
             gdMotorCommon.Cols[4].AllowEditing = false;
             gdMotorCommon.Cols[5].AllowEditing = false;
 
-            gdMotorCommon.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
             CellRange rng = gdMotorCommon.GetCellRange(0, 0, 1, 0);
             gdMotorCommon.MergedRanges.Add(rng);
             rng.Data = "\nNO";
@@ -557,12 +553,6 @@ namespace MMI
         }
         
 
-        private void cbMotor_DropDownChange(object sender, bool Expanded)
-        {
-            MmiGV.iCurrAxis = cbMotor.SelectedIndex;
-            LoadMotorSettingData();
-            RefreshData();
-        }
 
         private void cbMotor_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -596,7 +586,7 @@ namespace MMI
         {
             if (MmiGV.dmData.DMValue[1] == 1) return;
 
-            DevComponents.DotNetBar.ButtonX btn = sender as DevComponents.DotNetBar.ButtonX;
+            HmiButton btn = sender as HmiButton;
 
             int iTag = int.Parse(btn.Tag.ToString());
 
@@ -652,7 +642,7 @@ namespace MMI
         {
             if (MmiGV.dmData.DMValue[1] == 1) return;
 
-            DevComponents.DotNetBar.ButtonX btn = sender as DevComponents.DotNetBar.ButtonX;
+            HmiButton btn = sender as HmiButton;
 
             int iTag = int.Parse(btn.Tag.ToString());
 
@@ -781,8 +771,8 @@ namespace MMI
                 return;
             }
 
-            DevComponents.DotNetBar.ButtonX pButton;
-            pButton = sender as DevComponents.DotNetBar.ButtonX;
+            HmiButton pButton;
+            pButton = sender as HmiButton;
 
             int iTag = int.Parse(pButton.Tag.ToString());
 

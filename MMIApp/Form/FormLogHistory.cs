@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
-using C1.Win.C1FlexGrid;
 
 namespace MMI
 {
@@ -50,7 +49,6 @@ namespace MMI
             gdLogHistory[1, 1] = "LOG NAME";
             gdLogHistory[1, 2] = "TIME";
 
-            gdLogHistory.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
             CellRange rng = gdLogHistory.GetCellRange(0, 0, 0, 2);
             gdLogHistory.MergedRanges.Add(rng);
             

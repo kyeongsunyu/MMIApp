@@ -1,5 +1,4 @@
-﻿using C1.Win.C1FlexGrid;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,10 +21,10 @@ namespace MMI
         private FormMain frmMain = null;
         private int iSelectedDevice;
 
-        DevComponents.DotNetBar.LabelX[] dDev;
-        DevComponents.DotNetBar.LabelX[] dCnt;
-        DevComponents.DotNetBar.LabelX[] dDelay;
-        DevComponents.DotNetBar.Controls.CheckBoxX[] dbool;
+        Label[] dDev;
+        Label[] dCnt;
+        Label[] dDelay;
+        CheckBox[] dbool;
 
         private void InitUi()
         {
@@ -36,10 +35,10 @@ namespace MMI
             //cmb_Degree.Items.Add("270");
             
 
-            dDev = new DevComponents.DotNetBar.LabelX[18];
-            dbool = new DevComponents.DotNetBar.Controls.CheckBoxX[18];
-            dCnt = new DevComponents.DotNetBar.LabelX[9];
-            dDelay = new DevComponents.DotNetBar.LabelX[8];
+            dDev = new Label[18];
+            dbool = new CheckBox[18];
+            dCnt = new Label[9];
+            dDelay = new Label[8];
 
             int cnt =0;
             dDev[cnt] = lblDev001; cnt++;
@@ -716,12 +715,12 @@ namespace MMI
             {
                 if (enable[k])  //true : 사용
                 {
-                    dbool[k].TextColor = Color.Blue;
+                    dbool[k].ForeColor = Color.Blue;
                     dbool[k].Checked = false; dbool[k].Enabled = true;
                 }
                 else  //false : 미사용
                 {
-                    dbool[k].TextColor = Color.Gray;
+                    dbool[k].ForeColor = Color.Gray;
                     dbool[k].Checked = true; dbool[k].Enabled = false;
                 }
             }      
@@ -787,12 +786,12 @@ namespace MMI
         }
 
 
-        private double GetBool(DevComponents.DotNetBar.Controls.CheckBoxX chkBox)
+        private double GetBool(CheckBox chkBox)
         {
             double result = chkBox.Checked == true ? 1 : 0; 
             return result;
         }
-        private double GetDouble(DevComponents.DotNetBar.LabelX btn)
+        private double GetDouble(Label btn)
         {
             if(btn.Text == "") return 0;
 
@@ -834,9 +833,9 @@ namespace MMI
                 dVelData = frmMain.frm_NumPad.GetValue();
 
                 if (isFloat)
-                { ((DevComponents.DotNetBar.LabelX)sender).Text = dVelData.ToString("F2"); }
+                { ((Label)sender).Text = dVelData.ToString("F2"); }
                 else
-                { ((DevComponents.DotNetBar.LabelX)sender).Text = dVelData.ToString("F0"); }
+                { ((Label)sender).Text = dVelData.ToString("F0"); }
             }
         }
 

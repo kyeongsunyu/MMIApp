@@ -1,6 +1,4 @@
-﻿using C1.Win.C1FlexGrid;
-using DevComponents.DotNetBar;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,7 +47,6 @@ namespace MMI
             gdLampBuzzer[1, 6] = "ON TIME";
             gdLampBuzzer[1, 7] = "OFF TIME";
 
-            gdLampBuzzer.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
             CellRange rng = gdLampBuzzer.GetCellRange(0, 0, 1, 0);
             gdLampBuzzer.MergedRanges.Add(rng);
 

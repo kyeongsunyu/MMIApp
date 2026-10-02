@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDataLampBuzzer));
-            this.gdLampBuzzer = new C1.Win.C1FlexGrid.C1FlexGrid();
+            this.gdLampBuzzer = new MMI.HmiGrid();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnYellowLamp = new System.Windows.Forms.Panel();
@@ -37,9 +37,9 @@
             this.pnGreenLamp = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lblOffTime = new DevComponents.DotNetBar.LabelX();
-            this.lblOnTime = new DevComponents.DotNetBar.LabelX();
-            this.lblBuzzerCount = new DevComponents.DotNetBar.LabelX();
+            this.lblOffTime = new System.Windows.Forms.Label();
+            this.lblOnTime = new System.Windows.Forms.Label();
+            this.lblBuzzerCount = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -57,9 +57,9 @@
             this.rdRedBLINK = new System.Windows.Forms.RadioButton();
             this.rdRedON = new System.Windows.Forms.RadioButton();
             this.rdRedOFF = new System.Windows.Forms.RadioButton();
-            this.lblTitle = new DevComponents.DotNetBar.LabelX();
-            this.btnInit = new DevComponents.DotNetBar.ButtonX();
-            this.btnSAVE = new DevComponents.DotNetBar.ButtonX();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.btnInit = new MMI.HmiButton();
+            this.btnSAVE = new MMI.HmiButton();
             ((System.ComponentModel.ISupportInitialize)(this.gdLampBuzzer)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -71,20 +71,15 @@
             // 
             // gdLampBuzzer
             // 
-            this.gdLampBuzzer.AllowResizing = C1.Win.C1FlexGrid.AllowResizingEnum.None;
             this.gdLampBuzzer.ColumnInfo = resources.GetString("gdLampBuzzer.ColumnInfo");
-            this.gdLampBuzzer.DrawMode = C1.Win.C1FlexGrid.DrawModeEnum.OwnerDraw;
-            this.gdLampBuzzer.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.gdLampBuzzer.KeyActionEnter = C1.Win.C1FlexGrid.KeyActionEnum.None;
+            this.gdLampBuzzer.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.gdLampBuzzer.Location = new System.Drawing.Point(59, 32);
             this.gdLampBuzzer.Name = "gdLampBuzzer";
             this.gdLampBuzzer.Rows.Count = 1002;
             this.gdLampBuzzer.Rows.DefaultSize = 30;
             this.gdLampBuzzer.Rows.Fixed = 2;
             this.gdLampBuzzer.Size = new System.Drawing.Size(1366, 605);
-            this.gdLampBuzzer.StyleInfo = resources.GetString("gdLampBuzzer.StyleInfo");
             this.gdLampBuzzer.TabIndex = 30;
-            this.gdLampBuzzer.VisualStyle = C1.Win.C1FlexGrid.VisualStyle.Office2007Black;
             this.gdLampBuzzer.Click += new System.EventHandler(this.gdLampBuzzer_Click);
             this.gdLampBuzzer.DoubleClick += new System.EventHandler(this.gdLampBuzzer_DoubleClick);
             // 
@@ -161,7 +156,7 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Font = new System.Drawing.Font("Malgun Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(751, 66);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(300, 138);
@@ -171,53 +166,38 @@
             // 
             // lblOffTime
             // 
-            this.lblOffTime.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.lblOffTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblOffTime.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOffTime.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOffTime.Location = new System.Drawing.Point(151, 104);
             this.lblOffTime.Name = "lblOffTime";
+            this.lblOffTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblOffTime.Size = new System.Drawing.Size(77, 24);
-            this.lblOffTime.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
             this.lblOffTime.TabIndex = 49;
             this.lblOffTime.Text = "0";
-            this.lblOffTime.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.lblOffTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblOffTime.Click += new System.EventHandler(this.lblOffTime_Click);
             // 
             // lblOnTime
             // 
-            this.lblOnTime.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.lblOnTime.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblOnTime.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOnTime.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOnTime.Location = new System.Drawing.Point(151, 67);
             this.lblOnTime.Name = "lblOnTime";
+            this.lblOnTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblOnTime.Size = new System.Drawing.Size(77, 25);
-            this.lblOnTime.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
             this.lblOnTime.TabIndex = 48;
             this.lblOnTime.Text = "0";
-            this.lblOnTime.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.lblOnTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblOnTime.Click += new System.EventHandler(this.lblOnTime_Click);
             // 
             // lblBuzzerCount
             // 
-            this.lblBuzzerCount.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.lblBuzzerCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblBuzzerCount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuzzerCount.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuzzerCount.Location = new System.Drawing.Point(151, 29);
             this.lblBuzzerCount.Name = "lblBuzzerCount";
+            this.lblBuzzerCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblBuzzerCount.Size = new System.Drawing.Size(77, 25);
-            this.lblBuzzerCount.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
             this.lblBuzzerCount.TabIndex = 47;
             this.lblBuzzerCount.Text = "0";
-            this.lblBuzzerCount.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.lblBuzzerCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblBuzzerCount.Click += new System.EventHandler(this.lblBuzzerCount_Click);
             // 
             // label5
@@ -265,7 +245,7 @@
             this.grGreenLamp.Controls.Add(this.rdGreenBLINK);
             this.grGreenLamp.Controls.Add(this.rdGreenON);
             this.grGreenLamp.Controls.Add(this.rdGreenOFF);
-            this.grGreenLamp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grGreenLamp.Font = new System.Drawing.Font("Malgun Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grGreenLamp.Location = new System.Drawing.Point(499, 66);
             this.grGreenLamp.Name = "grGreenLamp";
             this.grGreenLamp.Size = new System.Drawing.Size(186, 138);
@@ -311,7 +291,7 @@
             this.grYellowLamp.Controls.Add(this.rdYellowBLINK);
             this.grYellowLamp.Controls.Add(this.rdYellowON);
             this.grYellowLamp.Controls.Add(this.rdYellowOFF);
-            this.grYellowLamp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grYellowLamp.Font = new System.Drawing.Font("Malgun Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grYellowLamp.Location = new System.Drawing.Point(263, 66);
             this.grYellowLamp.Name = "grYellowLamp";
             this.grYellowLamp.Size = new System.Drawing.Size(186, 138);
@@ -357,7 +337,7 @@
             this.grRedLamp.Controls.Add(this.rdRedBLINK);
             this.grRedLamp.Controls.Add(this.rdRedON);
             this.grRedLamp.Controls.Add(this.rdRedOFF);
-            this.grRedLamp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grRedLamp.Font = new System.Drawing.Font("Malgun Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grRedLamp.Location = new System.Drawing.Point(28, 66);
             this.grRedLamp.Name = "grRedLamp";
             this.grRedLamp.Size = new System.Drawing.Size(186, 138);
@@ -400,87 +380,47 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.BackColor = System.Drawing.SystemColors.Info;
-            // 
-            // 
-            // 
-            this.lblTitle.BackgroundStyle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.BackgroundStyle.BackColor2 = System.Drawing.Color.DarkOliveGreen;
-            this.lblTitle.BackgroundStyle.BackColorGradientAngle = 90;
-            this.lblTitle.BackgroundStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblTitle.BackgroundStyle.BorderBottomColor = System.Drawing.Color.Black;
-            this.lblTitle.BackgroundStyle.BorderBottomWidth = 1;
-            this.lblTitle.BackgroundStyle.BorderColor = System.Drawing.Color.Black;
-            this.lblTitle.BackgroundStyle.BorderColor2 = System.Drawing.Color.Black;
-            this.lblTitle.BackgroundStyle.BorderGradientAngle = 0;
-            this.lblTitle.BackgroundStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblTitle.BackgroundStyle.BorderLeftColor = System.Drawing.Color.Black;
-            this.lblTitle.BackgroundStyle.BorderLeftWidth = 1;
-            this.lblTitle.BackgroundStyle.BorderLightGradientAngle = 0;
-            this.lblTitle.BackgroundStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblTitle.BackgroundStyle.BorderRightColor = System.Drawing.Color.Black;
-            this.lblTitle.BackgroundStyle.BorderRightWidth = 1;
-            this.lblTitle.BackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.lblTitle.BackgroundStyle.BorderTopColor = System.Drawing.Color.Black;
-            this.lblTitle.BackgroundStyle.BorderTopWidth = 1;
-            this.lblTitle.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblTitle.BackgroundStyle.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTitle.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.lblTitle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.lblTitle.Font = new System.Drawing.Font("Malgun Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(28, 18);
             this.lblTitle.Name = "lblTitle";
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblTitle.Size = new System.Drawing.Size(1023, 41);
-            this.lblTitle.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.lblTitle.TabIndex = 10;
             this.lblTitle.Text = "00";
-            this.lblTitle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnInit
             // 
-            this.btnInit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnInit.BackColor = System.Drawing.Color.Black;
-            this.btnInit.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnInit.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInit.Font = new System.Drawing.Font("Malgun Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInit.Location = new System.Drawing.Point(1120, 18);
             this.btnInit.Name = "btnInit";
-            this.btnInit.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
             this.btnInit.Size = new System.Drawing.Size(123, 82);
             this.btnInit.TabIndex = 47;
             this.btnInit.Tag = "1";
             this.btnInit.Text = "DEFAULT";
-            this.btnInit.TextColor = System.Drawing.Color.White;
-            this.btnInit.ThemeAware = true;
             this.btnInit.Click += new System.EventHandler(this.btnInit_Click);
             // 
             // btnSAVE
             // 
-            this.btnSAVE.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSAVE.BackColor = System.Drawing.Color.Black;
-            this.btnSAVE.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSAVE.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSAVE.Font = new System.Drawing.Font("Malgun Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSAVE.Location = new System.Drawing.Point(1120, 122);
             this.btnSAVE.Name = "btnSAVE";
-            this.btnSAVE.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
             this.btnSAVE.Size = new System.Drawing.Size(123, 82);
-            this.btnSAVE.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013;
             this.btnSAVE.TabIndex = 46;
             this.btnSAVE.Tag = "1";
             this.btnSAVE.Text = "SAVE";
-            this.btnSAVE.TextColor = System.Drawing.Color.White;
-            this.btnSAVE.ThemeAware = true;
             this.btnSAVE.Click += new System.EventHandler(this.btnSAVE_Click);
             // 
             // FormDataLampBuzzer
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(1480, 930);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gdLampBuzzer);
-            this.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormDataLampBuzzer";
             this.Load += new System.EventHandler(this.FormDataLampBuzzer_Load);
@@ -497,7 +437,7 @@
 
         #endregion
 
-        private C1.Win.C1FlexGrid.C1FlexGrid gdLampBuzzer;
+        private MMI.HmiGrid gdLampBuzzer;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel pnYellowLamp;
@@ -505,7 +445,7 @@
         private System.Windows.Forms.Panel pnGreenLamp;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.GroupBox grRedLamp;
-        private DevComponents.DotNetBar.LabelX lblTitle;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -523,10 +463,10 @@
         private System.Windows.Forms.RadioButton rdRedBLINK;
         private System.Windows.Forms.RadioButton rdRedON;
         private System.Windows.Forms.RadioButton rdRedOFF;
-        private DevComponents.DotNetBar.LabelX lblOffTime;
-        private DevComponents.DotNetBar.LabelX lblOnTime;
-        private DevComponents.DotNetBar.LabelX lblBuzzerCount;
-        private DevComponents.DotNetBar.ButtonX btnInit;
-        private DevComponents.DotNetBar.ButtonX btnSAVE;
+        private System.Windows.Forms.Label lblOffTime;
+        private System.Windows.Forms.Label lblOnTime;
+        private System.Windows.Forms.Label lblBuzzerCount;
+        private MMI.HmiButton btnInit;
+        private MMI.HmiButton btnSAVE;
     }
 }

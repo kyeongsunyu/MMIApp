@@ -28,82 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.lblTitle = new DevComponents.DotNetBar.LabelX();
-            this.progressBar = new DevComponents.DotNetBar.Controls.CircularProgress();
+            this.labelX1 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // labelX1
             // 
-            this.labelX1.BackColor = System.Drawing.SystemColors.Highlight;
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelX1.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX1.ForeColor = System.Drawing.Color.White;
+            this.labelX1.Font = new System.Drawing.Font("Malgun Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelX1.Location = new System.Drawing.Point(0, 0);
             this.labelX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelX1.Name = "labelX1";
+            this.labelX1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.labelX1.Size = new System.Drawing.Size(516, 222);
-            this.labelX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
             this.labelX1.TabIndex = 1;
             this.labelX1.Text = "\r\n\r\nSYSTEM INITIALIZING";
-            this.labelX1.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.labelX1.TextLineAlignment = System.Drawing.StringAlignment.Near;
+            this.labelX1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblTitle
             // 
-            this.lblTitle.BackColor = System.Drawing.SystemColors.Highlight;
-            // 
-            // 
-            // 
-            this.lblTitle.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblTitle.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblTitle.Font = new System.Drawing.Font("Malgun Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(49, 148);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblTitle.Name = "lblTitle";
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblTitle.Size = new System.Drawing.Size(425, 74);
-            this.lblTitle.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
             this.lblTitle.TabIndex = 2;
             this.lblTitle.Text = "Initializing";
-            this.lblTitle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // progressBar
             // 
-            this.progressBar.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.progressBar.BackgroundStyle.BackColor = System.Drawing.Color.BurlyWood;
-            this.progressBar.BackgroundStyle.BackColor2 = System.Drawing.Color.Transparent;
-            this.progressBar.BackgroundStyle.BackColorGradientType = DevComponents.DotNetBar.eGradientType.Radial;
-            this.progressBar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar.Location = new System.Drawing.Point(0, 222);
             this.progressBar.Name = "progressBar";
-            this.progressBar.PieBorderDark = System.Drawing.Color.Black;
-            this.progressBar.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Spoke;
-            this.progressBar.ProgressColor = System.Drawing.Color.Olive;
-            this.progressBar.ProgressTextColor = System.Drawing.Color.Black;
-            this.progressBar.ProgressTextVisible = true;
             this.progressBar.Size = new System.Drawing.Size(516, 352);
-            this.progressBar.SpokeBorderLight = System.Drawing.Color.Transparent;
-            this.progressBar.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
             this.progressBar.TabIndex = 3;
             this.progressBar.Value = 50;
             // 
             // Form_SystemInit
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(516, 574);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.labelX1);
-            this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -115,8 +87,8 @@
 
         #endregion
 
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.LabelX lblTitle;
-        private DevComponents.DotNetBar.Controls.CircularProgress progressBar;
+        private System.Windows.Forms.Label labelX1;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }

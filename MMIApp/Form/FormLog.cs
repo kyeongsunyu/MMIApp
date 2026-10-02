@@ -50,11 +50,11 @@ namespace MMI
 
         private void btnClear1_Click(object sender, EventArgs e)
         {
-            if (tabLOG.SelectedTab == tabLOG.Tabs[0])
+            if (tabLOG.SelectedIndex == 0)
             {
                 lvSEQ.Items.Clear();
             }
-            else if(tabLOG.SelectedTab == tabLOG.Tabs[1])
+            else if(tabLOG.SelectedIndex == 1)
             {
                 lvMMI.Items.Clear();
             }

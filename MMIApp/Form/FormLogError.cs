@@ -12,7 +12,6 @@ using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
 using Excel = Microsoft.Office.Interop.Excel;
 
-using C1.Win.C1FlexGrid;
 namespace MMI
 {
     public partial class FormLogError : Form
@@ -246,7 +245,7 @@ namespace MMI
                 gdRow++;
             }
 
-            gdErrorCount.Sort(C1.Win.C1FlexGrid.SortFlags.Descending, 3);
+            gdErrorCount.Sort(SortFlags.Descending, 3);
 
         }
 

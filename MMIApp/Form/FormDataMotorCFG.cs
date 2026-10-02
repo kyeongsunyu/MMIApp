@@ -1,5 +1,4 @@
-﻿using C1.Win.C1FlexGrid;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -68,7 +67,6 @@ namespace MMI
             gdMotorCFG[1, 0] = "NO";
             gdMotorCFG[1, 1] = "MOTOR NAME";
 
-            gdMotorCFG.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
             CellRange rng = gdMotorCFG.GetCellRange(0, 0, 0, 1);
             gdMotorCFG.MergedRanges.Add(rng);
             rng.Data = "SERVO SETTING";

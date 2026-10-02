@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
-using static C1.Util.Win.Win32;
 using SharedMemDll;
 
 namespace MMI

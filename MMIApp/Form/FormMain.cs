@@ -219,6 +219,9 @@ namespace MMI
             pnlContent.Controls.Add(frm);
 
             HmiTheme.Apply(frm);
+            // Some screens add controls in their Load (the IO channel combos
+            // go onto the grid there), so theme again once that has run.
+            frm.Load += (s, e) => HmiTheme.Apply(frm);
 
             m_dicScreen[nScreenNo] = new ScreenEntry
             {
@@ -377,10 +380,11 @@ namespace MMI
             {
                 m_CurScreen.Screen.Visible = false;
             }
-            next.Screen.Visible = true;
-            next.Screen.BringToFront();
-            m_CurScreen = next;
 
+            // The frame's own state moves first. Showing a screen the first
+            // time runs its Load, and a Load that throws would otherwise leave
+            // the rail pointing at one screen and another one on display.
+            m_CurScreen = next;
             int nGroup = GroupOf(nScreenNo);
             m_dicLastScreenOfGroup[nGroup] = nScreenNo;
 
@@ -405,6 +409,9 @@ namespace MMI
                 CThreadMMILog MMILog = CThreadMMILog.GetInstance;
                 MMILog.AddMMILog("Change Screen : " + next.Caption);
             }
+
+            next.Screen.BringToFront();
+            next.Screen.Visible = true;
         }
 
         private void UpdateRail(int nGroup)

@@ -29,32 +29,23 @@ namespace MMI
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnLaser = new DevComponents.DotNetBar.PanelEx();
+            this.pnLaser = new MMI.HmiCard();
             this.SuspendLayout();
             // 
             // pnLaser
             // 
-            this.pnLaser.CanvasColor = System.Drawing.SystemColors.Control;
-            this.pnLaser.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.pnLaser.DisabledBackColor = System.Drawing.Color.Empty;
             this.pnLaser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnLaser.Location = new System.Drawing.Point(0, 0);
             this.pnLaser.Name = "pnLaser";
             this.pnLaser.Size = new System.Drawing.Size(860, 790);
-            this.pnLaser.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.pnLaser.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.pnLaser.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.pnLaser.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.pnLaser.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.pnLaser.Style.GradientAngle = 90;
             this.pnLaser.TabIndex = 169;
-            this.pnLaser.Text = "LASER PANEL";
+            this.pnLaser.TitleText =  "LASER PANEL";
             this.pnLaser.DoubleClick += new System.EventHandler(this.pnLaser_DoubleClick);
             // 
             // Form_Laser
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(860, 790);
             this.Controls.Add(this.pnLaser);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -67,6 +58,6 @@ namespace MMI
 
         #endregion
 
-        private DevComponents.DotNetBar.PanelEx pnLaser;
+        private MMI.HmiCard pnLaser;
     }
 }

@@ -81,6 +81,8 @@ namespace MMI
             }
         }
 
+        // Double clicking the tab strip pops the laser panel out of the tab,
+        // as double clicking its tab did before.
         private void spTabLaser_DoubleClick(object sender, EventArgs e)
         {
             MmiGV.frmMain.frm_Laser.CheckDocking();
@@ -120,6 +122,26 @@ namespace MMI
                 lblStopTime.Text = $"{tsStop.Hours:D2}:{tsStop.Minutes:D2}:{tsStop.Seconds:D2}";
             }
 
+            ShowEquipmentState();
+        }
+
+        // One of RUN / STOP / ALARM is lit at a time. Alarm wins over the other
+        // two: a machine that stopped on an alarm is in alarm, not stopped.
+        private void ShowEquipmentState()
+        {
+            bool bAlarm = MmiGV.iErrorCode > 0;
+            bool bRun = !bAlarm && swRun.IsRunning;
+            bool bStop = !bAlarm && !bRun;
+
+            PaintStateChip(lblStateRun, bRun, HmiTheme.Normal);
+            PaintStateChip(lblStateStop, bStop, HmiTheme.Warning);
+            PaintStateChip(lblStateAlarm, bAlarm, HmiTheme.Alarm);
+        }
+
+        private static void PaintStateChip(Label chip, bool bOn, Color onColor)
+        {
+            chip.BackColor = bOn ? onColor : HmiTheme.Control;
+            chip.ForeColor = bOn ? (onColor == HmiTheme.Warning ? HmiTheme.TopBar : Color.White) : HmiTheme.TextMuted;
         }
 
         private void btnTargetUPH_Click(object sender, EventArgs e)
@@ -142,18 +164,12 @@ namespace MMI
             }
         }
 
-        private void btnTest_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
         private void btnSeqOperation(object sender, EventArgs e)
         {
             CThreadMMILog MMILog = CThreadMMILog.GetInstance;
             Debug.Assert(MMILog != null);
 
-            DevComponents.DotNetBar.ButtonX p_Button = sender as DevComponents.DotNetBar.ButtonX;
+            HmiButton p_Button = sender as HmiButton;
 
             uint tag = Convert.ToUInt32(p_Button.Tag);
             if (MmiGV.pShMem.GetDM(2) == 0)

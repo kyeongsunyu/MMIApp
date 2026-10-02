@@ -29,31 +29,25 @@ namespace MMI
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnDATE = new DevComponents.DotNetBar.ButtonX();
+            this.btnDATE = new MMI.HmiButton();
             this.Calendar = new System.Windows.Forms.MonthCalendar();
             this.SuspendLayout();
             // 
             // btnDATE
             // 
-            this.btnDATE.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDATE.BackColor = System.Drawing.Color.Black;
-            this.btnDATE.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
             this.btnDATE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDATE.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDATE.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDATE.Location = new System.Drawing.Point(0, 0);
             this.btnDATE.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDATE.Name = "btnDATE";
-            this.btnDATE.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(2);
             this.btnDATE.Size = new System.Drawing.Size(220, 37);
-            this.btnDATE.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnDATE.TabIndex = 41;
             this.btnDATE.Tag = "1";
             this.btnDATE.Text = "YYYY-MM-DD";
-            this.btnDATE.ThemeAware = true;
             // 
             // Calendar
             // 
-            this.Calendar.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Calendar.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Calendar.Location = new System.Drawing.Point(0, 37);
             this.Calendar.MaximumSize = new System.Drawing.Size(500, 500);
             this.Calendar.Name = "Calendar";
@@ -67,7 +61,7 @@ namespace MMI
             this.ClientSize = new System.Drawing.Size(220, 199);
             this.Controls.Add(this.Calendar);
             this.Controls.Add(this.btnDATE);
-            this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
@@ -81,7 +75,7 @@ namespace MMI
 
         #endregion
 
-        public DevComponents.DotNetBar.ButtonX btnDATE;
+        public MMI.HmiButton btnDATE;
         public System.Windows.Forms.MonthCalendar Calendar;
     }
 }

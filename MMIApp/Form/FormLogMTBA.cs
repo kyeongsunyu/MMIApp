@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
-using C1.Win.C1FlexGrid;
 
 namespace MMI
 {
@@ -51,7 +50,6 @@ namespace MMI
             gdMTBA[1, 2] = "COUNT";
             gdMTBA[1, 3] = "TIME(SEC)";
 
-            gdMTBA.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
             CellRange rng = gdMTBA.GetCellRange(0, 0, 1, 0);
             gdMTBA.MergedRanges.Add(rng);
 
@@ -71,7 +69,6 @@ namespace MMI
             gdMTBF[1, 2] = "COUNT";
             gdMTBF[1, 3] = "TIME(SEC)";
 
-            gdMTBF.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
             rng = gdMTBF.GetCellRange(0, 0, 1, 0);
             gdMTBF.MergedRanges.Add(rng);
 
@@ -97,7 +94,6 @@ namespace MMI
             gdRunLog[7, 0] = "MTBF";
             gdRunLog[8, 0] = "MTTR";
 
-            gdRunLog.AllowMerging = C1.Win.C1FlexGrid.AllowMergingEnum.Custom;
             rng = gdRunLog.GetCellRange(0, 0, 0, 2);
             gdRunLog.MergedRanges.Add(rng);
 
