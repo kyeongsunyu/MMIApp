@@ -1,0 +1,613 @@
+﻿# MMIApp captions - Vietnamese
+# English text|Vietnamese text, one per line, UTF-8. \n is a line break.
+# @Form.Control|text sets one control only. A phrase not listed stays in English.
+# Written by _tools\gen_lang.py; lines added by hand are kept only if added to its table.
+
+
+# --- FormAlarmList ---
+EDIT|SỬA
+MP3 PLAY|PHÁT MP3
+MP3 STOP|DỪNG MP3
+OCCURRENCE FACTOR|NGUYÊN NHÂN
+OPEN|MỞ
+TROUBLE SHOOTING|CÁCH XỬ LÝ
+
+# --- FormAuto1 ---
+Air 1|Khí 1
+Air 2|Khí 2
+Air 3|Khí 3
+Air Pressure (MPa)|Áp suất khí (MPa)
+ALARM|CẢNH BÁO
+Communication|Truyền thông
+Control|Điều khiển
+Count|Số lượng
+Enc Count|Số đếm encoder
+Equipment State|Trạng thái thiết bị
+Good|Đạt
+Initialize|Khởi tạo
+Line Rate (kHz)|Tần số dòng (kHz)
+Lines|Số dòng
+Lot|Lot
+Lot Cancel|Hủy Lot
+Lot End|Kết thúc Lot
+Lot ID|Mã Lot
+Lot Input|Nhập Lot
+Motion End (mm)|Điểm cuối (mm)
+Motion Start (mm)|Điểm đầu (mm)
+NG|Lỗi
+OUTPUT TEST|THỬ ĐẦU RA
+Panel In|Tấm vào
+PERIODIC (enc)|PERIODIC (encoder)
+Pixel Res (um)|Độ phân giải (um)
+Production|Sản xuất
+Pulse W (us)|Độ rộng xung (us)
+Rate (UPH / Target)|Tỷ lệ (UPH / mục tiêu)
+Reset|Đặt lại
+Result|Kết quả
+Rework|Làm lại
+RUN|CHẠY
+Run Time|Giờ chạy
+Scan Time (s)|Thời gian quét (s)
+Scan Trigger|Kích hoạt quét
+Set|Đặt
+SET|ĐẶT
+Speed (mm/s)|Tốc độ (mm/s)
+Start|Bắt đầu
+START|BẮT ĐẦU
+State|Trạng thái
+STOP|DỪNG
+Stop|Dừng
+Stop Time|Giờ dừng
+Target UPH|UPH mục tiêu
+TIMER (freq)|TIMER (tần số)
+Trig End (mm)|Cuối kích hoạt (mm)
+Trig Start (mm)|Đầu kích hoạt (mm)
+Unit In|Vào
+Unit Out|Ra
+# UPH|
+Vision|Thị giác
+
+# --- FormCalibration ---
+APPLY|ÁP DỤNG
+CAL START|BẮT ĐẦU HIỆU CHỈNH
+FRONT PICKER|ĐẦU HÚT TRƯỚC
+FRONT PICKER  3 Point|ĐẦU HÚT TRƯỚC 3 điểm
+GET|LẤY
+MOVE|DI CHUYỂN
+# P1|
+# P2|
+# P3|
+Picker Center Align|Căn tâm đầu hút
+REAR PICKER|ĐẦU HÚT SAU
+REAR PICKER  3 Point|ĐẦU HÚT SAU 3 điểm
+SAVE|LƯU
+SELECT|CHỌN
+
+# --- FormDataLampBuzzer ---
+BLINK|NHẤP NHÁY
+COUNT :|SỐ LƯỢNG :
+DEFAULT|MẶC ĐỊNH
+GREEN LAMP|ĐÈN XANH
+# ms|
+OFF|TẮT
+OFF TIME :|THỜI GIAN TẮT :
+ON|BẬT
+ON TIME :|THỜI GIAN BẬT :
+RED LAMP|ĐÈN ĐỎ
+YELLOW LAMP|ĐÈN VÀNG
+
+# --- FormDataLifeTime ---
+Address|Địa chỉ
+CANCEL|HỦY
+Current|Hiện tại
+Item|Hạng mục
+Life Time Items|Hạng mục tuổi thọ
+Limit|Giới hạn
+Not applied|Chưa áp dụng
+Over limit|Vượt giới hạn
+RELOAD|TẢI LẠI
+Remain|Còn lại
+RESET COUNT|ĐẶT LẠI SỐ ĐẾM
+RESET COUNT after the part has been replaced.|ĐẶT LẠI SỐ ĐẾM sau khi đã thay linh kiện.
+Save|Lưu
+Selected Item|Hạng mục đã chọn
+SET LIMIT|ĐẶT GIỚI HẠN
+Summary|Tổng hợp
+Use|Đã dùng
+Warning|Cảnh báo
+
+# --- FormDataOption ---
+ITEM EDIT|SỬA HẠNG MỤC
+
+# --- FormDataRecipe ---
+CLEAN|LÀM SẠCH
+COUNT / DELAY|SỐ LẦN / TRỄ
+# deg|
+DEVICE|THIẾT BỊ
+DEVICE COPY|SAO CHÉP THIẾT BỊ
+# EA|
+Flip Y1 Air Clean|Lật Y1 làm sạch khí
+Flip Y2 Air Clean|Lật Y2 làm sạch khí
+FRONT|TRƯỚC
+Front Picker 1 Skip|Bỏ qua đầu hút trước 1
+Front Picker 2 Skip|Bỏ qua đầu hút trước 2
+Front Picker 3 Skip|Bỏ qua đầu hút trước 3
+Front Picker 4 Skip|Bỏ qua đầu hút trước 4
+Front Picker 5 Skip|Bỏ qua đầu hút trước 5
+Front Picker 6 Skip|Bỏ qua đầu hút trước 6
+Front Picker 7 Skip|Bỏ qua đầu hút trước 7
+Front Picker 8 Skip|Bỏ qua đầu hút trước 8
+Front Picker Air Blow Time|Đầu hút trước thời gian thổi khí
+Front Picker Vac On Time|Đầu hút trước thời gian bật chân không
+# Kpa|
+Load Picker Air Blow Time|Đầu hút nạp thời gian thổi khí
+Load Picker Vac On Time|Đầu hút nạp thời gian bật chân không
+MAIN|CHÍNH
+# mm|
+OPTION|TÙY CHỌN
+Pallet 1 Receive Vacuum|Chân không nhận pallet 1
+Pallet 2 Receive Vacuum|Chân không nhận pallet 2
+Pallet First Sort PKG Rate|Tỷ lệ PKG phân loại đầu
+Pallet First Sort Vac Value|Chân không phân loại đầu
+Pallet Last Sort PKG Rate|Tỷ lệ PKG phân loại cuối
+Pallet Last Sort Vac Value|Chân không phân loại cuối
+Pallet Middle Sort Vac Value|Chân không phân loại giữa
+PALLET VAC|CHÂN KHÔNG PALLET
+Pallet Y1 Air Clean|Pallet Y1 làm sạch khí
+Pallet Y2 Air Clean|Pallet Y2 làm sạch khí
+PANEL|TẤM
+PICKER|ĐẦU HÚT
+Place Vac Off Offset|Bù tắt chân không khi đặt
+PROCESS COUNT|SỐ CÔNG ĐOẠN
+REAR|SAU
+Rear Picker 1 Skip|Bỏ qua đầu hút sau 1
+Rear Picker 2 Skip|Bỏ qua đầu hút sau 2
+Rear Picker 3 Skip|Bỏ qua đầu hút sau 3
+Rear Picker 4 Skip|Bỏ qua đầu hút sau 4
+Rear Picker 5 Skip|Bỏ qua đầu hút sau 5
+Rear Picker 6 Skip|Bỏ qua đầu hút sau 6
+Rear Picker 7 Skip|Bỏ qua đầu hút sau 7
+Rear Picker 8 Skip|Bỏ qua đầu hút sau 8
+Rear Picker Air Blow Time|Đầu hút sau thời gian thổi khí
+Rear Picker Vac On Time|Đầu hút sau thời gian bật chân không
+Rotate Angle|Góc xoay
+Saw Picker Air Blow Time|Đầu hút cưa thời gian thổi khí
+Saw Picker Flip Y1 Air Clean|Đầu hút cưa lật Y1 làm sạch khí
+Saw Picker Flip Y2 Air Clean|Đầu hút cưa lật Y2 làm sạch khí
+Saw Picker Sponge Clean|Vệ sinh mút đầu hút cưa
+Saw Picker Vac On Time|Đầu hút cưa thời gian bật chân không
+Scrap Skip|Bỏ qua phế liệu
+Sponge Clean Skip|Bỏ qua vệ sinh mút
+TIME DELAY|THỜI GIAN TRỄ
+TRAY|KHAY
+Tray X Count|Số khay X
+TRAY X COUNT|SỐ KHAY X
+Tray Y Count|Số khay Y
+TRAY Y COUNT|SỐ KHAY Y
+Unit X Count|Số đơn vị X
+Unit X Pitch|Bước đơn vị X
+Unit X Size|Kích thước đơn vị X
+Unit Y Count|Số đơn vị Y
+Unit Y Pitch|Bước đơn vị Y
+Unit Y Size|Kích thước đơn vị Y
+Vision Snap X Count|Số lần chụp X
+Vision Snap Y Count|Số lần chụp Y
+Water Jet Air Clean|Làm sạch khí tia nước
+Water Jet Water Clean|Làm sạch nước tia nước
+
+# --- FormDataSystem ---
+% of the limit|% giới hạn
+days|ngày
+English|English
+Folders purged (LOG FOLDERS in MachineConfig.ini [SYSTEM])|Thư mục được dọn (LOG FOLDERS trong MachineConfig.ini [SYSTEM])
+HARDWARE|PHẦN CỨNG
+Input|Nhập liệu
+Items at or past this share show WARN on Life Time; at the limit they show OVER.|Hạng mục đạt tỷ lệ này hiện WARN ở Tuổi thọ; đạt giới hạn hiện OVER.
+Keep log files for|Giữ tệp nhật ký trong
+Keyboard|Bàn phím
+Language|Ngôn ngữ
+Life Time|Tuổi thọ
+Log Retention|Lưu nhật ký
+Machine|Máy
+Machine name (top bar)|Tên máy (thanh trên)
+MMI and SEQ logs alike (.log, .txt). Checked a minute after start-up, then every hour.|Cả nhật ký MMI và SEQ (.log, .txt). Kiểm tra 1 phút sau khi khởi động, sau đó mỗi giờ.
+PURGE NOW|DỌN NGAY
+SOFTWARE|PHẦN MỀM
+SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.|PHẦN MỀM: chạm vào ô nhập sẽ mở bàn phím trên màn hình.\nPHẦN CỨNG: nhập bằng bàn phím gắn ngoài.
+Start in|Khởi động bằng
+The language the program starts in. Lang on the top bar switches it\nfor the session. Captions come from the files in the Language folder.|Ngôn ngữ khi chương trình khởi động. Nút Ngôn ngữ ở thanh trên chỉ đổi\ntrong phiên này. Chữ hiển thị lấy từ các tệp trong thư mục Language.
+Tiếng Việt|Tiếng Việt
+Warn from|Cảnh báo từ
+中文|中文
+한국어|한국어
+
+# --- FormDataUserRegist ---
+CONFIRM PASSWORD|XÁC NHẬN MẬT KHẨU
+DELETE|XÓA
+ENGINEER|KỸ SƯ
+MAINTENANCE|BẢO TRÌ
+MASTER|QUẢN TRỊ
+NEW PASSWORD|MẬT KHẨU MỚI
+OPERATOR|VẬN HÀNH VIÊN
+SELECT LEVEL|CHỌN CẤP
+
+# --- FormLog ---
+CLEAR|XÓA
+ERROR LOG|NHẬT KÝ LỖI
+MMI LOG|NHẬT KÝ MMI
+SEQ LOG|NHẬT KÝ SEQ
+
+# --- FormLogError ---
+END :|KẾT THÚC :
+ERROR NAME|TÊN LỖI
+Find|Tìm
+STRT :|BẮT ĐẦU :
+
+# --- FormLogHistory ---
+CLOSE|ĐÓNG
+ERROR ONLY|CHỈ LỖI
+FULL LOG|TOÀN BỘ
+SELECTION|LỰA CHỌN
+
+# --- FormLogMTBA ---
+END|KẾT THÚC
+LOG HISTORY|LỊCH SỬ NHẬT KÝ
+NEW DB|DB MỚI
+OLD DB|DB CŨ
+REFRESH|LÀM MỚI
+# YYYY-MM-DD|
+
+# --- FormMain ---
+Alarm|Cảnh báo
+Auto|Tự động
+AUTO|TỰ ĐỘNG
+Bit / DM|Bit / DM
+Buzzer Off|Tắt còi
+Data|Dữ liệu
+Device|Thiết bị
+EMO|Dừng KC
+Error History|Lịch sử lỗi
+Input / Output|Vào / Ra
+IO|IO
+Lamp Buzzer|Đèn / Còi
+Lang|Ngôn ngữ
+List|Danh sách
+Log|Nhật ký
+Log In|Đăng nhập
+Manual|Thủ công
+Motor|Động cơ
+Motor Config|Cấu hình động cơ
+MTBA / MTBF|MTBA / MTBF
+No Alarm|Không có cảnh báo
+Operation|Vận hành
+Peripheral: -|Ngoại vi: -
+PM|PM
+Recipe|Công thức
+SECS/GEM: Offline|SECS/GEM: Ngoại tuyến
+SEQ: Disconnected|SEQ: Mất kết nối
+Show/Hide Console|Hiện/Ẩn console
+System Data|Dữ liệu hệ thống
+Teach|Dạy
+Ten Key|Phím số
+TRIGGER|KÍCH HOẠT
+USE / SKIP|DÙNG / BỎ QUA
+User Regist|Người dùng
+● Operator|● Vận hành viên
+
+# --- FormManualOP ---
+Air Knife Blow On/Off|Thổi dao khí Bật/Tắt
+Air Knife On/Off|Dao khí Bật/Tắt
+Air Knife Up/Down|Dao khí Lên/Xuống
+Bottom Vision Y Motor Move|Thị giác dưới Y chạy
+Clamp Open/Close|Kẹp Mở/Đóng
+Door Lock/Unlock|Cửa Khóa/Mở
+Elev1. Door Lock/Unlock|Cửa thang 1 Khóa/Mở
+Elev1. Down|Thang 1 xuống
+Elev1. Up|Thang 1 lên
+Elev2. Door Lock/Unlock|Cửa thang 2 Khóa/Mở
+Elev2. Down|Thang 2 xuống
+Elev2. Up|Thang 2 lên
+Elev3. Door Lock/Unlock|Cửa thang 3 Khóa/Mở
+Elev3. Down|Thang 3 xuống
+Elev3. Up|Thang 3 lên
+Empty Tray Picker Clamp Open/Close|Đầu hút khay trống kẹp Mở/Đóng
+Empty Tray Picker X Move|Đầu hút khay trống trục X
+Empty Tray Picker Z Move|Đầu hút khay trống trục Z
+Flip Turn 1 Motor Move|Xoay lật 1 chạy
+Flip Turn 2 Motor Move|Xoay lật 2 chạy
+Flip Y1 Motor Move|Lật Y1 chạy
+Flip Zone Ionzer On/Off|Ion vùng lật Bật/Tắt
+Flip1 Air Knife On/Off|Lật 1 dao khí Bật/Tắt
+Flip1 Vac. On/Off|Lật 1 chân không
+Flip2 Air Knife On/Off|Lật 2 dao khí Bật/Tắt
+Flip2 Vac. On/Off|Lật 2 chân không
+Good Tray Elev1 Down|Khay đạt thang 1 xuống
+Good Tray Elev1 Up|Khay đạt thang 1 lên
+Good Tray Elev2 Down|Khay đạt thang 2 xuống
+Good Tray Elev2 Up|Khay đạt thang 2 lên
+Good Tray Y1 Move|Khay đạt trục Y1
+Good Tray Y2 Move|Khay đạt trục Y2
+Grab Clamp Open/Close|Kẹp gắp Mở/Đóng
+Load Picker Vac. On/Off|Đầu hút nạp chân không
+Load Picker X Move|Đầu hút nạp trục X
+Load Picker Z Move|Đầu hút nạp trục Z
+NG Tray Elev Down|Khay lỗi thang xuống
+NG Tray Elev Up|Khay lỗi thang lên
+NG Tray Y Move|Khay lỗi trục Y
+Pallet 1 Air Knife On/Off|Pallet 1 dao khí Bật/Tắt
+Pallet 1 Up/Down|Pallet 1 Lên/Xuống
+Pallet 1 Vac. On/Off|Pallet 1 chân không
+Pallet 2 Air Knife On/Off|Pallet 2 dao khí Bật/Tắt
+Pallet 2 Up/Down|Pallet 2 Lên/Xuống
+Pallet 2 Vac. On/Off|Pallet 2 chân không
+Pallet Y1 Motor Move|Pallet Y1 chạy
+Pallet Y2 Motor Move|Pallet Y2 chạy
+Picker 1 Move|Đầu hút 1 chạy
+Picker 1 Vac|Đầu hút 1 chân không
+Picker 2 Move|Đầu hút 2 chạy
+Picker 2 Vac|Đầu hút 2 chân không
+Picker 3 Move|Đầu hút 3 chạy
+Picker 3 Vac|Đầu hút 3 chân không
+Picker 4 Move|Đầu hút 4 chạy
+Picker 4 Vac|Đầu hút 4 chân không
+Picker 5 Move|Đầu hút 5 chạy
+Picker 5 Vac|Đầu hút 5 chân không
+Picker 6 Move|Đầu hút 6 chạy
+Picker 6 Vac|Đầu hút 6 chân không
+Picker 7 Move|Đầu hút 7 chạy
+Picker 7 Vac|Đầu hút 7 chân không
+Picker 8 Move|Đầu hút 8 chạy
+Picker 8 Vac|Đầu hút 8 chân không
+Picker T Move|Đầu hút trục T
+Picker X Move|Đầu hút trục X
+Rear Clamp Open/Close|Kẹp sau Mở/Đóng
+Rework Tray Elev Down|Khay làm lại thang xuống
+Rework Tray Elev Up|Khay làm lại thang lên
+Rework Tray Y Move|Khay làm lại trục Y
+Right Clamp Open/Close|Kẹp phải Mở/Đóng
+Saw Picker Vac. On/Off|Đầu hút cưa chân không
+Saw Picker X Move|Đầu hút cưa trục X
+Saw Picker Z Move|Đầu hút cưa trục Z
+Scrap Vac1. On/Off|Chân không phế liệu 1 Bật/Tắt
+Scrap Vac2. On/Off|Chân không phế liệu 2 Bật/Tắt
+Sorting Zone Ionizer On/Off|Ion vùng phân loại Bật/Tắt
+Sponge Clean On/Off|Vệ sinh mút Bật/Tắt
+Top Vision X1 Motor Move|Thị giác trên X1 chạy
+Top Vision X2 Motor Move|Thị giác trên X2 chạy
+Top Vision Z1 Motor Move|Thị giác trên Z1 chạy
+Top Vision Z2 Motor Move|Thị giác trên Z2 chạy
+Tray Elevator Zone Ionizer On/Off|Ion vùng thang khay Bật/Tắt
+Tray Picker X Move|Đầu hút khay trục X
+Tray Picker Z Move|Đầu hút khay trục Z
+Water knife On/Off|Dao nước Bật/Tắt
+WaterJet X Move|Tia nước trục X
+
+# --- FormMonitorBitDM ---
+BIN|NHỊ PHÂN
+DM DEC/HEX/BIN DISPLAY|HIỂN THỊ DM THẬP/THẬP LỤC/NHỊ PHÂN
+HEX|HEX
+NO|KHÔNG
+
+# --- FormMonitorIO ---
+NAME EDIT|SỬA TÊN
+OUTPUT ENABLE|CHO PHÉP XUẤT
+
+# --- FormMotorSetting ---
++Limit|+Giới hạn
+-Limit|-Giới hạn
+CALC|TÍNH
+CURRENT INDEX|CHỈ SỐ HIỆN TẠI
+CURRENT POSITION|VỊ TRÍ HIỆN TẠI
+FUNCTION|CHỨC NĂNG
+HOME|VỀ GỐC
+IDX WRITE|GHI CHỈ SỐ
+JOG|JOG
+JOG MODE|CHẾ ĐỘ JOG
+MOTOR SELECT|CHỌN ĐỘNG CƠ
+MOVE INDEX|ĐẾN CHỈ SỐ
+MOVING|ĐANG CHẠY
+NEXT INDEX|CHỈ SỐ TIẾP
+NEXT POSITION|VỊ TRÍ TIẾP
+ORG|ORG
+SAVE Position|LƯU vị trí
+SERVO ON/OFF|SERVO BẬT/TẮT
+TENKEY JOG|JOG PHÍM SỐ
+Unit(mm)|Bước(mm)
+Velocity|Tốc độ
+
+# --- FormScanTrigger ---
++LIMIT|+GIỚI HẠN
+-LIMIT|-GIỚI HẠN
+0  IDLE|0  RẢNH
+1  GOTO START|1  ĐẾN ĐIỂM ĐẦU
+10  RETURN|10  QUAY VỀ
+11  WAIT RETURN|11  CHỜ QUAY VỀ
+2  WAIT START|2  CHỜ ĐIỂM ĐẦU
+3  ARM|3  ARM
+4  RUN|4  CHẠY
+5  WAIT END|5  CHỜ KẾT THÚC
+6  DISARM|6  DISARM
+7  DONE|7  XONG
+8  ABORTED|8  HỦY BỎ
+9  OUTPUT TEST|9  THỬ ĐẦU RA
+Active Level|Mức tích cực
+ALARM RESET|XÓA CẢNH BÁO
+Armed At (counts)|Vị trí kích hoạt (counts)
+Behind Arm (counts)|Lùi sau kích hoạt (counts)
+Block (counts)|Khối (counts)
+Count the encoder the other way|Đếm encoder theo chiều ngược
+Counter Channel|Kênh bộ đếm
+Counter H/W Config|Cấu hình phần cứng bộ đếm
+Current Index|Chỉ số hiện tại
+Current Position|Vị trí hiện tại
+Cycle State|Trạng thái chu trình
+DEFAULTS|MẶC ĐỊNH
+Direction Check|Kiểm tra hướng
+Encoder (counts)|Encoder (counts)
+ENCODER = AXIS POSITION|ENCODER = VỊ TRÍ TRỤC
+Encoder Input|Đầu vào encoder
+Encoder Position (mm)|Vị trí encoder (mm)
+Encoder Reverse|Đảo encoder
+HOMED|ĐÃ VỀ GỐC
+Jog|Jog
+JOG ENABLE|CHO PHÉP JOG
+Live Counter|Bộ đếm trực tiếp
+Mode|Chế độ
+Next Index|Chỉ số tiếp
+Next Position|Vị trí tiếp
+# OUT 0|
+# OUT 1|
+# OUT 2|
+# OUT 3|
+Pitch (counts)|Bước (counts)
+Progress|Tiến độ
+READ|ĐỌC
+Recipe / START on Auto|Công thức / START ở màn hình Tự động
+Scan Cycle|Chu trình quét
+Scan Geometry  (motor index 50 - 53)|Hình học quét (chỉ số động cơ 50 - 53)
+SET and START stay on the Auto screen, beside the recipe.|SET và START nằm ở màn hình Tự động, cạnh công thức.
+STEP|BƯỚC
+Step (mm)|Bước (mm)
+Trigger Count|Số lần kích hoạt
+TRIGGER COUNT CLEAR|XÓA SỐ LẦN KÍCH HOẠT
+Trigger Log|Nhật ký kích hoạt
+Trigger Output|Đầu ra kích hoạt
+Unit per Count (mm)|Đơn vị mỗi count (mm)
+Validate|Kiểm tra
+WRITE|GHI
+Wrong Way Limit (counts)|Giới hạn ngược (counts)
+
+# --- Form_DataCopy ---
+COPY|SAO CHÉP
+DEVICE NAME|TÊN THIẾT BỊ
+EXIT|THOÁT
+Recipe Data Copy|Sao chép dữ liệu công thức
+SELECT SOURCE DEVICE|CHỌN THIẾT BỊ NGUỒN
+SELECT TARGET DEVICE|CHỌN THIẾT BỊ ĐÍCH
+
+# --- Form_Home ---
+ALL HOME|TẤT CẢ VỀ GỐC
+BTM VisionY|Thị giác dưới Y
+COMPLETE|HOÀN THÀNH
+Flip Trun1|Xoay lật 1
+Flip Trun2|Xoay lật 2
+Flip Y1|Lật Y1
+Flip Y2|Lật Y2
+Home|Về gốc
+HOMMING|ĐANG VỀ GỐC
+Load Pk X|Đầu hút nạp X
+Load Pk Z|Đầu hút nạp Z
+Pallet Y1|Pallet Y1
+Pallet Y2|Pallet Y2
+Saw Pk X|Đầu hút cưa X
+Saw Pk Z|Đầu hút cưa Z
+STATUS :|TRẠNG THÁI :
+WAITING|ĐANG CHỜ
+
+# --- Form_Keyboard ---
+OK|OK
+SHIFT|HOA/THƯỜNG
+SPACE|DẤU CÁCH
+← BACK|← XÓA
+
+# --- Form_Language ---
+For this session. The start-up language is set on System Data.|Chỉ trong phiên này. Ngôn ngữ khởi động đặt ở Dữ liệu hệ thống.
+
+# --- Form_LotInput ---
+COUNT|SỐ LƯỢNG
+LOT ID|MÃ LOT
+LOT INFO.|THÔNG TIN LOT
+
+# --- Form_Map ---
+ALL EMPTY|TẤT CẢ TRỐNG
+ALL EXIST|TẤT CẢ CÓ
+Map|Bản đồ
+
+# --- Form_MotorCalc ---
+ACCEL|GIA TỐC
+BASE + OFFSET|GỐC + BÙ
+CURRENT + OFFSET|HIỆN TẠI + BÙ
+DATA SETTING|CÀI ĐẶT DỮ LIỆU
+ITEM NAME|TÊN HẠNG MỤC
+SPEED|TỐC ĐỘ
+
+# --- Form_Msg ---
+message...|thông báo...
+
+# --- Form_NumAdd ---
+DEL|XÓA
+ENTER|NHẬP
+
+# --- Form_PWD ---
+Password Input|Nhập mật khẩu
+
+# --- Form_SystemInit ---
+Initializing|Đang khởi tạo
+SYSTEM INITIALIZING|ĐANG KHỞI TẠO HỆ THỐNG
+
+# --- Form_UserLogIn ---
+PASSWORD|MẬT KHẨU
+USER|NGƯỜI DÙNG
+USER LOG IN|ĐĂNG NHẬP
+
+# --- code ---
+(not applied)|(chưa áp dụng)
+A limit cannot be negative.|Giới hạn không được âm.
+A purge is already running.|Đang dọn dẹp.
+APPLY the keep period first; the purge uses the saved one.|Hãy ÁP DỤNG thời gian lưu trước; việc dọn dùng giá trị đã lưu.
+Changes discarded.|Đã hủy thay đổi.
+Changes not applied.|Có thay đổi chưa áp dụng.
+Choose a step first.|Hãy chọn bước trước.
+Engineer|Kỹ sư
+Enter a value from {0} to {1}.|Nhập giá trị từ {0} đến {1}.
+Files last written before {0} are deleted.|Tệp ghi lần cuối trước {0} sẽ bị xóa.
+Front Picker Z1|Đầu hút trước Z1
+Front Picker Z2|Đầu hút trước Z2
+Front Picker Z3|Đầu hút trước Z3
+Front Picker Z4|Đầu hút trước Z4
+Front Picker Z5|Đầu hút trước Z5
+Front Picker Z6|Đầu hút trước Z6
+Front Picker Z7|Đầu hút trước Z7
+Front Picker Z8|Đầu hút trước Z8
+Good Tray 1 Unload|Xả khay đạt 1
+Good Tray 2 Unload|Xả khay đạt 2
+Home {0}?\nThe axis moves to its origin.|Về gốc {0}?\nTrục sẽ di chuyển về gốc.
+JOG: moves while + / - is held.|JOG: chạy khi giữ + / -.
+Limits saved and sent to SEQ.|Đã lưu giới hạn và gửi tới SEQ.
+Log Out|Đăng xuất
+Maintenance|Bảo trì
+Master|Quản trị
+NG Tray Unload|Xả khay lỗi
+No|STT
+No User|Chưa đăng nhập
+Not while a scan cycle runs.|Không thể khi đang chạy chu trình quét.
+Not while the machine runs.|Không thể khi máy đang chạy.
+Nothing to apply.|Không có gì để áp dụng.
+Offline|Ngoại tuyến
+Online|Trực tuyến
+Operator|Vận hành viên
+Rear Picker Z1|Đầu hút sau Z1
+Rear Picker Z2|Đầu hút sau Z2
+Rear Picker Z3|Đầu hút sau Z3
+Rear Picker Z4|Đầu hút sau Z4
+Rear Picker Z5|Đầu hút sau Z5
+Rear Picker Z6|Đầu hút sau Z6
+Rear Picker Z7|Đầu hút sau Z7
+Rear Picker Z8|Đầu hút sau Z8
+Reloaded from the DB.|Đã tải lại từ DB.
+Reset the count of {0} to 0?\nDo this after the part has been replaced.|Đặt lại số đếm của {0} về 0?\nHãy làm sau khi đã thay linh kiện.
+Rework Tray Unload|Xả khay làm lại
+SEQ is not connected.|SEQ chưa kết nối.
+SEQ: Connected|SEQ: Đã kết nối
+Sponge Clean|Vệ sinh mút
+Staged limits discarded.|Đã hủy các giới hạn chờ.
+STEP: one step per press of + / -.|BƯỚC: mỗi lần nhấn + / - đi một bước.
+stopped|đã dừng
+System|Hệ thống
+System data saved.|Đã lưu dữ liệu hệ thống.
+The machine name cannot be empty.|Tên máy không được để trống.
+WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.|WARN từ {0} % giới hạn, OVER khi đạt giới hạn. Tỷ lệ đặt ở Dữ liệu hệ thống.
+{0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.|{0:HH:mm:ss}  Đã xóa {1} tệp ({2:N0} KB) và {3} thư mục, bỏ qua {4}.
+{0} items.|{0} hạng mục.
+{0}: count reset.|{0}: đã đặt lại số đếm.
+{0}: limit {1} staged. APPLY saves it.|{0}: giới hạn {1} chờ áp dụng. Nhấn ÁP DỤNG để lưu.

@@ -410,7 +410,7 @@
             // 
             // btnLanguageSET
             // 
-            this.btnLanguageSET.Size = new System.Drawing.Size(60, 32);
+            this.btnLanguageSET.Size = new System.Drawing.Size(76, 32);
             this.btnLanguageSET.Margin = new System.Windows.Forms.Padding(6, 6, 0, 6);
             this.btnLanguageSET.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLanguageSET.Text = "Lang";

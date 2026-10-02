@@ -216,6 +216,7 @@ SOFTWARE|软件
 SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.|软件：触摸输入框时打开屏幕键盘。\n硬件：使用连接的键盘输入。
 Start in|启动语言
 The language the program starts in. Lang on the top bar switches it\nfor the session. Captions come from the files in the Language folder.|程序启动时的语言。顶栏的语言按钮仅在本次运行中切换。\n文字来自 Language 文件夹中的文件。
+Tiếng Việt|Tiếng Việt
 Warn from|警告起点
 中文|中文
 한국어|한국어

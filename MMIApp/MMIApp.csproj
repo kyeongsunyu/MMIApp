@@ -654,6 +654,9 @@
     <None Include="Language\ZH.lang">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Language\VI.lang">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="DB\JetDB.db" />
   </ItemGroup>
   <ItemGroup>

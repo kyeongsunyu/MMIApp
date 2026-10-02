@@ -216,6 +216,7 @@ SOFTWARE|SOFTWARE
 SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.|SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.
 Start in|Start in
 The language the program starts in. Lang on the top bar switches it\nfor the session. Captions come from the files in the Language folder.|The language the program starts in. Lang on the top bar switches it\nfor the session. Captions come from the files in the Language folder.
+Tiếng Việt|Tiếng Việt
 Warn from|Warn from
 中文|中文
 한국어|한국어

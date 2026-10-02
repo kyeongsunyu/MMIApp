@@ -59,6 +59,7 @@
             this.btnLanguageEN = new MMI.HmiButton();
             this.btnLanguageKO = new MMI.HmiButton();
             this.btnLanguageZH = new MMI.HmiButton();
+            this.btnLanguageVI = new MMI.HmiButton();
             this.lblLanguageRule = new System.Windows.Forms.Label();
             this.pnlSave = new MMI.HmiCard();
             this.btnApply = new MMI.HmiButton();
@@ -350,6 +351,7 @@
             // pnlLanguage
             // 
             this.pnlLanguage.Controls.Add(this.lblLanguageRule);
+            this.pnlLanguage.Controls.Add(this.btnLanguageVI);
             this.pnlLanguage.Controls.Add(this.btnLanguageZH);
             this.pnlLanguage.Controls.Add(this.btnLanguageKO);
             this.pnlLanguage.Controls.Add(this.btnLanguageEN);
@@ -373,7 +375,7 @@
             // btnLanguageEN
             // 
             this.btnLanguageEN.Location = new System.Drawing.Point(220, 44);
-            this.btnLanguageEN.Size = new System.Drawing.Size(184, 56);
+            this.btnLanguageEN.Size = new System.Drawing.Size(140, 56);
             this.btnLanguageEN.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLanguageEN.Text = "English";
             this.btnLanguageEN.Tag = "EN";
@@ -382,8 +384,8 @@
             // 
             // btnLanguageKO
             // 
-            this.btnLanguageKO.Location = new System.Drawing.Point(416, 44);
-            this.btnLanguageKO.Size = new System.Drawing.Size(184, 56);
+            this.btnLanguageKO.Location = new System.Drawing.Point(372, 44);
+            this.btnLanguageKO.Size = new System.Drawing.Size(140, 56);
             this.btnLanguageKO.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLanguageKO.Text = "한국어";
             this.btnLanguageKO.Tag = "KO";
@@ -392,13 +394,23 @@
             // 
             // btnLanguageZH
             // 
-            this.btnLanguageZH.Location = new System.Drawing.Point(612, 44);
-            this.btnLanguageZH.Size = new System.Drawing.Size(184, 56);
+            this.btnLanguageZH.Location = new System.Drawing.Point(524, 44);
+            this.btnLanguageZH.Size = new System.Drawing.Size(140, 56);
             this.btnLanguageZH.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLanguageZH.Text = "中文";
             this.btnLanguageZH.Tag = "ZH";
             this.btnLanguageZH.Name = "btnLanguageZH";
             this.btnLanguageZH.Click += new System.EventHandler(this.btnLanguage_Click);
+            // 
+            // btnLanguageVI
+            // 
+            this.btnLanguageVI.Location = new System.Drawing.Point(676, 44);
+            this.btnLanguageVI.Size = new System.Drawing.Size(140, 56);
+            this.btnLanguageVI.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLanguageVI.Text = "Tiếng Việt";
+            this.btnLanguageVI.Tag = "VI";
+            this.btnLanguageVI.Name = "btnLanguageVI";
+            this.btnLanguageVI.Click += new System.EventHandler(this.btnLanguage_Click);
             // 
             // lblLanguageRule
             // 
@@ -524,6 +536,7 @@
         private MMI.HmiButton btnLanguageEN;
         private MMI.HmiButton btnLanguageKO;
         private MMI.HmiButton btnLanguageZH;
+        private MMI.HmiButton btnLanguageVI;
         private System.Windows.Forms.Label lblLanguageRule;
         private MMI.HmiCard pnlSave;
         private MMI.HmiButton btnApply;

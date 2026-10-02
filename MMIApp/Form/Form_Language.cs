@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace MMI
 {
-    // Lang on the top bar: pick English, Korean or Chinese for this session.
+    // Lang on the top bar: pick English, Korean, Chinese or Vietnamese for this session.
     // The captions themselves come from Language\<code>.lang through
     // CLanguage; this only asks which one.
     public partial class Form_Language : Form
@@ -32,6 +32,7 @@ namespace MMI
             btnEN.Checked = (strCurrent == "EN");
             btnKO.Checked = (strCurrent == "KO");
             btnZH.Checked = (strCurrent == "ZH");
+            btnVI.Checked = (strCurrent == "VI");
 
             ShowDialog(frmMain);
 

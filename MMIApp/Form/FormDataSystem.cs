@@ -99,6 +99,7 @@ namespace MMI
             btnLanguageEN.Checked = (strLanguage == "EN");
             btnLanguageKO.Checked = (strLanguage == "KO");
             btnLanguageZH.Checked = (strLanguage == "ZH");
+            btnLanguageVI.Checked = (strLanguage == "VI");
 
             txtMachineName.ForeColor = (txtMachineName.Text.Trim() != CSystemConfig.MachineName) ? HmiTheme.Accent : HmiTheme.Text;
 

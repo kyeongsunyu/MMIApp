@@ -34,6 +34,7 @@
             this.btnEN = new MMI.HmiButton();
             this.btnKO = new MMI.HmiButton();
             this.btnZH = new MMI.HmiButton();
+            this.btnVI = new MMI.HmiButton();
             this.btnCancel = new MMI.HmiButton();
             this.SuspendLayout();
             // 
@@ -62,7 +63,7 @@
             // btnEN
             // 
             this.btnEN.Location = new System.Drawing.Point(24, 104);
-            this.btnEN.Size = new System.Drawing.Size(196, 72);
+            this.btnEN.Size = new System.Drawing.Size(148, 72);
             this.btnEN.Font = new System.Drawing.Font("Malgun Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnEN.Text = "English";
             this.btnEN.Tag = "EN";
@@ -71,8 +72,8 @@
             // 
             // btnKO
             // 
-            this.btnKO.Location = new System.Drawing.Point(232, 104);
-            this.btnKO.Size = new System.Drawing.Size(196, 72);
+            this.btnKO.Location = new System.Drawing.Point(184, 104);
+            this.btnKO.Size = new System.Drawing.Size(148, 72);
             this.btnKO.Font = new System.Drawing.Font("Malgun Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKO.Text = "한국어";
             this.btnKO.Tag = "KO";
@@ -81,13 +82,23 @@
             // 
             // btnZH
             // 
-            this.btnZH.Location = new System.Drawing.Point(440, 104);
-            this.btnZH.Size = new System.Drawing.Size(196, 72);
+            this.btnZH.Location = new System.Drawing.Point(344, 104);
+            this.btnZH.Size = new System.Drawing.Size(148, 72);
             this.btnZH.Font = new System.Drawing.Font("Malgun Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnZH.Text = "中文";
             this.btnZH.Tag = "ZH";
             this.btnZH.Name = "btnZH";
             this.btnZH.Click += new System.EventHandler(this.btnLanguage_Click);
+            // 
+            // btnVI
+            // 
+            this.btnVI.Location = new System.Drawing.Point(504, 104);
+            this.btnVI.Size = new System.Drawing.Size(148, 72);
+            this.btnVI.Font = new System.Drawing.Font("Malgun Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnVI.Text = "Tiếng Việt";
+            this.btnVI.Tag = "VI";
+            this.btnVI.Name = "btnVI";
+            this.btnVI.Click += new System.EventHandler(this.btnLanguage_Click);
             // 
             // btnCancel
             // 
@@ -113,6 +124,7 @@
             this.Text = "Language";
             this.TopMost = true;
             this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnVI);
             this.Controls.Add(this.btnZH);
             this.Controls.Add(this.btnKO);
             this.Controls.Add(this.btnEN);
@@ -130,6 +142,7 @@
         private MMI.HmiButton btnEN;
         private MMI.HmiButton btnKO;
         private MMI.HmiButton btnZH;
+        private MMI.HmiButton btnVI;
         private MMI.HmiButton btnCancel;
     }
 }

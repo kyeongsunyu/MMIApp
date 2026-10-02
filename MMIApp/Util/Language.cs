@@ -7,10 +7,10 @@ using System.Windows.Forms;
 
 namespace MMI
 {
-    // Screen captions in English, Korean or Chinese, read from text files.
+    // Screen captions in English, Korean, Chinese or Vietnamese, read from text files.
     //
     // The screens are designed in English; the designer text is the English
-    // caption. Language\<code>.lang (EN, KO, ZH) next to MMIApp.exe gives the
+    // caption. Language\<code>.lang (EN, KO, ZH, VI) next to MMIApp.exe gives the
     // translations, one per line, UTF-8:
     //
     //     # comment

@@ -228,9 +228,64 @@ namespace MMI
                     text = new Rectangle(0, y + Image.Height, Width, Height - y - Image.Height);
                 }
             }
-            TextRenderer.DrawText(g, Text, Font, text, TextColor(),
+            TextRenderer.DrawText(g, Text, FitFont(g, Text, text), text, TextColor(),
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
               | TextFormatFlags.WordBreak | TextFormatFlags.EndEllipsis);
+        }
+
+        // A caption that does not fit (a longer language on a button sized for
+        // English) is drawn smaller, down to three quarters of the font, before
+        // it is allowed to wrap out of sight or end in an ellipsis.
+        private const float MinFitRatio = 0.75f;
+        private Font _fitFont;
+        private string _fitKey;
+
+        protected Font FitFont(Graphics g, string strText, Rectangle area)
+        {
+            if (string.IsNullOrEmpty(strText) || area.Width <= 0 || area.Height <= 0) return Font;
+
+            string strKey = strText + "|" + area.Size + "|" + Font.Name + "|" + Font.Size + "|" + Font.Style;
+            if (strKey == _fitKey && _fitFont != null) return _fitFont;
+
+            // A caption laid out on one line, or written on several lines on
+            // purpose, keeps its shape: a one-line caption shrinks until it fits
+            // on one line; only one that cannot is left to wrap.
+            bool bOneLine = strText.IndexOf('\n') < 0;
+            Font fit = Font;
+            for (float fSize = Font.Size; fSize >= Font.Size * MinFitRatio; fSize -= 0.5f)
+            {
+                Font f = (fSize == Font.Size) ? Font : new Font(Font.FontFamily, fSize, Font.Style, Font.Unit);
+                Size need = bOneLine
+                    ? TextRenderer.MeasureText(g, strText, f, new Size(int.MaxValue, int.MaxValue), TextFormatFlags.NoPadding)
+                    : TextRenderer.MeasureText(g, strText, f, new Size(area.Width, int.MaxValue),
+                                               TextFormatFlags.WordBreak | TextFormatFlags.NoPadding);
+                if (fit != Font && fit != f) fit.Dispose();
+                fit = f;
+                if (need.Width <= area.Width - 4 && need.Height <= area.Height) break;
+            }
+            // Even the smallest size does not fit on one line: wrap it at the
+            // size the button was given, as before.
+            if (bOneLine && TextRenderer.MeasureText(g, strText, fit, new Size(int.MaxValue, int.MaxValue),
+                                                     TextFormatFlags.NoPadding).Width > area.Width - 4)
+            {
+                if (fit != Font) fit.Dispose();
+                fit = Font;
+            }
+
+            if (_fitFont != null && _fitFont != Font && _fitFont != fit) _fitFont.Dispose();
+            _fitFont = fit;
+            _fitKey = strKey;
+            return fit;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && _fitFont != null && _fitFont != Font)
+            {
+                _fitFont.Dispose();
+                _fitFont = null;
+            }
+            base.Dispose(disposing);
         }
     }
 
@@ -276,7 +331,7 @@ namespace MMI
             Rectangle label = new Rectangle(0, Height / 2 + 2, Width, Height / 2 - 8);
             TextRenderer.DrawText(g, _glyph, HmiTheme.FontIcon, icon, fore,
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.Bottom);
-            TextRenderer.DrawText(g, Text, Font, label, fore,
+            TextRenderer.DrawText(g, Text, FitFont(g, Text, label), label, fore,
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.Top | TextFormatFlags.EndEllipsis);
         }
     }

@@ -26,7 +26,7 @@ namespace MMI
         public const int LifeTimeWarnPercentMin = 50;
         public const int LifeTimeWarnPercentMax = 99;
 
-        public static readonly string[] Languages = { "EN", "KO", "ZH" };
+        public static readonly string[] Languages = { "EN", "KO", "ZH", "VI" };
 
         public static string MachineName = "MMI";
 
@@ -45,7 +45,7 @@ namespace MMI
 
         public static eKeyboardMode Keyboard = eKeyboardMode.SOFTWARE;
 
-        // The language the program starts in: EN, KO or ZH.
+        // The language the program starts in: EN, KO, ZH or VI.
         public static string Language = "EN";
 
         public static void Load()

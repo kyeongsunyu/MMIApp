@@ -216,6 +216,7 @@ SOFTWARE|소프트웨어
 SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.|소프트웨어: 입력칸을 누르면 화상 키보드가 열립니다.\n하드웨어: 연결된 키보드로 입력합니다.
 Start in|시작 언어
 The language the program starts in. Lang on the top bar switches it\nfor the session. Captions come from the files in the Language folder.|프로그램이 시작할 때의 언어입니다. 상단바의 언어 버튼은\n이번 실행 동안만 바꿉니다. 문구는 Language 폴더의 파일에서 읽습니다.
+Tiếng Việt|Tiếng Việt
 Warn from|경고 시작
 中文|中文
 한국어|한국어
