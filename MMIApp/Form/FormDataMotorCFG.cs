@@ -37,14 +37,41 @@ namespace MMI
             ControlPaint.DrawBorder(e.Graphics, ClientRectangle, Color.DarkGray, ButtonBorderStyle.Solid);
         }
 
+        private const int HeaderRowHeight = 36;
+        private const int NoColWidth = 90;
+        private const int ValueColWidth = 150;
+        private const int NameColMinWidth = 250;
+
+        // The grid spans the screen; NO and the six value columns keep their
+        // width and MOTOR NAME takes the rest.
+        private void LayoutColumns()
+        {
+            if (gdMotorCFG.Cols.Count < 8) return;
+
+            int nAvail = gdMotorCFG.ClientSize.Width - 2;
+            if (gdMotorCFG.DisplayedRowCount(false) < gdMotorCFG.RowCount)
+            {
+                nAvail -= SystemInformation.VerticalScrollBarWidth;
+            }
+            gdMotorCFG.Cols[0].Width = NoColWidth;
+            for (int c = 2; c <= 7; c++) gdMotorCFG.Cols[c].Width = ValueColWidth;
+            gdMotorCFG.Cols[1].Width = Math.Max(NameColMinWidth, nAvail - NoColWidth - 6 * ValueColWidth);
+        }
+
+        private void gdMotorCFG_Resize(object sender, EventArgs e)
+        {
+            LayoutColumns();
+        }
+
         private void InitGridMotorCFG()
         {
             gdMotorCFG.Cols.DefaultSize = 100;
 
-            gdMotorCFG.Cols[0].Width = 100;
-            gdMotorCFG.Cols[1].Width = 500;
-            gdMotorCFG.Cols[6].Width = 100;
-            gdMotorCFG.Cols[7].Width = 100;
+            // The unit captions are a third line; two 25 px header rows cut it off.
+            gdMotorCFG.Rows[0].Height = HeaderRowHeight;
+            gdMotorCFG.Rows[1].Height = HeaderRowHeight;
+
+            LayoutColumns();
 
             gdMotorCFG.Styles.Fixed.TextAlign = TextAlignEnum.CenterCenter;
             gdMotorCFG.Styles.Fixed.Font = new Font("Tahoma", 12, FontStyle.Bold);

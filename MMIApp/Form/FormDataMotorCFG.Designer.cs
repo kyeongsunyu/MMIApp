@@ -37,19 +37,24 @@
             // gdMotorCFG
             // 
             this.gdMotorCFG.ColumnInfo = resources.GetString("gdMotorCFG.ColumnInfo");
-            this.gdMotorCFG.Location = new System.Drawing.Point(59, 32);
+            this.gdMotorCFG.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gdMotorCFG.Location = new System.Drawing.Point(12, 12);
             this.gdMotorCFG.Name = "gdMotorCFG";
             this.gdMotorCFG.Rows.Count = 62;
             this.gdMotorCFG.Rows.DefaultSize = 25;
             this.gdMotorCFG.Rows.Fixed = 2;
-            this.gdMotorCFG.Size = new System.Drawing.Size(1225, 880);
+            this.gdMotorCFG.Size = new System.Drawing.Size(1490, 906);
             this.gdMotorCFG.TabIndex = 35;
+            this.gdMotorCFG.Resize += new System.EventHandler(this.gdMotorCFG_Resize);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(1339, 828);
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(1514, 835);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(111, 83);
+            this.btnSave.Size = new System.Drawing.Size(118, 83);
             this.btnSave.TabIndex = 46;
             this.btnSave.Tag = "1";
             this.btnSave.Text = "SAVE";
@@ -59,7 +64,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
-            this.ClientSize = new System.Drawing.Size(1480, 930);
+            this.ClientSize = new System.Drawing.Size(1644, 930);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gdMotorCFG);
             this.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
