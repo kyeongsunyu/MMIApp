@@ -75,6 +75,9 @@
             this.flpSubManual = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSubManualList = new MMI.HmiButton();
             this.btnSubManualOP = new MMI.HmiButton();
+            this.flpSubMotor = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSubMotorAxis = new MMI.HmiButton();
+            this.btnSubScanTrigger = new MMI.HmiButton();
             this.flpSubData = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSubRecipe = new MMI.HmiButton();
             this.btnSubSysParam = new MMI.HmiButton();
@@ -99,6 +102,7 @@
             this.flpTopStatus.SuspendLayout();
             this.flpSubAuto.SuspendLayout();
             this.flpSubManual.SuspendLayout();
+            this.flpSubMotor.SuspendLayout();
             this.flpSubData.SuspendLayout();
             this.flpSubIO.SuspendLayout();
             this.flpSubLog.SuspendLayout();
@@ -145,6 +149,7 @@
             this.pnlSubMenu.Controls.Add(this.flpSubLog);
             this.pnlSubMenu.Controls.Add(this.flpSubIO);
             this.pnlSubMenu.Controls.Add(this.flpSubData);
+            this.pnlSubMenu.Controls.Add(this.flpSubMotor);
             this.pnlSubMenu.Controls.Add(this.flpSubManual);
             this.pnlSubMenu.Controls.Add(this.flpSubAuto);
             this.pnlSubMenu.Controls.Add(this.lblSubTitle);
@@ -585,6 +590,39 @@
             this.btnSubManualOP.Name = "btnSubManualOP";
             this.btnSubManualOP.Click += new System.EventHandler(this.btnSubMenuClick);
             // 
+            // flpSubMotor
+            // 
+            this.flpSubMotor.Controls.Add(this.btnSubMotorAxis);
+            this.flpSubMotor.Controls.Add(this.btnSubScanTrigger);
+            this.flpSubMotor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpSubMotor.Size = new System.Drawing.Size(168, 950);
+            this.flpSubMotor.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpSubMotor.WrapContents = false;
+            this.flpSubMotor.Visible = false;
+            this.flpSubMotor.Name = "flpSubMotor";
+            // 
+            // btnSubMotorAxis
+            // 
+            this.btnSubMotorAxis.Size = new System.Drawing.Size(168, 44);
+            this.btnSubMotorAxis.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubMotorAxis.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubMotorAxis.Text = "Axis";
+            this.btnSubMotorAxis.Tag = "31";
+            this.btnSubMotorAxis.TabStop = false;
+            this.btnSubMotorAxis.Name = "btnSubMotorAxis";
+            this.btnSubMotorAxis.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubScanTrigger
+            // 
+            this.btnSubScanTrigger.Size = new System.Drawing.Size(168, 44);
+            this.btnSubScanTrigger.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubScanTrigger.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubScanTrigger.Text = "Scan Trigger";
+            this.btnSubScanTrigger.Tag = "32";
+            this.btnSubScanTrigger.TabStop = false;
+            this.btnSubScanTrigger.Name = "btnSubScanTrigger";
+            this.btnSubScanTrigger.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
             // flpSubData
             // 
             this.flpSubData.Controls.Add(this.btnSubRecipe);
@@ -778,6 +816,8 @@
             this.flpSubIO.PerformLayout();
             this.flpSubData.ResumeLayout(false);
             this.flpSubData.PerformLayout();
+            this.flpSubMotor.ResumeLayout(false);
+            this.flpSubMotor.PerformLayout();
             this.flpSubManual.ResumeLayout(false);
             this.flpSubManual.PerformLayout();
             this.flpSubAuto.ResumeLayout(false);
@@ -842,6 +882,9 @@
         private System.Windows.Forms.FlowLayoutPanel flpSubManual;
         public MMI.HmiButton btnSubManualList;
         public MMI.HmiButton btnSubManualOP;
+        private System.Windows.Forms.FlowLayoutPanel flpSubMotor;
+        public MMI.HmiButton btnSubMotorAxis;
+        public MMI.HmiButton btnSubScanTrigger;
         private System.Windows.Forms.FlowLayoutPanel flpSubData;
         public MMI.HmiButton btnSubRecipe;
         public MMI.HmiButton btnSubSysParam;

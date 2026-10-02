@@ -37,6 +37,7 @@ namespace MMI
         public FormManualOP     frmManualOP;
 
         public FormMotorSetting frmMotorSetting;
+        public FormScanTrigger  frmScanTrigger;
 
         public FormDataRecipe   frmDataRecipe;
         public FormDataSysParam frmDataSysParam;
@@ -131,6 +132,7 @@ namespace MMI
             frmManualOP = new FormManualOP(this);
 
             frmMotorSetting = new FormMotorSetting(this);
+            frmScanTrigger = new FormScanTrigger(this);
 
             frmDataRecipe = new FormDataRecipe(this);
             frmDataSysParam = new FormDataSysParam(this);
@@ -155,6 +157,7 @@ namespace MMI
             RegisterScreen((int)MmiGV.eSCRNO.MANUAL_LIST,       "MANUAL LIST",   frmManualList);
             RegisterScreen((int)MmiGV.eSCRNO.MANUAL_OP,         "MANUAL OP",     frmManualOP);
             RegisterScreen((int)MmiGV.eSCRNO.MOTOR_SETTING,     "MOTOR SETTING", frmMotorSetting);
+            RegisterScreen((int)MmiGV.eSCRNO.MOTOR_SCANTRIGGER, "SCAN TRIGGER",  frmScanTrigger);
             RegisterScreen((int)MmiGV.eSCRNO.DATA_RECIPE,       "DATA_RECIPE",   frmDataRecipe);
             RegisterScreen((int)MmiGV.eSCRNO.DATA_SYSTEMPARAM,  "DATA_SYSTEMPARAM", frmDataSysParam);
             RegisterScreen((int)MmiGV.eSCRNO.DATA_OPTION,       "DATA_OPTION",   frmDataOption);
@@ -171,6 +174,7 @@ namespace MMI
 
             m_dicSubMenu[(int)eScreenGroup.AUTO]    = flpSubAuto;
             m_dicSubMenu[(int)eScreenGroup.MANUAL]  = flpSubManual;
+            m_dicSubMenu[(int)eScreenGroup.MOTOR]   = flpSubMotor;
             m_dicSubMenu[(int)eScreenGroup.DATA]    = flpSubData;
             m_dicSubMenu[(int)eScreenGroup.MONITOR] = flpSubIO;
             m_dicSubMenu[(int)eScreenGroup.LOG]     = flpSubLog;

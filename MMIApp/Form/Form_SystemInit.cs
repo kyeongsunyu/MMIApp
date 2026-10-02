@@ -329,6 +329,10 @@ namespace MMI
             MmiGV.pShMem.WUserInfo.strUserName = MmiGV.UserInfo.strUserName;
             MmiGV.pShMem.SetUserInfo();
 
+            // SEQ starts on its commissioned scan trigger settings; put back
+            // the ones an engineer changed and confirmed.
+            FormScanTrigger.SendSavedHwCfgToSeq();
+
             MmiGV.bInitSystem = true;
             MmiGV.pShMem.SetDM(6, 0);
             Application.DoEvents();

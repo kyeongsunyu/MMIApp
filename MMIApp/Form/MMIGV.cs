@@ -48,6 +48,7 @@ namespace MMI
 
             MOTOR_VIEW      = 3,
             MOTOR_SETTING   = 31,
+            MOTOR_SCANTRIGGER = 32,
 
             DATA_VIEW       = 4,
             DATA_RECIPE     = 41,

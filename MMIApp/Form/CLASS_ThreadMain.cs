@@ -52,6 +52,13 @@ namespace MMI
         private static int m_iScanTriggerMiss = 0;
         private const int ScanTriggerMissLimit = 20;
 
+        // The engineer screen's live counter. Five reads a second is enough
+        // to watch a scan go by, and keeps this thread's share of the comm
+        // mutex small next to the nineteen round trips it already makes.
+        private static readonly Stopwatch m_swScanTriggerEngineer = Stopwatch.StartNew();
+        private const int ScanTriggerEngineerPeriodMs = 200;
+        private static int m_iScanTriggerEngineerMiss = 0;
+
         
         public static void ExecuteMainThred()
         {
@@ -322,6 +329,9 @@ namespace MMI
                     break;
                 case (int)eSCR.SCREEN_MANUAL_OP:
                     break;
+                case (int)MmiGV.eSCRNO.MOTOR_SCANTRIGGER:
+                    ScanTriggerEngineerRefresh();
+                    break;
                 case (int)eSCR.SCREEN_MOTOR_SETTING:
                     MmiGV.pShMem.GetMotorData(MmiGV.iCurrAxis);
                     MmiGV.pShMem.GetMotorStatus(MmiGV.iCurrAxis);
@@ -351,6 +361,30 @@ namespace MMI
                     break;
                 case (int)eSCR.SCREEN_ALARM:
                     break;
+            }
+        }
+
+        // Reads what the engineer screen shows - SEQ's view of the recipe and
+        // the counter channel - and hands it over to be painted. A missed
+        // read is a lost round; only a run of them is a lost link.
+        private static void ScanTriggerEngineerRefresh()
+        {
+            FormScanTrigger frm = MmiGV.frmMain.frmScanTrigger;
+            if (frm == null || !frm.bWatch) return;
+            if (m_swScanTriggerEngineer.ElapsedMilliseconds < ScanTriggerEngineerPeriodMs) return;
+            m_swScanTriggerEngineer.Restart();
+
+            bool bDisplay = MmiGV.pShMem.GetScanTriggerDisplay();
+            bool bCounter = MmiGV.pShMem.GetScanTriggerCounter();
+
+            if (bDisplay || bCounter)
+            {
+                m_iScanTriggerEngineerMiss = 0;
+                frm.RenderFromSeq(bDisplay, bCounter);
+            }
+            else if (++m_iScanTriggerEngineerMiss == ScanTriggerMissLimit)
+            {
+                frm.LinkLost();
             }
         }
 

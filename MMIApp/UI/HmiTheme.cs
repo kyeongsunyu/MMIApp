@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MMI
@@ -74,7 +75,7 @@ namespace MMI
                 c.BackColor = Input;
                 c.ForeColor = Text;
                 if (c is TextBox) ((TextBox)c).BorderStyle = BorderStyle.FixedSingle;
-                if (c is ComboBox) ((ComboBox)c).FlatStyle = FlatStyle.Flat;
+                if (c is ComboBox) DarkenComboBox((ComboBox)c);
             }
             else if (c is CheckBox || c is RadioButton)
             {
@@ -173,6 +174,34 @@ namespace MMI
         {
             if (f == null) return null;
             return new Font(FontName, f.Size, f.Style);
+        }
+
+        // A drop down list ignores BackColor under visual styles and stays
+        // white, so it is drawn here. A combo that already draws itself is
+        // left alone.
+        private static void DarkenComboBox(ComboBox cb)
+        {
+            cb.FlatStyle = FlatStyle.Flat;
+            if (cb.DrawMode != DrawMode.Normal) return;
+            cb.DrawMode = DrawMode.OwnerDrawFixed;
+            cb.ItemHeight = Math.Max(cb.ItemHeight, cb.Font.Height + 4);
+            cb.DrawItem += DrawComboItem;
+        }
+
+        private static void DrawComboItem(object sender, DrawItemEventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            bool bEdit = (e.State & DrawItemState.ComboBoxEdit) != 0;
+            bool bSelected = !bEdit && (e.State & DrawItemState.Selected) != 0;
+
+            using (SolidBrush b = new SolidBrush(bSelected ? Selection : Input))
+            {
+                e.Graphics.FillRectangle(b, e.Bounds);
+            }
+            string text = (e.Index >= 0) ? cb.GetItemText(cb.Items[e.Index]) : cb.Text;
+            Rectangle r = new Rectangle(e.Bounds.X + 4, e.Bounds.Y, e.Bounds.Width - 4, e.Bounds.Height);
+            TextRenderer.DrawText(e.Graphics, text, cb.Font, r, cb.Enabled ? Text : TextDisabled,
+                TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
         }
 
         public static void StyleGrid(DataGridView g)

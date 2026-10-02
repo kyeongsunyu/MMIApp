@@ -352,6 +352,12 @@
     <Compile Include="Form\FormDataRecipe.Designer.cs">
       <DependentUpon>FormDataRecipe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\FormScanTrigger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormScanTrigger.Designer.cs">
+      <DependentUpon>FormScanTrigger.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\FormMotorSetting.cs">
       <SubType>Form</SubType>
     </Compile>
