@@ -279,8 +279,11 @@ Motor Config|모터 설정
 MTBA / MTBF|MTBA / MTBF
 No Alarm|알람 없음
 Operation|조작
+Peripheral: -|주변기기: -
 PM|PM
 Recipe|레시피
+SECS/GEM: Offline|SECS/GEM: 오프라인
+SEQ: Disconnected|SEQ: 연결 끊김
 Show/Hide Console|콘솔 보이기/숨기기
 System Data|시스템 데이터
 Teach|티칭
@@ -289,9 +292,6 @@ TRIGGER|트리거
 USE / SKIP|사용 / 스킵
 User Regist|사용자 등록
 ● Operator|● 작업자
-● Peripheral: -|● 주변기기: -
-● SECS/GEM: Offline|● SECS/GEM: 오프라인
-● SEQ: Disconnected|● SEQ: 연결 끊김
 
 # --- FormManualOP ---
 Air Knife Blow On/Off|에어 나이프 블로 On/Off
@@ -598,7 +598,6 @@ Reset the count of {0} to 0?\nDo this after the part has been replaced.|{0}의 �
 Rework Tray Unload|재작업 트레이 배출
 SEQ is not connected.|SEQ가 연결되지 않았습니다.
 SEQ: Connected|SEQ: 연결됨
-SEQ: Disconnected|SEQ: 연결 끊김
 Sponge Clean|스펀지 세정
 Staged limits discarded.|대기 중인 한계를 취소했습니다.
 STEP: one step per press of + / -.|스텝: + / -를 한 번 누를 때마다 한 스텝 움직입니다.

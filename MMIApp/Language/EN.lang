@@ -279,8 +279,11 @@ Motor Config|Motor Config
 MTBA / MTBF|MTBA / MTBF
 No Alarm|No Alarm
 Operation|Operation
+Peripheral: -|Peripheral: -
 PM|PM
 Recipe|Recipe
+SECS/GEM: Offline|SECS/GEM: Offline
+SEQ: Disconnected|SEQ: Disconnected
 Show/Hide Console|Show/Hide Console
 System Data|System Data
 Teach|Teach
@@ -289,9 +292,6 @@ TRIGGER|TRIGGER
 USE / SKIP|USE / SKIP
 User Regist|User Regist
 ● Operator|● Operator
-● Peripheral: -|● Peripheral: -
-● SECS/GEM: Offline|● SECS/GEM: Offline
-● SEQ: Disconnected|● SEQ: Disconnected
 
 # --- FormManualOP ---
 Air Knife Blow On/Off|Air Knife Blow On/Off
@@ -598,7 +598,6 @@ Reset the count of {0} to 0?\nDo this after the part has been replaced.|Reset th
 Rework Tray Unload|Rework Tray Unload
 SEQ is not connected.|SEQ is not connected.
 SEQ: Connected|SEQ: Connected
-SEQ: Disconnected|SEQ: Disconnected
 Sponge Clean|Sponge Clean
 Staged limits discarded.|Staged limits discarded.
 STEP: one step per press of + / -.|STEP: one step per press of + / -.

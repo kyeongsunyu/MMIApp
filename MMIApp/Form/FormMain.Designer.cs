@@ -45,8 +45,11 @@
             this.lblMachine = new System.Windows.Forms.Label();
             this.lblDeviceCaption = new System.Windows.Forms.Label();
             this.lblDevice = new System.Windows.Forms.Label();
+            this.lblSeqLinkDot = new System.Windows.Forms.Label();
             this.lblSeqLink = new System.Windows.Forms.Label();
+            this.lblPeripheralDot = new System.Windows.Forms.Label();
             this.lblPeripheral = new System.Windows.Forms.Label();
+            this.lblSecsGemDot = new System.Windows.Forms.Label();
             this.lblSecsGem = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblUserTime = new System.Windows.Forms.Label();
@@ -214,8 +217,11 @@
             this.flpTopStatus.Controls.Add(this.lblMachine);
             this.flpTopStatus.Controls.Add(this.lblDeviceCaption);
             this.flpTopStatus.Controls.Add(this.lblDevice);
+            this.flpTopStatus.Controls.Add(this.lblSeqLinkDot);
             this.flpTopStatus.Controls.Add(this.lblSeqLink);
+            this.flpTopStatus.Controls.Add(this.lblPeripheralDot);
             this.flpTopStatus.Controls.Add(this.lblPeripheral);
+            this.flpTopStatus.Controls.Add(this.lblSecsGemDot);
             this.flpTopStatus.Controls.Add(this.lblSecsGem);
             this.flpTopStatus.Controls.Add(this.lblUserName);
             this.flpTopStatus.Controls.Add(this.lblUserTime);
@@ -258,36 +264,69 @@
             this.lblDevice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblDevice.Name = "lblDevice";
             // 
+            // lblSeqLinkDot
+            // 
+            this.lblSeqLinkDot.AutoSize = false;
+            this.lblSeqLinkDot.Size = new System.Drawing.Size(18, 44);
+            this.lblSeqLinkDot.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSeqLinkDot.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSeqLinkDot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(72)))), ((int)(((byte)(77)))));
+            this.lblSeqLinkDot.Text = "●";
+            this.lblSeqLinkDot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSeqLinkDot.Name = "lblSeqLinkDot";
+            // 
             // lblSeqLink
             // 
             this.lblSeqLink.AutoSize = false;
-            this.lblSeqLink.Size = new System.Drawing.Size(176, 44);
+            this.lblSeqLink.Size = new System.Drawing.Size(158, 44);
             this.lblSeqLink.Margin = new System.Windows.Forms.Padding(0);
             this.lblSeqLink.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSeqLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblSeqLink.Text = "● SEQ: Disconnected";
+            this.lblSeqLink.Text = "SEQ: Disconnected";
             this.lblSeqLink.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblSeqLink.Name = "lblSeqLink";
+            // 
+            // lblPeripheralDot
+            // 
+            this.lblPeripheralDot.AutoSize = false;
+            this.lblPeripheralDot.Size = new System.Drawing.Size(18, 44);
+            this.lblPeripheralDot.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPeripheralDot.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPeripheralDot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblPeripheralDot.Text = "●";
+            this.lblPeripheralDot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPeripheralDot.Name = "lblPeripheralDot";
             // 
             // lblPeripheral
             // 
             this.lblPeripheral.AutoSize = false;
-            this.lblPeripheral.Size = new System.Drawing.Size(176, 44);
+            this.lblPeripheral.Size = new System.Drawing.Size(158, 44);
             this.lblPeripheral.Margin = new System.Windows.Forms.Padding(0);
             this.lblPeripheral.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPeripheral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblPeripheral.Text = "● Peripheral: -";
+            this.lblPeripheral.Text = "Peripheral: -";
             this.lblPeripheral.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblPeripheral.Name = "lblPeripheral";
+            // 
+            // lblSecsGemDot
+            // 
+            this.lblSecsGemDot.AutoSize = false;
+            this.lblSecsGemDot.Size = new System.Drawing.Size(18, 44);
+            this.lblSecsGemDot.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSecsGemDot.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSecsGemDot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(72)))), ((int)(((byte)(77)))));
+            this.lblSecsGemDot.Text = "●";
+            this.lblSecsGemDot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSecsGemDot.Name = "lblSecsGemDot";
             // 
             // lblSecsGem
             // 
             this.lblSecsGem.AutoSize = false;
-            this.lblSecsGem.Size = new System.Drawing.Size(196, 44);
+            this.lblSecsGem.Size = new System.Drawing.Size(178, 44);
             this.lblSecsGem.Margin = new System.Windows.Forms.Padding(0);
             this.lblSecsGem.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblSecsGem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblSecsGem.Text = "● SECS/GEM: Offline";
+            this.lblSecsGem.Text = "SECS/GEM: Offline";
             this.lblSecsGem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblSecsGem.Name = "lblSecsGem";
             // 
@@ -825,8 +864,11 @@
         private System.Windows.Forms.Label lblMachine;
         private System.Windows.Forms.Label lblDeviceCaption;
         public System.Windows.Forms.Label lblDevice;
+        public System.Windows.Forms.Label lblSeqLinkDot;
         public System.Windows.Forms.Label lblSeqLink;
+        public System.Windows.Forms.Label lblPeripheralDot;
         public System.Windows.Forms.Label lblPeripheral;
+        public System.Windows.Forms.Label lblSecsGemDot;
         public System.Windows.Forms.Label lblSecsGem;
         public System.Windows.Forms.Label lblUserName;
         public System.Windows.Forms.Label lblUserTime;

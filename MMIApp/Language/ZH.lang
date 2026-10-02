@@ -279,8 +279,11 @@ Motor Config|电机设置
 MTBA / MTBF|MTBA / MTBF
 No Alarm|无报警
 Operation|操作
+Peripheral: -|外设: -
 PM|PM
 Recipe|配方
+SECS/GEM: Offline|SECS/GEM: 离线
+SEQ: Disconnected|SEQ: 未连接
 Show/Hide Console|显示/隐藏控制台
 System Data|系统数据
 Teach|示教
@@ -289,9 +292,6 @@ TRIGGER|触发
 USE / SKIP|使用 / 跳过
 User Regist|用户注册
 ● Operator|● 操作员
-● Peripheral: -|● 外设: -
-● SECS/GEM: Offline|● SECS/GEM: 离线
-● SEQ: Disconnected|● SEQ: 未连接
 
 # --- FormManualOP ---
 Air Knife Blow On/Off|气刀吹气 开/关
@@ -598,7 +598,6 @@ Reset the count of {0} to 0?\nDo this after the part has been replaced.|将 {0} 
 Rework Tray Unload|返工料盘卸载
 SEQ is not connected.|SEQ 未连接。
 SEQ: Connected|SEQ: 已连接
-SEQ: Disconnected|SEQ: 未连接
 Sponge Clean|海绵清洁
 Staged limits discarded.|已放弃待应用的上限。
 STEP: one step per press of + / -.|步进：每按一次 + / - 移动一步。

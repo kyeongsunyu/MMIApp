@@ -829,8 +829,8 @@ namespace MMI
 
         private void ShowSeqLink(bool bLinked)
         {
-            lblSeqLink.Text = "● " + CLanguage.Text(bLinked ? "SEQ: Connected" : "SEQ: Disconnected");
-            lblSeqLink.ForeColor = bLinked ? HmiTheme.Text : HmiTheme.Alarm;
+            lblSeqLink.Text = CLanguage.Text(bLinked ? "SEQ: Connected" : "SEQ: Disconnected");
+            lblSeqLinkDot.ForeColor = bLinked ? HmiTheme.Normal : HmiTheme.Alarm;
         }
 
         // Peripheral and SECS/GEM states are set by whichever module owns the
@@ -842,8 +842,8 @@ namespace MMI
                 BeginInvoke(new Action(() => ShowPeripheralLink(strName, bConnected)));
                 return;
             }
-            lblPeripheral.Text = "● " + strName + (bConnected ? ": OK" : ": NG");
-            lblPeripheral.ForeColor = bConnected ? HmiTheme.Text : HmiTheme.Alarm;
+            lblPeripheral.Text = strName + (bConnected ? ": OK" : ": NG");
+            lblPeripheralDot.ForeColor = bConnected ? HmiTheme.Normal : HmiTheme.Alarm;
         }
 
         public void ShowSecsGemState(string strState, bool bOnline)
@@ -853,8 +853,8 @@ namespace MMI
                 BeginInvoke(new Action(() => ShowSecsGemState(strState, bOnline)));
                 return;
             }
-            lblSecsGem.Text = "● SECS/GEM: " + CLanguage.Text(strState);
-            lblSecsGem.ForeColor = bOnline ? HmiTheme.Text : HmiTheme.TextMuted;
+            lblSecsGem.Text = "SECS/GEM: " + CLanguage.Text(strState);
+            lblSecsGemDot.ForeColor = bOnline ? HmiTheme.Normal : HmiTheme.Alarm;
         }
 
         private void TimerSeqLink_Tick(object sender, EventArgs e)
