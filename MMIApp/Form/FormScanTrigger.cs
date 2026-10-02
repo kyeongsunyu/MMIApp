@@ -66,6 +66,7 @@ namespace MMI
         {
             FillHwCfg(LoadSavedHwCfg() ?? DefaultHwCfg());
             lblHwCfgResult.Text = "Showing the saved settings. READ shows what SEQ is using.";
+            InitMotor();
         }
 
         private void FormScanTrigger_VisibleChanged(object sender, EventArgs e)
@@ -76,6 +77,7 @@ namespace MMI
                 nLastState = -1;
                 nLastValidate = -1;
             }
+            MotorVisibleChanged();
         }
 
         // Keeps the clock on the log honest when nothing else is changing.

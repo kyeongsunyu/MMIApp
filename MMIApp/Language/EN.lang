@@ -415,6 +415,8 @@ Unit(mm)|Unit(mm)
 Velocity|Velocity
 
 # --- FormScanTrigger ---
++LIMIT|+LIMIT
+-LIMIT|-LIMIT
 0  IDLE|0  IDLE
 1  GOTO START|1  GOTO START
 10  RETURN|10  RETURN
@@ -428,12 +430,15 @@ Velocity|Velocity
 8  ABORTED|8  ABORTED
 9  OUTPUT TEST|9  OUTPUT TEST
 Active Level|Active Level
+ALARM RESET|ALARM RESET
 Armed At (counts)|Armed At (counts)
 Behind Arm (counts)|Behind Arm (counts)
 Block (counts)|Block (counts)
 Count the encoder the other way|Count the encoder the other way
 Counter Channel|Counter Channel
 Counter H/W Config|Counter H/W Config
+Current Index|Current Index
+Current Position|Current Position
 Cycle State|Cycle State
 DEFAULTS|DEFAULTS
 Direction Check|Direction Check
@@ -442,9 +447,13 @@ ENCODER = AXIS POSITION|ENCODER = AXIS POSITION
 Encoder Input|Encoder Input
 Encoder Position (mm)|Encoder Position (mm)
 Encoder Reverse|Encoder Reverse
+HOMED|HOMED
+Jog|Jog
+JOG ENABLE|JOG ENABLE
 Live Counter|Live Counter
-LOG CLEAR|LOG CLEAR
 Mode|Mode
+Next Index|Next Index
+Next Position|Next Position
 OUT 0|OUT 0
 OUT 1|OUT 1
 OUT 2|OUT 2
@@ -456,6 +465,8 @@ Recipe / START on Auto|Recipe / START on Auto
 Scan Cycle|Scan Cycle
 Scan Geometry  (motor index 50 - 53)|Scan Geometry  (motor index 50 - 53)
 SET and START stay on the Auto screen, beside the recipe.|SET and START stay on the Auto screen, beside the recipe.
+STEP|STEP
+Step (mm)|Step (mm)
 Trigger Count|Trigger Count
 TRIGGER COUNT CLEAR|TRIGGER COUNT CLEAR
 Trigger Log|Trigger Log
@@ -545,6 +556,7 @@ A purge is already running.|A purge is already running.
 APPLY the keep period first; the purge uses the saved one.|APPLY the keep period first; the purge uses the saved one.
 Changes discarded.|Changes discarded.
 Changes not applied.|Changes not applied.
+Choose a step first.|Choose a step first.
 Engineer|Engineer
 Enter a value from {0} to {1}.|Enter a value from {0} to {1}.
 Files last written before {0} are deleted.|Files last written before {0} are deleted.
@@ -558,6 +570,8 @@ Front Picker Z7|Front Picker Z7
 Front Picker Z8|Front Picker Z8
 Good Tray 1 Unload|Good Tray 1 Unload
 Good Tray 2 Unload|Good Tray 2 Unload
+Home {0}?\nThe axis moves to its origin.|Home {0}?\nThe axis moves to its origin.
+JOG: moves while + / - is held.|JOG: moves while + / - is held.
 Limits saved and sent to SEQ.|Limits saved and sent to SEQ.
 Log Out|Log Out
 Maintenance|Maintenance
@@ -565,6 +579,7 @@ Master|Master
 NG Tray Unload|NG Tray Unload
 No|No
 No User|No User
+Not while a scan cycle runs.|Not while a scan cycle runs.
 Not while the machine runs.|Not while the machine runs.
 Nothing to apply.|Nothing to apply.
 Offline|Offline
@@ -581,10 +596,13 @@ Rear Picker Z8|Rear Picker Z8
 Reloaded from the DB.|Reloaded from the DB.
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|Reset the count of {0} to 0?\nDo this after the part has been replaced.
 Rework Tray Unload|Rework Tray Unload
+SEQ is not connected.|SEQ is not connected.
 SEQ: Connected|SEQ: Connected
 SEQ: Disconnected|SEQ: Disconnected
 Sponge Clean|Sponge Clean
 Staged limits discarded.|Staged limits discarded.
+STEP: one step per press of + / -.|STEP: one step per press of + / -.
+stopped|stopped
 System|System
 System data saved.|System data saved.
 The machine name cannot be empty.|The machine name cannot be empty.

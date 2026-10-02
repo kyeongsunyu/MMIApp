@@ -109,6 +109,48 @@
             this.btnHwDefaults = new MMI.HmiButton();
             this.pnlLog = new MMI.HmiCard();
             this.btnLogClear = new MMI.HmiButton();
+            this.pnlMotor = new MMI.HmiCard();
+            this.lblAxisCaption = new System.Windows.Forms.Label();
+            this.cbAxis = new System.Windows.Forms.ComboBox();
+            this.lblCurIdxCaption = new System.Windows.Forms.Label();
+            this.lblCurIdx = new System.Windows.Forms.Label();
+            this.lblNextIdxCaption = new System.Windows.Forms.Label();
+            this.lblNextIdx = new System.Windows.Forms.Label();
+            this.lblCurPosCaption = new System.Windows.Forms.Label();
+            this.lblCurPos = new System.Windows.Forms.Label();
+            this.lblNextPosCaption = new System.Windows.Forms.Label();
+            this.lblNextPos = new System.Windows.Forms.Label();
+            this.lblStsMinusLimit = new System.Windows.Forms.Label();
+            this.lblStsPlusLimit = new System.Windows.Forms.Label();
+            this.lblStsOrg = new System.Windows.Forms.Label();
+            this.lblStsHome = new System.Windows.Forms.Label();
+            this.lblStsMoving = new System.Windows.Forms.Label();
+            this.lblStsAlarm = new System.Windows.Forms.Label();
+            this.btnServo = new MMI.HmiButton();
+            this.btnHome = new MMI.HmiButton();
+            this.btnAlarmReset = new MMI.HmiButton();
+            this.pnlJog = new MMI.HmiCard();
+            this.btnJogEnable = new MMI.HmiButton();
+            this.lblStepCaption = new System.Windows.Forms.Label();
+            this.lblStep = new System.Windows.Forms.Label();
+            this.lblJogVelCaption = new System.Windows.Forms.Label();
+            this.txtJogVel = new System.Windows.Forms.TextBox();
+            this.btnStepP0 = new MMI.HmiButton();
+            this.btnStepP1 = new MMI.HmiButton();
+            this.btnStepP2 = new MMI.HmiButton();
+            this.btnStepP3 = new MMI.HmiButton();
+            this.btnStepP4 = new MMI.HmiButton();
+            this.btnStepM0 = new MMI.HmiButton();
+            this.btnStepM1 = new MMI.HmiButton();
+            this.btnStepM2 = new MMI.HmiButton();
+            this.btnStepM3 = new MMI.HmiButton();
+            this.btnStepM4 = new MMI.HmiButton();
+            this.btnModeStep = new MMI.HmiButton();
+            this.btnModeJog = new MMI.HmiButton();
+            this.lblModeHint = new System.Windows.Forms.Label();
+            this.btnJogMinus = new MMI.HmiButton();
+            this.btnJogPlus = new MMI.HmiButton();
+            this.lblJogResult = new System.Windows.Forms.Label();
             this.tmView = new System.Windows.Forms.Timer(this.components);
             this.pnlLogButtons = new System.Windows.Forms.Panel();
             this.lstLog = new System.Windows.Forms.ListBox();
@@ -120,6 +162,8 @@
             this.pnlProgressFill.SuspendLayout();
             this.pnlHwCfg.SuspendLayout();
             this.pnlLog.SuspendLayout();
+            this.pnlMotor.SuspendLayout();
+            this.pnlJog.SuspendLayout();
             this.pnlLogButtons.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,8 +198,8 @@
             this.pnlCycle.Controls.Add(this.lblLineRateCaption);
             this.pnlCycle.Controls.Add(this.lblMode);
             this.pnlCycle.Controls.Add(this.lblModeCaption);
-            this.pnlCycle.Location = new System.Drawing.Point(0, 0);
-            this.pnlCycle.Size = new System.Drawing.Size(400, 900);
+            this.pnlCycle.Location = new System.Drawing.Point(0, 116);
+            this.pnlCycle.Size = new System.Drawing.Size(400, 696);
             this.pnlCycle.TitleText = "Scan Cycle";
             this.pnlCycle.Name = "pnlCycle";
             // 
@@ -506,7 +550,7 @@
             // pnlGeometry
             // 
             this.pnlGeometry.Controls.Add(this.pnlGeometryView);
-            this.pnlGeometry.Location = new System.Drawing.Point(412, 0);
+            this.pnlGeometry.Location = new System.Drawing.Point(412, 116);
             this.pnlGeometry.Size = new System.Drawing.Size(640, 250);
             this.pnlGeometry.TitleText = "Scan Geometry  (motor index 50 - 53)";
             this.pnlGeometry.Name = "pnlGeometry";
@@ -541,8 +585,8 @@
             this.pnlCounter.Controls.Add(this.lblEncCountCaption);
             this.pnlCounter.Controls.Add(this.lblEncPos);
             this.pnlCounter.Controls.Add(this.lblEncPosCaption);
-            this.pnlCounter.Location = new System.Drawing.Point(412, 262);
-            this.pnlCounter.Size = new System.Drawing.Size(640, 638);
+            this.pnlCounter.Location = new System.Drawing.Point(412, 378);
+            this.pnlCounter.Size = new System.Drawing.Size(640, 564);
             this.pnlCounter.TitleText = "Live Counter";
             this.pnlCounter.Name = "pnlCounter";
             // 
@@ -800,7 +844,7 @@
             this.pnlHwCfg.Controls.Add(this.lblEncInputCaption);
             this.pnlHwCfg.Controls.Add(this.cbChannel);
             this.pnlHwCfg.Controls.Add(this.lblChannelCaption);
-            this.pnlHwCfg.Location = new System.Drawing.Point(1064, 0);
+            this.pnlHwCfg.Location = new System.Drawing.Point(1064, 116);
             this.pnlHwCfg.Size = new System.Drawing.Size(580, 470);
             this.pnlHwCfg.TitleText = "Counter H/W Config";
             this.pnlHwCfg.Name = "pnlHwCfg";
@@ -1069,19 +1113,505 @@
             // 
             this.pnlLog.Controls.Add(this.lstLog);
             this.pnlLog.Controls.Add(this.pnlLogButtons);
-            this.pnlLog.Location = new System.Drawing.Point(1064, 482);
-            this.pnlLog.Size = new System.Drawing.Size(580, 418);
+            this.pnlLog.Location = new System.Drawing.Point(0, 824);
+            this.pnlLog.Size = new System.Drawing.Size(400, 118);
             this.pnlLog.TitleText = "Trigger Log";
             this.pnlLog.Name = "pnlLog";
             // 
             // btnLogClear
             // 
-            this.btnLogClear.Location = new System.Drawing.Point(0, 6);
-            this.btnLogClear.Size = new System.Drawing.Size(170, 36);
+            this.btnLogClear.Location = new System.Drawing.Point(8, 0);
+            this.btnLogClear.Size = new System.Drawing.Size(82, 36);
             this.btnLogClear.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLogClear.Text = "LOG CLEAR";
+            this.btnLogClear.Text = "CLEAR";
             this.btnLogClear.Name = "btnLogClear";
             this.btnLogClear.Click += new System.EventHandler(this.btnLogClear_Click);
+            // 
+            // pnlMotor
+            // 
+            this.pnlMotor.Controls.Add(this.btnAlarmReset);
+            this.pnlMotor.Controls.Add(this.btnHome);
+            this.pnlMotor.Controls.Add(this.btnServo);
+            this.pnlMotor.Controls.Add(this.lblStsAlarm);
+            this.pnlMotor.Controls.Add(this.lblStsMoving);
+            this.pnlMotor.Controls.Add(this.lblStsHome);
+            this.pnlMotor.Controls.Add(this.lblStsOrg);
+            this.pnlMotor.Controls.Add(this.lblStsPlusLimit);
+            this.pnlMotor.Controls.Add(this.lblStsMinusLimit);
+            this.pnlMotor.Controls.Add(this.lblNextPos);
+            this.pnlMotor.Controls.Add(this.lblNextPosCaption);
+            this.pnlMotor.Controls.Add(this.lblCurPos);
+            this.pnlMotor.Controls.Add(this.lblCurPosCaption);
+            this.pnlMotor.Controls.Add(this.lblNextIdx);
+            this.pnlMotor.Controls.Add(this.lblNextIdxCaption);
+            this.pnlMotor.Controls.Add(this.lblCurIdx);
+            this.pnlMotor.Controls.Add(this.lblCurIdxCaption);
+            this.pnlMotor.Controls.Add(this.cbAxis);
+            this.pnlMotor.Controls.Add(this.lblAxisCaption);
+            this.pnlMotor.Location = new System.Drawing.Point(0, 0);
+            this.pnlMotor.Size = new System.Drawing.Size(1644, 104);
+            this.pnlMotor.TitleText = "Motor";
+            this.pnlMotor.Name = "pnlMotor";
+            // 
+            // lblAxisCaption
+            // 
+            this.lblAxisCaption.Location = new System.Drawing.Point(14, 38);
+            this.lblAxisCaption.Size = new System.Drawing.Size(130, 28);
+            this.lblAxisCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblAxisCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblAxisCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblAxisCaption.Text = "MOTOR SELECT";
+            this.lblAxisCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblAxisCaption.Name = "lblAxisCaption";
+            // 
+            // cbAxis
+            // 
+            this.cbAxis.Location = new System.Drawing.Point(14, 66);
+            this.cbAxis.Size = new System.Drawing.Size(316, 28);
+            this.cbAxis.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAxis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbAxis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.cbAxis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.cbAxis.FormattingEnabled = true;
+            this.cbAxis.Name = "cbAxis";
+            this.cbAxis.SelectedIndexChanged += new System.EventHandler(this.cbAxis_SelectedIndexChanged);
+            // 
+            // lblCurIdxCaption
+            // 
+            this.lblCurIdxCaption.Location = new System.Drawing.Point(348, 38);
+            this.lblCurIdxCaption.Size = new System.Drawing.Size(134, 28);
+            this.lblCurIdxCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCurIdxCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblCurIdxCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurIdxCaption.Text = "Current Index";
+            this.lblCurIdxCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCurIdxCaption.Name = "lblCurIdxCaption";
+            // 
+            // lblCurIdx
+            // 
+            this.lblCurIdx.Location = new System.Drawing.Point(486, 38);
+            this.lblCurIdx.Size = new System.Drawing.Size(110, 28);
+            this.lblCurIdx.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCurIdx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblCurIdx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.lblCurIdx.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.lblCurIdx.Text = "-";
+            this.lblCurIdx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblCurIdx.Name = "lblCurIdx";
+            // 
+            // lblNextIdxCaption
+            // 
+            this.lblNextIdxCaption.Location = new System.Drawing.Point(612, 38);
+            this.lblNextIdxCaption.Size = new System.Drawing.Size(112, 28);
+            this.lblNextIdxCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblNextIdxCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblNextIdxCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblNextIdxCaption.Text = "Next Index";
+            this.lblNextIdxCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblNextIdxCaption.Name = "lblNextIdxCaption";
+            // 
+            // lblNextIdx
+            // 
+            this.lblNextIdx.Location = new System.Drawing.Point(728, 38);
+            this.lblNextIdx.Size = new System.Drawing.Size(110, 28);
+            this.lblNextIdx.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblNextIdx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblNextIdx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.lblNextIdx.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.lblNextIdx.Text = "-";
+            this.lblNextIdx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblNextIdx.Name = "lblNextIdx";
+            // 
+            // lblCurPosCaption
+            // 
+            this.lblCurPosCaption.Location = new System.Drawing.Point(348, 68);
+            this.lblCurPosCaption.Size = new System.Drawing.Size(134, 28);
+            this.lblCurPosCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCurPosCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblCurPosCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurPosCaption.Text = "Current Position";
+            this.lblCurPosCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCurPosCaption.Name = "lblCurPosCaption";
+            // 
+            // lblCurPos
+            // 
+            this.lblCurPos.Location = new System.Drawing.Point(486, 68);
+            this.lblCurPos.Size = new System.Drawing.Size(110, 28);
+            this.lblCurPos.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCurPos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblCurPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.lblCurPos.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.lblCurPos.Text = "-";
+            this.lblCurPos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblCurPos.Name = "lblCurPos";
+            // 
+            // lblNextPosCaption
+            // 
+            this.lblNextPosCaption.Location = new System.Drawing.Point(612, 68);
+            this.lblNextPosCaption.Size = new System.Drawing.Size(112, 28);
+            this.lblNextPosCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblNextPosCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblNextPosCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblNextPosCaption.Text = "Next Position";
+            this.lblNextPosCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblNextPosCaption.Name = "lblNextPosCaption";
+            // 
+            // lblNextPos
+            // 
+            this.lblNextPos.Location = new System.Drawing.Point(728, 68);
+            this.lblNextPos.Size = new System.Drawing.Size(110, 28);
+            this.lblNextPos.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblNextPos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblNextPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.lblNextPos.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.lblNextPos.Text = "-";
+            this.lblNextPos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblNextPos.Name = "lblNextPos";
+            // 
+            // lblStsMinusLimit
+            // 
+            this.lblStsMinusLimit.Location = new System.Drawing.Point(858, 38);
+            this.lblStsMinusLimit.Size = new System.Drawing.Size(98, 28);
+            this.lblStsMinusLimit.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblStsMinusLimit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
+            this.lblStsMinusLimit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblStsMinusLimit.Text = "-LIMIT";
+            this.lblStsMinusLimit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStsMinusLimit.Name = "lblStsMinusLimit";
+            // 
+            // lblStsPlusLimit
+            // 
+            this.lblStsPlusLimit.Location = new System.Drawing.Point(962, 38);
+            this.lblStsPlusLimit.Size = new System.Drawing.Size(98, 28);
+            this.lblStsPlusLimit.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblStsPlusLimit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
+            this.lblStsPlusLimit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblStsPlusLimit.Text = "+LIMIT";
+            this.lblStsPlusLimit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStsPlusLimit.Name = "lblStsPlusLimit";
+            // 
+            // lblStsOrg
+            // 
+            this.lblStsOrg.Location = new System.Drawing.Point(1066, 38);
+            this.lblStsOrg.Size = new System.Drawing.Size(98, 28);
+            this.lblStsOrg.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblStsOrg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
+            this.lblStsOrg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblStsOrg.Text = "ORG";
+            this.lblStsOrg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStsOrg.Name = "lblStsOrg";
+            // 
+            // lblStsHome
+            // 
+            this.lblStsHome.Location = new System.Drawing.Point(858, 68);
+            this.lblStsHome.Size = new System.Drawing.Size(98, 28);
+            this.lblStsHome.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblStsHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
+            this.lblStsHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblStsHome.Text = "HOMED";
+            this.lblStsHome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStsHome.Name = "lblStsHome";
+            // 
+            // lblStsMoving
+            // 
+            this.lblStsMoving.Location = new System.Drawing.Point(962, 68);
+            this.lblStsMoving.Size = new System.Drawing.Size(98, 28);
+            this.lblStsMoving.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblStsMoving.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
+            this.lblStsMoving.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblStsMoving.Text = "MOVING";
+            this.lblStsMoving.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStsMoving.Name = "lblStsMoving";
+            // 
+            // lblStsAlarm
+            // 
+            this.lblStsAlarm.Location = new System.Drawing.Point(1066, 68);
+            this.lblStsAlarm.Size = new System.Drawing.Size(98, 28);
+            this.lblStsAlarm.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblStsAlarm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
+            this.lblStsAlarm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblStsAlarm.Text = "ALARM";
+            this.lblStsAlarm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStsAlarm.Name = "lblStsAlarm";
+            // 
+            // btnServo
+            // 
+            this.btnServo.Location = new System.Drawing.Point(1180, 38);
+            this.btnServo.Size = new System.Drawing.Size(142, 56);
+            this.btnServo.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnServo.Text = "SERVO ON/OFF";
+            this.btnServo.Name = "btnServo";
+            this.btnServo.Click += new System.EventHandler(this.btnServo_Click);
+            // 
+            // btnHome
+            // 
+            this.btnHome.Location = new System.Drawing.Point(1332, 38);
+            this.btnHome.Size = new System.Drawing.Size(142, 56);
+            this.btnHome.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnHome.Text = "HOME";
+            this.btnHome.Role = MMI.HmiButtonRole.Warning;
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
+            // btnAlarmReset
+            // 
+            this.btnAlarmReset.Location = new System.Drawing.Point(1484, 38);
+            this.btnAlarmReset.Size = new System.Drawing.Size(142, 56);
+            this.btnAlarmReset.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAlarmReset.Text = "ALARM RESET";
+            this.btnAlarmReset.Name = "btnAlarmReset";
+            this.btnAlarmReset.Click += new System.EventHandler(this.btnAlarmReset_Click);
+            // 
+            // pnlJog
+            // 
+            this.pnlJog.Controls.Add(this.lblJogResult);
+            this.pnlJog.Controls.Add(this.btnJogPlus);
+            this.pnlJog.Controls.Add(this.btnJogMinus);
+            this.pnlJog.Controls.Add(this.lblModeHint);
+            this.pnlJog.Controls.Add(this.btnModeJog);
+            this.pnlJog.Controls.Add(this.btnModeStep);
+            this.pnlJog.Controls.Add(this.btnStepM4);
+            this.pnlJog.Controls.Add(this.btnStepM3);
+            this.pnlJog.Controls.Add(this.btnStepM2);
+            this.pnlJog.Controls.Add(this.btnStepM1);
+            this.pnlJog.Controls.Add(this.btnStepM0);
+            this.pnlJog.Controls.Add(this.btnStepP4);
+            this.pnlJog.Controls.Add(this.btnStepP3);
+            this.pnlJog.Controls.Add(this.btnStepP2);
+            this.pnlJog.Controls.Add(this.btnStepP1);
+            this.pnlJog.Controls.Add(this.btnStepP0);
+            this.pnlJog.Controls.Add(this.txtJogVel);
+            this.pnlJog.Controls.Add(this.lblJogVelCaption);
+            this.pnlJog.Controls.Add(this.lblStep);
+            this.pnlJog.Controls.Add(this.lblStepCaption);
+            this.pnlJog.Controls.Add(this.btnJogEnable);
+            this.pnlJog.Location = new System.Drawing.Point(1064, 598);
+            this.pnlJog.Size = new System.Drawing.Size(580, 344);
+            this.pnlJog.TitleText = "Jog";
+            this.pnlJog.Name = "pnlJog";
+            // 
+            // btnJogEnable
+            // 
+            this.btnJogEnable.Location = new System.Drawing.Point(14, 40);
+            this.btnJogEnable.Size = new System.Drawing.Size(160, 40);
+            this.btnJogEnable.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnJogEnable.Text = "JOG ENABLE";
+            this.btnJogEnable.Name = "btnJogEnable";
+            this.btnJogEnable.Click += new System.EventHandler(this.btnJogEnable_Click);
+            // 
+            // lblStepCaption
+            // 
+            this.lblStepCaption.Location = new System.Drawing.Point(186, 46);
+            this.lblStepCaption.Size = new System.Drawing.Size(80, 28);
+            this.lblStepCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblStepCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblStepCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblStepCaption.Text = "Step (mm)";
+            this.lblStepCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblStepCaption.Name = "lblStepCaption";
+            // 
+            // lblStep
+            // 
+            this.lblStep.Location = new System.Drawing.Point(268, 40);
+            this.lblStep.Size = new System.Drawing.Size(110, 40);
+            this.lblStep.Font = new System.Drawing.Font("Malgun Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblStep.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblStep.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.lblStep.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.lblStep.Text = "0.00";
+            this.lblStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStep.Name = "lblStep";
+            // 
+            // lblJogVelCaption
+            // 
+            this.lblJogVelCaption.Location = new System.Drawing.Point(392, 46);
+            this.lblJogVelCaption.Size = new System.Drawing.Size(70, 28);
+            this.lblJogVelCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblJogVelCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblJogVelCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblJogVelCaption.Text = "Velocity";
+            this.lblJogVelCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblJogVelCaption.Name = "lblJogVelCaption";
+            // 
+            // txtJogVel
+            // 
+            this.txtJogVel.Location = new System.Drawing.Point(466, 46);
+            this.txtJogVel.Size = new System.Drawing.Size(100, 28);
+            this.txtJogVel.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtJogVel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.txtJogVel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.txtJogVel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtJogVel.Text = "10";
+            this.txtJogVel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtJogVel.MaxLength = 5;
+            this.txtJogVel.Name = "txtJogVel";
+            this.txtJogVel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtJogVel_KeyPress);
+            // 
+            // btnStepP0
+            // 
+            this.btnStepP0.Location = new System.Drawing.Point(14, 92);
+            this.btnStepP0.Size = new System.Drawing.Size(104, 40);
+            this.btnStepP0.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnStepP0.Text = "+0.01";
+            this.btnStepP0.Tag = "0";
+            this.btnStepP0.Name = "btnStepP0";
+            this.btnStepP0.Click += new System.EventHandler(this.btnStepPlus_Click);
+            // 
+            // btnStepP1
+            // 
+            this.btnStepP1.Location = new System.Drawing.Point(124, 92);
+            this.btnStepP1.Size = new System.Drawing.Size(104, 40);
+            this.btnStepP1.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnStepP1.Text = "+0.1";
+            this.btnStepP1.Tag = "1";
+            this.btnStepP1.Name = "btnStepP1";
+            this.btnStepP1.Click += new System.EventHandler(this.btnStepPlus_Click);
+            // 
+            // btnStepP2
+            // 
+            this.btnStepP2.Location = new System.Drawing.Point(234, 92);
+            this.btnStepP2.Size = new System.Drawing.Size(104, 40);
+            this.btnStepP2.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnStepP2.Text = "+1.0";
+            this.btnStepP2.Tag = "2";
+            this.btnStepP2.Name = "btnStepP2";
+            this.btnStepP2.Click += new System.EventHandler(this.btnStepPlus_Click);
+            // 
+            // btnStepP3
+            // 
+            this.btnStepP3.Location = new System.Drawing.Point(344, 92);
+            this.btnStepP3.Size = new System.Drawing.Size(104, 40);
+            this.btnStepP3.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnStepP3.Text = "+10.0";
+            this.btnStepP3.Tag = "3";
+            this.btnStepP3.Name = "btnStepP3";
+            this.btnStepP3.Click += new System.EventHandler(this.btnStepPlus_Click);
+            // 
+            // btnStepP4
+            // 
+            this.btnStepP4.Location = new System.Drawing.Point(454, 92);
+            this.btnStepP4.Size = new System.Drawing.Size(104, 40);
+            this.btnStepP4.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnStepP4.Text = "+100.0";
+            this.btnStepP4.Tag = "4";
+            this.btnStepP4.Name = "btnStepP4";
+            this.btnStepP4.Click += new System.EventHandler(this.btnStepPlus_Click);
+            // 
+            // btnStepM0
+            // 
+            this.btnStepM0.Location = new System.Drawing.Point(14, 138);
+            this.btnStepM0.Size = new System.Drawing.Size(104, 40);
+            this.btnStepM0.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnStepM0.Text = "-0.01";
+            this.btnStepM0.Tag = "0";
+            this.btnStepM0.Name = "btnStepM0";
+            this.btnStepM0.Click += new System.EventHandler(this.btnStepMinus_Click);
+            // 
+            // btnStepM1
+            // 
+            this.btnStepM1.Location = new System.Drawing.Point(124, 138);
+            this.btnStepM1.Size = new System.Drawing.Size(104, 40);
+            this.btnStepM1.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnStepM1.Text = "-0.1";
+            this.btnStepM1.Tag = "1";
+            this.btnStepM1.Name = "btnStepM1";
+            this.btnStepM1.Click += new System.EventHandler(this.btnStepMinus_Click);
+            // 
+            // btnStepM2
+            // 
+            this.btnStepM2.Location = new System.Drawing.Point(234, 138);
+            this.btnStepM2.Size = new System.Drawing.Size(104, 40);
+            this.btnStepM2.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnStepM2.Text = "-1.0";
+            this.btnStepM2.Tag = "2";
+            this.btnStepM2.Name = "btnStepM2";
+            this.btnStepM2.Click += new System.EventHandler(this.btnStepMinus_Click);
+            // 
+            // btnStepM3
+            // 
+            this.btnStepM3.Location = new System.Drawing.Point(344, 138);
+            this.btnStepM3.Size = new System.Drawing.Size(104, 40);
+            this.btnStepM3.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnStepM3.Text = "-10.0";
+            this.btnStepM3.Tag = "3";
+            this.btnStepM3.Name = "btnStepM3";
+            this.btnStepM3.Click += new System.EventHandler(this.btnStepMinus_Click);
+            // 
+            // btnStepM4
+            // 
+            this.btnStepM4.Location = new System.Drawing.Point(454, 138);
+            this.btnStepM4.Size = new System.Drawing.Size(104, 40);
+            this.btnStepM4.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnStepM4.Text = "-100.0";
+            this.btnStepM4.Tag = "4";
+            this.btnStepM4.Name = "btnStepM4";
+            this.btnStepM4.Click += new System.EventHandler(this.btnStepMinus_Click);
+            // 
+            // btnModeStep
+            // 
+            this.btnModeStep.Location = new System.Drawing.Point(14, 192);
+            this.btnModeStep.Size = new System.Drawing.Size(130, 34);
+            this.btnModeStep.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnModeStep.Text = "STEP";
+            this.btnModeStep.Name = "btnModeStep";
+            this.btnModeStep.Click += new System.EventHandler(this.btnModeStep_Click);
+            // 
+            // btnModeJog
+            // 
+            this.btnModeJog.Location = new System.Drawing.Point(150, 192);
+            this.btnModeJog.Size = new System.Drawing.Size(130, 34);
+            this.btnModeJog.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnModeJog.Text = "JOG";
+            this.btnModeJog.Name = "btnModeJog";
+            this.btnModeJog.Click += new System.EventHandler(this.btnModeJog_Click);
+            // 
+            // lblModeHint
+            // 
+            this.lblModeHint.Location = new System.Drawing.Point(14, 232);
+            this.lblModeHint.Size = new System.Drawing.Size(266, 30);
+            this.lblModeHint.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblModeHint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblModeHint.BackColor = System.Drawing.Color.Transparent;
+            this.lblModeHint.Text = "";
+            this.lblModeHint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblModeHint.Name = "lblModeHint";
+            // 
+            // btnJogMinus
+            // 
+            this.btnJogMinus.Location = new System.Drawing.Point(298, 192);
+            this.btnJogMinus.Size = new System.Drawing.Size(128, 70);
+            this.btnJogMinus.Font = new System.Drawing.Font("Malgun Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnJogMinus.Text = "-";
+            this.btnJogMinus.Tag = "0";
+            this.btnJogMinus.Name = "btnJogMinus";
+            this.btnJogMinus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJogMove_MouseDown);
+            this.btnJogMinus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJogMove_MouseUp);
+            this.btnJogMinus.MouseLeave += new System.EventHandler(this.btnJogMove_MouseLeave);
+            // 
+            // btnJogPlus
+            // 
+            this.btnJogPlus.Location = new System.Drawing.Point(434, 192);
+            this.btnJogPlus.Size = new System.Drawing.Size(128, 70);
+            this.btnJogPlus.Font = new System.Drawing.Font("Malgun Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnJogPlus.Text = "+";
+            this.btnJogPlus.Tag = "1";
+            this.btnJogPlus.Name = "btnJogPlus";
+            this.btnJogPlus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnJogMove_MouseDown);
+            this.btnJogPlus.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnJogMove_MouseUp);
+            this.btnJogPlus.MouseLeave += new System.EventHandler(this.btnJogMove_MouseLeave);
+            // 
+            // lblJogResult
+            // 
+            this.lblJogResult.Location = new System.Drawing.Point(14, 274);
+            this.lblJogResult.Size = new System.Drawing.Size(548, 28);
+            this.lblJogResult.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblJogResult.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblJogResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.lblJogResult.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.lblJogResult.Text = "";
+            this.lblJogResult.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblJogResult.Name = "lblJogResult";
             // 
             // tmView
             // 
@@ -1091,21 +1621,21 @@
             // pnlLogButtons
             // 
             this.pnlLogButtons.Controls.Add(this.btnLogClear);
-            this.pnlLogButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlLogButtons.Size = new System.Drawing.Size(560, 44);
+            this.pnlLogButtons.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlLogButtons.Size = new System.Drawing.Size(90, 100);
             this.pnlLogButtons.BackColor = System.Drawing.Color.Transparent;
             this.pnlLogButtons.Name = "pnlLogButtons";
             // 
             // lstLog
             // 
             this.lstLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstLog.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lstLog.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lstLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
             this.lstLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lstLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstLog.IntegralHeight = false;
             this.lstLog.HorizontalScrollbar = true;
-            this.lstLog.Size = new System.Drawing.Size(560, 360);
+            this.lstLog.Size = new System.Drawing.Size(290, 100);
             this.lstLog.Name = "lstLog";
             // 
             // FormScanTrigger
@@ -1113,11 +1643,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
-            this.ClientSize = new System.Drawing.Size(1644, 900);
+            this.ClientSize = new System.Drawing.Size(1644, 942);
             this.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Text = "FormScanTrigger";
+            this.Controls.Add(this.pnlJog);
+            this.Controls.Add(this.pnlMotor);
             this.Controls.Add(this.pnlLog);
             this.Controls.Add(this.pnlHwCfg);
             this.Controls.Add(this.pnlCounter);
@@ -1127,6 +1659,8 @@
             this.Load += new System.EventHandler(this.FormScanTrigger_Load);
             this.VisibleChanged += new System.EventHandler(this.FormScanTrigger_VisibleChanged);
             this.pnlLogButtons.ResumeLayout(false);
+            this.pnlJog.ResumeLayout(false);
+            this.pnlMotor.ResumeLayout(false);
             this.pnlLog.ResumeLayout(false);
             this.pnlHwCfg.ResumeLayout(false);
             this.pnlProgressFill.ResumeLayout(false);
@@ -1221,6 +1755,48 @@
         private MMI.HmiButton btnHwDefaults;
         private MMI.HmiCard pnlLog;
         private MMI.HmiButton btnLogClear;
+        private MMI.HmiCard pnlMotor;
+        private System.Windows.Forms.Label lblAxisCaption;
+        private System.Windows.Forms.ComboBox cbAxis;
+        private System.Windows.Forms.Label lblCurIdxCaption;
+        private System.Windows.Forms.Label lblCurIdx;
+        private System.Windows.Forms.Label lblNextIdxCaption;
+        private System.Windows.Forms.Label lblNextIdx;
+        private System.Windows.Forms.Label lblCurPosCaption;
+        private System.Windows.Forms.Label lblCurPos;
+        private System.Windows.Forms.Label lblNextPosCaption;
+        private System.Windows.Forms.Label lblNextPos;
+        private System.Windows.Forms.Label lblStsMinusLimit;
+        private System.Windows.Forms.Label lblStsPlusLimit;
+        private System.Windows.Forms.Label lblStsOrg;
+        private System.Windows.Forms.Label lblStsHome;
+        private System.Windows.Forms.Label lblStsMoving;
+        private System.Windows.Forms.Label lblStsAlarm;
+        private MMI.HmiButton btnServo;
+        private MMI.HmiButton btnHome;
+        private MMI.HmiButton btnAlarmReset;
+        private MMI.HmiCard pnlJog;
+        private MMI.HmiButton btnJogEnable;
+        private System.Windows.Forms.Label lblStepCaption;
+        private System.Windows.Forms.Label lblStep;
+        private System.Windows.Forms.Label lblJogVelCaption;
+        private System.Windows.Forms.TextBox txtJogVel;
+        private MMI.HmiButton btnStepP0;
+        private MMI.HmiButton btnStepP1;
+        private MMI.HmiButton btnStepP2;
+        private MMI.HmiButton btnStepP3;
+        private MMI.HmiButton btnStepP4;
+        private MMI.HmiButton btnStepM0;
+        private MMI.HmiButton btnStepM1;
+        private MMI.HmiButton btnStepM2;
+        private MMI.HmiButton btnStepM3;
+        private MMI.HmiButton btnStepM4;
+        private MMI.HmiButton btnModeStep;
+        private MMI.HmiButton btnModeJog;
+        private System.Windows.Forms.Label lblModeHint;
+        private MMI.HmiButton btnJogMinus;
+        private MMI.HmiButton btnJogPlus;
+        private System.Windows.Forms.Label lblJogResult;
         private System.Windows.Forms.Timer tmView;
         private System.Windows.Forms.Panel pnlLogButtons;
         private System.Windows.Forms.ListBox lstLog;

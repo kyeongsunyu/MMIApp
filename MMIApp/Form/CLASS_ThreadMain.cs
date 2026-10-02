@@ -375,6 +375,9 @@ namespace MMI
             bool bDisplay = MmiGV.pShMem.GetScanTriggerDisplay();
             bool bCounter = MmiGV.pShMem.GetScanTriggerCounter();
 
+            // The motor strip and jog card on the same screen.
+            frm.RenderMotorStatus(MmiGV.pShMem.GetMotorStatus(frm.nMotorAxis));
+
             if (bDisplay || bCounter)
             {
                 m_iScanTriggerEngineerMiss = 0;

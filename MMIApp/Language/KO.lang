@@ -398,7 +398,7 @@ CALC|계산
 CURRENT INDEX|현재 인덱스
 CURRENT POSITION|현재 위치
 FUNCTION|기능
-HOME|원점
+HOME|원점 복귀
 IDX WRITE|번호 쓰기
 JOG|조그
 JOG MODE|조그 모드
@@ -407,7 +407,7 @@ MOVE INDEX|인덱스 이동
 MOVING|이동 중
 NEXT INDEX|다음 인덱스
 NEXT POSITION|다음 위치
-ORG|원점
+ORG|원점 센서
 SAVE Position|위치 저장
 SERVO ON/OFF|서보 ON/OFF
 TENKEY JOG|텐키 조그
@@ -415,6 +415,8 @@ TENKEY JOG|텐키 조그
 Velocity|속도
 
 # --- FormScanTrigger ---
++LIMIT|+리밋
+-LIMIT|-리밋
 0  IDLE|0  대기
 1  GOTO START|1  시작점 이동
 10  RETURN|10  복귀
@@ -428,12 +430,15 @@ Velocity|속도
 8  ABORTED|8  중단
 9  OUTPUT TEST|9  출력 테스트
 Active Level|출력 레벨
+ALARM RESET|알람 리셋
 Armed At (counts)|암 위치 (counts)
 Behind Arm (counts)|암 이후 역방향 (counts)
 Block (counts)|블록 (counts)
 Count the encoder the other way|엔코더를 반대 방향으로 셉니다
 Counter Channel|카운터 채널
 Counter H/W Config|카운터 H/W 설정
+Current Index|현재 인덱스
+Current Position|현재 위치
 Cycle State|사이클 상태
 DEFAULTS|기본값
 Direction Check|방향 검사
@@ -442,9 +447,13 @@ ENCODER = AXIS POSITION|엔코더 = 축 위치
 Encoder Input|엔코더 입력
 Encoder Position (mm)|엔코더 위치 (mm)
 Encoder Reverse|엔코더 반전
+HOMED|원점 완료
+Jog|조그
+JOG ENABLE|조그 사용
 Live Counter|실시간 카운터
-LOG CLEAR|로그 지우기
 Mode|모드
+Next Index|다음 인덱스
+Next Position|다음 위치
 # OUT 0|
 # OUT 1|
 # OUT 2|
@@ -456,6 +465,8 @@ Recipe / START on Auto|레시피 / START는 자동 화면에서
 Scan Cycle|스캔 사이클
 Scan Geometry  (motor index 50 - 53)|스캔 위치도 (모터 인덱스 50 - 53)
 SET and START stay on the Auto screen, beside the recipe.|SET과 START는 레시피와 함께 자동 화면에 있습니다.
+STEP|스텝
+Step (mm)|스텝 (mm)
 Trigger Count|트리거 수
 TRIGGER COUNT CLEAR|트리거 수 지우기
 Trigger Log|트리거 로그
@@ -545,6 +556,7 @@ A purge is already running.|이미 정리 중입니다.
 APPLY the keep period first; the purge uses the saved one.|보관 기간을 먼저 적용하세요. 정리는 저장된 기간을 씁니다.
 Changes discarded.|변경을 취소했습니다.
 Changes not applied.|적용하지 않은 변경이 있습니다.
+Choose a step first.|먼저 스텝을 고르세요.
 Engineer|엔지니어
 Enter a value from {0} to {1}.|{0}에서 {1} 사이의 값을 입력하세요.
 Files last written before {0} are deleted.|{0} 이전에 마지막으로 기록된 파일을 삭제합니다.
@@ -558,6 +570,8 @@ Front Picker Z7|전면 피커 Z7
 Front Picker Z8|전면 피커 Z8
 Good Tray 1 Unload|양품 트레이 1 배출
 Good Tray 2 Unload|양품 트레이 2 배출
+Home {0}?\nThe axis moves to its origin.|{0} 원점 복귀를 할까요?\n축이 원점으로 이동합니다.
+JOG: moves while + / - is held.|조그: + / -를 누르고 있는 동안 움직입니다.
 Limits saved and sent to SEQ.|한계를 저장하고 SEQ로 보냈습니다.
 Log Out|로그아웃
 Maintenance|유지보수
@@ -565,6 +579,7 @@ Master|마스터
 NG Tray Unload|불량 트레이 배출
 No|번호
 No User|사용자 없음
+Not while a scan cycle runs.|스캔 사이클 중에는 할 수 없습니다.
 Not while the machine runs.|설비 운전 중에는 할 수 없습니다.
 Nothing to apply.|적용할 변경이 없습니다.
 Offline|오프라인
@@ -581,10 +596,13 @@ Rear Picker Z8|후면 피커 Z8
 Reloaded from the DB.|DB에서 다시 읽었습니다.
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|{0}의 수량을 0으로 리셋할까요?\n부품을 교체한 뒤에 하세요.
 Rework Tray Unload|재작업 트레이 배출
+SEQ is not connected.|SEQ가 연결되지 않았습니다.
 SEQ: Connected|SEQ: 연결됨
 SEQ: Disconnected|SEQ: 연결 끊김
 Sponge Clean|스펀지 세정
 Staged limits discarded.|대기 중인 한계를 취소했습니다.
+STEP: one step per press of + / -.|스텝: + / -를 한 번 누를 때마다 한 스텝 움직입니다.
+stopped|정지
 System|시스템
 System data saved.|시스템 데이터를 저장했습니다.
 The machine name cannot be empty.|설비 이름은 비울 수 없습니다.

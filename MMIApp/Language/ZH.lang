@@ -398,7 +398,7 @@ CALC|计算
 CURRENT INDEX|当前索引
 CURRENT POSITION|当前位置
 FUNCTION|功能
-HOME|原点
+HOME|回原点
 IDX WRITE|写入序号
 JOG|点动
 JOG MODE|点动模式
@@ -407,7 +407,7 @@ MOVE INDEX|移动索引
 MOVING|移动中
 NEXT INDEX|下一索引
 NEXT POSITION|下一位置
-ORG|原点
+ORG|原点传感器
 SAVE Position|保存位置
 SERVO ON/OFF|伺服 ON/OFF
 TENKEY JOG|数字键点动
@@ -415,6 +415,8 @@ TENKEY JOG|数字键点动
 Velocity|速度
 
 # --- FormScanTrigger ---
++LIMIT|+极限
+-LIMIT|-极限
 0  IDLE|0  空闲
 1  GOTO START|1  去起点
 10  RETURN|10  返回
@@ -428,12 +430,15 @@ Velocity|速度
 8  ABORTED|8  中止
 9  OUTPUT TEST|9  输出测试
 Active Level|有效电平
+ALARM RESET|报警复位
 Armed At (counts)|使能位置 (counts)
 Behind Arm (counts)|使能后反向 (counts)
 Block (counts)|块 (counts)
 Count the encoder the other way|编码器反向计数
 Counter Channel|计数器通道
 Counter H/W Config|计数器硬件设置
+Current Index|当前索引
+Current Position|当前位置
 Cycle State|循环状态
 DEFAULTS|默认值
 Direction Check|方向检查
@@ -442,9 +447,13 @@ ENCODER = AXIS POSITION|编码器 = 轴位置
 Encoder Input|编码器输入
 Encoder Position (mm)|编码器位置 (mm)
 Encoder Reverse|编码器反向
+HOMED|已回原点
+Jog|点动
+JOG ENABLE|点动启用
 Live Counter|实时计数器
-LOG CLEAR|清除日志
 Mode|模式
+Next Index|下一索引
+Next Position|下一位置
 # OUT 0|
 # OUT 1|
 # OUT 2|
@@ -456,6 +465,8 @@ Recipe / START on Auto|配方 / START 在自动画面
 Scan Cycle|扫描循环
 Scan Geometry  (motor index 50 - 53)|扫描位置图 (电机索引 50 - 53)
 SET and START stay on the Auto screen, beside the recipe.|SET 和 START 在自动画面的配方旁。
+STEP|步进
+Step (mm)|步距 (mm)
 Trigger Count|触发计数
 TRIGGER COUNT CLEAR|清除触发计数
 Trigger Log|触发日志
@@ -545,6 +556,7 @@ A purge is already running.|清理正在进行。
 APPLY the keep period first; the purge uses the saved one.|请先应用保留期限；清理使用已保存的期限。
 Changes discarded.|已放弃更改。
 Changes not applied.|有未应用的更改。
+Choose a step first.|请先选择步距。
 Engineer|工程师
 Enter a value from {0} to {1}.|请输入 {0} 到 {1} 之间的值。
 Files last written before {0} are deleted.|删除最后写入时间早于 {0} 的文件。
@@ -558,6 +570,8 @@ Front Picker Z7|前吸嘴 Z7
 Front Picker Z8|前吸嘴 Z8
 Good Tray 1 Unload|良品料盘 1 卸载
 Good Tray 2 Unload|良品料盘 2 卸载
+Home {0}?\nThe axis moves to its origin.|{0} 回原点？\n轴将移动到原点。
+JOG: moves while + / - is held.|点动：按住 + / - 时移动。
 Limits saved and sent to SEQ.|上限已保存并发送到 SEQ。
 Log Out|注销
 Maintenance|维护
@@ -565,6 +579,7 @@ Master|管理员
 NG Tray Unload|不良料盘卸载
 No|序号
 No User|无用户
+Not while a scan cycle runs.|扫描循环中不可操作。
 Not while the machine runs.|设备运行中不可操作。
 Nothing to apply.|没有需要应用的更改。
 Offline|离线
@@ -581,10 +596,13 @@ Rear Picker Z8|后吸嘴 Z8
 Reloaded from the DB.|已从 DB 重新加载。
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|将 {0} 的计数清零？\n请在更换部件后执行。
 Rework Tray Unload|返工料盘卸载
+SEQ is not connected.|SEQ 未连接。
 SEQ: Connected|SEQ: 已连接
 SEQ: Disconnected|SEQ: 未连接
 Sponge Clean|海绵清洁
 Staged limits discarded.|已放弃待应用的上限。
+STEP: one step per press of + / -.|步进：每按一次 + / - 移动一步。
+stopped|已停止
 System|系统
 System data saved.|系统数据已保存。
 The machine name cannot be empty.|设备名称不能为空。
