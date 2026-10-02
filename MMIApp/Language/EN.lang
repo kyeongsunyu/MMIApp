@@ -493,6 +493,12 @@ Saw Pk Z|Saw Pk Z
 STATUS :|STATUS :
 WAITING|WAITING
 
+# --- Form_Keyboard ---
+OK|OK
+SHIFT|SHIFT
+SPACE|SPACE
+← BACK|← BACK
+
 # --- Form_Language ---
 For this session. The start-up language is set on System Data.|For this session. The start-up language is set on System Data.
 
@@ -500,7 +506,6 @@ For this session. The start-up language is set on System Data.|For this session.
 COUNT|COUNT
 LOT ID|LOT ID
 LOT INFO.|LOT INFO.
-OK|OK
 
 # --- Form_Map ---
 ALL EMPTY|ALL EMPTY

@@ -493,6 +493,12 @@ Saw Pk Z|소 피커 Z
 STATUS :|상태 :
 WAITING|대기 중
 
+# --- Form_Keyboard ---
+OK|확인
+SHIFT|대/소문자
+SPACE|띄어쓰기
+← BACK|← 지우기
+
 # --- Form_Language ---
 For this session. The start-up language is set on System Data.|이번 실행 동안만 적용됩니다. 시작 언어는 시스템 데이터에서 설정합니다.
 
@@ -500,7 +506,6 @@ For this session. The start-up language is set on System Data.|이번 실행 동
 COUNT|수량
 LOT ID|Lot ID
 LOT INFO.|LOT 정보
-OK|확인
 
 # --- Form_Map ---
 ALL EMPTY|전체 비움
