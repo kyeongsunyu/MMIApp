@@ -90,11 +90,51 @@ namespace MMI
         protected override void OnMouseUp(MouseEventArgs e) { _pressed = false; Invalidate(); base.OnMouseUp(e); }
         protected override void OnEnabledChanged(EventArgs e) { Invalidate(); base.OnEnabledChanged(e); }
 
+        // Screens written for the DotNetBar button show a state by setting
+        // BackColor: blue for on or moving, red or maroon for a limit or an
+        // alarm, green for in progress, brown for a sensor, black for off. The
+        // button is drawn from its role, so without this those states never
+        // showed. Black (and the default transparent) means no state.
+        private Color StateColor()
+        {
+            Color b = BackColor;
+            if (b.IsEmpty || b.A == 0) return Color.Empty;
+            switch (b.Name)
+            {
+                case "Black":
+                    return Color.Empty;
+                case "Blue": case "RoyalBlue": case "Navy": case "DodgerBlue": case "MediumBlue":
+                    return HmiTheme.Accent;
+                case "Red": case "Maroon": case "DarkRed": case "Crimson": case "OrangeRed":
+                    return HmiTheme.Alarm;
+                case "Green": case "Lime": case "LimeGreen": case "ForestGreen": case "DarkGreen":
+                    return HmiTheme.Normal;
+                case "Brown": case "Orange": case "DarkOrange": case "Yellow": case "Gold":
+                    return HmiTheme.Warning;
+                default:
+                    return b;
+            }
+        }
+
+        protected override void OnBackColorChanged(EventArgs e)
+        {
+            Invalidate();
+            base.OnBackColorChanged(e);
+        }
+
         protected Color FillColor()
         {
             if (!Enabled) return HmiTheme.Card;
 
             Color c;
+            Color state = StateColor();
+            if (!state.IsEmpty)
+            {
+                c = state;
+                if (_pressed) return ControlPaint.Dark(c, 0.05f);
+                if (_hover) return ControlPaint.Light(c, 0.15f);
+                return c;
+            }
             switch (_role)
             {
                 case HmiButtonRole.Primary: c = HmiTheme.Accent;  break;
@@ -116,6 +156,8 @@ namespace MMI
         protected Color TextColor()
         {
             if (!Enabled) return HmiTheme.TextDisabled;
+            Color state = StateColor();
+            if (!state.IsEmpty) return (state == HmiTheme.Warning) ? HmiTheme.TopBar : Color.White;
             bool bFilled = _checked || (_role != HmiButtonRole.Normal && !(AutoCheck && !_checked));
             if (_role == HmiButtonRole.Warning && bFilled) return HmiTheme.TopBar;
             return bFilled ? Color.White : ForeColor;
