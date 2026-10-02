@@ -132,7 +132,7 @@ namespace MMI
             {
                 if (gdMotorCFG[i + 2, 6] != null)
                 {
-                    sUseSkip = (gdMotorCFG[i + 2, 6].ToString() == "T" ? "True" : "False");
+                    sUseSkip = (Convert.ToString(gdMotorCFG[i + 2, 6]) == "T" ? "True" : "False");
                     sSQL = "UPDATE MTCFG SET ";
                     sSQL += " ITEM       ='" + gdMotorCFG[i + 2, 1] + "', ";
                     sSQL += " RATE       = " + gdMotorCFG[i + 2, 2] + ", ";

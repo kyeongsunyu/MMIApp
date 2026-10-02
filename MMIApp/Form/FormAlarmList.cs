@@ -230,7 +230,7 @@ namespace MMI
                 if (e.Col == 1)
                 {
                     strSQL = "UPDATE ERROR SET";
-                    strSQL += " ERR_NAME = '" + gdAlarm[e.Row, e.Col].ToString() + "'";
+                    strSQL += " ERR_NAME = '" + Convert.ToString(gdAlarm[e.Row, e.Col]) + "'";
                     strSQL += " WHERE IDX = " + e.Row;
 
                     SQLiteDB.Execute(strSQL);

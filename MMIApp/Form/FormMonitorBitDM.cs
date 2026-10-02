@@ -177,7 +177,7 @@ namespace MMI
             string strSQL = "";
             strSQL = "UPDATE BITDATA SET ";
             strSQL += "ITEM" + string.Format("{0:D2}", e.Row-2) + "= '";
-            strSQL += gdBit[e.Row,2].ToString() + "'";
+            strSQL += Convert.ToString(gdBit[e.Row,2]) + "'";
             strSQL += " WHERE IDX=" + cbBit.SelectedIndex.ToString();
             SQLiteDB.Execute(strSQL);
         }
@@ -341,14 +341,14 @@ namespace MMI
                 case 2:
                     strSQL = "UPDATE DATAMEM SET ";
                     strSQL += "DMNAME= '";
-                    strSQL += gdDM[e.Row, e.Col].ToString() + "'";
+                    strSQL += Convert.ToString(gdDM[e.Row, e.Col]) + "'";
                     strSQL += " WHERE IDX=" + (cbDM.SelectedIndex * 10 + e.Row - 2).ToString();
                     SQLiteDB.Execute(strSQL);
                     break;
                 case 3:
                     strSQL = "UPDATE DATAMEM SET ";
                     strSQL += "DMSAVE= '";
-                    strSQL += gdDM[e.Row, e.Col].ToString() + "'";
+                    strSQL += Convert.ToString(gdDM[e.Row, e.Col]) + "'";
                     strSQL += " WHERE IDX=" + (cbDM.SelectedIndex * 10 + e.Row - 2).ToString();
                     SQLiteDB.Execute(strSQL);
                     break;
@@ -359,10 +359,14 @@ namespace MMI
         {
             UInt32 uData;
 
-            lblIndexNO.Text = gdDM[Row, 0].ToString();
-            uData = Convert.ToUInt32(gdDM[Row, Col].ToString());
+            // A header row is no DM, and a value the poll has not filled yet
+            // shows as 0.
+            if (Row < gdDM.Rows.Fixed) return;
 
-            lblDeviceValue.Text = gdDM[Row, Col].ToString();
+            lblIndexNO.Text = Convert.ToString(gdDM[Row, 0]);
+            if (!UInt32.TryParse(Convert.ToString(gdDM[Row, Col]), out uData)) uData = 0;
+
+            lblDeviceValue.Text = Convert.ToString(gdDM[Row, Col]);
             lblHexValue.Text = string.Format("{0:X8}", uData);
             lblBinValue.Text = Convert.ToString(uData, 2).PadLeft(32, '0');
 
@@ -429,7 +433,7 @@ namespace MMI
                 cbDM.Invoke(new Action(() => { dmIdx = cbDM.SelectedIndex * 10 + i; }));
 
                 dmData = MmiGV.pShMem.GetDM(dmIdx);
-                if (gdDM[i + 2, 1].ToString() != dmData.ToString())
+                if (Convert.ToString(gdDM[i + 2, 1]) != dmData.ToString())
                 {
                     gdDM.Invoke(new Action(() => 
                     { 

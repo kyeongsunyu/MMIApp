@@ -201,13 +201,13 @@ namespace MMI
                         gdErrorHistory[nErrorHistoryRowCnt, 3] = strSplit[0]; // Date;
                         gdErrorHistory[nErrorHistoryRowCnt, 4] = strSplit[1]; // Time;
 
-                        getStr = gdErrorHistory[nErrorHistoryRowCnt, 0].ToString().Trim() + "," +
-                                    gdErrorHistory[nErrorHistoryRowCnt, 1].ToString().Trim() + "," +
-                                    gdErrorHistory[nErrorHistoryRowCnt, 2].ToString().Trim();
+                        getStr = Convert.ToString(gdErrorHistory[nErrorHistoryRowCnt, 0]).Trim() + "," +
+                                    Convert.ToString(gdErrorHistory[nErrorHistoryRowCnt, 1]).Trim() + "," +
+                                    Convert.ToString(gdErrorHistory[nErrorHistoryRowCnt, 2]).Trim();
                         rowList.Add(getStr);
                         if (rowDic.ContainsKey(getStr) == false)
                         {
-                            rowDic.Add(getStr, gdErrorHistory[nErrorHistoryRowCnt, 0].ToString().Trim());
+                            rowDic.Add(getStr, Convert.ToString(gdErrorHistory[nErrorHistoryRowCnt, 0]).Trim());
                         }
                         nErrorHistoryRowCnt++;
                         gdErrorHistory.Rows.Count = nErrorHistoryRowCnt + 1;
@@ -227,9 +227,9 @@ namespace MMI
             {
                 for(int i = 1; i< gdErrorHistory.Rows.Count-1; i++)
                 {
-                    string str = gdErrorHistory[i, 0].ToString().Trim() + "," +
-                                    gdErrorHistory[i, 1].ToString().Trim() + "," +
-                                    gdErrorHistory[i, 2].ToString().Trim();
+                    string str = Convert.ToString(gdErrorHistory[i, 0]).Trim() + "," +
+                                    Convert.ToString(gdErrorHistory[i, 1]).Trim() + "," +
+                                    Convert.ToString(gdErrorHistory[i, 2]).Trim();
                     if (item.Key == str)
                     {
                         errCount++;
@@ -273,9 +273,9 @@ namespace MMI
             {
                 if ((gdErrorCount.Rows.Count > 1) && (gdErrorCount[i, 0] != null))
                 {
-                    //string str = "Code=" + gdErrorCount[i, 0].ToString();
-                    int ival = int.TryParse(gdErrorCount[i, 3].ToString(), out ival) ? ival : 0;
-                    string str = $"CODE[{gdErrorCount[i, 0].ToString().Trim()}]:{ival} ";
+                    //string str = "Code=" + Convert.ToString(gdErrorCount[i, 0]);
+                    int ival = int.TryParse(Convert.ToString(gdErrorCount[i, 3]), out ival) ? ival : 0;
+                    string str = $"CODE[{Convert.ToString(gdErrorCount[i, 0]).Trim()}]:{ival} ";
 
                     chart.Series[seriesname].Points.AddXY(str, ival);
                 }
@@ -327,7 +327,7 @@ namespace MMI
             {
                 if (gdErrorCount[gdErrorCount.Row, 2] != null)
                 {
-                    lblErrorName.Text = gdErrorCount[gdErrorCount.Row, 2].ToString();
+                    lblErrorName.Text = Convert.ToString(gdErrorCount[gdErrorCount.Row, 2]);
                 }
             }
         }

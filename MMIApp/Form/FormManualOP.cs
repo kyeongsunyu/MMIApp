@@ -79,7 +79,7 @@ namespace MMI
 
         private void gdTenKeySection_Click(object sender, EventArgs e)
         {
-            String strSectionNo = gdTenKeySection[gdTenKeySection.Row, 0].ToString();
+            String strSectionNo = Convert.ToString(gdTenKeySection[gdTenKeySection.Row, 0]);
             String strSection = "tabSection" + strSectionNo;
 
             tabControl1.SelectedIndex = int.Parse(strSectionNo)-1;

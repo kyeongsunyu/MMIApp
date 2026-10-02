@@ -55,8 +55,9 @@ namespace MMI
         private void InitScreen()
         {
             iCol = frmMain.frmMotorSetting.gdMotor.Col;
-            string str = frmMain.frmMotorSetting.gdMotor[frmMain.frmMotorSetting.gdMotor.Row,0].ToString();
-            iRow = int.Parse(frmMain.frmMotorSetting.gdMotor[frmMain.frmMotorSetting.gdMotor.Row,0].ToString());
+            string str = Convert.ToString(frmMain.frmMotorSetting.gdMotor[frmMain.frmMotorSetting.gdMotor.Row,0]);
+            // No position row selected (header or empty line): start from the first.
+            if (!int.TryParse(str, out iRow)) iRow = 1;
 
             gdCalc[0,1] = iRow;
             gdCalc[1,1] = 49;
@@ -73,12 +74,12 @@ namespace MMI
         {
             double dTmp = 0.0;
 
-            iStartNo    = (int.TryParse(gdCalc[0,1].ToString(), out iStartNo)) ? iStartNo : 0;
-            iEndNo      = (int.TryParse(gdCalc[1,1].ToString(), out iEndNo)) ? iEndNo : 0;
-            dBaseSet    = (double.TryParse(gdCalc[2,1].ToString(), out dBaseSet)) ? dBaseSet : 0;
-            dOffSet     = (double.TryParse(gdCalc[3,1].ToString(), out dOffSet)) ? dOffSet : 0;
-            iSpeed      = (int.TryParse(gdCalc[4,1].ToString(), out iSpeed)) ? iSpeed : 0;  
-            iAccel      = (int.TryParse(gdCalc[5,1].ToString(), out iAccel)) ? iAccel : 0;
+            iStartNo    = (int.TryParse(Convert.ToString(gdCalc[0,1]), out iStartNo)) ? iStartNo : 0;
+            iEndNo      = (int.TryParse(Convert.ToString(gdCalc[1,1]), out iEndNo)) ? iEndNo : 0;
+            dBaseSet    = (double.TryParse(Convert.ToString(gdCalc[2,1]), out dBaseSet)) ? dBaseSet : 0;
+            dOffSet     = (double.TryParse(Convert.ToString(gdCalc[3,1]), out dOffSet)) ? dOffSet : 0;
+            iSpeed      = (int.TryParse(Convert.ToString(gdCalc[4,1]), out iSpeed)) ? iSpeed : 0;  
+            iAccel      = (int.TryParse(Convert.ToString(gdCalc[5,1]), out iAccel)) ? iAccel : 0;
 
             if (rd1.Checked)    //-- base + offset  
             {   
@@ -151,7 +152,7 @@ namespace MMI
                         if (frmMain.frm_NumPad.Display())
                         {
                             gdCalc[gdCalc.Row, gdCalc.Col] = frmMain.frm_NumPad.GetValue();
-                            iStartRow = int.TryParse(gdCalc[gdCalc.Row, gdCalc.Col].ToString(), out iStartRow) ? iStartRow : 1;
+                            iStartRow = int.TryParse(Convert.ToString(gdCalc[gdCalc.Row, gdCalc.Col]), out iStartRow) ? iStartRow : 1;
                         }
                         break;
                     case 1: // END RECORD

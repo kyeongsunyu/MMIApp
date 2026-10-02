@@ -522,8 +522,8 @@ namespace MMI
             {
                 fPos[0] = (double)MmiGV.pShMem.RMotorData[MmiGV.iCurrAxis].uPos[i] / (double)MmiGV.mtConfigData[MmiGV.iCurrAxis].uPulseRate;
                 fVel[0] = (double)MmiGV.pShMem.RMotorData[MmiGV.iCurrAxis].uVel[i] / (double)MmiGV.mtConfigData[MmiGV.iCurrAxis].uPulseRate;
-                fPos[1] = (double.TryParse(MmiGV.frmMain.frmMotorSetting.gdMotor[i + 1, 4].ToString(), out fPos[1])) ? fPos[1] : 0.0;
-                fVel[1] = (double.TryParse(MmiGV.frmMain.frmMotorSetting.gdMotor[i + 1, 5].ToString(), out fVel[1])) ? fVel[1] : 0.0;
+                fPos[1] = (double.TryParse(Convert.ToString(MmiGV.frmMain.frmMotorSetting.gdMotor[i + 1, 4]), out fPos[1])) ? fPos[1] : 0.0;
+                fVel[1] = (double.TryParse(Convert.ToString(MmiGV.frmMain.frmMotorSetting.gdMotor[i + 1, 5]), out fVel[1])) ? fVel[1] : 0.0;
 
                 if ((Math.Abs(fPos[0] - fPos[1]) >= 0.005) ||
                     (Math.Abs(fVel[0] - fVel[1]) >= 1))
@@ -539,8 +539,8 @@ namespace MMI
             {
                 fPosCommon[0] = (double)MmiGV.pShMem.RMotorData[MmiGV.iCurrAxis].uPos[i + 50] / (double)MmiGV.mtConfigData[MmiGV.iCurrAxis].uPulseRate;
                 fVelCommon[0] = (double)MmiGV.pShMem.RMotorData[MmiGV.iCurrAxis].uVel[i + 50] / (double)MmiGV.mtConfigData[MmiGV.iCurrAxis].uPulseRate;
-                fPosCommon[1] = (double.TryParse(MmiGV.frmMain.frmMotorSetting.gdMotorCommon[i + 2, 4].ToString(), out fPosCommon[1])) ? fPosCommon[1] : 0.0;
-                fVelCommon[1] = (double.TryParse(MmiGV.frmMain.frmMotorSetting.gdMotorCommon[i + 2, 5].ToString(), out fVelCommon[1])) ? fVelCommon[1] : 0.0;
+                fPosCommon[1] = (double.TryParse(Convert.ToString(MmiGV.frmMain.frmMotorSetting.gdMotorCommon[i + 2, 4]), out fPosCommon[1])) ? fPosCommon[1] : 0.0;
+                fVelCommon[1] = (double.TryParse(Convert.ToString(MmiGV.frmMain.frmMotorSetting.gdMotorCommon[i + 2, 5]), out fVelCommon[1])) ? fVelCommon[1] : 0.0;
 
 
                 if ((Math.Abs(fPosCommon[0] - fPosCommon[1]) >= 0.005) ||
@@ -557,13 +557,13 @@ namespace MMI
             //{
             //    fPos[0] = (double)MmiGV.pShMem.RMotorData[MmiGV.iCurrAxis].uPos[i] / (double)MmiGV.mtConfigData[MmiGV.iCurrAxis].uPulseRate;
             //    fVel[0] = (double)MmiGV.pShMem.RMotorData[MmiGV.iCurrAxis].uVel[i] / (double)MmiGV.mtConfigData[MmiGV.iCurrAxis].uPulseRate;
-            //    fPos[1] = (double.TryParse(MmiGV.frmMain.frmMotorSetting.gdMotor[i + 1, 4].ToString(), out fPos[1])) ? fPos[1] : 0.0;
-            //    fVel[1] = (double.TryParse(MmiGV.frmMain.frmMotorSetting.gdMotor[i + 1, 5].ToString(), out fVel[1])) ? fVel[1] : 0.0;
+            //    fPos[1] = (double.TryParse(Convert.ToString(MmiGV.frmMain.frmMotorSetting.gdMotor[i + 1, 4]), out fPos[1])) ? fPos[1] : 0.0;
+            //    fVel[1] = (double.TryParse(Convert.ToString(MmiGV.frmMain.frmMotorSetting.gdMotor[i + 1, 5]), out fVel[1])) ? fVel[1] : 0.0;
 
             //    fPosCommon[0] = (double)MmiGV.pShMem.RMotorData[MmiGV.iCurrAxis].uPos[i + 50] / (double)MmiGV.mtConfigData[MmiGV.iCurrAxis].uPulseRate;
             //    fVelCommon[0] = (double)MmiGV.pShMem.RMotorData[MmiGV.iCurrAxis].uVel[i + 50] / (double)MmiGV.mtConfigData[MmiGV.iCurrAxis].uPulseRate;
-            //    fPosCommon[1] = (double.TryParse(MmiGV.frmMain.frmMotorSetting.gdMotorCommon[i + 2, 4].ToString(), out fPosCommon[1])) ? fPosCommon[1] : 0.0;
-            //    fVelCommon[1] = (double.TryParse(MmiGV.frmMain.frmMotorSetting.gdMotorCommon[i + 2, 5].ToString(), out fVelCommon[1])) ? fVelCommon[1] : 0.0;
+            //    fPosCommon[1] = (double.TryParse(Convert.ToString(MmiGV.frmMain.frmMotorSetting.gdMotorCommon[i + 2, 4]), out fPosCommon[1])) ? fPosCommon[1] : 0.0;
+            //    fVelCommon[1] = (double.TryParse(Convert.ToString(MmiGV.frmMain.frmMotorSetting.gdMotorCommon[i + 2, 5]), out fVelCommon[1])) ? fVelCommon[1] : 0.0;
 
             //    if ((Math.Abs(fPos[0] - fPos[1]) >= 0.005) ||
             //        (Math.Abs(fVel[0] - fVel[1]) >= 1))

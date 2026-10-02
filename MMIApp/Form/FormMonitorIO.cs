@@ -232,13 +232,13 @@ namespace MMI
         {
             string strSQL = "", sStr = "";
 
-            if (gdIO[e.Row, e.Col].ToString() == "")
+            if (Convert.ToString(gdIO[e.Row, e.Col]) == "")
             {
                 sStr = " ";
             }
             else
             {
-                sStr = gdIO[e.Row, e.Col].ToString();
+                sStr = Convert.ToString(gdIO[e.Row, e.Col]);
             }
 
             if (e.Row > 0 && (e.Col == 1 || e.Col == 2 || e.Col == 5 || e.Col==6))

@@ -222,7 +222,7 @@ namespace MMI
             {
                 if (e.Col == 1)
                 {
-                    string strSQL = $"UPDATE DEVICE SET DEVICE_NAME = '{gdDevice[e.Row,e.Col].ToString()}' WHERE IDX = {e.Row}";
+                    string strSQL = $"UPDATE DEVICE SET DEVICE_NAME = '{Convert.ToString(gdDevice[e.Row,e.Col])}' WHERE IDX = {e.Row}";
                     SQLiteDB.Execute(strSQL);
                 }
             }
@@ -250,7 +250,7 @@ namespace MMI
         private void WriteData()
         {
             iSelectedDevice = gdDevice.Row;
-            Save_Device(iSelectedDevice, gdDevice[iSelectedDevice, 1].ToString());
+            Save_Device(iSelectedDevice, Convert.ToString(gdDevice[iSelectedDevice, 1]));
 
             /*
             #region DEVICE_DATA_SAVE

@@ -117,7 +117,7 @@ namespace MMI
 
             InitGridTenKey();
 
-            strSectionNo = gdTenKeySection[gdTenKeySection.Row, 0].ToString();
+            strSectionNo = Convert.ToString(gdTenKeySection[gdTenKeySection.Row, 0]);
 
             strSQL = "SELECT * FROM TENKEY WHERE SECIDX=" + strSectionNo;
 
@@ -160,8 +160,8 @@ namespace MMI
             uint nTenKeyNo = 0;
             if (gdTenKey.Row > 0)
             {
-                string str = gdTenKey[gdTenKey.Row, 0].ToString();
-                if (gdTenKey[gdTenKey.Row, 0].ToString() != "")
+                string str = Convert.ToString(gdTenKey[gdTenKey.Row, 0]);
+                if (Convert.ToString(gdTenKey[gdTenKey.Row, 0]) != "")
                 {
                     nTenKeyNo = uint.Parse(str.ToString());
                     MmiGV.pShMem.SetTenKey(nTenKeyNo);

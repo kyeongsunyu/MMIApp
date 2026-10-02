@@ -189,10 +189,10 @@ namespace MMI
 
             for(int iIdx=0; iIdx<gdLampBuzzer.Rows.Count-2; iIdx++)
             {
-                iCode = int.Parse(gdLampBuzzer[iIdx + 2, 0].ToString());
+                iCode = int.Parse(Convert.ToString(gdLampBuzzer[iIdx + 2, 0]));
                 for(int i=0; i < 3; i++)
                 { 
-                    sData = gdLampBuzzer[iIdx + 2, 2 + i].ToString();
+                    sData = Convert.ToString(gdLampBuzzer[iIdx + 2, 2 + i]);
                     if (sData.Equals("OFF"))
                     {
                         iData[i] = 0;
@@ -210,10 +210,10 @@ namespace MMI
                 sSQL += " LAMP_RED       = " + iData[0].ToString() + ",";
                 sSQL += " LAMP_YELLOW    = " + iData[1].ToString() + ",";
                 sSQL += " LAMP_GREEN     = " + iData[2].ToString() + ",";
-                sSQL += " BUZZER_COUNT   = " + gdLampBuzzer[iIdx + 2, 5].ToString() + ",";
-                sSQL += " BUZZER_ONTIME  = " + gdLampBuzzer[iIdx + 2, 6].ToString() + ",";
-                sSQL += " BUZZER_OFFTIME = " + gdLampBuzzer[iIdx + 2, 7].ToString();
-                //sSQL += " IO_NUM = "         + gdLampBuzzer[iIdx + 2, 8].ToString();
+                sSQL += " BUZZER_COUNT   = " + Convert.ToString(gdLampBuzzer[iIdx + 2, 5]) + ",";
+                sSQL += " BUZZER_ONTIME  = " + Convert.ToString(gdLampBuzzer[iIdx + 2, 6]) + ",";
+                sSQL += " BUZZER_OFFTIME = " + Convert.ToString(gdLampBuzzer[iIdx + 2, 7]);
+                //sSQL += " IO_NUM = "         + Convert.ToString(gdLampBuzzer[iIdx + 2, 8]);
                 sSQL += " WHERE IDX      = " + iCode.ToString();
                 SQLiteDB.Execute(sSQL);
                 if(iIdx%15 == 0)
@@ -281,7 +281,7 @@ namespace MMI
         private void gdLampBuzzer_Click(object sender, EventArgs e)
         {
             int iRow = gdLampBuzzer.Row;
-            int iIdx = int.Parse(gdLampBuzzer[iRow, 0].ToString()) - 1;
+            int iIdx = int.Parse(Convert.ToString(gdLampBuzzer[iRow, 0])) - 1;
             UpdateData(iRow, iIdx);
         }
 
@@ -289,8 +289,8 @@ namespace MMI
         {
             int iRow = gdLampBuzzer.Row;
             int iCol = gdLampBuzzer.Col;
-            string str = gdLampBuzzer[iRow, 0].ToString();
-            int iCode = int.Parse(gdLampBuzzer[iRow, 0].ToString())-1;
+            string str = Convert.ToString(gdLampBuzzer[iRow, 0]);
+            int iCode = int.Parse(Convert.ToString(gdLampBuzzer[iRow, 0]))-1;
             uint uData = 0;
 
             if(iRow>0)
@@ -345,7 +345,7 @@ namespace MMI
         private void lblBuzzerCount_Click(object sender, EventArgs e)
         {
             int iRow = gdLampBuzzer.Row;
-            int iIdx = int.Parse(gdLampBuzzer[iRow, 0].ToString()) - 1;
+            int iIdx = int.Parse(Convert.ToString(gdLampBuzzer[iRow, 0])) - 1;
             uint uData = 0;
 
             if (frmMain.frm_NumPad.Display())
@@ -359,7 +359,7 @@ namespace MMI
         private void lblOnTime_Click(object sender, EventArgs e)
         {
             int iRow = gdLampBuzzer.Row;
-            int iIdx = int.Parse(gdLampBuzzer[iRow, 0].ToString()) - 1;
+            int iIdx = int.Parse(Convert.ToString(gdLampBuzzer[iRow, 0])) - 1;
             uint uData = 0;
 
             if (frmMain.frm_NumPad.Display())
@@ -373,7 +373,7 @@ namespace MMI
         private void lblOffTime_Click(object sender, EventArgs e)
         {
             int iRow = gdLampBuzzer.Row;
-            int iIdx = int.Parse(gdLampBuzzer[iRow, 0].ToString()) - 1;
+            int iIdx = int.Parse(Convert.ToString(gdLampBuzzer[iRow, 0])) - 1;
             uint uData = 0;
 
             if (frmMain.frm_NumPad.Display())

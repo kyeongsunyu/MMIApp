@@ -146,7 +146,7 @@ namespace MMI
             string sStr = "";
             if (gdOption.Row > 0)
             {
-                sStr = gdOption[gdOption.Row, gdOption.Col].ToString().ToUpper();
+                sStr = Convert.ToString(gdOption[gdOption.Row, gdOption.Col]).ToUpper();
 
                 if (gdOption.Col == 1)
                 {
@@ -208,8 +208,8 @@ namespace MMI
 
             for (int i = 0; i < gdOption.Rows.Count - 2; i++)
             {
-                string str = gdOption[i + 2, 2].ToString();
-                if (gdOption[i + 2, 2].ToString().Trim() == "ON")
+                string str = Convert.ToString(gdOption[i + 2, 2]);
+                if (Convert.ToString(gdOption[i + 2, 2]).Trim() == "ON")
                 {
                     uUseSkip1 = Util.BITONOFF(uUseSkip1, i, true);
                 }
@@ -218,7 +218,7 @@ namespace MMI
                     uUseSkip1 = Util.BITONOFF(uUseSkip1, i, false);
                 }
 
-                if (gdOption[i + 2, 5].ToString().Trim() == "ON")
+                if (Convert.ToString(gdOption[i + 2, 5]).Trim() == "ON")
                 {
                     uUseSkip2 = Util.BITONOFF(uUseSkip2, i, true);
                 }
@@ -262,14 +262,14 @@ namespace MMI
             {
                 if (Col == 2)
                 {
-                    if (gdOption[Row, 2].ToString().Trim() == "ON")
+                    if (Convert.ToString(gdOption[Row, 2]).Trim() == "ON")
                     {
                         gdOption[Row, 2] = "OFF";
                         uint data = MmiGV.pShMem.GetDM(16);
                         data = Util.BITChange(data, Row - 2);
                         MmiGV.pShMem.SetDM(16, data);
                     }
-                    else if (gdOption[Row, 2].ToString().Trim() == "OFF")
+                    else if (Convert.ToString(gdOption[Row, 2]).Trim() == "OFF")
                     {
                         gdOption[Row, 2] = "ON";
                         uint data = MmiGV.pShMem.GetDM(16);
@@ -279,7 +279,7 @@ namespace MMI
                 }
                 if (Col == 5)
                 {
-                    if (gdOption[Row, 5].ToString().Trim() == "ON")
+                    if (Convert.ToString(gdOption[Row, 5]).Trim() == "ON")
                     {
                         gdOption[Row, 5] = "OFF";
                         uint data = MmiGV.pShMem.GetDM(17);

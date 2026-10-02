@@ -460,24 +460,24 @@ namespace MMI
         {
             for (int i = 1; i < 50; i++)//50
             {
-                MmiGV.mtSettingData[MmiGV.iCurrAxis].PosName[i] = gdMotor[i + 1, 1].ToString();
+                MmiGV.mtSettingData[MmiGV.iCurrAxis].PosName[i] = Convert.ToString(gdMotor[i + 1, 1]);
 
-                //    Console.WriteLine("{0}", gdMotor[i + 2, 1].ToString());
-                double numResult1 = (double.TryParse(gdMotor[i + 1, 2].ToString(), out numResult1)) ? numResult1 : 0;
+                //    Console.WriteLine("{0}", Convert.ToString(gdMotor[i + 2, 1]));
+                double numResult1 = (double.TryParse(Convert.ToString(gdMotor[i + 1, 2]), out numResult1)) ? numResult1 : 0;
                 MmiGV.mtSettingData[MmiGV.iCurrAxis].dPosArray[i] = numResult1;
 
-                double numResult2 = (double.TryParse(gdMotor[i + 1, 3].ToString(), out numResult2)) ? numResult2 : 0;
+                double numResult2 = (double.TryParse(Convert.ToString(gdMotor[i + 1, 3]), out numResult2)) ? numResult2 : 0;
                 MmiGV.mtSettingData[MmiGV.iCurrAxis].dSpeedArray[i] = numResult2;
             }
             for (int i = 0; i < 50; i++)
             {
-                MmiGV.mtSettingData[MmiGV.iCurrAxis].PosName[i + 50] = gdMotorCommon[i + 2, 1].ToString();
+                MmiGV.mtSettingData[MmiGV.iCurrAxis].PosName[i + 50] = Convert.ToString(gdMotorCommon[i + 2, 1]);
 
-                //    Console.WriteLine("{0}", gdMotor[i + 2, 1].ToString());
-                double numResult3 = (double.TryParse(gdMotorCommon[i + 2, 2].ToString(), out numResult3)) ? numResult3 : 0;
+                //    Console.WriteLine("{0}", Convert.ToString(gdMotor[i + 2, 1]));
+                double numResult3 = (double.TryParse(Convert.ToString(gdMotorCommon[i + 2, 2]), out numResult3)) ? numResult3 : 0;
                 MmiGV.mtSettingData[MmiGV.iCurrAxis].dPosArray[i+50] = numResult3;
 
-                double numResult4 = (double.TryParse(gdMotorCommon[i + 2, 3].ToString(), out numResult4)) ? numResult4 : 0;
+                double numResult4 = (double.TryParse(Convert.ToString(gdMotorCommon[i + 2, 3]), out numResult4)) ? numResult4 : 0;
                 MmiGV.mtSettingData[MmiGV.iCurrAxis].dSpeedArray[i + 50] = numResult4;
             }
 
@@ -838,7 +838,7 @@ namespace MMI
         {
             if (gdMotor.Row >= 2)
             {
-                lblIdx.Text = string.Format("{0:D2}", int.Parse(gdMotor[gdMotor.Row, 0].ToString()));
+                lblIdx.Text = string.Format("{0:D2}", int.Parse(Convert.ToString(gdMotor[gdMotor.Row, 0])));
             }
             bgdMotorSelected = true;
             bgdMotorCommonSelected = false;
@@ -850,7 +850,7 @@ namespace MMI
 
             if (gdMotor.Row >= 2)
             {
-                lblIdx.Text = string.Format("{0:D2}", int.Parse(gdMotor[gdMotor.Row, 0].ToString()));
+                lblIdx.Text = string.Format("{0:D2}", int.Parse(Convert.ToString(gdMotor[gdMotor.Row, 0])));
             }
 
             if (bModify)
@@ -858,7 +858,7 @@ namespace MMI
                 switch (gdMotor.Col)
                 {
                     case 2:     // Motor Position 수정
-                        dPosData = double.Parse(gdMotor[gdMotor.Row, 2].ToString());
+                        if (!double.TryParse(Convert.ToString(gdMotor[gdMotor.Row, 2]), out dPosData)) dPosData = 0.0;
                         if (frmMain.frm_NumAdd.Display(dPosData))
                         {
                             String str = string.Format("{0:F3}", frmMain.frm_NumAdd.GetValue());
@@ -885,7 +885,7 @@ namespace MMI
         {
             if (gdMotorCommon.Row >= 2)
             {
-                lblIdx.Text = string.Format("{0:D2}", int.Parse(gdMotorCommon[gdMotorCommon.Row, 0].ToString()));
+                lblIdx.Text = string.Format("{0:D2}", int.Parse(Convert.ToString(gdMotorCommon[gdMotorCommon.Row, 0])));
             }
             bgdMotorSelected = false;
             bgdMotorCommonSelected = true;
@@ -898,7 +898,7 @@ namespace MMI
 
             if (gdMotorCommon.Row >= 2)
             {
-                lblIdx.Text = string.Format("{0:D2}", int.Parse(gdMotorCommon[gdMotorCommon.Row, 0].ToString()));
+                lblIdx.Text = string.Format("{0:D2}", int.Parse(Convert.ToString(gdMotorCommon[gdMotorCommon.Row, 0])));
             }
 
             if (bModify)
@@ -906,7 +906,7 @@ namespace MMI
                 switch (gdMotorCommon.Col)
                 {
                     case 2:     // Motor Position 수정
-                        dPosData = double.Parse(gdMotorCommon[gdMotorCommon.Row, 2].ToString());
+                        if (!double.TryParse(Convert.ToString(gdMotorCommon[gdMotorCommon.Row, 2]), out dPosData)) dPosData = 0.0;
                         if (frmMain.frm_NumAdd.Display(dPosData))
                         {
                             String str = string.Format("{0:F3}", frmMain.frm_NumAdd.GetValue());

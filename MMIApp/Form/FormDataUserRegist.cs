@@ -96,13 +96,13 @@ namespace MMI
                     rdMaster.Checked = true;
                     break;
             }
-            txtPassword.Text = gdUser[gdUser.Row, 3].ToString();
-            txtConfirm.Text = gdUser[gdUser.Row, 3].ToString();
+            txtPassword.Text = Convert.ToString(gdUser[gdUser.Row, 3]);
+            txtConfirm.Text = Convert.ToString(gdUser[gdUser.Row, 3]);
         }
         private void gdUser_Click(object sender, EventArgs e)
         {
             int iLevel;
-            iLevel = int.TryParse(gdUser[gdUser.Row, 2].ToString(), out iLevel) ? iLevel : 0;
+            iLevel = int.TryParse(Convert.ToString(gdUser[gdUser.Row, 2]), out iLevel) ? iLevel : 0;
 
             switch (iLevel)
             {
@@ -127,8 +127,8 @@ namespace MMI
             }
             if (iLevel == 1 || iLevel==2 || iLevel==3 || iLevel == 4)
             {
-                txtPassword.Text = gdUser[gdUser.Row, 3].ToString();
-                txtConfirm.Text = gdUser[gdUser.Row, 3].ToString();
+                txtPassword.Text = Convert.ToString(gdUser[gdUser.Row, 3]);
+                txtConfirm.Text = Convert.ToString(gdUser[gdUser.Row, 3]);
             }
             else
             {
@@ -149,9 +149,9 @@ namespace MMI
 
             int iRow = gdUser.Row;
 
-            strName = gdUser[iRow, 1].ToString();
-            strLevel = gdUser[iRow, 2].ToString();
-            strPwd = gdUser[iRow, 3].ToString();
+            strName = Convert.ToString(gdUser[iRow, 1]);
+            strLevel = Convert.ToString(gdUser[iRow, 2]);
+            strPwd = Convert.ToString(gdUser[iRow, 3]);
 
             strSQL = "DELETE FROM PWD WHERE NAME = '" + strName +
                     "' AND USER_LEVEL= " + strLevel + 
@@ -174,13 +174,13 @@ namespace MMI
             {
                 for(int iRow=1; iRow<gdUser.Rows.Count; iRow++)
                 {
-                    if (!string.IsNullOrEmpty(gdUser[iRow, 1].ToString()))
+                    if (!string.IsNullOrEmpty(Convert.ToString(gdUser[iRow, 1])))
                     {
                         strSQL = "INSERT INTO PWD (NAME, USER_LEVEL, PWNO)";
                         strSQL += " VALUES ('";
-                        strSQL += gdUser[iRow, 1].ToString() + "',";
-                        strSQL += gdUser[iRow, 2].ToString() + ",'";
-                        strSQL += gdUser[iRow, 3].ToString() + "')";
+                        strSQL += Convert.ToString(gdUser[iRow, 1]) + "',";
+                        strSQL += Convert.ToString(gdUser[iRow, 2]) + ",'";
+                        strSQL += Convert.ToString(gdUser[iRow, 3]) + "')";
                         SQLiteDB.Execute(strSQL);
                     }
                 }
