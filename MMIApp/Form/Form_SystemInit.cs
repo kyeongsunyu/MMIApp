@@ -182,7 +182,7 @@ namespace MMI
 
             WriteMotorData();
 
-            iPercent += 20;
+            iPercent += 15;
             UpdateProgressBar(iPercent);
             #endregion MOTOR_DATA
 
@@ -290,7 +290,7 @@ namespace MMI
             }
 
             WriteLampBuzzerData();
-            iPercent += 20;
+            iPercent += 15;
             UpdateProgressBar(iPercent);
             #endregion LAMP_BUZZER_INIT
 
@@ -350,11 +350,13 @@ namespace MMI
             Application.DoEvents();
         }
 
+        // The steps add up to 100; the clamp keeps one added later from
+        // throwing out of system initialisation, as 110 % once did.
         private void UpdateProgressBar(int per)
         {
             progressBar.Invoke(new Action(() =>
-            { 
-                progressBar.Value = (per * 100) / 100; 
+            {
+                progressBar.Value = Math.Max(progressBar.Minimum, Math.Min(progressBar.Maximum, per));
             }));
             Application.DoEvents();
         }
