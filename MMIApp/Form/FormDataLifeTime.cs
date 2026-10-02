@@ -73,6 +73,7 @@ namespace MMI
 
             this.frmMain = frm;
             SetupGrid();
+            CLanguage.Changed += (s, e) => ApplyLanguage();
         }
 
         // Machines set up before this screen have MACHINEPARAM rows with no
@@ -109,13 +110,29 @@ namespace MMI
         {
             DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn
             {
-                HeaderText = strHeader,
+                Name = strHeader,
+                HeaderText = CLanguage.Text(strHeader),
                 Width = nWidth,
                 SortMode = DataGridViewColumnSortMode.NotSortable,
                 ReadOnly = true,
             };
             col.DefaultCellStyle.Alignment = align;
             dgvLifeTime.Columns.Add(col);
+        }
+
+        // Headers, item names and the rule line are set in code, so they are
+        // set again when the language changes.
+        private void ApplyLanguage()
+        {
+            foreach (DataGridViewColumn col in dgvLifeTime.Columns)
+            {
+                col.HeaderText = CLanguage.Text(col.Name);
+            }
+            for (int i = 0; i < items.Count && i < dgvLifeTime.Rows.Count; i++)
+            {
+                dgvLifeTime.Rows[i].Cells[ColItem].Value = CLanguage.Text(items[i].Name);
+            }
+            RefreshCounts();
         }
 
         private void FormDataLifeTime_Load(object sender, EventArgs e)
@@ -162,11 +179,11 @@ namespace MMI
             dgvLifeTime.Rows.Clear();
             foreach (LifeTimeItem item in items)
             {
-                dgvLifeTime.Rows.Add(item.Idx + 1, item.Name, "", "", "", "", "");
+                dgvLifeTime.Rows.Add(item.Idx + 1, CLanguage.Text(item.Name), "", "", "", "", "");
             }
             RefreshCounts();
             ShowSelected();
-            lblResult.Text = items.Count + " items.";
+            lblResult.Text = CLanguage.Format("{0} items.", items.Count);
         }
 
         private void tmUpdate_Tick(object sender, EventArgs e)
@@ -302,8 +319,8 @@ namespace MMI
                 return;
             }
             int nState = StateOf(item);
-            lblSelName.Text = item.Name;
-            lblSelLimit.Text = WithUnit(item.StagedLimit, item.Unit) + (item.IsStaged ? "  (not applied)" : "");
+            lblSelName.Text = CLanguage.Text(item.Name);
+            lblSelLimit.Text = WithUnit(item.StagedLimit, item.Unit) + (item.IsStaged ? "  " + CLanguage.Text("(not applied)") : "");
             lblSelCurrent.Text = WithUnit(item.Current, item.Unit);
             lblSelRemain.Text = WithUnit(Math.Max(0, item.StagedLimit - item.Current), item.Unit);
             lblSelUse.Text = UsePercent(item).ToString("F1") + " %  " + StateText(nState);
@@ -327,14 +344,14 @@ namespace MMI
             lblSumWarn.ForeColor = nWarn > 0 ? HmiTheme.Warning : HmiTheme.Text;
             lblSumStaged.Text = nStaged.ToString();
             lblSumStaged.ForeColor = nStaged > 0 ? HmiTheme.Accent : HmiTheme.Text;
-            lblWarnRule.Text = "WARN from " + CSystemConfig.LifeTimeWarnPercent + " % of the limit, OVER at the limit."
-                             + " The percentage is set on System Data.";
+            lblWarnRule.Text = CLanguage.Format("WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.",
+                                                CSystemConfig.LifeTimeWarnPercent);
         }
 
         private bool MachineRunning()
         {
             if (MmiGV.dmData.DMValue[1] != 1) return false;
-            lblResult.Text = "Not while the machine runs.";
+            lblResult.Text = CLanguage.Text("Not while the machine runs.");
             lblResult.ForeColor = HmiTheme.Warning;
             return true;
         }
@@ -354,12 +371,13 @@ namespace MMI
             double dValue = Math.Round(frmMain.frm_NumPad.GetValue());
             if (dValue < 0)
             {
-                ShowResult("A limit cannot be negative.", HmiTheme.Warning);
+                ShowResult(CLanguage.Text("A limit cannot be negative."), HmiTheme.Warning);
                 return;
             }
             item.StagedLimit = dValue;
             RefreshCounts();
-            ShowResult(item.Name + ": limit " + dValue.ToString("N0") + " staged. APPLY saves it.", HmiTheme.Accent);
+            ShowResult(CLanguage.Format("{0}: limit {1} staged. APPLY saves it.", CLanguage.Text(item.Name), dValue.ToString("N0")),
+                       HmiTheme.Accent);
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -369,7 +387,7 @@ namespace MMI
             bool bAnyStaged = items.Exists(i => i.IsStaged);
             if (!bAnyStaged)
             {
-                ShowResult("Nothing to apply.", HmiTheme.TextMuted);
+                ShowResult(CLanguage.Text("Nothing to apply."), HmiTheme.TextMuted);
                 return;
             }
             if (!frmMain.frm_PWD.GetPassWord(MmiGV.iScreenNo)) return;
@@ -386,7 +404,7 @@ namespace MMI
             MmiGV.pShMem.SetSystemData();
 
             RefreshCounts();
-            ShowResult("Limits saved and sent to SEQ.", HmiTheme.Normal);
+            ShowResult(CLanguage.Text("Limits saved and sent to SEQ."), HmiTheme.Normal);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -396,7 +414,7 @@ namespace MMI
                 item.StagedLimit = item.Limit;
             }
             RefreshCounts();
-            ShowResult("Staged limits discarded.", HmiTheme.TextMuted);
+            ShowResult(CLanguage.Text("Staged limits discarded."), HmiTheme.TextMuted);
         }
 
         private void btnResetCount_Click(object sender, EventArgs e)
@@ -404,7 +422,8 @@ namespace MMI
             LifeTimeItem item = SelectedItem();
             if (item == null) return;
             if (MachineRunning()) return;
-            if (!frmMain.frm_Msg.Display("Reset the count of " + item.Name + " to 0?\r\nDo this after the part has been replaced.")) return;
+            if (!frmMain.frm_Msg.Display(CLanguage.Format("Reset the count of {0} to 0?\r\nDo this after the part has been replaced.",
+                                                          CLanguage.Text(item.Name)))) return;
             if (!frmMain.frm_PWD.GetPassWord(MmiGV.iScreenNo)) return;
 
             uint uBefore = MmiGV.pShMem.GetDM(CountDmBase + item.Idx);
@@ -412,13 +431,13 @@ namespace MMI
             CThreadMMILog.GetInstance.AddMMILog("Life Time count reset " + item.Name + " : " + uBefore + " -> 0");
 
             RefreshCounts();
-            ShowResult(item.Name + ": count reset.", HmiTheme.Normal);
+            ShowResult(CLanguage.Format("{0}: count reset.", CLanguage.Text(item.Name)), HmiTheme.Normal);
         }
 
         private void btnReload_Click(object sender, EventArgs e)
         {
             LoadItems();
-            ShowResult("Reloaded from the DB.", HmiTheme.TextMuted);
+            ShowResult(CLanguage.Text("Reloaded from the DB."), HmiTheme.TextMuted);
         }
     }
 }

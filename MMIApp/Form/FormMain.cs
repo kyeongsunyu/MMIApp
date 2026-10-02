@@ -197,6 +197,8 @@ namespace MMI
             frm_Msg = new Form_Msg(this);
             frm_SystemInit = new Form_SystemInit(this);
 
+            frm_Language = new Form_Language(this);
+
             frm_Laser = new Form_Laser();
             frm_Laser.TopLevel = false;
             frm_Laser.Visible = true;
@@ -490,7 +492,7 @@ namespace MMI
                 pnlAlarmBanner.BackColor = Color.FromArgb(0x1E, 0x21, 0x25);
                 lblAlarmStripe.BackColor = HmiTheme.TextDisabled;
                 lblError.ForeColor = HmiTheme.TextMuted;
-                lblError.Text = "No Alarm";
+                lblError.Text = CLanguage.Text("No Alarm");
                 lblErrorMessage.ForeColor = HmiTheme.TextMuted;
                 lblErrorMessage.Text = "";
                 return;
@@ -499,7 +501,7 @@ namespace MMI
             pnlAlarmBanner.BackColor = HmiTheme.AlarmBanner;
             lblAlarmStripe.BackColor = HmiTheme.Alarm;
             lblError.ForeColor = HmiTheme.Alarm;
-            lblError.Text = $"Alarm: E{uCode:0000}";
+            lblError.Text = CLanguage.Text("Alarm") + $": E{uCode:0000}";
             lblErrorMessage.ForeColor = HmiTheme.AlarmBannerText;
             lblErrorMessage.Text = string.IsNullOrEmpty(strMessage) ? strName : strName + "  -  " + strMessage;
         }
@@ -513,7 +515,7 @@ namespace MMI
                 return;
             }
             lblError.ForeColor = HmiTheme.Accent;
-            lblError.Text = "System";
+            lblError.Text = CLanguage.Text("System");
             lblErrorMessage.ForeColor = HmiTheme.Text;
             lblErrorMessage.Text = strText;
         }
@@ -580,11 +582,11 @@ namespace MMI
         {
             switch (iLevel)
             {
-                case (int)MmiGV.eUserLevel.USER_LEVEL_OPERATOR:    return "Operator";
-                case (int)MmiGV.eUserLevel.USER_LEVEL_MAINTENANCE: return "Maintenance";
-                case (int)MmiGV.eUserLevel.USER_LEVEL_ENGINEER:    return "Engineer";
-                case (int)MmiGV.eUserLevel.USER_LEVEL_MASTER:      return "Master";
-                default: return "No User";
+                case (int)MmiGV.eUserLevel.USER_LEVEL_OPERATOR:    return CLanguage.Text("Operator");
+                case (int)MmiGV.eUserLevel.USER_LEVEL_MAINTENANCE: return CLanguage.Text("Maintenance");
+                case (int)MmiGV.eUserLevel.USER_LEVEL_ENGINEER:    return CLanguage.Text("Engineer");
+                case (int)MmiGV.eUserLevel.USER_LEVEL_MASTER:      return CLanguage.Text("Master");
+                default: return CLanguage.Text("No User");
             }
         }
 
@@ -600,7 +602,7 @@ namespace MMI
             MmiGV.UserInfo.strUserName = "OPERATOR";
 
             btnUserLogIn.Checked = false;
-            btnUserLogIn.Text = "Log In";
+            btnUserLogIn.Text = CLanguage.Text("Log In");
             dtUserLevelStartTime = DateTime.Now;
 
             SetMenuButtonEnable(MmiGV.UserInfo.iUserLevel);
@@ -626,7 +628,7 @@ namespace MMI
             if (frm_UserLogIn.DISPLAY((int)MmiGV.eFormShowMode.MODAL))
             {
                 btnUserLogIn.Checked = true;
-                btnUserLogIn.Text = "Log Out";
+                btnUserLogIn.Text = CLanguage.Text("Log Out");
 
                 dtUserLevelStartTime = DateTime.Now;
                 SetMenuButtonEnable(MmiGV.UserInfo.iUserLevel);
@@ -725,6 +727,7 @@ namespace MMI
             // time warning, keyboard and start-up language.
             CSystemConfig.Load();
             ApplySystemConfig();
+            SetLanguage(CSystemConfig.Language);
         }
 
         // Puts the System Data settings into effect. Called at start-up and
@@ -734,22 +737,57 @@ namespace MMI
             lblMachine.Text = CSystemConfig.MachineName;
         }
 
-        private void UILanguageUpdate()
+        #region LANGUAGE
+
+        // Lang on the top bar: switches the captions for this session. The
+        // language the program starts in is set on System Data.
+        private void btnLanguageSET_Click(object sender, EventArgs e)
         {
-            string strCaption;
-            if (MmiGV.m_dicUICaption.TryGetValue((int)MmiGV.eCAPTION_NAME.CAPTION_MAIN_MENU_AUTO, out strCaption))
+            string strLanguage;
+            if (!frm_Language.Choose(CLanguage.Current, out strLanguage)) return;
+            if (strLanguage == CLanguage.Current) return;
+
+            CThreadMMILog.GetInstance.AddMMILog("Language " + CLanguage.Current + " -> " + strLanguage);
+            SetLanguage(strLanguage);
+        }
+
+        public void SetLanguage(string strLanguage)
+        {
+            CLanguage.Load(strLanguage);
+
+            CLanguage.Apply(this);
+            foreach (ScreenEntry entry in m_dicScreen.Values)
             {
-                btnMenuAuto.Text = strCaption;
+                CLanguage.Apply(entry.Screen);
+            }
+            foreach (Form popup in Popups())
+            {
+                CLanguage.Apply(popup);
+            }
+
+            // The captions the frame sets in code.
+            btnUserLogIn.Text = CLanguage.Text(btnUserLogIn.Checked ? "Log Out" : "Log In");
+            ShowUser();
+            ShowSeqLink(bSeqLinked);
+            if (MmiGV.iErrorCode == 0) ShowAlarm(0, "", "");
+
+            CLanguage.RaiseChanged();
+        }
+
+        // The pop-ups the frame holds in its fields, whatever they are.
+        private IEnumerable<Form> Popups()
+        {
+            foreach (System.Reflection.FieldInfo fi in GetType().GetFields(
+                         System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public))
+            {
+                if (!typeof(Form).IsAssignableFrom(fi.FieldType)) continue;
+                Form frm = fi.GetValue(this) as Form;
+                if (frm == null || frm.Parent == pnlContent) continue;
+                yield return frm;
             }
         }
 
-        private void btnLanguageSET_Click(object sender, EventArgs e)
-        {
-            frm_Language = new Form_Language(this);
-            frm_Language.ShowDialog();
-
-            UILanguageUpdate();
-        }
+        #endregion LANGUAGE
 
         private void btnRESET_Click(object sender, EventArgs e)
         {
@@ -764,7 +802,7 @@ namespace MMI
 
         private void ShowSeqLink(bool bLinked)
         {
-            lblSeqLink.Text = bLinked ? "● SEQ: Connected" : "● SEQ: Disconnected";
+            lblSeqLink.Text = "● " + CLanguage.Text(bLinked ? "SEQ: Connected" : "SEQ: Disconnected");
             lblSeqLink.ForeColor = bLinked ? HmiTheme.Text : HmiTheme.Alarm;
         }
 
@@ -788,7 +826,7 @@ namespace MMI
                 BeginInvoke(new Action(() => ShowSecsGemState(strState, bOnline)));
                 return;
             }
-            lblSecsGem.Text = "● SECS/GEM: " + strState;
+            lblSecsGem.Text = "● SECS/GEM: " + CLanguage.Text(strState);
             lblSecsGem.ForeColor = bOnline ? HmiTheme.Text : HmiTheme.TextMuted;
         }
 

@@ -231,6 +231,7 @@
     <Compile Include="Util\TCP\TcpServerAsync.cs" />
     <Compile Include="Util\Thread.cs" />
     <Compile Include="Util\FileLog.cs" />
+    <Compile Include="Util\Language.cs" />
     <Compile Include="Util\LogRetention.cs" />
     <Compile Include="Util\SystemConfig.cs" />
     <Compile Include="Form\Form_PM.cs">
@@ -640,6 +641,15 @@
          recipes survive a rebuild. The flip side is that updating this file does
          overwrite a machine's database once its timestamp is older, so treat it
          as the seed rather than as the live data. -->
+    <None Include="Language\EN.lang">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Language\KO.lang">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Language\ZH.lang">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="DB\JetDB.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

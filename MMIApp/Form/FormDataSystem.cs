@@ -40,6 +40,7 @@ namespace MMI
             InitializeComponent();
 
             this.frmMain = frm;
+            CLanguage.Changed += (s, e) => ShowStaged();
         }
 
         private void FormDataSystem_Load(object sender, EventArgs e)
@@ -86,9 +87,8 @@ namespace MMI
         {
             lblLogKeepDays.Text = nLogKeepDays.ToString();
             lblLogKeepDays.ForeColor = (nLogKeepDays != CSystemConfig.LogKeepDays) ? HmiTheme.Accent : HmiTheme.Text;
-            lblLogCutOff.Text = "Files last written before "
-                              + CLogRetention.CutOffFor(DateTime.Now, nLogKeepDays).ToString("yyyy-MM-dd")
-                              + " are deleted.";
+            lblLogCutOff.Text = CLanguage.Format("Files last written before {0} are deleted.",
+                CLogRetention.CutOffFor(DateTime.Now, nLogKeepDays).ToString("yyyy-MM-dd"));
 
             lblLifeTimeWarn.Text = nLifeTimeWarnPercent.ToString();
             lblLifeTimeWarn.ForeColor = (nLifeTimeWarnPercent != CSystemConfig.LifeTimeWarnPercent) ? HmiTheme.Accent : HmiTheme.Text;
@@ -102,7 +102,7 @@ namespace MMI
 
             txtMachineName.ForeColor = (txtMachineName.Text.Trim() != CSystemConfig.MachineName) ? HmiTheme.Accent : HmiTheme.Text;
 
-            lblStaged.Text = IsStaged() ? "Changes not applied." : "";
+            lblStaged.Text = IsStaged() ? CLanguage.Text("Changes not applied.") : "";
         }
 
         private void ShowResult(string strText, Color color)
@@ -119,7 +119,7 @@ namespace MMI
             double dValue = Math.Round(frmMain.frm_NumPad.GetValue());
             if (dValue < nMin || dValue > nMax)
             {
-                ShowResult("Enter a value from " + nMin + " to " + nMax + ".", HmiTheme.Warning);
+                ShowResult(CLanguage.Format("Enter a value from {0} to {1}.", nMin, nMax), HmiTheme.Warning);
                 return false;
             }
             nValue = (int)dValue;
@@ -165,12 +165,12 @@ namespace MMI
             string strName = txtMachineName.Text.Trim();
             if (strName.Length == 0)
             {
-                ShowResult("The machine name cannot be empty.", HmiTheme.Warning);
+                ShowResult(CLanguage.Text("The machine name cannot be empty."), HmiTheme.Warning);
                 return;
             }
             if (!IsStaged())
             {
-                ShowResult("Nothing to apply.", HmiTheme.TextMuted);
+                ShowResult(CLanguage.Text("Nothing to apply."), HmiTheme.TextMuted);
                 return;
             }
             if (!frmMain.frm_PWD.GetPassWord(MmiGV.iScreenNo)) return;
@@ -193,7 +193,7 @@ namespace MMI
 
             frmMain.ApplySystemConfig();
             ShowStaged();
-            ShowResult("System data saved.", HmiTheme.Normal);
+            ShowResult(CLanguage.Text("System data saved."), HmiTheme.Normal);
 
             // A shorter keep period takes effect now rather than within the hour.
             if (bKeepDaysChanged)
@@ -211,14 +211,14 @@ namespace MMI
         private void btnCancel_Click(object sender, EventArgs e)
         {
             FillFromSaved();
-            ShowResult("Changes discarded.", HmiTheme.TextMuted);
+            ShowResult(CLanguage.Text("Changes discarded."), HmiTheme.TextMuted);
         }
 
         private void btnPurgeNow_Click(object sender, EventArgs e)
         {
             if (nLogKeepDays != CSystemConfig.LogKeepDays)
             {
-                ShowResult("APPLY the keep period first; the purge uses the saved one.", HmiTheme.Warning);
+                ShowResult(CLanguage.Text("APPLY the keep period first; the purge uses the saved one."), HmiTheme.Warning);
                 return;
             }
             PurgeNow();
@@ -239,10 +239,10 @@ namespace MMI
 
             if (r == null)
             {
-                lblPurgeResult.Text = "A purge is already running.";
+                lblPurgeResult.Text = CLanguage.Text("A purge is already running.");
                 return;
             }
-            lblPurgeResult.Text = string.Format("{0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.",
+            lblPurgeResult.Text = CLanguage.Format("{0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.",
                 DateTime.Now, r.FilesDeleted, r.BytesFreed / 1024, r.FoldersDeleted, r.Failures);
         }
     }

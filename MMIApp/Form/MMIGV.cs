@@ -25,11 +25,6 @@ namespace MMI
 
         #region ENUM_VAR
 
-        public enum eCAPTION_NAME : int
-        {
-            CAPTION_MAIN_MENU_AUTO = 1,
-        }
-
         public enum eFormShowMode
         {
             MODAL = 0X01,
@@ -216,8 +211,6 @@ namespace MMI
 
         public static int iTragetUPH = 1;
 
-        public static string strCurrentLanguage;
-        public static Dictionary<int, String> m_dicUICaption = new Dictionary<int, string>();
 
         public static string[] strDeviceName = new string[NumOf_Device + 1];
         public static string[,] strDeviceData = new string[NumOf_Device + 1, NumOf_DeviceData + 1];

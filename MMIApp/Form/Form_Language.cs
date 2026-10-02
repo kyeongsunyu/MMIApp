@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MMI
 {
+    // Lang on the top bar: pick English, Korean or Chinese for this session.
+    // The captions themselves come from Language\<code>.lang through
+    // CLanguage; this only asks which one.
     public partial class Form_Language : Form
     {
         private FormMain frmMain = null;
 
-        int m_iProgressValue = 0;
-        string m_strSelectedLang = "";
+        private string strChosen = null;
 
         public Form_Language()
         {
@@ -30,116 +22,32 @@ namespace MMI
             InitializeComponent();
 
             this.frmMain = frm;
-
-            InitControl();
-        }
-        private void InitControl()
-        {
-            cbSelect.Items.Add("English");
-            cbSelect.Items.Add("中 文");
-            cbSelect.Items.Add("한 글");
-
-            progressBar.Value = 0;
-            progressBar.Minimum = 0;
-            progressBar.Maximum = 100;
-            m_iProgressValue = 0;
-
-        }
-        private void btnSET_Click(object sender, EventArgs e)
-        {
-            btnSET.Enabled = false;
-            if (cbSelect.Text.Length != 0)
-            {
-                if (cbSelect.Text == "English")
-                {
-                    m_strSelectedLang = "English";
-                }
-                if (cbSelect.Text == "中 文")
-                {
-                    m_strSelectedLang = "Chinese";
-                }
-                if (cbSelect.Text == "한 글")
-                {
-                    m_strSelectedLang = "Korean";
-                }
-
-                if(MmiGV.strCurrentLanguage != m_strSelectedLang)
-                {
-                    timerProgress.Enabled = true;
-                    Thread thread = StartLanguageThread(m_strSelectedLang);
-                }
-
-            }
-            btnSET.Enabled = true;
-        }
-        public Thread StartLanguageThread(String strLang)
-        {
-            var t = new Thread(() => LanguageThread(strLang));
-            t.Start();
-
-            return t;
-        }
-        public void LanguageThread(Object pObject)
-        {
-
-            String strSelectedLang = (String)pObject;
-
-            MmiGV.strCurrentLanguage = strSelectedLang;
-
-            XmlDocument doc = new XmlDocument();
-            //XmlElement pElement; ;
-            //XmlNode node;
-
-            String file = AppDomain.CurrentDomain.BaseDirectory + "LANGUAGE\\LANG.xml";
-
-            // LANGUAGE\ is under the build output that .gitignore excludes, so a
-            // fresh clone has no LANG.xml. This runs on its own thread, where an
-            // unhandled exception takes the whole process down rather than one
-            // screen, so the captions stay as they are instead.
-            if (!System.IO.File.Exists(file))
-            {
-                Console.WriteLine("LANG.xml not found: {0}", file);
-                return;
-            }
-
-            doc.Load(file);
-
-            // 루트노드
-            XmlNode root = doc.CreateElement("UICaption");
-
-            XmlNodeList xnList = doc.SelectNodes("/UICaption/CaptionID");
-
-            int index = 0;
-            foreach (XmlNode xn in xnList)
-            {
-                int nCaptionNo = int.Parse(xn.Attributes["ID"].Value);
-                string strCapName = "";
-                if (strSelectedLang.Contains("English"))
-                {
-                    strCapName = xn.Attributes["English"].Value;
-                }
-                else if (strSelectedLang.Contains("Chinese"))
-                {
-                    strCapName = xn.Attributes["Chinese"].Value;
-                }
-                else if (strSelectedLang.Contains("Korean"))
-                {
-                    strCapName = xn.Attributes["Korean"].Value;
-                }
-                MmiGV.m_dicUICaption[nCaptionNo] = strCapName;
-                index++;
-                m_iProgressValue = index * 100 / xnList.Count;
-                Thread.Sleep(1);
-            }
         }
 
-        private void timerProgress_Tick(object sender, EventArgs e)
+        // Shows the choice with the current language marked. False when the
+        // pop-up was closed without a choice.
+        public bool Choose(string strCurrent, out string strLanguage)
         {
-            if(m_iProgressValue == progressBar.Maximum)
-            {
-                timerProgress.Enabled = false;
-                Close();
-            }
+            strChosen = null;
+            btnEN.Checked = (strCurrent == "EN");
+            btnKO.Checked = (strCurrent == "KO");
+            btnZH.Checked = (strCurrent == "ZH");
+
+            ShowDialog(frmMain);
+
+            strLanguage = strChosen;
+            return strChosen != null;
+        }
+
+        private void btnLanguage_Click(object sender, EventArgs e)
+        {
+            strChosen = Convert.ToString(((Control)sender).Tag);
+            Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

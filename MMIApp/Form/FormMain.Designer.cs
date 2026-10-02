@@ -244,7 +244,7 @@
             // lblDeviceCaption
             // 
             this.lblDeviceCaption.AutoSize = false;
-            this.lblDeviceCaption.Size = new System.Drawing.Size(56, 44);
+            this.lblDeviceCaption.Size = new System.Drawing.Size(76, 44);
             this.lblDeviceCaption.Margin = new System.Windows.Forms.Padding(0);
             this.lblDeviceCaption.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblDeviceCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));

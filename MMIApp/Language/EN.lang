@@ -1,0 +1,591 @@
+﻿# MMIApp captions - English
+# English text|English text, one per line, UTF-8. \n is a line break.
+# @Form.Control|text sets one control only. A phrase not listed stays in English.
+# Written by _tools\gen_lang.py; lines added by hand are kept only if added to its table.
+
+
+# --- FormAlarmList ---
+EDIT|EDIT
+MP3 PLAY|MP3 PLAY
+MP3 STOP|MP3 STOP
+OCCURRENCE FACTOR|OCCURRENCE FACTOR
+OPEN|OPEN
+TROUBLE SHOOTING|TROUBLE SHOOTING
+
+# --- FormAuto1 ---
+Air 1|Air 1
+Air 2|Air 2
+Air 3|Air 3
+Air Pressure (MPa)|Air Pressure (MPa)
+ALARM|ALARM
+Communication|Communication
+Control|Control
+Count|Count
+Enc Count|Enc Count
+Equipment State|Equipment State
+Good|Good
+Initialize|Initialize
+Line Rate (kHz)|Line Rate (kHz)
+Lines|Lines
+Lot|Lot
+Lot Cancel|Lot Cancel
+Lot End|Lot End
+Lot ID|Lot ID
+Lot Input|Lot Input
+Motion End (mm)|Motion End (mm)
+Motion Start (mm)|Motion Start (mm)
+NG|NG
+OUTPUT TEST|OUTPUT TEST
+Panel In|Panel In
+PERIODIC (enc)|PERIODIC (enc)
+Pixel Res (um)|Pixel Res (um)
+Production|Production
+Pulse W (us)|Pulse W (us)
+Rate (UPH / Target)|Rate (UPH / Target)
+Reset|Reset
+Result|Result
+Rework|Rework
+RUN|RUN
+Run Time|Run Time
+Scan Time (s)|Scan Time (s)
+Scan Trigger|Scan Trigger
+Set|Set
+SET|SET
+Speed (mm/s)|Speed (mm/s)
+Start|Start
+START|START
+State|State
+STOP|STOP
+Stop|Stop
+Stop Time|Stop Time
+Target UPH|Target UPH
+TIMER (freq)|TIMER (freq)
+Trig End (mm)|Trig End (mm)
+Trig Start (mm)|Trig Start (mm)
+Unit In|Unit In
+Unit Out|Unit Out
+UPH|UPH
+Vision|Vision
+
+# --- FormCalibration ---
+APPLY|APPLY
+CAL START|CAL START
+FRONT PICKER|FRONT PICKER
+FRONT PICKER  3 Point|FRONT PICKER  3 Point
+GET|GET
+MOVE|MOVE
+P1|P1
+P2|P2
+P3|P3
+Picker Center Align|Picker Center Align
+REAR PICKER|REAR PICKER
+REAR PICKER  3 Point|REAR PICKER  3 Point
+SAVE|SAVE
+SELECT|SELECT
+
+# --- FormDataLampBuzzer ---
+BLINK|BLINK
+COUNT :|COUNT :
+DEFAULT|DEFAULT
+GREEN LAMP|GREEN LAMP
+ms|ms
+OFF|OFF
+OFF TIME :|OFF TIME :
+ON|ON
+ON TIME :|ON TIME :
+RED LAMP|RED LAMP
+YELLOW LAMP|YELLOW LAMP
+
+# --- FormDataLifeTime ---
+Address|Address
+CANCEL|CANCEL
+Current|Current
+Item|Item
+Life Time Items|Life Time Items
+Limit|Limit
+Not applied|Not applied
+Over limit|Over limit
+RELOAD|RELOAD
+Remain|Remain
+RESET COUNT|RESET COUNT
+RESET COUNT after the part has been replaced.|RESET COUNT after the part has been replaced.
+Save|Save
+Selected Item|Selected Item
+SET LIMIT|SET LIMIT
+Summary|Summary
+Use|Use
+Warning|Warning
+
+# --- FormDataOption ---
+ITEM EDIT|ITEM EDIT
+
+# --- FormDataRecipe ---
+CLEAN|CLEAN
+COUNT / DELAY|COUNT / DELAY
+deg|deg
+DEVICE|DEVICE
+DEVICE COPY|DEVICE COPY
+EA|EA
+Flip Y1 Air Clean|Flip Y1 Air Clean
+Flip Y2 Air Clean|Flip Y2 Air Clean
+FRONT|FRONT
+Front Picker 1 Skip|Front Picker 1 Skip
+Front Picker 2 Skip|Front Picker 2 Skip
+Front Picker 3 Skip|Front Picker 3 Skip
+Front Picker 4 Skip|Front Picker 4 Skip
+Front Picker 5 Skip|Front Picker 5 Skip
+Front Picker 6 Skip|Front Picker 6 Skip
+Front Picker 7 Skip|Front Picker 7 Skip
+Front Picker 8 Skip|Front Picker 8 Skip
+Front Picker Air Blow Time|Front Picker Air Blow Time
+Front Picker Vac On Time|Front Picker Vac On Time
+Kpa|Kpa
+Load Picker Air Blow Time|Load Picker Air Blow Time
+Load Picker Vac On Time|Load Picker Vac On Time
+MAIN|MAIN
+mm|mm
+OPTION|OPTION
+Pallet 1 Receive Vacuum|Pallet 1 Receive Vacuum
+Pallet 2 Receive Vacuum|Pallet 2 Receive Vacuum
+Pallet First Sort PKG Rate|Pallet First Sort PKG Rate
+Pallet First Sort Vac Value|Pallet First Sort Vac Value
+Pallet Last Sort PKG Rate|Pallet Last Sort PKG Rate
+Pallet Last Sort Vac Value|Pallet Last Sort Vac Value
+Pallet Middle Sort Vac Value|Pallet Middle Sort Vac Value
+PALLET VAC|PALLET VAC
+Pallet Y1 Air Clean|Pallet Y1 Air Clean
+Pallet Y2 Air Clean|Pallet Y2 Air Clean
+PANEL|PANEL
+PICKER|PICKER
+Place Vac Off Offset|Place Vac Off Offset
+PROCESS COUNT|PROCESS COUNT
+REAR|REAR
+Rear Picker 1 Skip|Rear Picker 1 Skip
+Rear Picker 2 Skip|Rear Picker 2 Skip
+Rear Picker 3 Skip|Rear Picker 3 Skip
+Rear Picker 4 Skip|Rear Picker 4 Skip
+Rear Picker 5 Skip|Rear Picker 5 Skip
+Rear Picker 6 Skip|Rear Picker 6 Skip
+Rear Picker 7 Skip|Rear Picker 7 Skip
+Rear Picker 8 Skip|Rear Picker 8 Skip
+Rear Picker Air Blow Time|Rear Picker Air Blow Time
+Rear Picker Vac On Time|Rear Picker Vac On Time
+Rotate Angle|Rotate Angle
+Saw Picker Air Blow Time|Saw Picker Air Blow Time
+Saw Picker Flip Y1 Air Clean|Saw Picker Flip Y1 Air Clean
+Saw Picker Flip Y2 Air Clean|Saw Picker Flip Y2 Air Clean
+Saw Picker Sponge Clean|Saw Picker Sponge Clean
+Saw Picker Vac On Time|Saw Picker Vac On Time
+Scrap Skip|Scrap Skip
+Sponge Clean Skip|Sponge Clean Skip
+TIME DELAY|TIME DELAY
+TRAY|TRAY
+Tray X Count|Tray X Count
+TRAY X COUNT|TRAY X COUNT
+Tray Y Count|Tray Y Count
+TRAY Y COUNT|TRAY Y COUNT
+Unit X Count|Unit X Count
+Unit X Pitch|Unit X Pitch
+Unit X Size|Unit X Size
+Unit Y Count|Unit Y Count
+Unit Y Pitch|Unit Y Pitch
+Unit Y Size|Unit Y Size
+Vision Snap X Count|Vision Snap X Count
+Vision Snap Y Count|Vision Snap Y Count
+Water Jet Air Clean|Water Jet Air Clean
+Water Jet Water Clean|Water Jet Water Clean
+
+# --- FormDataSystem ---
+% of the limit|% of the limit
+days|days
+English|English
+Folders purged (LOG FOLDERS in MachineConfig.ini [SYSTEM])|Folders purged (LOG FOLDERS in MachineConfig.ini [SYSTEM])
+HARDWARE|HARDWARE
+Input|Input
+Items at or past this share show WARN on Life Time; at the limit they show OVER.|Items at or past this share show WARN on Life Time; at the limit they show OVER.
+Keep log files for|Keep log files for
+Keyboard|Keyboard
+Language|Language
+Life Time|Life Time
+Log Retention|Log Retention
+Machine|Machine
+Machine name (top bar)|Machine name (top bar)
+MMI and SEQ logs alike (.log, .txt). Checked a minute after start-up, then every hour.|MMI and SEQ logs alike (.log, .txt). Checked a minute after start-up, then every hour.
+PURGE NOW|PURGE NOW
+SOFTWARE|SOFTWARE
+SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.|SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.
+Start in|Start in
+The language the program starts in. Lang on the top bar switches it\nfor the session. Captions come from the files in the Language folder.|The language the program starts in. Lang on the top bar switches it\nfor the session. Captions come from the files in the Language folder.
+Warn from|Warn from
+中文|中文
+한국어|한국어
+
+# --- FormDataUserRegist ---
+CONFIRM PASSWORD|CONFIRM PASSWORD
+DELETE|DELETE
+ENGINEER|ENGINEER
+MAINTENANCE|MAINTENANCE
+MASTER|MASTER
+NEW PASSWORD|NEW PASSWORD
+OPERATOR|OPERATOR
+SELECT LEVEL|SELECT LEVEL
+
+# --- FormLog ---
+CLEAR|CLEAR
+ERROR LOG|ERROR LOG
+MMI LOG|MMI LOG
+SEQ LOG|SEQ LOG
+
+# --- FormLogError ---
+END :|END :
+ERROR NAME|ERROR NAME
+Find|Find
+STRT :|STRT :
+
+# --- FormLogHistory ---
+CLOSE|CLOSE
+ERROR ONLY|ERROR ONLY
+FULL LOG|FULL LOG
+SELECTION|SELECTION
+
+# --- FormLogMTBA ---
+END|END
+LOG HISTORY|LOG HISTORY
+NEW DB|NEW DB
+OLD DB|OLD DB
+REFRESH|REFRESH
+YYYY-MM-DD|YYYY-MM-DD
+
+# --- FormMain ---
+Alarm|Alarm
+Auto|Auto
+AUTO|AUTO
+Auto 2|Auto 2
+Axis|Axis
+Bit / DM|Bit / DM
+Buzzer Off|Buzzer Off
+Data|Data
+Device|Device
+EMO|EMO
+Error History|Error History
+Input / Output|Input / Output
+IO|IO
+Lamp Buzzer|Lamp Buzzer
+Lang|Lang
+List|List
+Log|Log
+Log In|Log In
+Manual|Manual
+Motor|Motor
+Motor Config|Motor Config
+MTBA / MTBF|MTBA / MTBF
+No Alarm|No Alarm
+Operation|Operation
+PM|PM
+Recipe|Recipe
+Show/Hide Console|Show/Hide Console
+System Data|System Data
+Teach|Teach
+Ten Key|Ten Key
+USE / SKIP|USE / SKIP
+User Regist|User Regist
+● Operator|● Operator
+● Peripheral: -|● Peripheral: -
+● SECS/GEM: Offline|● SECS/GEM: Offline
+● SEQ: Disconnected|● SEQ: Disconnected
+
+# --- FormManualOP ---
+Air Knife Blow On/Off|Air Knife Blow On/Off
+Air Knife On/Off|Air Knife On/Off
+Air Knife Up/Down|Air Knife Up/Down
+Bottom Vision Y Motor Move|Bottom Vision Y Motor Move
+Clamp Open/Close|Clamp Open/Close
+Door Lock/Unlock|Door Lock/Unlock
+Elev1. Door Lock/Unlock|Elev1. Door Lock/Unlock
+Elev1. Down|Elev1. Down
+Elev1. Up|Elev1. Up
+Elev2. Door Lock/Unlock|Elev2. Door Lock/Unlock
+Elev2. Down|Elev2. Down
+Elev2. Up|Elev2. Up
+Elev3. Door Lock/Unlock|Elev3. Door Lock/Unlock
+Elev3. Down|Elev3. Down
+Elev3. Up|Elev3. Up
+Empty Tray Picker Clamp Open/Close|Empty Tray Picker Clamp Open/Close
+Empty Tray Picker X Move|Empty Tray Picker X Move
+Empty Tray Picker Z Move|Empty Tray Picker Z Move
+Flip Turn 1 Motor Move|Flip Turn 1 Motor Move
+Flip Turn 2 Motor Move|Flip Turn 2 Motor Move
+Flip Y1 Motor Move|Flip Y1 Motor Move
+Flip Zone Ionzer On/Off|Flip Zone Ionzer On/Off
+Flip1 Air Knife On/Off|Flip1 Air Knife On/Off
+Flip1 Vac. On/Off|Flip1 Vac. On/Off
+Flip2 Air Knife On/Off|Flip2 Air Knife On/Off
+Flip2 Vac. On/Off|Flip2 Vac. On/Off
+Good Tray Elev1 Down|Good Tray Elev1 Down
+Good Tray Elev1 Up|Good Tray Elev1 Up
+Good Tray Elev2 Down|Good Tray Elev2 Down
+Good Tray Elev2 Up|Good Tray Elev2 Up
+Good Tray Y1 Move|Good Tray Y1 Move
+Good Tray Y2 Move|Good Tray Y2 Move
+Grab Clamp Open/Close|Grab Clamp Open/Close
+Load Picker Vac. On/Off|Load Picker Vac. On/Off
+Load Picker X Move|Load Picker X Move
+Load Picker Z Move|Load Picker Z Move
+NG Tray Elev Down|NG Tray Elev Down
+NG Tray Elev Up|NG Tray Elev Up
+NG Tray Y Move|NG Tray Y Move
+Pallet 1 Air Knife On/Off|Pallet 1 Air Knife On/Off
+Pallet 1 Up/Down|Pallet 1 Up/Down
+Pallet 1 Vac. On/Off|Pallet 1 Vac. On/Off
+Pallet 2 Air Knife On/Off|Pallet 2 Air Knife On/Off
+Pallet 2 Up/Down|Pallet 2 Up/Down
+Pallet 2 Vac. On/Off|Pallet 2 Vac. On/Off
+Pallet Y1 Motor Move|Pallet Y1 Motor Move
+Pallet Y2 Motor Move|Pallet Y2 Motor Move
+Picker 1 Move|Picker 1 Move
+Picker 1 Vac|Picker 1 Vac
+Picker 2 Move|Picker 2 Move
+Picker 2 Vac|Picker 2 Vac
+Picker 3 Move|Picker 3 Move
+Picker 3 Vac|Picker 3 Vac
+Picker 4 Move|Picker 4 Move
+Picker 4 Vac|Picker 4 Vac
+Picker 5 Move|Picker 5 Move
+Picker 5 Vac|Picker 5 Vac
+Picker 6 Move|Picker 6 Move
+Picker 6 Vac|Picker 6 Vac
+Picker 7 Move|Picker 7 Move
+Picker 7 Vac|Picker 7 Vac
+Picker 8 Move|Picker 8 Move
+Picker 8 Vac|Picker 8 Vac
+Picker T Move|Picker T Move
+Picker X Move|Picker X Move
+Rear Clamp Open/Close|Rear Clamp Open/Close
+Rework Tray Elev Down|Rework Tray Elev Down
+Rework Tray Elev Up|Rework Tray Elev Up
+Rework Tray Y Move|Rework Tray Y Move
+Right Clamp Open/Close|Right Clamp Open/Close
+Saw Picker Vac. On/Off|Saw Picker Vac. On/Off
+Saw Picker X Move|Saw Picker X Move
+Saw Picker Z Move|Saw Picker Z Move
+Scrap Vac1. On/Off|Scrap Vac1. On/Off
+Scrap Vac2. On/Off|Scrap Vac2. On/Off
+Sorting Zone Ionizer On/Off|Sorting Zone Ionizer On/Off
+Sponge Clean On/Off|Sponge Clean On/Off
+Top Vision X1 Motor Move|Top Vision X1 Motor Move
+Top Vision X2 Motor Move|Top Vision X2 Motor Move
+Top Vision Z1 Motor Move|Top Vision Z1 Motor Move
+Top Vision Z2 Motor Move|Top Vision Z2 Motor Move
+Tray Elevator Zone Ionizer On/Off|Tray Elevator Zone Ionizer On/Off
+Tray Picker X Move|Tray Picker X Move
+Tray Picker Z Move|Tray Picker Z Move
+Water knife On/Off|Water knife On/Off
+WaterJet X Move|WaterJet X Move
+
+# --- FormMonitorBitDM ---
+BIN|BIN
+DM DEC/HEX/BIN DISPLAY|DM DEC/HEX/BIN DISPLAY
+HEX|HEX
+NO|NO
+
+# --- FormMonitorIO ---
+NAME EDIT|NAME EDIT
+OUTPUT ENABLE|OUTPUT ENABLE
+
+# --- FormMotorSetting ---
++Limit|+Limit
+-Limit|-Limit
+CALC|CALC
+CURRENT INDEX|CURRENT INDEX
+CURRENT POSITION|CURRENT POSITION
+FUNCTION|FUNCTION
+HOME|HOME
+IDX WRITE|IDX WRITE
+JOG|JOG
+JOG MODE|JOG MODE
+MOTOR SELECT|MOTOR SELECT
+MOVE INDEX|MOVE INDEX
+MOVING|MOVING
+NEXT INDEX|NEXT INDEX
+NEXT POSITION|NEXT POSITION
+ORG|ORG
+SAVE Position|SAVE Position
+SERVO ON/OFF|SERVO ON/OFF
+TENKEY JOG|TENKEY JOG
+Unit(mm)|Unit(mm)
+Velocity|Velocity
+
+# --- FormScanTrigger ---
+0  IDLE|0  IDLE
+1  GOTO START|1  GOTO START
+10  RETURN|10  RETURN
+11  WAIT RETURN|11  WAIT RETURN
+2  WAIT START|2  WAIT START
+3  ARM|3  ARM
+4  RUN|4  RUN
+5  WAIT END|5  WAIT END
+6  DISARM|6  DISARM
+7  DONE|7  DONE
+8  ABORTED|8  ABORTED
+9  OUTPUT TEST|9  OUTPUT TEST
+Active Level|Active Level
+Armed At (counts)|Armed At (counts)
+Behind Arm (counts)|Behind Arm (counts)
+Block (counts)|Block (counts)
+Count the encoder the other way|Count the encoder the other way
+Counter Channel|Counter Channel
+Counter H/W Config|Counter H/W Config
+Cycle State|Cycle State
+DEFAULTS|DEFAULTS
+Direction Check|Direction Check
+Encoder (counts)|Encoder (counts)
+ENCODER = AXIS POSITION|ENCODER = AXIS POSITION
+Encoder Input|Encoder Input
+Encoder Position (mm)|Encoder Position (mm)
+Encoder Reverse|Encoder Reverse
+Live Counter|Live Counter
+LOG CLEAR|LOG CLEAR
+Mode|Mode
+OUT 0|OUT 0
+OUT 1|OUT 1
+OUT 2|OUT 2
+OUT 3|OUT 3
+Pitch (counts)|Pitch (counts)
+Progress|Progress
+READ|READ
+Recipe / START on Auto|Recipe / START on Auto
+Scan Cycle|Scan Cycle
+Scan Geometry  (motor index 50 - 53)|Scan Geometry  (motor index 50 - 53)
+SET and START stay on the Auto screen, beside the recipe.|SET and START stay on the Auto screen, beside the recipe.
+Trigger Count|Trigger Count
+TRIGGER COUNT CLEAR|TRIGGER COUNT CLEAR
+Trigger Log|Trigger Log
+Trigger Output|Trigger Output
+Unit per Count (mm)|Unit per Count (mm)
+Validate|Validate
+WRITE|WRITE
+Wrong Way Limit (counts)|Wrong Way Limit (counts)
+
+# --- Form_DataCopy ---
+COPY|COPY
+DEVICE NAME|DEVICE NAME
+EXIT|EXIT
+Recipe Data Copy|Recipe Data Copy
+SELECT SOURCE DEVICE|SELECT SOURCE DEVICE
+SELECT TARGET DEVICE|SELECT TARGET DEVICE
+
+# --- Form_Home ---
+ALL HOME|ALL HOME
+BTM VisionY|BTM VisionY
+COMPLETE|COMPLETE
+Flip Trun1|Flip Trun1
+Flip Trun2|Flip Trun2
+Flip Y1|Flip Y1
+Flip Y2|Flip Y2
+Home|Home
+HOMMING|HOMMING
+Load Pk X|Load Pk X
+Load Pk Z|Load Pk Z
+Pallet Y1|Pallet Y1
+Pallet Y2|Pallet Y2
+Saw Pk X|Saw Pk X
+Saw Pk Z|Saw Pk Z
+STATUS :|STATUS :
+WAITING|WAITING
+
+# --- Form_Language ---
+For this session. The start-up language is set on System Data.|For this session. The start-up language is set on System Data.
+
+# --- Form_LotInput ---
+COUNT|COUNT
+LOT ID|LOT ID
+LOT INFO.|LOT INFO.
+OK|OK
+
+# --- Form_Map ---
+ALL EMPTY|ALL EMPTY
+ALL EXIST|ALL EXIST
+Map|Map
+
+# --- Form_MotorCalc ---
+ACCEL|ACCEL
+BASE + OFFSET|BASE + OFFSET
+CURRENT + OFFSET|CURRENT + OFFSET
+DATA SETTING|DATA SETTING
+ITEM NAME|ITEM NAME
+SPEED|SPEED
+
+# --- Form_Msg ---
+message...|message...
+
+# --- Form_NumAdd ---
+DEL|DEL
+ENTER|ENTER
+
+# --- Form_PWD ---
+Password Input|Password Input
+
+# --- Form_SystemInit ---
+Initializing|Initializing
+SYSTEM INITIALIZING|SYSTEM INITIALIZING
+
+# --- Form_UserLogIn ---
+PASSWORD|PASSWORD
+USER|USER
+USER LOG IN|USER LOG IN
+
+# --- code ---
+(not applied)|(not applied)
+A limit cannot be negative.|A limit cannot be negative.
+A purge is already running.|A purge is already running.
+APPLY the keep period first; the purge uses the saved one.|APPLY the keep period first; the purge uses the saved one.
+Changes discarded.|Changes discarded.
+Changes not applied.|Changes not applied.
+Engineer|Engineer
+Enter a value from {0} to {1}.|Enter a value from {0} to {1}.
+Files last written before {0} are deleted.|Files last written before {0} are deleted.
+Front Picker Z1|Front Picker Z1
+Front Picker Z2|Front Picker Z2
+Front Picker Z3|Front Picker Z3
+Front Picker Z4|Front Picker Z4
+Front Picker Z5|Front Picker Z5
+Front Picker Z6|Front Picker Z6
+Front Picker Z7|Front Picker Z7
+Front Picker Z8|Front Picker Z8
+Good Tray 1 Unload|Good Tray 1 Unload
+Good Tray 2 Unload|Good Tray 2 Unload
+Limits saved and sent to SEQ.|Limits saved and sent to SEQ.
+Log Out|Log Out
+Maintenance|Maintenance
+Master|Master
+NG Tray Unload|NG Tray Unload
+No|No
+No User|No User
+Not while the machine runs.|Not while the machine runs.
+Nothing to apply.|Nothing to apply.
+Offline|Offline
+Online|Online
+Operator|Operator
+Rear Picker Z1|Rear Picker Z1
+Rear Picker Z2|Rear Picker Z2
+Rear Picker Z3|Rear Picker Z3
+Rear Picker Z4|Rear Picker Z4
+Rear Picker Z5|Rear Picker Z5
+Rear Picker Z6|Rear Picker Z6
+Rear Picker Z7|Rear Picker Z7
+Rear Picker Z8|Rear Picker Z8
+Reloaded from the DB.|Reloaded from the DB.
+Reset the count of {0} to 0?\nDo this after the part has been replaced.|Reset the count of {0} to 0?\nDo this after the part has been replaced.
+Rework Tray Unload|Rework Tray Unload
+SEQ: Connected|SEQ: Connected
+SEQ: Disconnected|SEQ: Disconnected
+Sponge Clean|Sponge Clean
+Staged limits discarded.|Staged limits discarded.
+System|System
+System data saved.|System data saved.
+The machine name cannot be empty.|The machine name cannot be empty.
+WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.|WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.
+{0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.|{0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.
+{0} items.|{0} items.
+{0}: count reset.|{0}: count reset.
+{0}: limit {1} staged. APPLY saves it.|{0}: limit {1} staged. APPLY saves it.

@@ -1,0 +1,591 @@
+﻿# MMIApp captions - Korean
+# English text|Korean text, one per line, UTF-8. \n is a line break.
+# @Form.Control|text sets one control only. A phrase not listed stays in English.
+# Written by _tools\gen_lang.py; lines added by hand are kept only if added to its table.
+
+
+# --- FormAlarmList ---
+EDIT|편집
+MP3 PLAY|MP3 재생
+MP3 STOP|MP3 정지
+OCCURRENCE FACTOR|발생 원인
+OPEN|열기
+TROUBLE SHOOTING|조치 방법
+
+# --- FormAuto1 ---
+Air 1|공압 1
+Air 2|공압 2
+Air 3|공압 3
+Air Pressure (MPa)|공압 (MPa)
+ALARM|알람
+Communication|통신
+Control|제어
+Count|수량
+Enc Count|엔코더 카운트
+Equipment State|설비 상태
+Good|양품
+Initialize|초기화
+Line Rate (kHz)|라인 속도 (kHz)
+Lines|라인 수
+Lot|Lot
+Lot Cancel|Lot 취소
+Lot End|Lot 종료
+Lot ID|Lot ID
+Lot Input|Lot 입력
+Motion End (mm)|이동 끝 (mm)
+Motion Start (mm)|이동 시작 (mm)
+NG|불량
+OUTPUT TEST|출력 테스트
+Panel In|패널 투입
+PERIODIC (enc)|PERIODIC (엔코더)
+Pixel Res (um)|픽셀 분해능 (um)
+Production|생산
+Pulse W (us)|펄스 폭 (us)
+Rate (UPH / Target)|달성률 (UPH / 목표)
+Reset|리셋
+Result|결과
+Rework|재작업
+RUN|운전
+Run Time|가동 시간
+Scan Time (s)|스캔 시간 (s)
+Scan Trigger|스캔 트리거
+Set|설정
+SET|설정
+Speed (mm/s)|속도 (mm/s)
+Start|시작
+START|시작
+State|상태
+STOP|정지
+Stop|정지
+Stop Time|정지 시간
+Target UPH|목표 UPH
+TIMER (freq)|TIMER (주파수)
+Trig End (mm)|트리거 끝 (mm)
+Trig Start (mm)|트리거 시작 (mm)
+Unit In|투입
+Unit Out|배출
+# UPH|
+Vision|비전
+
+# --- FormCalibration ---
+APPLY|적용
+CAL START|보정 시작
+FRONT PICKER|전면 피커
+FRONT PICKER  3 Point|전면 피커 3점
+GET|가져오기
+MOVE|이동
+# P1|
+# P2|
+# P3|
+Picker Center Align|피커 중심 정렬
+REAR PICKER|후면 피커
+REAR PICKER  3 Point|후면 피커 3점
+SAVE|저장
+SELECT|선택
+
+# --- FormDataLampBuzzer ---
+BLINK|깜빡임
+COUNT :|수량 :
+DEFAULT|기본값
+GREEN LAMP|녹색 램프
+# ms|
+OFF|OFF
+OFF TIME :|OFF 시간 :
+ON|ON
+ON TIME :|ON 시간 :
+RED LAMP|적색 램프
+YELLOW LAMP|황색 램프
+
+# --- FormDataLifeTime ---
+Address|주소
+CANCEL|취소
+Current|현재
+Item|항목
+Life Time Items|수명 항목
+Limit|한계
+Not applied|미적용
+Over limit|한계 초과
+RELOAD|다시 읽기
+Remain|잔여
+RESET COUNT|수량 리셋
+RESET COUNT after the part has been replaced.|부품을 교체한 뒤 수량 리셋을 누르세요.
+Save|저장
+Selected Item|선택 항목
+SET LIMIT|한계 설정
+Summary|요약
+Use|사용률
+Warning|경고
+
+# --- FormDataOption ---
+ITEM EDIT|항목 편집
+
+# --- FormDataRecipe ---
+CLEAN|세정
+COUNT / DELAY|수량 / 지연
+# deg|
+DEVICE|디바이스
+DEVICE COPY|디바이스 복사
+# EA|
+Flip Y1 Air Clean|플립 Y1 에어 세정
+Flip Y2 Air Clean|플립 Y2 에어 세정
+FRONT|전면
+Front Picker 1 Skip|전면 피커 1 스킵
+Front Picker 2 Skip|전면 피커 2 스킵
+Front Picker 3 Skip|전면 피커 3 스킵
+Front Picker 4 Skip|전면 피커 4 스킵
+Front Picker 5 Skip|전면 피커 5 스킵
+Front Picker 6 Skip|전면 피커 6 스킵
+Front Picker 7 Skip|전면 피커 7 스킵
+Front Picker 8 Skip|전면 피커 8 스킵
+Front Picker Air Blow Time|전면 피커 에어 블로 시간
+Front Picker Vac On Time|전면 피커 진공 ON 시간
+# Kpa|
+Load Picker Air Blow Time|로드 피커 에어 블로 시간
+Load Picker Vac On Time|로드 피커 진공 ON 시간
+MAIN|메인
+# mm|
+OPTION|옵션
+Pallet 1 Receive Vacuum|팔레트 1 수취 진공
+Pallet 2 Receive Vacuum|팔레트 2 수취 진공
+Pallet First Sort PKG Rate|팔레트 첫 분류 PKG 비율
+Pallet First Sort Vac Value|팔레트 첫 분류 진공값
+Pallet Last Sort PKG Rate|팔레트 마지막 분류 PKG 비율
+Pallet Last Sort Vac Value|팔레트 마지막 분류 진공값
+Pallet Middle Sort Vac Value|팔레트 중간 분류 진공값
+PALLET VAC|팔레트 진공
+Pallet Y1 Air Clean|팔레트 Y1 에어 세정
+Pallet Y2 Air Clean|팔레트 Y2 에어 세정
+PANEL|패널
+PICKER|피커
+Place Vac Off Offset|내려놓기 진공 OFF 오프셋
+PROCESS COUNT|공정 수량
+REAR|후면
+Rear Picker 1 Skip|후면 피커 1 스킵
+Rear Picker 2 Skip|후면 피커 2 스킵
+Rear Picker 3 Skip|후면 피커 3 스킵
+Rear Picker 4 Skip|후면 피커 4 스킵
+Rear Picker 5 Skip|후면 피커 5 스킵
+Rear Picker 6 Skip|후면 피커 6 스킵
+Rear Picker 7 Skip|후면 피커 7 스킵
+Rear Picker 8 Skip|후면 피커 8 스킵
+Rear Picker Air Blow Time|후면 피커 에어 블로 시간
+Rear Picker Vac On Time|후면 피커 진공 ON 시간
+Rotate Angle|회전 각도
+Saw Picker Air Blow Time|소 피커 에어 블로 시간
+Saw Picker Flip Y1 Air Clean|소 피커 플립 Y1 에어 세정
+Saw Picker Flip Y2 Air Clean|소 피커 플립 Y2 에어 세정
+Saw Picker Sponge Clean|소 피커 스펀지 세정
+Saw Picker Vac On Time|소 피커 진공 ON 시간
+Scrap Skip|스크랩 스킵
+Sponge Clean Skip|스펀지 세정 스킵
+TIME DELAY|지연 시간
+TRAY|트레이
+Tray X Count|트레이 X 수량
+TRAY X COUNT|트레이 X 수량
+Tray Y Count|트레이 Y 수량
+TRAY Y COUNT|트레이 Y 수량
+Unit X Count|유닛 X 수량
+Unit X Pitch|유닛 X 피치
+Unit X Size|유닛 X 크기
+Unit Y Count|유닛 Y 수량
+Unit Y Pitch|유닛 Y 피치
+Unit Y Size|유닛 Y 크기
+Vision Snap X Count|비전 촬영 X 수량
+Vision Snap Y Count|비전 촬영 Y 수량
+Water Jet Air Clean|워터젯 에어 세정
+Water Jet Water Clean|워터젯 물 세정
+
+# --- FormDataSystem ---
+% of the limit|% (한계 대비)
+days|일
+English|English
+Folders purged (LOG FOLDERS in MachineConfig.ini [SYSTEM])|정리 대상 폴더 (MachineConfig.ini [SYSTEM] LOG FOLDERS)
+HARDWARE|하드웨어
+Input|입력
+Items at or past this share show WARN on Life Time; at the limit they show OVER.|이 비율 이상이면 수명 화면에 WARN, 한계에 도달하면 OVER로 표시합니다.
+Keep log files for|로그 파일 보관 기간
+Keyboard|키보드
+Language|언어
+Life Time|수명
+Log Retention|로그 보관
+Machine|설비
+Machine name (top bar)|설비 이름 (상단바)
+MMI and SEQ logs alike (.log, .txt). Checked a minute after start-up, then every hour.|MMI와 SEQ 로그 모두 (.log, .txt). 시작 1분 뒤, 이후 1시간마다 검사합니다.
+PURGE NOW|지금 정리
+SOFTWARE|소프트웨어
+SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.|소프트웨어: 입력칸을 누르면 화상 키보드가 열립니다.\n하드웨어: 연결된 키보드로 입력합니다.
+Start in|시작 언어
+The language the program starts in. Lang on the top bar switches it\nfor the session. Captions come from the files in the Language folder.|프로그램이 시작할 때의 언어입니다. 상단바의 언어 버튼은\n이번 실행 동안만 바꿉니다. 문구는 Language 폴더의 파일에서 읽습니다.
+Warn from|경고 시작
+中文|中文
+한국어|한국어
+
+# --- FormDataUserRegist ---
+CONFIRM PASSWORD|비밀번호 확인
+DELETE|삭제
+ENGINEER|엔지니어
+MAINTENANCE|유지보수
+MASTER|마스터
+NEW PASSWORD|새 비밀번호
+OPERATOR|작업자
+SELECT LEVEL|레벨 선택
+
+# --- FormLog ---
+CLEAR|지우기
+ERROR LOG|에러 로그
+MMI LOG|MMI 로그
+SEQ LOG|SEQ 로그
+
+# --- FormLogError ---
+END :|종료 :
+ERROR NAME|에러 이름
+Find|찾기
+STRT :|시작 :
+
+# --- FormLogHistory ---
+CLOSE|닫기
+ERROR ONLY|에러만
+FULL LOG|전체 로그
+SELECTION|선택
+
+# --- FormLogMTBA ---
+END|종료
+LOG HISTORY|로그 이력
+NEW DB|새 DB
+OLD DB|이전 DB
+REFRESH|새로고침
+YYYY-MM-DD|YYYY-MM-DD
+
+# --- FormMain ---
+Alarm|알람
+Auto|자동
+AUTO|자동
+Auto 2|자동 2
+Axis|축
+Bit / DM|비트 / DM
+Buzzer Off|부저 끄기
+Data|데이터
+Device|디바이스
+EMO|EMO
+Error History|에러 이력
+Input / Output|입력 / 출력
+IO|IO
+Lamp Buzzer|램프 부저
+Lang|언어
+List|목록
+Log|로그
+Log In|로그인
+Manual|수동
+Motor|모터
+Motor Config|모터 설정
+MTBA / MTBF|MTBA / MTBF
+No Alarm|알람 없음
+Operation|조작
+PM|PM
+Recipe|레시피
+Show/Hide Console|콘솔 보이기/숨기기
+System Data|시스템 데이터
+Teach|티칭
+Ten Key|텐키
+USE / SKIP|사용 / 스킵
+User Regist|사용자 등록
+● Operator|● 작업자
+● Peripheral: -|● 주변기기: -
+● SECS/GEM: Offline|● SECS/GEM: 오프라인
+● SEQ: Disconnected|● SEQ: 연결 끊김
+
+# --- FormManualOP ---
+Air Knife Blow On/Off|에어 나이프 블로 On/Off
+Air Knife On/Off|에어 나이프 On/Off
+Air Knife Up/Down|에어 나이프 상승/하강
+Bottom Vision Y Motor Move|하부 비전 Y 모터 이동
+Clamp Open/Close|클램프 열기/닫기
+Door Lock/Unlock|도어 잠금/해제
+Elev1. Door Lock/Unlock|엘리베이터1 도어 잠금/해제
+Elev1. Down|엘리베이터1 하강
+Elev1. Up|엘리베이터1 상승
+Elev2. Door Lock/Unlock|엘리베이터2 도어 잠금/해제
+Elev2. Down|엘리베이터2 하강
+Elev2. Up|엘리베이터2 상승
+Elev3. Door Lock/Unlock|엘리베이터3 도어 잠금/해제
+Elev3. Down|엘리베이터3 하강
+Elev3. Up|엘리베이터3 상승
+Empty Tray Picker Clamp Open/Close|빈 트레이 피커 클램프 열기/닫기
+Empty Tray Picker X Move|빈 트레이 피커 X 이동
+Empty Tray Picker Z Move|빈 트레이 피커 Z 이동
+Flip Turn 1 Motor Move|플립 회전 1 모터 이동
+Flip Turn 2 Motor Move|플립 회전 2 모터 이동
+Flip Y1 Motor Move|플립 Y1 모터 이동
+Flip Zone Ionzer On/Off|플립 구역 이오나이저 On/Off
+Flip1 Air Knife On/Off|플립1 에어 나이프 On/Off
+Flip1 Vac. On/Off|플립1 진공 On/Off
+Flip2 Air Knife On/Off|플립2 에어 나이프 On/Off
+Flip2 Vac. On/Off|플립2 진공 On/Off
+Good Tray Elev1 Down|양품 트레이 엘리베이터1 하강
+Good Tray Elev1 Up|양품 트레이 엘리베이터1 상승
+Good Tray Elev2 Down|양품 트레이 엘리베이터2 하강
+Good Tray Elev2 Up|양품 트레이 엘리베이터2 상승
+Good Tray Y1 Move|양품 트레이 Y1 이동
+Good Tray Y2 Move|양품 트레이 Y2 이동
+Grab Clamp Open/Close|그랩 클램프 열기/닫기
+Load Picker Vac. On/Off|로드 피커 진공 On/Off
+Load Picker X Move|로드 피커 X 이동
+Load Picker Z Move|로드 피커 Z 이동
+NG Tray Elev Down|불량 트레이 엘리베이터 하강
+NG Tray Elev Up|불량 트레이 엘리베이터 상승
+NG Tray Y Move|불량 트레이 Y 이동
+Pallet 1 Air Knife On/Off|팔레트 1 에어 나이프 On/Off
+Pallet 1 Up/Down|팔레트 1 상승/하강
+Pallet 1 Vac. On/Off|팔레트 1 진공 On/Off
+Pallet 2 Air Knife On/Off|팔레트 2 에어 나이프 On/Off
+Pallet 2 Up/Down|팔레트 2 상승/하강
+Pallet 2 Vac. On/Off|팔레트 2 진공 On/Off
+Pallet Y1 Motor Move|팔레트 Y1 모터 이동
+Pallet Y2 Motor Move|팔레트 Y2 모터 이동
+Picker 1 Move|피커 1 이동
+Picker 1 Vac|피커 1 진공
+Picker 2 Move|피커 2 이동
+Picker 2 Vac|피커 2 진공
+Picker 3 Move|피커 3 이동
+Picker 3 Vac|피커 3 진공
+Picker 4 Move|피커 4 이동
+Picker 4 Vac|피커 4 진공
+Picker 5 Move|피커 5 이동
+Picker 5 Vac|피커 5 진공
+Picker 6 Move|피커 6 이동
+Picker 6 Vac|피커 6 진공
+Picker 7 Move|피커 7 이동
+Picker 7 Vac|피커 7 진공
+Picker 8 Move|피커 8 이동
+Picker 8 Vac|피커 8 진공
+Picker T Move|피커 T 이동
+Picker X Move|피커 X 이동
+Rear Clamp Open/Close|후면 클램프 열기/닫기
+Rework Tray Elev Down|재작업 트레이 엘리베이터 하강
+Rework Tray Elev Up|재작업 트레이 엘리베이터 상승
+Rework Tray Y Move|재작업 트레이 Y 이동
+Right Clamp Open/Close|우측 클램프 열기/닫기
+Saw Picker Vac. On/Off|소 피커 진공 On/Off
+Saw Picker X Move|소 피커 X 이동
+Saw Picker Z Move|소 피커 Z 이동
+Scrap Vac1. On/Off|스크랩 진공1 On/Off
+Scrap Vac2. On/Off|스크랩 진공2 On/Off
+Sorting Zone Ionizer On/Off|분류 구역 이오나이저 On/Off
+Sponge Clean On/Off|스펀지 세정 On/Off
+Top Vision X1 Motor Move|상부 비전 X1 모터 이동
+Top Vision X2 Motor Move|상부 비전 X2 모터 이동
+Top Vision Z1 Motor Move|상부 비전 Z1 모터 이동
+Top Vision Z2 Motor Move|상부 비전 Z2 모터 이동
+Tray Elevator Zone Ionizer On/Off|트레이 엘리베이터 구역 이오나이저 On/Off
+Tray Picker X Move|트레이 피커 X 이동
+Tray Picker Z Move|트레이 피커 Z 이동
+Water knife On/Off|워터 나이프 On/Off
+WaterJet X Move|워터젯 X 이동
+
+# --- FormMonitorBitDM ---
+BIN|2진
+DM DEC/HEX/BIN DISPLAY|DM 10진/16진/2진 표시
+HEX|16진
+NO|아니오
+
+# --- FormMonitorIO ---
+NAME EDIT|이름 편집
+OUTPUT ENABLE|출력 허용
+
+# --- FormMotorSetting ---
++Limit|+리밋
+-Limit|-리밋
+CALC|계산
+CURRENT INDEX|현재 인덱스
+CURRENT POSITION|현재 위치
+FUNCTION|기능
+HOME|원점
+IDX WRITE|번호 쓰기
+JOG|조그
+JOG MODE|조그 모드
+MOTOR SELECT|모터 선택
+MOVE INDEX|인덱스 이동
+MOVING|이동 중
+NEXT INDEX|다음 인덱스
+NEXT POSITION|다음 위치
+ORG|원점
+SAVE Position|위치 저장
+SERVO ON/OFF|서보 ON/OFF
+TENKEY JOG|텐키 조그
+# Unit(mm)|
+Velocity|속도
+
+# --- FormScanTrigger ---
+0  IDLE|0  대기
+1  GOTO START|1  시작점 이동
+10  RETURN|10  복귀
+11  WAIT RETURN|11  복귀 대기
+2  WAIT START|2  시작점 대기
+3  ARM|3  ARM
+4  RUN|4  RUN
+5  WAIT END|5  끝 대기
+6  DISARM|6  DISARM
+7  DONE|7  완료
+8  ABORTED|8  중단
+9  OUTPUT TEST|9  출력 테스트
+Active Level|출력 레벨
+Armed At (counts)|암 위치 (counts)
+Behind Arm (counts)|암 이후 역방향 (counts)
+Block (counts)|블록 (counts)
+Count the encoder the other way|엔코더를 반대 방향으로 셉니다
+Counter Channel|카운터 채널
+Counter H/W Config|카운터 H/W 설정
+Cycle State|사이클 상태
+DEFAULTS|기본값
+Direction Check|방향 검사
+Encoder (counts)|엔코더 (counts)
+ENCODER = AXIS POSITION|엔코더 = 축 위치
+Encoder Input|엔코더 입력
+Encoder Position (mm)|엔코더 위치 (mm)
+Encoder Reverse|엔코더 반전
+Live Counter|실시간 카운터
+LOG CLEAR|로그 지우기
+Mode|모드
+# OUT 0|
+# OUT 1|
+# OUT 2|
+# OUT 3|
+Pitch (counts)|피치 (counts)
+Progress|진행률
+READ|읽기
+Recipe / START on Auto|레시피 / START는 자동 화면에서
+Scan Cycle|스캔 사이클
+Scan Geometry  (motor index 50 - 53)|스캔 위치도 (모터 인덱스 50 - 53)
+SET and START stay on the Auto screen, beside the recipe.|SET과 START는 레시피와 함께 자동 화면에 있습니다.
+Trigger Count|트리거 수
+TRIGGER COUNT CLEAR|트리거 수 지우기
+Trigger Log|트리거 로그
+Trigger Output|트리거 출력
+Unit per Count (mm)|카운트당 단위 (mm)
+Validate|검증
+WRITE|쓰기
+Wrong Way Limit (counts)|역방향 한계 (counts)
+
+# --- Form_DataCopy ---
+COPY|복사
+DEVICE NAME|디바이스 이름
+EXIT|종료
+Recipe Data Copy|레시피 데이터 복사
+SELECT SOURCE DEVICE|원본 디바이스 선택
+SELECT TARGET DEVICE|대상 디바이스 선택
+
+# --- Form_Home ---
+ALL HOME|전체 원점
+BTM VisionY|하부 비전 Y
+COMPLETE|완료
+Flip Trun1|플립 회전1
+Flip Trun2|플립 회전2
+Flip Y1|플립 Y1
+Flip Y2|플립 Y2
+Home|원점
+HOMMING|원점 복귀
+Load Pk X|로드 피커 X
+Load Pk Z|로드 피커 Z
+Pallet Y1|팔레트 Y1
+Pallet Y2|팔레트 Y2
+Saw Pk X|소 피커 X
+Saw Pk Z|소 피커 Z
+STATUS :|상태 :
+WAITING|대기 중
+
+# --- Form_Language ---
+For this session. The start-up language is set on System Data.|이번 실행 동안만 적용됩니다. 시작 언어는 시스템 데이터에서 설정합니다.
+
+# --- Form_LotInput ---
+COUNT|수량
+LOT ID|Lot ID
+LOT INFO.|LOT 정보
+OK|확인
+
+# --- Form_Map ---
+ALL EMPTY|전체 비움
+ALL EXIST|전체 있음
+Map|맵
+
+# --- Form_MotorCalc ---
+ACCEL|가속
+BASE + OFFSET|기준 + 오프셋
+CURRENT + OFFSET|현재 + 오프셋
+DATA SETTING|데이터 설정
+ITEM NAME|항목 이름
+SPEED|속도
+
+# --- Form_Msg ---
+message...|메시지...
+
+# --- Form_NumAdd ---
+DEL|삭제
+ENTER|입력
+
+# --- Form_PWD ---
+Password Input|비밀번호 입력
+
+# --- Form_SystemInit ---
+Initializing|초기화 중
+SYSTEM INITIALIZING|시스템 초기화 중
+
+# --- Form_UserLogIn ---
+PASSWORD|비밀번호
+USER|사용자
+USER LOG IN|사용자 로그인
+
+# --- code ---
+(not applied)|(미적용)
+A limit cannot be negative.|한계는 음수가 될 수 없습니다.
+A purge is already running.|이미 정리 중입니다.
+APPLY the keep period first; the purge uses the saved one.|보관 기간을 먼저 적용하세요. 정리는 저장된 기간을 씁니다.
+Changes discarded.|변경을 취소했습니다.
+Changes not applied.|적용하지 않은 변경이 있습니다.
+Engineer|엔지니어
+Enter a value from {0} to {1}.|{0}에서 {1} 사이의 값을 입력하세요.
+Files last written before {0} are deleted.|{0} 이전에 마지막으로 기록된 파일을 삭제합니다.
+Front Picker Z1|전면 피커 Z1
+Front Picker Z2|전면 피커 Z2
+Front Picker Z3|전면 피커 Z3
+Front Picker Z4|전면 피커 Z4
+Front Picker Z5|전면 피커 Z5
+Front Picker Z6|전면 피커 Z6
+Front Picker Z7|전면 피커 Z7
+Front Picker Z8|전면 피커 Z8
+Good Tray 1 Unload|양품 트레이 1 배출
+Good Tray 2 Unload|양품 트레이 2 배출
+Limits saved and sent to SEQ.|한계를 저장하고 SEQ로 보냈습니다.
+Log Out|로그아웃
+Maintenance|유지보수
+Master|마스터
+NG Tray Unload|불량 트레이 배출
+No|번호
+No User|사용자 없음
+Not while the machine runs.|설비 운전 중에는 할 수 없습니다.
+Nothing to apply.|적용할 변경이 없습니다.
+Offline|오프라인
+Online|온라인
+Operator|작업자
+Rear Picker Z1|후면 피커 Z1
+Rear Picker Z2|후면 피커 Z2
+Rear Picker Z3|후면 피커 Z3
+Rear Picker Z4|후면 피커 Z4
+Rear Picker Z5|후면 피커 Z5
+Rear Picker Z6|후면 피커 Z6
+Rear Picker Z7|후면 피커 Z7
+Rear Picker Z8|후면 피커 Z8
+Reloaded from the DB.|DB에서 다시 읽었습니다.
+Reset the count of {0} to 0?\nDo this after the part has been replaced.|{0}의 수량을 0으로 리셋할까요?\n부품을 교체한 뒤에 하세요.
+Rework Tray Unload|재작업 트레이 배출
+SEQ: Connected|SEQ: 연결됨
+SEQ: Disconnected|SEQ: 연결 끊김
+Sponge Clean|스펀지 세정
+Staged limits discarded.|대기 중인 한계를 취소했습니다.
+System|시스템
+System data saved.|시스템 데이터를 저장했습니다.
+The machine name cannot be empty.|설비 이름은 비울 수 없습니다.
+WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.|한계의 {0} %부터 WARN, 한계에서 OVER. 비율은 시스템 데이터에서 설정합니다.
+{0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.|{0:HH:mm:ss}  파일 {1}개 ({2:N0} KB), 폴더 {3}개 삭제, {4}개 건너뜀
+{0} items.|{0}개 항목
+{0}: count reset.|{0}: 수량을 리셋했습니다.
+{0}: limit {1} staged. APPLY saves it.|{0}: 한계 {1} 대기 중. 적용을 누르면 저장됩니다.
