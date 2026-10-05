@@ -21,47 +21,28 @@ ALARM|알람
 Communication|통신
 Control|제어
 Count|수량
-Enc Count|엔코더 카운트
 Equipment State|설비 상태
 Good|양품
 Initialize|초기화
-Line Rate (kHz)|라인 속도 (kHz)
-Lines|라인 수
 Lot|Lot
 Lot Cancel|Lot 취소
 Lot End|Lot 종료
 Lot ID|Lot ID
 Lot Input|Lot 입력
-Motion End (mm)|이동 끝 (mm)
-Motion Start (mm)|이동 시작 (mm)
 NG|불량
-OUTPUT TEST|출력 테스트
 Panel In|패널 투입
-PERIODIC (enc)|PERIODIC (엔코더)
-Pixel Res (um)|픽셀 분해능 (um)
 Production|생산
-Pulse W (us)|펄스 폭 (us)
 Rate (UPH / Target)|달성률 (UPH / 목표)
 Reset|리셋
-Result|결과
 Rework|재작업
 RUN|운전
 Run Time|가동 시간
-Scan Time (s)|스캔 시간 (s)
-Scan Trigger|스캔 트리거
 Set|설정
-SET|설정
-Speed (mm/s)|속도 (mm/s)
 Start|시작
-START|시작
-State|상태
 STOP|정지
 Stop|정지
 Stop Time|정지 시간
 Target UPH|목표 UPH
-TIMER (freq)|TIMER (주파수)
-Trig End (mm)|트리거 끝 (mm)
-Trig Start (mm)|트리거 시작 (mm)
 Unit In|투입
 Unit Out|배출
 # UPH|
@@ -212,6 +193,7 @@ Machine|설비
 Machine name (top bar)|설비 이름 (상단바)
 MMI and SEQ logs alike (.log, .txt). Checked a minute after start-up, then every hour.|MMI와 SEQ 로그 모두 (.log, .txt). 시작 1분 뒤, 이후 1시간마다 검사합니다.
 PURGE NOW|지금 정리
+SET|설정
 SOFTWARE|소프트웨어
 SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.|소프트웨어: 입력칸을 누르면 화상 키보드가 열립니다.\n하드웨어: 연결된 키보드로 입력합니다.
 Start in|시작 언어
@@ -255,6 +237,7 @@ LOG HISTORY|로그 이력
 NEW DB|새 DB
 OLD DB|이전 DB
 REFRESH|새로고침
+START|시작
 YYYY-MM-DD|YYYY-MM-DD
 
 # --- FormMain ---
@@ -418,18 +401,6 @@ Velocity|속도
 # --- FormScanTrigger ---
 +LIMIT|+리밋
 -LIMIT|-리밋
-0  IDLE|0  대기
-1  GOTO START|1  시작점 이동
-10  RETURN|10  복귀
-11  WAIT RETURN|11  복귀 대기
-2  WAIT START|2  시작점 대기
-3  ARM|3  ARM
-4  RUN|4  RUN
-5  WAIT END|5  끝 대기
-6  DISARM|6  DISARM
-7  DONE|7  완료
-8  ABORTED|8  중단
-9  OUTPUT TEST|9  출력 테스트
 Active Level|출력 레벨
 ALARM RESET|알람 리셋
 Armed At (counts)|암 위치 (counts)
@@ -440,9 +411,9 @@ Counter Channel|카운터 채널
 Counter H/W Config|카운터 H/W 설정
 Current Index|현재 인덱스
 Current Position|현재 위치
-Cycle State|사이클 상태
 DEFAULTS|기본값
 Direction Check|방향 검사
+Enc Count|엔코더 카운트
 Encoder (counts)|엔코더 (counts)
 ENCODER = AXIS POSITION|엔코더 = 축 위치
 Encoder Input|엔코더 입력
@@ -451,29 +422,39 @@ Encoder Reverse|엔코더 반전
 HOMED|원점 완료
 Jog|조그
 JOG ENABLE|조그 사용
+Line Rate (kHz)|라인 속도 (kHz)
+Lines|라인 수
 Live Counter|실시간 카운터
-Mode|모드
+Motion End (mm)|이동 끝 (mm)
+Motion Start (mm)|이동 시작 (mm)
 Next Index|다음 인덱스
 Next Position|다음 위치
 # OUT 0|
 # OUT 1|
 # OUT 2|
 # OUT 3|
-Pitch (counts)|피치 (counts)
+OUTPUT TEST|출력 테스트
+PERIODIC (enc)|PERIODIC (엔코더)
+Pixel Res (um)|픽셀 분해능 (um)
 Progress|진행률
+Pulse W (us)|펄스 폭 (us)
 READ|읽기
-Recipe / START on Auto|레시피 / START는 자동 화면에서
-Scan Cycle|스캔 사이클
+Result|결과
 Scan Geometry  (motor index 50 - 53)|스캔 위치도 (모터 인덱스 50 - 53)
-SET and START stay on the Auto screen, beside the recipe.|SET과 START는 레시피와 함께 자동 화면에 있습니다.
+Scan Time (s)|스캔 시간 (s)
+Scan Trigger|스캔 트리거
+Speed (mm/s)|속도 (mm/s)
+State|상태
 STEP|스텝
 Step (mm)|스텝 (mm)
+TIMER (freq)|TIMER (주파수)
+Trig End (mm)|트리거 끝 (mm)
+Trig Start (mm)|트리거 시작 (mm)
 Trigger Count|트리거 수
 TRIGGER COUNT CLEAR|트리거 수 지우기
 Trigger Log|트리거 로그
 Trigger Output|트리거 출력
 Unit per Count (mm)|카운트당 단위 (mm)
-Validate|검증
 WRITE|쓰기
 Wrong Way Limit (counts)|역방향 한계 (counts)
 

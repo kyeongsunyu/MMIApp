@@ -29,36 +29,39 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pnlCycle = new MMI.HmiCard();
-            this.lblModeCaption = new System.Windows.Forms.Label();
-            this.lblMode = new System.Windows.Forms.Label();
-            this.lblLineRateCaption = new System.Windows.Forms.Label();
-            this.lblLineRate = new System.Windows.Forms.Label();
-            this.lblLinesCaption = new System.Windows.Forms.Label();
-            this.lblLines = new System.Windows.Forms.Label();
-            this.lblScanTimeCaption = new System.Windows.Forms.Label();
-            this.lblScanTime = new System.Windows.Forms.Label();
-            this.lblPitchCaption = new System.Windows.Forms.Label();
-            this.lblPitchCounts = new System.Windows.Forms.Label();
-            this.lblResultCaption = new System.Windows.Forms.Label();
-            this.lblValidate = new System.Windows.Forms.Label();
-            this.lblCycleStateCaption = new System.Windows.Forms.Label();
-            this.lblState00 = new System.Windows.Forms.Label();
-            this.lblState01 = new System.Windows.Forms.Label();
-            this.lblState02 = new System.Windows.Forms.Label();
-            this.lblState03 = new System.Windows.Forms.Label();
-            this.lblState04 = new System.Windows.Forms.Label();
-            this.lblState05 = new System.Windows.Forms.Label();
-            this.lblState06 = new System.Windows.Forms.Label();
-            this.lblState10 = new System.Windows.Forms.Label();
-            this.lblState11 = new System.Windows.Forms.Label();
-            this.lblState07 = new System.Windows.Forms.Label();
-            this.lblState08 = new System.Windows.Forms.Label();
-            this.lblState09 = new System.Windows.Forms.Label();
-            this.btnOutputTest = new MMI.HmiButton();
-            this.btnStop = new MMI.HmiButton();
-            this.btnOpenRecipe = new MMI.HmiButton();
-            this.lblCycleHint = new System.Windows.Forms.Label();
+            this.pnlScanTrigger = new MMI.HmiCard();
+            this.rdoScanTrigPeriodic = new System.Windows.Forms.RadioButton();
+            this.rdoScanTrigTimer = new System.Windows.Forms.RadioButton();
+            this.lblcapScanTrig5 = new System.Windows.Forms.Label();
+            this.txtScanTrigMotionStart = new System.Windows.Forms.TextBox();
+            this.lblcapScanTrig0 = new System.Windows.Forms.Label();
+            this.txtScanTrigStart = new System.Windows.Forms.TextBox();
+            this.lblcapScanTrig1 = new System.Windows.Forms.Label();
+            this.txtScanTrigEnd = new System.Windows.Forms.TextBox();
+            this.lblcapScanTrig6 = new System.Windows.Forms.Label();
+            this.txtScanTrigMotionEnd = new System.Windows.Forms.TextBox();
+            this.lblcapScanTrig2 = new System.Windows.Forms.Label();
+            this.txtScanTrigPitch = new System.Windows.Forms.TextBox();
+            this.lblcapScanTrig3 = new System.Windows.Forms.Label();
+            this.txtScanTrigSpeed = new System.Windows.Forms.TextBox();
+            this.lblcapScanTrig4 = new System.Windows.Forms.Label();
+            this.txtScanTrigPulse = new System.Windows.Forms.TextBox();
+            this.lblcapScanTrigR0 = new System.Windows.Forms.Label();
+            this.lblScanTrigRate = new System.Windows.Forms.Label();
+            this.lblcapScanTrigR1 = new System.Windows.Forms.Label();
+            this.lblScanTrigLines = new System.Windows.Forms.Label();
+            this.lblcapScanTrigR2 = new System.Windows.Forms.Label();
+            this.lblScanTrigTime = new System.Windows.Forms.Label();
+            this.lblcapScanTrigR3 = new System.Windows.Forms.Label();
+            this.lblScanTrigCounts = new System.Windows.Forms.Label();
+            this.lblcapScanTrigR4 = new System.Windows.Forms.Label();
+            this.lblScanTrigState = new System.Windows.Forms.Label();
+            this.lblcapScanTrigR5 = new System.Windows.Forms.Label();
+            this.lblScanTrigResult = new System.Windows.Forms.Label();
+            this.btnScanTrigSet = new MMI.HmiButton();
+            this.btnScanTrigStart = new MMI.HmiButton();
+            this.btnScanTrigStop = new MMI.HmiButton();
+            this.btnScanTrigTest = new MMI.HmiButton();
             this.pnlGeometry = new MMI.HmiCard();
             this.pnlGeometryView = new System.Windows.Forms.Panel();
             this.pnlCounter = new MMI.HmiCard();
@@ -154,7 +157,7 @@
             this.tmView = new System.Windows.Forms.Timer(this.components);
             this.pnlLogButtons = new System.Windows.Forms.Panel();
             this.lstLog = new System.Windows.Forms.ListBox();
-            this.pnlCycle.SuspendLayout();
+            this.pnlScanTrigger.SuspendLayout();
             this.pnlGeometry.SuspendLayout();
             this.pnlGeometryView.SuspendLayout();
             this.pnlCounter.SuspendLayout();
@@ -167,398 +170,425 @@
             this.pnlLogButtons.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlCycle
+            // pnlScanTrigger
             // 
-            this.pnlCycle.Controls.Add(this.lblCycleHint);
-            this.pnlCycle.Controls.Add(this.btnOpenRecipe);
-            this.pnlCycle.Controls.Add(this.btnStop);
-            this.pnlCycle.Controls.Add(this.btnOutputTest);
-            this.pnlCycle.Controls.Add(this.lblState09);
-            this.pnlCycle.Controls.Add(this.lblState08);
-            this.pnlCycle.Controls.Add(this.lblState07);
-            this.pnlCycle.Controls.Add(this.lblState11);
-            this.pnlCycle.Controls.Add(this.lblState10);
-            this.pnlCycle.Controls.Add(this.lblState06);
-            this.pnlCycle.Controls.Add(this.lblState05);
-            this.pnlCycle.Controls.Add(this.lblState04);
-            this.pnlCycle.Controls.Add(this.lblState03);
-            this.pnlCycle.Controls.Add(this.lblState02);
-            this.pnlCycle.Controls.Add(this.lblState01);
-            this.pnlCycle.Controls.Add(this.lblState00);
-            this.pnlCycle.Controls.Add(this.lblCycleStateCaption);
-            this.pnlCycle.Controls.Add(this.lblValidate);
-            this.pnlCycle.Controls.Add(this.lblResultCaption);
-            this.pnlCycle.Controls.Add(this.lblPitchCounts);
-            this.pnlCycle.Controls.Add(this.lblPitchCaption);
-            this.pnlCycle.Controls.Add(this.lblScanTime);
-            this.pnlCycle.Controls.Add(this.lblScanTimeCaption);
-            this.pnlCycle.Controls.Add(this.lblLines);
-            this.pnlCycle.Controls.Add(this.lblLinesCaption);
-            this.pnlCycle.Controls.Add(this.lblLineRate);
-            this.pnlCycle.Controls.Add(this.lblLineRateCaption);
-            this.pnlCycle.Controls.Add(this.lblMode);
-            this.pnlCycle.Controls.Add(this.lblModeCaption);
-            this.pnlCycle.Location = new System.Drawing.Point(0, 86);
-            this.pnlCycle.Size = new System.Drawing.Size(400, 696);
-            this.pnlCycle.TitleText = "Scan Cycle";
-            this.pnlCycle.Name = "pnlCycle";
+            this.pnlScanTrigger.Controls.Add(this.btnScanTrigTest);
+            this.pnlScanTrigger.Controls.Add(this.btnScanTrigStop);
+            this.pnlScanTrigger.Controls.Add(this.btnScanTrigStart);
+            this.pnlScanTrigger.Controls.Add(this.btnScanTrigSet);
+            this.pnlScanTrigger.Controls.Add(this.lblScanTrigResult);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrigR5);
+            this.pnlScanTrigger.Controls.Add(this.lblScanTrigState);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrigR4);
+            this.pnlScanTrigger.Controls.Add(this.lblScanTrigCounts);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrigR3);
+            this.pnlScanTrigger.Controls.Add(this.lblScanTrigTime);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrigR2);
+            this.pnlScanTrigger.Controls.Add(this.lblScanTrigLines);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrigR1);
+            this.pnlScanTrigger.Controls.Add(this.lblScanTrigRate);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrigR0);
+            this.pnlScanTrigger.Controls.Add(this.txtScanTrigPulse);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrig4);
+            this.pnlScanTrigger.Controls.Add(this.txtScanTrigSpeed);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrig3);
+            this.pnlScanTrigger.Controls.Add(this.txtScanTrigPitch);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrig2);
+            this.pnlScanTrigger.Controls.Add(this.txtScanTrigMotionEnd);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrig6);
+            this.pnlScanTrigger.Controls.Add(this.txtScanTrigEnd);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrig1);
+            this.pnlScanTrigger.Controls.Add(this.txtScanTrigStart);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrig0);
+            this.pnlScanTrigger.Controls.Add(this.txtScanTrigMotionStart);
+            this.pnlScanTrigger.Controls.Add(this.lblcapScanTrig5);
+            this.pnlScanTrigger.Controls.Add(this.rdoScanTrigTimer);
+            this.pnlScanTrigger.Controls.Add(this.rdoScanTrigPeriodic);
+            this.pnlScanTrigger.Location = new System.Drawing.Point(0, 86);
+            this.pnlScanTrigger.Size = new System.Drawing.Size(540, 530);
+            this.pnlScanTrigger.TitleText = "Scan Trigger";
+            this.pnlScanTrigger.Name = "pnlScanTrigger";
             // 
-            // lblModeCaption
+            // rdoScanTrigPeriodic
             // 
-            this.lblModeCaption.Location = new System.Drawing.Point(14, 40);
-            this.lblModeCaption.Size = new System.Drawing.Size(150, 28);
-            this.lblModeCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblModeCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblModeCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblModeCaption.Text = "Mode";
-            this.lblModeCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblModeCaption.Name = "lblModeCaption";
+            this.rdoScanTrigPeriodic.Location = new System.Drawing.Point(14, 38);
+            this.rdoScanTrigPeriodic.Size = new System.Drawing.Size(170, 26);
+            this.rdoScanTrigPeriodic.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.rdoScanTrigPeriodic.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.rdoScanTrigPeriodic.Checked = true;
+            this.rdoScanTrigPeriodic.TabStop = true;
+            this.rdoScanTrigPeriodic.Text = "PERIODIC (enc)";
+            this.rdoScanTrigPeriodic.Name = "rdoScanTrigPeriodic";
+            this.rdoScanTrigPeriodic.CheckedChanged += new System.EventHandler(this.ScanTriggerMode_CheckedChanged);
             // 
-            // lblMode
+            // rdoScanTrigTimer
             // 
-            this.lblMode.Location = new System.Drawing.Point(170, 40);
-            this.lblMode.Size = new System.Drawing.Size(210, 28);
-            this.lblMode.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblMode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblMode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
-            this.lblMode.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
-            this.lblMode.Text = "-";
-            this.lblMode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblMode.Name = "lblMode";
+            this.rdoScanTrigTimer.Location = new System.Drawing.Point(200, 38);
+            this.rdoScanTrigTimer.Size = new System.Drawing.Size(170, 26);
+            this.rdoScanTrigTimer.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.rdoScanTrigTimer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.rdoScanTrigTimer.Text = "TIMER (freq)";
+            this.rdoScanTrigTimer.Name = "rdoScanTrigTimer";
+            this.rdoScanTrigTimer.CheckedChanged += new System.EventHandler(this.ScanTriggerMode_CheckedChanged);
             // 
-            // lblLineRateCaption
+            // lblcapScanTrig5
             // 
-            this.lblLineRateCaption.Location = new System.Drawing.Point(14, 74);
-            this.lblLineRateCaption.Size = new System.Drawing.Size(150, 28);
-            this.lblLineRateCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLineRateCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblLineRateCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblLineRateCaption.Text = "Line Rate (kHz)";
-            this.lblLineRateCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblLineRateCaption.Name = "lblLineRateCaption";
+            this.lblcapScanTrig5.Location = new System.Drawing.Point(14, 72);
+            this.lblcapScanTrig5.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrig5.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrig5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrig5.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrig5.Text = "Motion Start (mm)";
+            this.lblcapScanTrig5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrig5.Name = "lblcapScanTrig5";
             // 
-            // lblLineRate
+            // txtScanTrigMotionStart
             // 
-            this.lblLineRate.Location = new System.Drawing.Point(170, 74);
-            this.lblLineRate.Size = new System.Drawing.Size(210, 28);
-            this.lblLineRate.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLineRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblLineRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
-            this.lblLineRate.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
-            this.lblLineRate.Text = "-";
-            this.lblLineRate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblLineRate.Name = "lblLineRate";
+            this.txtScanTrigMotionStart.Location = new System.Drawing.Point(190, 72);
+            this.txtScanTrigMotionStart.Size = new System.Drawing.Size(150, 28);
+            this.txtScanTrigMotionStart.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtScanTrigMotionStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.txtScanTrigMotionStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.txtScanTrigMotionStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtScanTrigMotionStart.Text = "0.000";
+            this.txtScanTrigMotionStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtScanTrigMotionStart.Name = "txtScanTrigMotionStart";
+            this.txtScanTrigMotionStart.TextChanged += new System.EventHandler(this.ScanTriggerInput_TextChanged);
             // 
-            // lblLinesCaption
+            // lblcapScanTrig0
             // 
-            this.lblLinesCaption.Location = new System.Drawing.Point(14, 108);
-            this.lblLinesCaption.Size = new System.Drawing.Size(150, 28);
-            this.lblLinesCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLinesCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblLinesCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblLinesCaption.Text = "Lines";
-            this.lblLinesCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblLinesCaption.Name = "lblLinesCaption";
+            this.lblcapScanTrig0.Location = new System.Drawing.Point(14, 106);
+            this.lblcapScanTrig0.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrig0.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrig0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrig0.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrig0.Text = "Trig Start (mm)";
+            this.lblcapScanTrig0.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrig0.Name = "lblcapScanTrig0";
             // 
-            // lblLines
+            // txtScanTrigStart
             // 
-            this.lblLines.Location = new System.Drawing.Point(170, 108);
-            this.lblLines.Size = new System.Drawing.Size(210, 28);
-            this.lblLines.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLines.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblLines.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
-            this.lblLines.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
-            this.lblLines.Text = "-";
-            this.lblLines.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblLines.Name = "lblLines";
+            this.txtScanTrigStart.Location = new System.Drawing.Point(190, 106);
+            this.txtScanTrigStart.Size = new System.Drawing.Size(150, 28);
+            this.txtScanTrigStart.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtScanTrigStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.txtScanTrigStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.txtScanTrigStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtScanTrigStart.Text = "0.000";
+            this.txtScanTrigStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtScanTrigStart.Name = "txtScanTrigStart";
+            this.txtScanTrigStart.TextChanged += new System.EventHandler(this.ScanTriggerInput_TextChanged);
             // 
-            // lblScanTimeCaption
+            // lblcapScanTrig1
             // 
-            this.lblScanTimeCaption.Location = new System.Drawing.Point(14, 142);
-            this.lblScanTimeCaption.Size = new System.Drawing.Size(150, 28);
-            this.lblScanTimeCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblScanTimeCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblScanTimeCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblScanTimeCaption.Text = "Scan Time (s)";
-            this.lblScanTimeCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblScanTimeCaption.Name = "lblScanTimeCaption";
+            this.lblcapScanTrig1.Location = new System.Drawing.Point(14, 140);
+            this.lblcapScanTrig1.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrig1.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrig1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrig1.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrig1.Text = "Trig End (mm)";
+            this.lblcapScanTrig1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrig1.Name = "lblcapScanTrig1";
             // 
-            // lblScanTime
+            // txtScanTrigEnd
             // 
-            this.lblScanTime.Location = new System.Drawing.Point(170, 142);
-            this.lblScanTime.Size = new System.Drawing.Size(210, 28);
-            this.lblScanTime.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblScanTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblScanTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
-            this.lblScanTime.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
-            this.lblScanTime.Text = "-";
-            this.lblScanTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblScanTime.Name = "lblScanTime";
+            this.txtScanTrigEnd.Location = new System.Drawing.Point(190, 140);
+            this.txtScanTrigEnd.Size = new System.Drawing.Size(150, 28);
+            this.txtScanTrigEnd.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtScanTrigEnd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.txtScanTrigEnd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.txtScanTrigEnd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtScanTrigEnd.Text = "0.000";
+            this.txtScanTrigEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtScanTrigEnd.Name = "txtScanTrigEnd";
+            this.txtScanTrigEnd.TextChanged += new System.EventHandler(this.ScanTriggerInput_TextChanged);
             // 
-            // lblPitchCaption
+            // lblcapScanTrig6
             // 
-            this.lblPitchCaption.Location = new System.Drawing.Point(14, 176);
-            this.lblPitchCaption.Size = new System.Drawing.Size(150, 28);
-            this.lblPitchCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPitchCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblPitchCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblPitchCaption.Text = "Pitch (counts)";
-            this.lblPitchCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblPitchCaption.Name = "lblPitchCaption";
+            this.lblcapScanTrig6.Location = new System.Drawing.Point(14, 174);
+            this.lblcapScanTrig6.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrig6.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrig6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrig6.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrig6.Text = "Motion End (mm)";
+            this.lblcapScanTrig6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrig6.Name = "lblcapScanTrig6";
             // 
-            // lblPitchCounts
+            // txtScanTrigMotionEnd
             // 
-            this.lblPitchCounts.Location = new System.Drawing.Point(170, 176);
-            this.lblPitchCounts.Size = new System.Drawing.Size(210, 28);
-            this.lblPitchCounts.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPitchCounts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblPitchCounts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
-            this.lblPitchCounts.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
-            this.lblPitchCounts.Text = "-";
-            this.lblPitchCounts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPitchCounts.Name = "lblPitchCounts";
+            this.txtScanTrigMotionEnd.Location = new System.Drawing.Point(190, 174);
+            this.txtScanTrigMotionEnd.Size = new System.Drawing.Size(150, 28);
+            this.txtScanTrigMotionEnd.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtScanTrigMotionEnd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.txtScanTrigMotionEnd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.txtScanTrigMotionEnd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtScanTrigMotionEnd.Text = "0.000";
+            this.txtScanTrigMotionEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtScanTrigMotionEnd.Name = "txtScanTrigMotionEnd";
+            this.txtScanTrigMotionEnd.TextChanged += new System.EventHandler(this.ScanTriggerInput_TextChanged);
             // 
-            // lblResultCaption
+            // lblcapScanTrig2
             // 
-            this.lblResultCaption.Location = new System.Drawing.Point(14, 210);
-            this.lblResultCaption.Size = new System.Drawing.Size(150, 28);
-            this.lblResultCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblResultCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblResultCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblResultCaption.Text = "Validate";
-            this.lblResultCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblResultCaption.Name = "lblResultCaption";
+            this.lblcapScanTrig2.Location = new System.Drawing.Point(14, 208);
+            this.lblcapScanTrig2.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrig2.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrig2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrig2.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrig2.Text = "Pixel Res (um)";
+            this.lblcapScanTrig2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrig2.Name = "lblcapScanTrig2";
             // 
-            // lblValidate
+            // txtScanTrigPitch
             // 
-            this.lblValidate.Location = new System.Drawing.Point(170, 210);
-            this.lblValidate.Size = new System.Drawing.Size(210, 28);
-            this.lblValidate.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblValidate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblValidate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
-            this.lblValidate.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
-            this.lblValidate.Text = "-";
-            this.lblValidate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblValidate.Name = "lblValidate";
+            this.txtScanTrigPitch.Location = new System.Drawing.Point(190, 208);
+            this.txtScanTrigPitch.Size = new System.Drawing.Size(150, 28);
+            this.txtScanTrigPitch.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtScanTrigPitch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.txtScanTrigPitch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.txtScanTrigPitch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtScanTrigPitch.Text = "0.000";
+            this.txtScanTrigPitch.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtScanTrigPitch.Name = "txtScanTrigPitch";
+            this.txtScanTrigPitch.TextChanged += new System.EventHandler(this.ScanTriggerInput_TextChanged);
             // 
-            // lblCycleStateCaption
+            // lblcapScanTrig3
             // 
-            this.lblCycleStateCaption.Location = new System.Drawing.Point(14, 254);
-            this.lblCycleStateCaption.Size = new System.Drawing.Size(200, 28);
-            this.lblCycleStateCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCycleStateCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblCycleStateCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblCycleStateCaption.Text = "Cycle State";
-            this.lblCycleStateCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblCycleStateCaption.Name = "lblCycleStateCaption";
+            this.lblcapScanTrig3.Location = new System.Drawing.Point(14, 242);
+            this.lblcapScanTrig3.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrig3.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrig3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrig3.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrig3.Text = "Speed (mm/s)";
+            this.lblcapScanTrig3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrig3.Name = "lblcapScanTrig3";
             // 
-            // lblState00
+            // txtScanTrigSpeed
             // 
-            this.lblState00.Location = new System.Drawing.Point(14, 288);
-            this.lblState00.Size = new System.Drawing.Size(178, 32);
-            this.lblState00.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState00.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
-            this.lblState00.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblState00.Text = "0  IDLE";
-            this.lblState00.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblState00.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblState00.Tag = "0";
-            this.lblState00.Name = "lblState00";
+            this.txtScanTrigSpeed.Location = new System.Drawing.Point(190, 242);
+            this.txtScanTrigSpeed.Size = new System.Drawing.Size(150, 28);
+            this.txtScanTrigSpeed.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtScanTrigSpeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.txtScanTrigSpeed.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.txtScanTrigSpeed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtScanTrigSpeed.Text = "0.000";
+            this.txtScanTrigSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtScanTrigSpeed.Name = "txtScanTrigSpeed";
+            this.txtScanTrigSpeed.TextChanged += new System.EventHandler(this.ScanTriggerInput_TextChanged);
             // 
-            // lblState01
+            // lblcapScanTrig4
             // 
-            this.lblState01.Location = new System.Drawing.Point(200, 288);
-            this.lblState01.Size = new System.Drawing.Size(178, 32);
-            this.lblState01.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState01.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
-            this.lblState01.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblState01.Text = "1  GOTO START";
-            this.lblState01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblState01.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblState01.Tag = "1";
-            this.lblState01.Name = "lblState01";
+            this.lblcapScanTrig4.Location = new System.Drawing.Point(14, 276);
+            this.lblcapScanTrig4.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrig4.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrig4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrig4.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrig4.Text = "Pulse W (us)";
+            this.lblcapScanTrig4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrig4.Name = "lblcapScanTrig4";
             // 
-            // lblState02
+            // txtScanTrigPulse
             // 
-            this.lblState02.Location = new System.Drawing.Point(14, 326);
-            this.lblState02.Size = new System.Drawing.Size(178, 32);
-            this.lblState02.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState02.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
-            this.lblState02.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblState02.Text = "2  WAIT START";
-            this.lblState02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblState02.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblState02.Tag = "2";
-            this.lblState02.Name = "lblState02";
+            this.txtScanTrigPulse.Location = new System.Drawing.Point(190, 276);
+            this.txtScanTrigPulse.Size = new System.Drawing.Size(150, 28);
+            this.txtScanTrigPulse.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtScanTrigPulse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.txtScanTrigPulse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.txtScanTrigPulse.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtScanTrigPulse.Text = "10.00";
+            this.txtScanTrigPulse.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtScanTrigPulse.Name = "txtScanTrigPulse";
+            this.txtScanTrigPulse.TextChanged += new System.EventHandler(this.ScanTriggerInput_TextChanged);
             // 
-            // lblState03
+            // lblcapScanTrigR0
             // 
-            this.lblState03.Location = new System.Drawing.Point(200, 326);
-            this.lblState03.Size = new System.Drawing.Size(178, 32);
-            this.lblState03.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState03.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
-            this.lblState03.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblState03.Text = "3  ARM";
-            this.lblState03.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblState03.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblState03.Tag = "3";
-            this.lblState03.Name = "lblState03";
+            this.lblcapScanTrigR0.Location = new System.Drawing.Point(14, 318);
+            this.lblcapScanTrigR0.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrigR0.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrigR0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrigR0.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrigR0.Text = "Line Rate (kHz)";
+            this.lblcapScanTrigR0.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrigR0.Name = "lblcapScanTrigR0";
             // 
-            // lblState04
+            // lblScanTrigRate
             // 
-            this.lblState04.Location = new System.Drawing.Point(14, 364);
-            this.lblState04.Size = new System.Drawing.Size(178, 32);
-            this.lblState04.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState04.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
-            this.lblState04.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblState04.Text = "4  RUN";
-            this.lblState04.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblState04.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblState04.Tag = "4";
-            this.lblState04.Name = "lblState04";
+            this.lblScanTrigRate.Location = new System.Drawing.Point(190, 318);
+            this.lblScanTrigRate.Size = new System.Drawing.Size(150, 28);
+            this.lblScanTrigRate.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblScanTrigRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblScanTrigRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.lblScanTrigRate.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.lblScanTrigRate.Text = "-";
+            this.lblScanTrigRate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblScanTrigRate.Name = "lblScanTrigRate";
             // 
-            // lblState05
+            // lblcapScanTrigR1
             // 
-            this.lblState05.Location = new System.Drawing.Point(200, 364);
-            this.lblState05.Size = new System.Drawing.Size(178, 32);
-            this.lblState05.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState05.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
-            this.lblState05.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblState05.Text = "5  WAIT END";
-            this.lblState05.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblState05.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblState05.Tag = "5";
-            this.lblState05.Name = "lblState05";
+            this.lblcapScanTrigR1.Location = new System.Drawing.Point(14, 350);
+            this.lblcapScanTrigR1.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrigR1.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrigR1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrigR1.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrigR1.Text = "Lines";
+            this.lblcapScanTrigR1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrigR1.Name = "lblcapScanTrigR1";
             // 
-            // lblState06
+            // lblScanTrigLines
             // 
-            this.lblState06.Location = new System.Drawing.Point(14, 402);
-            this.lblState06.Size = new System.Drawing.Size(178, 32);
-            this.lblState06.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState06.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
-            this.lblState06.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblState06.Text = "6  DISARM";
-            this.lblState06.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblState06.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblState06.Tag = "6";
-            this.lblState06.Name = "lblState06";
+            this.lblScanTrigLines.Location = new System.Drawing.Point(190, 350);
+            this.lblScanTrigLines.Size = new System.Drawing.Size(150, 28);
+            this.lblScanTrigLines.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblScanTrigLines.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblScanTrigLines.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.lblScanTrigLines.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.lblScanTrigLines.Text = "-";
+            this.lblScanTrigLines.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblScanTrigLines.Name = "lblScanTrigLines";
             // 
-            // lblState10
+            // lblcapScanTrigR2
             // 
-            this.lblState10.Location = new System.Drawing.Point(200, 402);
-            this.lblState10.Size = new System.Drawing.Size(178, 32);
-            this.lblState10.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
-            this.lblState10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblState10.Text = "10  RETURN";
-            this.lblState10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblState10.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblState10.Tag = "10";
-            this.lblState10.Name = "lblState10";
+            this.lblcapScanTrigR2.Location = new System.Drawing.Point(14, 382);
+            this.lblcapScanTrigR2.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrigR2.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrigR2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrigR2.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrigR2.Text = "Scan Time (s)";
+            this.lblcapScanTrigR2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrigR2.Name = "lblcapScanTrigR2";
             // 
-            // lblState11
+            // lblScanTrigTime
             // 
-            this.lblState11.Location = new System.Drawing.Point(14, 440);
-            this.lblState11.Size = new System.Drawing.Size(178, 32);
-            this.lblState11.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
-            this.lblState11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblState11.Text = "11  WAIT RETURN";
-            this.lblState11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblState11.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblState11.Tag = "11";
-            this.lblState11.Name = "lblState11";
+            this.lblScanTrigTime.Location = new System.Drawing.Point(190, 382);
+            this.lblScanTrigTime.Size = new System.Drawing.Size(150, 28);
+            this.lblScanTrigTime.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblScanTrigTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblScanTrigTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.lblScanTrigTime.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.lblScanTrigTime.Text = "-";
+            this.lblScanTrigTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblScanTrigTime.Name = "lblScanTrigTime";
             // 
-            // lblState07
+            // lblcapScanTrigR3
             // 
-            this.lblState07.Location = new System.Drawing.Point(200, 440);
-            this.lblState07.Size = new System.Drawing.Size(178, 32);
-            this.lblState07.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState07.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
-            this.lblState07.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblState07.Text = "7  DONE";
-            this.lblState07.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblState07.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblState07.Tag = "7";
-            this.lblState07.Name = "lblState07";
+            this.lblcapScanTrigR3.Location = new System.Drawing.Point(14, 414);
+            this.lblcapScanTrigR3.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrigR3.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrigR3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrigR3.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrigR3.Text = "Enc Count";
+            this.lblcapScanTrigR3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrigR3.Name = "lblcapScanTrigR3";
             // 
-            // lblState08
+            // lblScanTrigCounts
             // 
-            this.lblState08.Location = new System.Drawing.Point(14, 478);
-            this.lblState08.Size = new System.Drawing.Size(178, 32);
-            this.lblState08.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState08.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
-            this.lblState08.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblState08.Text = "8  ABORTED";
-            this.lblState08.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblState08.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblState08.Tag = "8";
-            this.lblState08.Name = "lblState08";
+            this.lblScanTrigCounts.Location = new System.Drawing.Point(190, 414);
+            this.lblScanTrigCounts.Size = new System.Drawing.Size(150, 28);
+            this.lblScanTrigCounts.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblScanTrigCounts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblScanTrigCounts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.lblScanTrigCounts.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.lblScanTrigCounts.Text = "-";
+            this.lblScanTrigCounts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblScanTrigCounts.Name = "lblScanTrigCounts";
             // 
-            // lblState09
+            // lblcapScanTrigR4
             // 
-            this.lblState09.Location = new System.Drawing.Point(200, 478);
-            this.lblState09.Size = new System.Drawing.Size(178, 32);
-            this.lblState09.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState09.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
-            this.lblState09.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblState09.Text = "9  OUTPUT TEST";
-            this.lblState09.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblState09.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblState09.Tag = "9";
-            this.lblState09.Name = "lblState09";
+            this.lblcapScanTrigR4.Location = new System.Drawing.Point(14, 446);
+            this.lblcapScanTrigR4.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrigR4.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrigR4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrigR4.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrigR4.Text = "State";
+            this.lblcapScanTrigR4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrigR4.Name = "lblcapScanTrigR4";
             // 
-            // btnOutputTest
+            // lblScanTrigState
             // 
-            this.btnOutputTest.Location = new System.Drawing.Point(14, 532);
-            this.btnOutputTest.Size = new System.Drawing.Size(178, 48);
-            this.btnOutputTest.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOutputTest.Text = "OUTPUT TEST";
-            this.btnOutputTest.Name = "btnOutputTest";
-            this.btnOutputTest.Click += new System.EventHandler(this.btnOutputTest_Click);
+            this.lblScanTrigState.Location = new System.Drawing.Point(190, 446);
+            this.lblScanTrigState.Size = new System.Drawing.Size(150, 28);
+            this.lblScanTrigState.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblScanTrigState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblScanTrigState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.lblScanTrigState.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.lblScanTrigState.Text = "-";
+            this.lblScanTrigState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblScanTrigState.Name = "lblScanTrigState";
             // 
-            // btnStop
+            // lblcapScanTrigR5
             // 
-            this.btnStop.Location = new System.Drawing.Point(202, 532);
-            this.btnStop.Size = new System.Drawing.Size(178, 48);
-            this.btnStop.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStop.Text = "STOP";
-            this.btnStop.Role = MMI.HmiButtonRole.Danger;
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            this.lblcapScanTrigR5.Location = new System.Drawing.Point(14, 478);
+            this.lblcapScanTrigR5.Size = new System.Drawing.Size(170, 28);
+            this.lblcapScanTrigR5.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblcapScanTrigR5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
+            this.lblcapScanTrigR5.BackColor = System.Drawing.Color.Transparent;
+            this.lblcapScanTrigR5.Text = "Result";
+            this.lblcapScanTrigR5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblcapScanTrigR5.Name = "lblcapScanTrigR5";
             // 
-            // btnOpenRecipe
+            // lblScanTrigResult
             // 
-            this.btnOpenRecipe.Location = new System.Drawing.Point(14, 590);
-            this.btnOpenRecipe.Size = new System.Drawing.Size(366, 40);
-            this.btnOpenRecipe.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOpenRecipe.Text = "Recipe / START on Auto";
-            this.btnOpenRecipe.Name = "btnOpenRecipe";
-            this.btnOpenRecipe.Click += new System.EventHandler(this.btnOpenRecipe_Click);
+            this.lblScanTrigResult.Location = new System.Drawing.Point(190, 478);
+            this.lblScanTrigResult.Size = new System.Drawing.Size(150, 28);
+            this.lblScanTrigResult.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblScanTrigResult.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblScanTrigResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.lblScanTrigResult.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.lblScanTrigResult.Text = "-";
+            this.lblScanTrigResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblScanTrigResult.Name = "lblScanTrigResult";
             // 
-            // lblCycleHint
+            // btnScanTrigSet
             // 
-            this.lblCycleHint.Location = new System.Drawing.Point(14, 636);
-            this.lblCycleHint.Size = new System.Drawing.Size(366, 40);
-            this.lblCycleHint.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCycleHint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
-            this.lblCycleHint.BackColor = System.Drawing.Color.Transparent;
-            this.lblCycleHint.Text = "SET and START stay on the Auto screen, beside the recipe.";
-            this.lblCycleHint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblCycleHint.Name = "lblCycleHint";
+            this.btnScanTrigSet.Location = new System.Drawing.Point(356, 72);
+            this.btnScanTrigSet.Size = new System.Drawing.Size(170, 44);
+            this.btnScanTrigSet.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnScanTrigSet.Text = "SET";
+            this.btnScanTrigSet.Role = MMI.HmiButtonRole.Primary;
+            this.btnScanTrigSet.Name = "btnScanTrigSet";
+            this.btnScanTrigSet.Click += new System.EventHandler(this.btnScanTrigSet_Click);
+            // 
+            // btnScanTrigStart
+            // 
+            this.btnScanTrigStart.Location = new System.Drawing.Point(356, 124);
+            this.btnScanTrigStart.Size = new System.Drawing.Size(170, 44);
+            this.btnScanTrigStart.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnScanTrigStart.Text = "START";
+            this.btnScanTrigStart.Role = MMI.HmiButtonRole.Success;
+            this.btnScanTrigStart.Enabled = false;
+            this.btnScanTrigStart.Name = "btnScanTrigStart";
+            this.btnScanTrigStart.Click += new System.EventHandler(this.btnScanTrigStart_Click);
+            // 
+            // btnScanTrigStop
+            // 
+            this.btnScanTrigStop.Location = new System.Drawing.Point(356, 176);
+            this.btnScanTrigStop.Size = new System.Drawing.Size(170, 44);
+            this.btnScanTrigStop.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnScanTrigStop.Text = "STOP";
+            this.btnScanTrigStop.Role = MMI.HmiButtonRole.Danger;
+            this.btnScanTrigStop.Name = "btnScanTrigStop";
+            this.btnScanTrigStop.Click += new System.EventHandler(this.btnScanTrigStop_Click);
+            // 
+            // btnScanTrigTest
+            // 
+            this.btnScanTrigTest.Location = new System.Drawing.Point(356, 228);
+            this.btnScanTrigTest.Size = new System.Drawing.Size(170, 44);
+            this.btnScanTrigTest.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnScanTrigTest.Text = "OUTPUT TEST";
+            this.btnScanTrigTest.Name = "btnScanTrigTest";
+            this.btnScanTrigTest.Click += new System.EventHandler(this.btnScanTrigTest_Click);
             // 
             // pnlGeometry
             // 
             this.pnlGeometry.Controls.Add(this.pnlGeometryView);
-            this.pnlGeometry.Location = new System.Drawing.Point(412, 86);
-            this.pnlGeometry.Size = new System.Drawing.Size(640, 250);
+            this.pnlGeometry.Location = new System.Drawing.Point(552, 86);
+            this.pnlGeometry.Size = new System.Drawing.Size(500, 250);
             this.pnlGeometry.TitleText = "Scan Geometry  (motor index 50 - 53)";
             this.pnlGeometry.Name = "pnlGeometry";
             // 
             // pnlGeometryView
             // 
             this.pnlGeometryView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGeometryView.Size = new System.Drawing.Size(620, 200);
+            this.pnlGeometryView.Size = new System.Drawing.Size(480, 200);
             this.pnlGeometryView.BackColor = System.Drawing.Color.Transparent;
             this.pnlGeometryView.Name = "pnlGeometryView";
             this.pnlGeometryView.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlGeometryView_Paint);
@@ -585,15 +615,15 @@
             this.pnlCounter.Controls.Add(this.lblEncCountCaption);
             this.pnlCounter.Controls.Add(this.lblEncPos);
             this.pnlCounter.Controls.Add(this.lblEncPosCaption);
-            this.pnlCounter.Location = new System.Drawing.Point(412, 348);
-            this.pnlCounter.Size = new System.Drawing.Size(640, 564);
+            this.pnlCounter.Location = new System.Drawing.Point(552, 348);
+            this.pnlCounter.Size = new System.Drawing.Size(500, 564);
             this.pnlCounter.TitleText = "Live Counter";
             this.pnlCounter.Name = "pnlCounter";
             // 
             // lblEncPosCaption
             // 
             this.lblEncPosCaption.Location = new System.Drawing.Point(14, 42);
-            this.lblEncPosCaption.Size = new System.Drawing.Size(230, 44);
+            this.lblEncPosCaption.Size = new System.Drawing.Size(190, 44);
             this.lblEncPosCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblEncPosCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblEncPosCaption.BackColor = System.Drawing.Color.Transparent;
@@ -603,8 +633,8 @@
             // 
             // lblEncPos
             // 
-            this.lblEncPos.Location = new System.Drawing.Point(250, 42);
-            this.lblEncPos.Size = new System.Drawing.Size(370, 44);
+            this.lblEncPos.Location = new System.Drawing.Point(210, 42);
+            this.lblEncPos.Size = new System.Drawing.Size(270, 44);
             this.lblEncPos.Font = new System.Drawing.Font("Malgun Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblEncPos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblEncPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
@@ -616,7 +646,7 @@
             // lblEncCountCaption
             // 
             this.lblEncCountCaption.Location = new System.Drawing.Point(14, 96);
-            this.lblEncCountCaption.Size = new System.Drawing.Size(230, 44);
+            this.lblEncCountCaption.Size = new System.Drawing.Size(190, 44);
             this.lblEncCountCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblEncCountCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblEncCountCaption.BackColor = System.Drawing.Color.Transparent;
@@ -626,8 +656,8 @@
             // 
             // lblEncCount
             // 
-            this.lblEncCount.Location = new System.Drawing.Point(250, 96);
-            this.lblEncCount.Size = new System.Drawing.Size(370, 44);
+            this.lblEncCount.Location = new System.Drawing.Point(210, 96);
+            this.lblEncCount.Size = new System.Drawing.Size(270, 44);
             this.lblEncCount.Font = new System.Drawing.Font("Malgun Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblEncCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblEncCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
@@ -639,7 +669,7 @@
             // lblTrigCountCaption
             // 
             this.lblTrigCountCaption.Location = new System.Drawing.Point(14, 150);
-            this.lblTrigCountCaption.Size = new System.Drawing.Size(230, 44);
+            this.lblTrigCountCaption.Size = new System.Drawing.Size(190, 44);
             this.lblTrigCountCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTrigCountCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblTrigCountCaption.BackColor = System.Drawing.Color.Transparent;
@@ -649,8 +679,8 @@
             // 
             // lblTrigCount
             // 
-            this.lblTrigCount.Location = new System.Drawing.Point(250, 150);
-            this.lblTrigCount.Size = new System.Drawing.Size(370, 44);
+            this.lblTrigCount.Location = new System.Drawing.Point(210, 150);
+            this.lblTrigCount.Size = new System.Drawing.Size(270, 44);
             this.lblTrigCount.Font = new System.Drawing.Font("Malgun Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTrigCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblTrigCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
@@ -662,7 +692,7 @@
             // lblProgressCaption
             // 
             this.lblProgressCaption.Location = new System.Drawing.Point(14, 204);
-            this.lblProgressCaption.Size = new System.Drawing.Size(230, 28);
+            this.lblProgressCaption.Size = new System.Drawing.Size(190, 28);
             this.lblProgressCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblProgressCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblProgressCaption.BackColor = System.Drawing.Color.Transparent;
@@ -673,8 +703,8 @@
             // pnlProgressTrack
             // 
             this.pnlProgressTrack.Controls.Add(this.pnlProgressFill);
-            this.pnlProgressTrack.Location = new System.Drawing.Point(250, 210);
-            this.pnlProgressTrack.Size = new System.Drawing.Size(290, 16);
+            this.pnlProgressTrack.Location = new System.Drawing.Point(210, 210);
+            this.pnlProgressTrack.Size = new System.Drawing.Size(190, 16);
             this.pnlProgressTrack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(52)))), ((int)(((byte)(58)))));
             this.pnlProgressTrack.Name = "pnlProgressTrack";
             // 
@@ -687,7 +717,7 @@
             // 
             // lblProgress
             // 
-            this.lblProgress.Location = new System.Drawing.Point(548, 204);
+            this.lblProgress.Location = new System.Drawing.Point(408, 204);
             this.lblProgress.Size = new System.Drawing.Size(72, 28);
             this.lblProgress.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -700,7 +730,7 @@
             // lblOutputCaption
             // 
             this.lblOutputCaption.Location = new System.Drawing.Point(14, 244);
-            this.lblOutputCaption.Size = new System.Drawing.Size(230, 28);
+            this.lblOutputCaption.Size = new System.Drawing.Size(190, 28);
             this.lblOutputCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOutputCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblOutputCaption.BackColor = System.Drawing.Color.Transparent;
@@ -710,8 +740,8 @@
             // 
             // lblOutput
             // 
-            this.lblOutput.Location = new System.Drawing.Point(250, 244);
-            this.lblOutput.Size = new System.Drawing.Size(370, 28);
+            this.lblOutput.Location = new System.Drawing.Point(210, 244);
+            this.lblOutput.Size = new System.Drawing.Size(270, 28);
             this.lblOutput.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOutput.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblOutput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
@@ -723,7 +753,7 @@
             // lblArmCaption
             // 
             this.lblArmCaption.Location = new System.Drawing.Point(14, 280);
-            this.lblArmCaption.Size = new System.Drawing.Size(230, 28);
+            this.lblArmCaption.Size = new System.Drawing.Size(190, 28);
             this.lblArmCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblArmCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblArmCaption.BackColor = System.Drawing.Color.Transparent;
@@ -733,8 +763,8 @@
             // 
             // lblArmCount
             // 
-            this.lblArmCount.Location = new System.Drawing.Point(250, 280);
-            this.lblArmCount.Size = new System.Drawing.Size(370, 28);
+            this.lblArmCount.Location = new System.Drawing.Point(210, 280);
+            this.lblArmCount.Size = new System.Drawing.Size(270, 28);
             this.lblArmCount.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblArmCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblArmCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
@@ -746,7 +776,7 @@
             // lblBlockCaption
             // 
             this.lblBlockCaption.Location = new System.Drawing.Point(14, 316);
-            this.lblBlockCaption.Size = new System.Drawing.Size(230, 28);
+            this.lblBlockCaption.Size = new System.Drawing.Size(190, 28);
             this.lblBlockCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBlockCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblBlockCaption.BackColor = System.Drawing.Color.Transparent;
@@ -756,8 +786,8 @@
             // 
             // lblBlock
             // 
-            this.lblBlock.Location = new System.Drawing.Point(250, 316);
-            this.lblBlock.Size = new System.Drawing.Size(370, 28);
+            this.lblBlock.Location = new System.Drawing.Point(210, 316);
+            this.lblBlock.Size = new System.Drawing.Size(270, 28);
             this.lblBlock.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBlock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblBlock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
@@ -769,7 +799,7 @@
             // lblWrongWayCaption
             // 
             this.lblWrongWayCaption.Location = new System.Drawing.Point(14, 352);
-            this.lblWrongWayCaption.Size = new System.Drawing.Size(230, 28);
+            this.lblWrongWayCaption.Size = new System.Drawing.Size(190, 28);
             this.lblWrongWayCaption.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblWrongWayCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblWrongWayCaption.BackColor = System.Drawing.Color.Transparent;
@@ -779,8 +809,8 @@
             // 
             // lblWrongWay
             // 
-            this.lblWrongWay.Location = new System.Drawing.Point(250, 352);
-            this.lblWrongWay.Size = new System.Drawing.Size(370, 28);
+            this.lblWrongWay.Location = new System.Drawing.Point(210, 352);
+            this.lblWrongWay.Size = new System.Drawing.Size(270, 28);
             this.lblWrongWay.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblWrongWay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblWrongWay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
@@ -792,7 +822,7 @@
             // btnTrigCountClear
             // 
             this.btnTrigCountClear.Location = new System.Drawing.Point(14, 398);
-            this.btnTrigCountClear.Size = new System.Drawing.Size(296, 44);
+            this.btnTrigCountClear.Size = new System.Drawing.Size(230, 44);
             this.btnTrigCountClear.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnTrigCountClear.Text = "TRIGGER COUNT CLEAR";
             this.btnTrigCountClear.Name = "btnTrigCountClear";
@@ -800,8 +830,8 @@
             // 
             // btnEncToAxis
             // 
-            this.btnEncToAxis.Location = new System.Drawing.Point(324, 398);
-            this.btnEncToAxis.Size = new System.Drawing.Size(296, 44);
+            this.btnEncToAxis.Location = new System.Drawing.Point(254, 398);
+            this.btnEncToAxis.Size = new System.Drawing.Size(230, 44);
             this.btnEncToAxis.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnEncToAxis.Text = "ENCODER = AXIS POSITION";
             this.btnEncToAxis.Name = "btnEncToAxis";
@@ -810,7 +840,7 @@
             // lblCounterResult
             // 
             this.lblCounterResult.Location = new System.Drawing.Point(14, 452);
-            this.lblCounterResult.Size = new System.Drawing.Size(606, 28);
+            this.lblCounterResult.Size = new System.Drawing.Size(470, 28);
             this.lblCounterResult.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCounterResult.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblCounterResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
@@ -1113,8 +1143,8 @@
             // 
             this.pnlLog.Controls.Add(this.lstLog);
             this.pnlLog.Controls.Add(this.pnlLogButtons);
-            this.pnlLog.Location = new System.Drawing.Point(0, 794);
-            this.pnlLog.Size = new System.Drawing.Size(400, 118);
+            this.pnlLog.Location = new System.Drawing.Point(0, 628);
+            this.pnlLog.Size = new System.Drawing.Size(540, 284);
             this.pnlLog.TitleText = "Trigger Log";
             this.pnlLog.Name = "pnlLog";
             // 
@@ -1654,7 +1684,7 @@
             this.Controls.Add(this.pnlHwCfg);
             this.Controls.Add(this.pnlCounter);
             this.Controls.Add(this.pnlGeometry);
-            this.Controls.Add(this.pnlCycle);
+            this.Controls.Add(this.pnlScanTrigger);
             this.Name = "FormScanTrigger";
             this.Load += new System.EventHandler(this.FormScanTrigger_Load);
             this.VisibleChanged += new System.EventHandler(this.FormScanTrigger_VisibleChanged);
@@ -1668,43 +1698,46 @@
             this.pnlCounter.ResumeLayout(false);
             this.pnlGeometryView.ResumeLayout(false);
             this.pnlGeometry.ResumeLayout(false);
-            this.pnlCycle.ResumeLayout(false);
+            this.pnlScanTrigger.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private MMI.HmiCard pnlCycle;
-        private System.Windows.Forms.Label lblModeCaption;
-        private System.Windows.Forms.Label lblMode;
-        private System.Windows.Forms.Label lblLineRateCaption;
-        private System.Windows.Forms.Label lblLineRate;
-        private System.Windows.Forms.Label lblLinesCaption;
-        private System.Windows.Forms.Label lblLines;
-        private System.Windows.Forms.Label lblScanTimeCaption;
-        private System.Windows.Forms.Label lblScanTime;
-        private System.Windows.Forms.Label lblPitchCaption;
-        private System.Windows.Forms.Label lblPitchCounts;
-        private System.Windows.Forms.Label lblResultCaption;
-        private System.Windows.Forms.Label lblValidate;
-        private System.Windows.Forms.Label lblCycleStateCaption;
-        private System.Windows.Forms.Label lblState00;
-        private System.Windows.Forms.Label lblState01;
-        private System.Windows.Forms.Label lblState02;
-        private System.Windows.Forms.Label lblState03;
-        private System.Windows.Forms.Label lblState04;
-        private System.Windows.Forms.Label lblState05;
-        private System.Windows.Forms.Label lblState06;
-        private System.Windows.Forms.Label lblState10;
-        private System.Windows.Forms.Label lblState11;
-        private System.Windows.Forms.Label lblState07;
-        private System.Windows.Forms.Label lblState08;
-        private System.Windows.Forms.Label lblState09;
-        private MMI.HmiButton btnOutputTest;
-        private MMI.HmiButton btnStop;
-        private MMI.HmiButton btnOpenRecipe;
-        private System.Windows.Forms.Label lblCycleHint;
+        private MMI.HmiCard pnlScanTrigger;
+        private System.Windows.Forms.RadioButton rdoScanTrigPeriodic;
+        private System.Windows.Forms.RadioButton rdoScanTrigTimer;
+        private System.Windows.Forms.Label lblcapScanTrig5;
+        private System.Windows.Forms.TextBox txtScanTrigMotionStart;
+        private System.Windows.Forms.Label lblcapScanTrig0;
+        private System.Windows.Forms.TextBox txtScanTrigStart;
+        private System.Windows.Forms.Label lblcapScanTrig1;
+        private System.Windows.Forms.TextBox txtScanTrigEnd;
+        private System.Windows.Forms.Label lblcapScanTrig6;
+        private System.Windows.Forms.TextBox txtScanTrigMotionEnd;
+        private System.Windows.Forms.Label lblcapScanTrig2;
+        private System.Windows.Forms.TextBox txtScanTrigPitch;
+        private System.Windows.Forms.Label lblcapScanTrig3;
+        private System.Windows.Forms.TextBox txtScanTrigSpeed;
+        private System.Windows.Forms.Label lblcapScanTrig4;
+        private System.Windows.Forms.TextBox txtScanTrigPulse;
+        private System.Windows.Forms.Label lblcapScanTrigR0;
+        private System.Windows.Forms.Label lblScanTrigRate;
+        private System.Windows.Forms.Label lblcapScanTrigR1;
+        private System.Windows.Forms.Label lblScanTrigLines;
+        private System.Windows.Forms.Label lblcapScanTrigR2;
+        private System.Windows.Forms.Label lblScanTrigTime;
+        private System.Windows.Forms.Label lblcapScanTrigR3;
+        private System.Windows.Forms.Label lblScanTrigCounts;
+        private System.Windows.Forms.Label lblcapScanTrigR4;
+        private System.Windows.Forms.Label lblScanTrigState;
+        private System.Windows.Forms.Label lblcapScanTrigR5;
+        private System.Windows.Forms.Label lblScanTrigResult;
+        private MMI.HmiButton btnScanTrigSet;
+        private MMI.HmiButton btnScanTrigStart;
+        private MMI.HmiButton btnScanTrigStop;
+        private MMI.HmiButton btnScanTrigTest;
         private MMI.HmiCard pnlGeometry;
         private System.Windows.Forms.Panel pnlGeometryView;
         private MMI.HmiCard pnlCounter;

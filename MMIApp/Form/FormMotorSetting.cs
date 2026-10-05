@@ -547,7 +547,7 @@ namespace MMI
             // writes that stale copy straight back over this one.
             if (MmiGV.frmMain != null && MmiGV.frmMain.frmAuto1 != null)
             {
-                MmiGV.frmMain.frmAuto1.LoadScanPositionsFromMotorTable();
+                MmiGV.frmMain.frmScanTrigger.LoadScanPositionsFromMotorTable();
             }
 
         }

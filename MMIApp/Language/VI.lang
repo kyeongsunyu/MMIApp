@@ -21,47 +21,28 @@ ALARM|CẢNH BÁO
 Communication|Truyền thông
 Control|Điều khiển
 Count|Số lượng
-Enc Count|Số đếm encoder
 Equipment State|Trạng thái thiết bị
 Good|Đạt
 Initialize|Khởi tạo
-Line Rate (kHz)|Tần số dòng (kHz)
-Lines|Số dòng
 Lot|Lot
 Lot Cancel|Hủy Lot
 Lot End|Kết thúc Lot
 Lot ID|Mã Lot
 Lot Input|Nhập Lot
-Motion End (mm)|Điểm cuối (mm)
-Motion Start (mm)|Điểm đầu (mm)
 NG|Lỗi
-OUTPUT TEST|THỬ ĐẦU RA
 Panel In|Tấm vào
-PERIODIC (enc)|PERIODIC (encoder)
-Pixel Res (um)|Độ phân giải (um)
 Production|Sản xuất
-Pulse W (us)|Độ rộng xung (us)
 Rate (UPH / Target)|Tỷ lệ (UPH / mục tiêu)
 Reset|Đặt lại
-Result|Kết quả
 Rework|Làm lại
 RUN|CHẠY
 Run Time|Giờ chạy
-Scan Time (s)|Thời gian quét (s)
-Scan Trigger|Kích hoạt quét
 Set|Đặt
-SET|ĐẶT
-Speed (mm/s)|Tốc độ (mm/s)
 Start|Bắt đầu
-START|BẮT ĐẦU
-State|Trạng thái
 STOP|DỪNG
 Stop|Dừng
 Stop Time|Giờ dừng
 Target UPH|UPH mục tiêu
-TIMER (freq)|TIMER (tần số)
-Trig End (mm)|Cuối kích hoạt (mm)
-Trig Start (mm)|Đầu kích hoạt (mm)
 Unit In|Vào
 Unit Out|Ra
 # UPH|
@@ -212,6 +193,7 @@ Machine|Máy
 Machine name (top bar)|Tên máy (thanh trên)
 MMI and SEQ logs alike (.log, .txt). Checked a minute after start-up, then every hour.|Cả nhật ký MMI và SEQ (.log, .txt). Kiểm tra 1 phút sau khi khởi động, sau đó mỗi giờ.
 PURGE NOW|DỌN NGAY
+SET|ĐẶT
 SOFTWARE|PHẦN MỀM
 SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.|PHẦN MỀM: chạm vào ô nhập sẽ mở bàn phím trên màn hình.\nPHẦN CỨNG: nhập bằng bàn phím gắn ngoài.
 Start in|Khởi động bằng
@@ -255,6 +237,7 @@ LOG HISTORY|LỊCH SỬ NHẬT KÝ
 NEW DB|DB MỚI
 OLD DB|DB CŨ
 REFRESH|LÀM MỚI
+START|BẮT ĐẦU
 # YYYY-MM-DD|
 
 # --- FormMain ---
@@ -418,18 +401,6 @@ Velocity|Tốc độ
 # --- FormScanTrigger ---
 +LIMIT|+GIỚI HẠN
 -LIMIT|-GIỚI HẠN
-0  IDLE|0  RẢNH
-1  GOTO START|1  ĐẾN ĐIỂM ĐẦU
-10  RETURN|10  QUAY VỀ
-11  WAIT RETURN|11  CHỜ QUAY VỀ
-2  WAIT START|2  CHỜ ĐIỂM ĐẦU
-3  ARM|3  ARM
-4  RUN|4  CHẠY
-5  WAIT END|5  CHỜ KẾT THÚC
-6  DISARM|6  DISARM
-7  DONE|7  XONG
-8  ABORTED|8  HỦY BỎ
-9  OUTPUT TEST|9  THỬ ĐẦU RA
 Active Level|Mức tích cực
 ALARM RESET|XÓA CẢNH BÁO
 Armed At (counts)|Vị trí kích hoạt (counts)
@@ -440,9 +411,9 @@ Counter Channel|Kênh bộ đếm
 Counter H/W Config|Cấu hình phần cứng bộ đếm
 Current Index|Chỉ số hiện tại
 Current Position|Vị trí hiện tại
-Cycle State|Trạng thái chu trình
 DEFAULTS|MẶC ĐỊNH
 Direction Check|Kiểm tra hướng
+Enc Count|Số đếm encoder
 Encoder (counts)|Encoder (counts)
 ENCODER = AXIS POSITION|ENCODER = VỊ TRÍ TRỤC
 Encoder Input|Đầu vào encoder
@@ -451,29 +422,39 @@ Encoder Reverse|Đảo encoder
 HOMED|ĐÃ VỀ GỐC
 Jog|Jog
 JOG ENABLE|CHO PHÉP JOG
+Line Rate (kHz)|Tần số dòng (kHz)
+Lines|Số dòng
 Live Counter|Bộ đếm trực tiếp
-Mode|Chế độ
+Motion End (mm)|Điểm cuối (mm)
+Motion Start (mm)|Điểm đầu (mm)
 Next Index|Chỉ số tiếp
 Next Position|Vị trí tiếp
 # OUT 0|
 # OUT 1|
 # OUT 2|
 # OUT 3|
-Pitch (counts)|Bước (counts)
+OUTPUT TEST|THỬ ĐẦU RA
+PERIODIC (enc)|PERIODIC (encoder)
+Pixel Res (um)|Độ phân giải (um)
 Progress|Tiến độ
+Pulse W (us)|Độ rộng xung (us)
 READ|ĐỌC
-Recipe / START on Auto|Công thức / START ở màn hình Tự động
-Scan Cycle|Chu trình quét
+Result|Kết quả
 Scan Geometry  (motor index 50 - 53)|Hình học quét (chỉ số động cơ 50 - 53)
-SET and START stay on the Auto screen, beside the recipe.|SET và START nằm ở màn hình Tự động, cạnh công thức.
+Scan Time (s)|Thời gian quét (s)
+Scan Trigger|Kích hoạt quét
+Speed (mm/s)|Tốc độ (mm/s)
+State|Trạng thái
 STEP|BƯỚC
 Step (mm)|Bước (mm)
+TIMER (freq)|TIMER (tần số)
+Trig End (mm)|Cuối kích hoạt (mm)
+Trig Start (mm)|Đầu kích hoạt (mm)
 Trigger Count|Số lần kích hoạt
 TRIGGER COUNT CLEAR|XÓA SỐ LẦN KÍCH HOẠT
 Trigger Log|Nhật ký kích hoạt
 Trigger Output|Đầu ra kích hoạt
 Unit per Count (mm)|Đơn vị mỗi count (mm)
-Validate|Kiểm tra
 WRITE|GHI
 Wrong Way Limit (counts)|Giới hạn ngược (counts)
 

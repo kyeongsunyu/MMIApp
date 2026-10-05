@@ -150,7 +150,7 @@ namespace MMI
             // LoadScanTriggerFromRecipe.
             if (frmMain != null && frmMain.frmAuto1 != null)
             {
-                frmMain.frmAuto1.LoadScanTriggerFromRecipe();
+                frmMain.frmScanTrigger.LoadScanTriggerFromRecipe();
             }
         }
 

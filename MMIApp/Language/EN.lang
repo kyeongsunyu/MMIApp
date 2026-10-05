@@ -21,47 +21,28 @@ ALARM|ALARM
 Communication|Communication
 Control|Control
 Count|Count
-Enc Count|Enc Count
 Equipment State|Equipment State
 Good|Good
 Initialize|Initialize
-Line Rate (kHz)|Line Rate (kHz)
-Lines|Lines
 Lot|Lot
 Lot Cancel|Lot Cancel
 Lot End|Lot End
 Lot ID|Lot ID
 Lot Input|Lot Input
-Motion End (mm)|Motion End (mm)
-Motion Start (mm)|Motion Start (mm)
 NG|NG
-OUTPUT TEST|OUTPUT TEST
 Panel In|Panel In
-PERIODIC (enc)|PERIODIC (enc)
-Pixel Res (um)|Pixel Res (um)
 Production|Production
-Pulse W (us)|Pulse W (us)
 Rate (UPH / Target)|Rate (UPH / Target)
 Reset|Reset
-Result|Result
 Rework|Rework
 RUN|RUN
 Run Time|Run Time
-Scan Time (s)|Scan Time (s)
-Scan Trigger|Scan Trigger
 Set|Set
-SET|SET
-Speed (mm/s)|Speed (mm/s)
 Start|Start
-START|START
-State|State
 STOP|STOP
 Stop|Stop
 Stop Time|Stop Time
 Target UPH|Target UPH
-TIMER (freq)|TIMER (freq)
-Trig End (mm)|Trig End (mm)
-Trig Start (mm)|Trig Start (mm)
 Unit In|Unit In
 Unit Out|Unit Out
 UPH|UPH
@@ -212,6 +193,7 @@ Machine|Machine
 Machine name (top bar)|Machine name (top bar)
 MMI and SEQ logs alike (.log, .txt). Checked a minute after start-up, then every hour.|MMI and SEQ logs alike (.log, .txt). Checked a minute after start-up, then every hour.
 PURGE NOW|PURGE NOW
+SET|SET
 SOFTWARE|SOFTWARE
 SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.|SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.
 Start in|Start in
@@ -255,6 +237,7 @@ LOG HISTORY|LOG HISTORY
 NEW DB|NEW DB
 OLD DB|OLD DB
 REFRESH|REFRESH
+START|START
 YYYY-MM-DD|YYYY-MM-DD
 
 # --- FormMain ---
@@ -418,18 +401,6 @@ Velocity|Velocity
 # --- FormScanTrigger ---
 +LIMIT|+LIMIT
 -LIMIT|-LIMIT
-0  IDLE|0  IDLE
-1  GOTO START|1  GOTO START
-10  RETURN|10  RETURN
-11  WAIT RETURN|11  WAIT RETURN
-2  WAIT START|2  WAIT START
-3  ARM|3  ARM
-4  RUN|4  RUN
-5  WAIT END|5  WAIT END
-6  DISARM|6  DISARM
-7  DONE|7  DONE
-8  ABORTED|8  ABORTED
-9  OUTPUT TEST|9  OUTPUT TEST
 Active Level|Active Level
 ALARM RESET|ALARM RESET
 Armed At (counts)|Armed At (counts)
@@ -440,9 +411,9 @@ Counter Channel|Counter Channel
 Counter H/W Config|Counter H/W Config
 Current Index|Current Index
 Current Position|Current Position
-Cycle State|Cycle State
 DEFAULTS|DEFAULTS
 Direction Check|Direction Check
+Enc Count|Enc Count
 Encoder (counts)|Encoder (counts)
 ENCODER = AXIS POSITION|ENCODER = AXIS POSITION
 Encoder Input|Encoder Input
@@ -451,29 +422,39 @@ Encoder Reverse|Encoder Reverse
 HOMED|HOMED
 Jog|Jog
 JOG ENABLE|JOG ENABLE
+Line Rate (kHz)|Line Rate (kHz)
+Lines|Lines
 Live Counter|Live Counter
-Mode|Mode
+Motion End (mm)|Motion End (mm)
+Motion Start (mm)|Motion Start (mm)
 Next Index|Next Index
 Next Position|Next Position
 OUT 0|OUT 0
 OUT 1|OUT 1
 OUT 2|OUT 2
 OUT 3|OUT 3
-Pitch (counts)|Pitch (counts)
+OUTPUT TEST|OUTPUT TEST
+PERIODIC (enc)|PERIODIC (enc)
+Pixel Res (um)|Pixel Res (um)
 Progress|Progress
+Pulse W (us)|Pulse W (us)
 READ|READ
-Recipe / START on Auto|Recipe / START on Auto
-Scan Cycle|Scan Cycle
+Result|Result
 Scan Geometry  (motor index 50 - 53)|Scan Geometry  (motor index 50 - 53)
-SET and START stay on the Auto screen, beside the recipe.|SET and START stay on the Auto screen, beside the recipe.
+Scan Time (s)|Scan Time (s)
+Scan Trigger|Scan Trigger
+Speed (mm/s)|Speed (mm/s)
+State|State
 STEP|STEP
 Step (mm)|Step (mm)
+TIMER (freq)|TIMER (freq)
+Trig End (mm)|Trig End (mm)
+Trig Start (mm)|Trig Start (mm)
 Trigger Count|Trigger Count
 TRIGGER COUNT CLEAR|TRIGGER COUNT CLEAR
 Trigger Log|Trigger Log
 Trigger Output|Trigger Output
 Unit per Count (mm)|Unit per Count (mm)
-Validate|Validate
 WRITE|WRITE
 Wrong Way Limit (counts)|Wrong Way Limit (counts)
 

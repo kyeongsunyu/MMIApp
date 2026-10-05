@@ -367,6 +367,10 @@
     <Compile Include="Form\FormScanTrigger.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\FormScanTrigger.Recipe.cs">
+      <DependentUpon>FormScanTrigger.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\FormScanTrigger.Motor.cs">
       <DependentUpon>FormScanTrigger.cs</DependentUpon>
       <SubType>Form</SubType>

@@ -21,47 +21,28 @@ ALARM|报警
 Communication|通讯
 Control|控制
 Count|数量
-Enc Count|编码器计数
 Equipment State|设备状态
 Good|良品
 Initialize|初始化
-Line Rate (kHz)|行频 (kHz)
-Lines|行数
 Lot|批次
 Lot Cancel|批次取消
 Lot End|批次结束
 Lot ID|批次号
 Lot Input|批次输入
-Motion End (mm)|运动终点 (mm)
-Motion Start (mm)|运动起点 (mm)
 NG|不良
-OUTPUT TEST|输出测试
 Panel In|面板投入
-PERIODIC (enc)|PERIODIC (编码器)
-Pixel Res (um)|像素分辨率 (um)
 Production|生产
-Pulse W (us)|脉宽 (us)
 Rate (UPH / Target)|达成率 (UPH / 目标)
 Reset|复位
-Result|结果
 Rework|返工
 RUN|运行
 Run Time|运行时间
-Scan Time (s)|扫描时间 (s)
-Scan Trigger|扫描触发
 Set|设定
-SET|设定
-Speed (mm/s)|速度 (mm/s)
 Start|开始
-START|开始
-State|状态
 STOP|停止
 Stop|停止
 Stop Time|停止时间
 Target UPH|目标 UPH
-TIMER (freq)|TIMER (频率)
-Trig End (mm)|触发终点 (mm)
-Trig Start (mm)|触发起点 (mm)
 Unit In|投入
 Unit Out|产出
 # UPH|
@@ -212,6 +193,7 @@ Machine|设备
 Machine name (top bar)|设备名称 (顶栏)
 MMI and SEQ logs alike (.log, .txt). Checked a minute after start-up, then every hour.|MMI 和 SEQ 日志 (.log, .txt)。启动 1 分钟后检查，之后每小时一次。
 PURGE NOW|立即清理
+SET|设定
 SOFTWARE|软件
 SOFTWARE opens the on-screen keyboard when a text box is touched.\nHARDWARE leaves typing to an attached keyboard.|软件：触摸输入框时打开屏幕键盘。\n硬件：使用连接的键盘输入。
 Start in|启动语言
@@ -255,6 +237,7 @@ LOG HISTORY|日志履历
 NEW DB|新 DB
 OLD DB|旧 DB
 REFRESH|刷新
+START|开始
 YYYY-MM-DD|YYYY-MM-DD
 
 # --- FormMain ---
@@ -418,18 +401,6 @@ Velocity|速度
 # --- FormScanTrigger ---
 +LIMIT|+极限
 -LIMIT|-极限
-0  IDLE|0  空闲
-1  GOTO START|1  去起点
-10  RETURN|10  返回
-11  WAIT RETURN|11  等待返回
-2  WAIT START|2  等待起点
-3  ARM|3  使能
-4  RUN|4  运行
-5  WAIT END|5  等待结束
-6  DISARM|6  解除使能
-7  DONE|7  完成
-8  ABORTED|8  中止
-9  OUTPUT TEST|9  输出测试
 Active Level|有效电平
 ALARM RESET|报警复位
 Armed At (counts)|使能位置 (counts)
@@ -440,9 +411,9 @@ Counter Channel|计数器通道
 Counter H/W Config|计数器硬件设置
 Current Index|当前索引
 Current Position|当前位置
-Cycle State|循环状态
 DEFAULTS|默认值
 Direction Check|方向检查
+Enc Count|编码器计数
 Encoder (counts)|编码器 (counts)
 ENCODER = AXIS POSITION|编码器 = 轴位置
 Encoder Input|编码器输入
@@ -451,29 +422,39 @@ Encoder Reverse|编码器反向
 HOMED|已回原点
 Jog|点动
 JOG ENABLE|点动启用
+Line Rate (kHz)|行频 (kHz)
+Lines|行数
 Live Counter|实时计数器
-Mode|模式
+Motion End (mm)|运动终点 (mm)
+Motion Start (mm)|运动起点 (mm)
 Next Index|下一索引
 Next Position|下一位置
 # OUT 0|
 # OUT 1|
 # OUT 2|
 # OUT 3|
-Pitch (counts)|间距 (counts)
+OUTPUT TEST|输出测试
+PERIODIC (enc)|PERIODIC (编码器)
+Pixel Res (um)|像素分辨率 (um)
 Progress|进度
+Pulse W (us)|脉宽 (us)
 READ|读取
-Recipe / START on Auto|配方 / START 在自动画面
-Scan Cycle|扫描循环
+Result|结果
 Scan Geometry  (motor index 50 - 53)|扫描位置图 (电机索引 50 - 53)
-SET and START stay on the Auto screen, beside the recipe.|SET 和 START 在自动画面的配方旁。
+Scan Time (s)|扫描时间 (s)
+Scan Trigger|扫描触发
+Speed (mm/s)|速度 (mm/s)
+State|状态
 STEP|步进
 Step (mm)|步距 (mm)
+TIMER (freq)|TIMER (频率)
+Trig End (mm)|触发终点 (mm)
+Trig Start (mm)|触发起点 (mm)
 Trigger Count|触发计数
 TRIGGER COUNT CLEAR|清除触发计数
 Trigger Log|触发日志
 Trigger Output|触发输出
 Unit per Count (mm)|每计数单位 (mm)
-Validate|校验
 WRITE|写入
 Wrong Way Limit (counts)|反向限制 (counts)
 

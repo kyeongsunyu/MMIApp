@@ -1,0 +1,852 @@
+﻿using System;
+using System.Drawing;
+using System.Globalization;
+using System.Windows.Forms;
+
+namespace MMI
+{
+    // The scan recipe panel of the TRIGGER screen: the four positions, pixel
+    // resolution, speed and pulse width, with SET, START, STOP and OUTPUT TEST.
+    // It moved here from the Production screen as it was, so it sits beside
+    // the counter board, the geometry and the motor it drives.
+    //
+    // CThreadMain reads the scan display for this screen; RenderFromSeq hands
+    // it to RenderScanTriggerDisplay while bScanTriggerWatch is set, as the
+    // Production screen's own poll used to.
+    public partial class FormScanTrigger
+    {
+        #region SCAN TRIGGER
+
+        // The panel takes the four recipe numbers and hands them to SEQ, which
+        // owns every derived value. Nothing here recomputes a speed or a line
+        // count: SEQ works them out from the recipe and reports them back, and a
+        // second answer computed here could only disagree with the one the
+        // machine actually runs.
+        //
+        // The five inputs are typed straight into their text boxes. Editing any
+        // of them drops the computed rows, which are stale the moment an input
+        // moves, and takes START away again until the recipe is re-sent.
+        //
+        // Speed is entered and the line rate is computed, not the other way
+        // round: speed is what the machine is commanded to do and what the tact
+        // time is argued about in, while the line rate is what falls out of it
+        // and the pitch. The camera is then set from a number nobody had to
+        // work out by hand.
+
+        // The axis the trigger runs on. Single scan axis for now; when a second
+        // one appears this becomes a selection rather than a constant.
+        private const uint ScanTriggerAxis = 0;
+
+        // Mirrors SCANTRIGGER_PULSE_MAX_DUTY and SCANTRIGGER_PULSE_MIN_US in
+        // SEQ04_ScanTrigger.cpp. SEQ owns the decision; this side only explains
+        // it, so if the two ever drift the result is a wrong explanation rather
+        // than a wrong refusal.
+        private const double ScanTriggerPulseMaxDuty = 0.4;
+        private const double ScanTriggerPulseMinUs   = 1.0;
+
+        // SCANTRIGGER_MODE in SharedMemBase.h.
+        //
+        // PERIODIC is the encoder comparator: one pulse every N counts, and N
+        // is a whole number, so with a 1 um encoder the pixel resolution can
+        // only be a whole number of micrometres. 18.1 um is refused, not
+        // rounded, because rounding it costs 100 nm on every line in the same
+        // direction and comes out of the image as a 0.55 % stretch.
+        //
+        // TIMER is a free running oscillator. The rate is a whole number of Hz
+        // and nothing else is quantised, so SEQ rounds the rate and trims the
+        // speed to match - which makes any pixel resolution exact, to the
+        // nanometre and below. What it gives up is the encoder: the pitch is
+        // then only as good as the stage's velocity is steady, and the ends of
+        // the scan are found by software rather than by the comparator.
+        private const uint ScanTriggerModePeriodic = 0;
+        private const uint ScanTriggerModeTimer    = 1;
+
+        private uint ScanTriggerMode()
+        {
+            return rdoScanTrigTimer.Checked ? ScanTriggerModeTimer : ScanTriggerModePeriodic;
+        }
+
+        // Same as any other input: the recipe on screen no longer matches what
+        // SEQ was told, so SET has to be pressed again before START means
+        // anything.
+        private void ScanTriggerMode_CheckedChanged(object sender, EventArgs e)
+        {
+            ScanTriggerInput_TextChanged(sender, e);
+        }
+
+        // The scan geometry lives in the motor index table: 50 and above are
+        // MOTOR_COMMON rows, so they belong to the machine rather than to one
+        // device, and the motor screen names and edits the same four. SET writes
+        // all four positions and the scan speed into them, so the panel and the
+        // motor screen are two views of one table rather than two tables.
+        //
+        //   50 SCAN START / 51 SCAN TRIGGER START / 52 SCAN TRIGGER END / 53 SCAN END
+        private const int ScanTriggerIdxFirst = 50;
+        private const int ScanTriggerIdxLast  = 53;
+        private const int ScanTriggerIdxCount = ScanTriggerIdxLast - ScanTriggerIdxFirst + 1;
+
+        // Set while a recipe has been accepted or a cycle is running. Read by
+        // CThreadMain, which does the polling: every other shared memory read in
+        // this program goes through that thread, and MemPort takes a mutex the
+        // thread holds almost continuously, so a UI timer asking for the same
+        // mutex loses the race most of the time and reports a link that is fine
+        // as broken.
+        public volatile bool bScanTriggerWatch = false;
+
+        // MainRecipeLoad runs on the recipe loading thread and CThreadMain runs on
+        // its own, but WinForms only lets the thread that created a control touch
+        // it. Guard the entry points rather than trusting every caller to marshal:
+        // one that forgot took the program down during start-up, on the first
+        // label this panel writes.
+        //
+        // Before the handle exists there is no cross-thread rule to break and
+        // BeginInvoke would throw, so in that case the caller carries on and
+        // writes the controls directly.
+        private bool ScanTriggerToUiThread(MethodInvoker work)
+        {
+            if (IsHandleCreated && InvokeRequired)
+            {
+                BeginInvoke(work);
+                return true;
+            }
+            return false;
+        }
+
+        // Called once the recipe is in memory - at start from MainRecipeLoad, and
+        // again whenever the device changes. Fills the panel only; it does not
+        // send anything to SEQ. SET stays a deliberate act, so the operator sees
+        // the verdict against the machine as it is right now rather than having
+        // a recipe pushed in behind them at start-up.
+        public void LoadScanTriggerFromRecipe()
+        {
+            if (ScanTriggerToUiThread(LoadScanTriggerFromRecipe)) return;
+
+            CRcpMaterial rcp = CRecipeCtl.CurMaterialRcp;
+            if (rcp == null) return;
+
+            txtScanTrigPitch.Text = rcp.ScanPixelRes.ToString("F2");
+            txtScanTrigSpeed.Text = rcp.ScanSpeed.ToString("F2");
+            txtScanTrigPulse.Text = rcp.ScanPulseWidth.ToString("F2");
+
+            LoadScanPositionsFromMotorTable();
+
+            // Setting the text fires TextChanged, which does this too. Doing it
+            // here as well keeps the state right without depending on that.
+            bScanTriggerWatch = false;
+            btnScanTrigStart.Enabled = false;
+            ClearScanTriggerDisplay();
+            lblScanTrigResult.Text = "-";
+        }
+
+        // The four positions belong to the machine, not to the recipe, so they
+        // come from the motor table rather than from the material being run.
+        // Form_SystemInit has filled mtSettingData from MOTOR_COMMON long before
+        // the first recipe load, so this shows what the motor screen shows.
+        public void LoadScanPositionsFromMotorTable()
+        {
+            if (ScanTriggerToUiThread(LoadScanPositionsFromMotorTable)) return;
+
+            int nAxis = (int)ScanTriggerAxis;
+            if (MmiGV.mtSettingData == null) return;
+
+            double[] adPos = MmiGV.mtSettingData[nAxis].dPosArray;
+            if (adPos == null || adPos.Length <= ScanTriggerIdxLast) return;
+
+            txtScanTrigMotionStart.Text = adPos[ScanTriggerIdxFirst    ].ToString("F3");
+            txtScanTrigStart.Text       = adPos[ScanTriggerIdxFirst + 1].ToString("F3");
+            txtScanTrigEnd.Text         = adPos[ScanTriggerIdxFirst + 2].ToString("F3");
+            txtScanTrigMotionEnd.Text   = adPos[ScanTriggerIdxFirst + 3].ToString("F3");
+        }
+
+        private void ScanTriggerInput_TextChanged(object sender, EventArgs e)
+        {
+            bScanTriggerWatch = false;
+            btnScanTrigStart.Enabled = false;
+            ClearScanTriggerDisplay();
+            lblScanTrigResult.Text = "-";
+        }
+
+        // adPosMM comes back in index order - 50, 51, 52, 53 - which is also the
+        // order the stage passes them in.
+        private bool TryReadScanTriggerRecipe(out double[] adPosMM, out double dPitch,
+                                              out double dSpeed, out double dPulseUs)
+        {
+            adPosMM = null;
+            dPitch = dSpeed = dPulseUs = 0.0;
+
+            double[] adPos = new double[ScanTriggerIdxCount];
+            if (!double.TryParse(txtScanTrigMotionStart.Text, out adPos[0])) return false;
+            if (!double.TryParse(txtScanTrigStart.Text,       out adPos[1])) return false;
+            if (!double.TryParse(txtScanTrigEnd.Text,         out adPos[2])) return false;
+            if (!double.TryParse(txtScanTrigMotionEnd.Text,   out adPos[3])) return false;
+
+            if (!double.TryParse(txtScanTrigPitch.Text, out dPitch))   return false;
+            if (!double.TryParse(txtScanTrigSpeed.Text, out dSpeed))   return false;
+            if (!double.TryParse(txtScanTrigPulse.Text, out dPulseUs)) return false;
+
+            adPosMM = adPos;
+            return true;
+        }
+
+        // The scan geometry - four positions and the speed they are run at - into
+        // motor index table entries 50..53. This is the only copy: SEQ reads the
+        // positions out of the same table to work out the trigger block, and the
+        // motor screen edits the same rows, so there is nothing to keep in sync
+        // afterwards.
+        //
+        // Five copies of it have to move together all the same, because each one
+        // is read by something different:
+        //
+        //   WMotorData      what SEQ runs on, until the program restarts
+        //   MOTOR_COMMON    what survives the restart
+        //   mtSettingData   what the motor screen's SETTING columns are painted from
+        //   mtData          pulses, what the motor screen writes back out
+        //   RMotorData      what the motor screen's CURRENT columns are painted from
+        //
+        // CMD_WRITE_MOTORDATA replaces the whole hundred entry array, so sending
+        // this side's own copy would overwrite anything SEQ holds that this copy
+        // does not know about. Read SEQ's array back first and change only the
+        // four, which is the difference between writing four numbers and
+        // rewriting the table.
+        private bool WriteScanGeometryToMotorTable(double[] adPosMM, double dSpeedMmS)
+        {
+            int nAxis = (int)ScanTriggerAxis;
+            if (MmiGV.pShMem == null) return false;
+            if (!MmiGV.pShMem.GetMotorData(nAxis)) return false;
+
+            double dRate   = MmiGV.mtConfigData[nAxis].uPulseRate;
+            double dVelPul = dSpeedMmS * dRate;
+
+            for (int i = 0; i < 100; i++)
+            {
+                MmiGV.pShMem.WMotorData.uPos[i] = MmiGV.pShMem.RMotorData[nAxis].uPos[i];
+                MmiGV.pShMem.WMotorData.uVel[i] = MmiGV.pShMem.RMotorData[nAxis].uVel[i];
+            }
+            for (int i = ScanTriggerIdxFirst; i <= ScanTriggerIdxLast; i++)
+            {
+                double dPosMM  = adPosMM[i - ScanTriggerIdxFirst];
+                double dPosPul = dPosMM * dRate;
+
+                MmiGV.pShMem.WMotorData.uPos[i] = dPosPul;
+                MmiGV.pShMem.WMotorData.uVel[i] = dVelPul;
+
+                MmiGV.mtSettingData[nAxis].dPosArray[i]   = dPosMM;
+                MmiGV.mtSettingData[nAxis].dSpeedArray[i] = dSpeedMmS;
+                MmiGV.mtData[nAxis].iPosArray[i]          = dPosPul;
+                MmiGV.mtData[nAxis].iSpeedArray[i]        = dVelPul;
+            }
+
+            MmiGV.pShMem.WMotorData.uAxisNo = nAxis;
+            if (!MmiGV.pShMem.SetMotorData()) return false;
+
+            // Read it straight back. This refills RMotorData, which is what the
+            // motor screen's CURRENT columns are painted from, so they show the
+            // new geometry now instead of on whatever poll comes next - and a
+            // write that did not take is visible here rather than looking like
+            // it did.
+            if (!MmiGV.pShMem.GetMotorData(nAxis)) return false;
+
+            // One pulse of slack: these are doubles carrying whole pulse counts,
+            // so anything larger than that is the write not having taken.
+            for (int i = ScanTriggerIdxFirst; i <= ScanTriggerIdxLast; i++)
+            {
+                double dPosPul = adPosMM[i - ScanTriggerIdxFirst] * dRate;
+
+                if (Math.Abs(MmiGV.pShMem.RMotorData[nAxis].uPos[i] - dPosPul) > 1.0) return false;
+                if (Math.Abs(MmiGV.pShMem.RMotorData[nAxis].uVel[i] - dVelPul) > 1.0) return false;
+            }
+
+            // MOTOR_COMMON row i holds array entry i + 50. ITEM is left alone:
+            // the row names are the motor screen's to give.
+            for (int i = ScanTriggerIdxFirst; i <= ScanTriggerIdxLast; i++)
+            {
+                // InvariantCulture: a locale with a comma decimal separator
+                // writes "198,9" and SQLite rejects the statement in silence.
+                string strAxis = string.Format("{0:D2}", nAxis + 1);
+                string strSQL = "UPDATE MOTOR_COMMON SET "
+                              + " POS" + strAxis + "="
+                              + "'" + adPosMM[i - ScanTriggerIdxFirst].ToString(CultureInfo.InvariantCulture) + "'" + ","
+                              + " SPD" + strAxis + "="
+                              + "'" + dSpeedMmS.ToString(CultureInfo.InvariantCulture) + "'"
+                              + " WHERE IDX=" + (i - ScanTriggerIdxFirst).ToString(CultureInfo.InvariantCulture);
+                SQLiteDB.Execute(strSQL);
+            }
+
+            // The SETTING columns are painted from mtSettingData, and only when
+            // something asks - nothing polls them, and opening the screen does
+            // not either. Without this the motor screen keeps showing the old
+            // numbers beside a CURRENT column that has already moved on, which is
+            // the two columns disagreeing about a value neither of them is wrong
+            // about.
+            if (MmiGV.frmMain != null && MmiGV.frmMain.frmMotorSetting != null)
+            {
+                MmiGV.frmMain.frmMotorSetting.RefreshData();
+            }
+            return true;
+        }
+
+        // Everything SEQ owns. The four positions are not touched here - they are
+        // typed, not read back, and clearing what the operator is in the middle
+        // of entering would be its own bug. The result row is not touched either:
+        // it carries the outcome of the last action and the caller writes it
+        // straight after.
+        private void ClearScanTriggerDisplay()
+        {
+            // Nothing has been read back, so the row carries the caption the
+            // selected mode will fill it with rather than the last one's.
+            lblcapScanTrigR3.Text = (ScanTriggerMode() == ScanTriggerModeTimer)
+                                  ? "Act Speed" : "Enc Count";
+
+            lblScanTrigRate.Text   = "-";
+            lblScanTrigLines.Text  = "-";
+            lblScanTrigTime.Text   = "-";
+            lblScanTrigCounts.Text = "-";
+            lblScanTrigState.Text  = "-";
+        }
+
+        // The panel reads mm, mm, um, mm/s and us because that is how the
+        // operator thinks about a scan. Pixel Res is the along-scan resolution -
+        // one line per that much travel - and it has to match the cross-scan
+        // resolution or the image comes out stretched. The pulse width is
+        // whatever the camera datasheet asks for. The shared memory recipe is mm
+        // and mm/s throughout, with the pulse width left in us.
+        private bool SendScanTriggerRecipe(double dPitchUm, double dSpeed,
+                                           double dPulseUs)
+        {
+            MmiGV.pShMem.WScanTriggerRecipe.uAxisNo       = ScanTriggerAxis;
+            MmiGV.pShMem.WScanTriggerRecipe.dPitch        = dPitchUm / 1000.0;
+            MmiGV.pShMem.WScanTriggerRecipe.dSpeed        = dSpeed;
+            MmiGV.pShMem.WScanTriggerRecipe.dPulseWidthUS = dPulseUs;
+            MmiGV.pShMem.WScanTriggerRecipe.uTriggerMode  = ScanTriggerMode();
+
+            // Reserved in the struct and unused until an approach profile exists.
+            MmiGV.pShMem.WScanTriggerRecipe.dAccel     = 0.0;
+            MmiGV.pShMem.WScanTriggerRecipe.dDecel     = 0.0;
+            MmiGV.pShMem.WScanTriggerRecipe.nDirection = 0;
+
+            return MmiGV.pShMem.SetScanTriggerRecipe();
+        }
+
+        private static string ScanTriggerValidateText(int nCode)
+        {
+            switch (nCode)
+            {
+                case 0:  return "OK";
+                case 1:  return "AXIS";
+                case 2:  return "RANGE";
+                case 3:  return "PITCH";
+                case 4:  return "SPEED";
+                case 5:  return "PITCH FRAC";
+                case 6:  return "SPEED MAX";
+                case 7:  return "LINE COUNT";
+                case 8:  return "NO COUNTER";
+                case 9:  return "PULSE RATE";
+                case 10: return "NOT HOMED";
+                case 11: return "PULSE W";
+                case 12: return "IDX 50-53";
+                case 13: return "LINE RATE";
+                case 14: return "AXIS MOVING";
+                default: return nCode.ToString();
+            }
+        }
+
+        private static string ScanTriggerStateText(int nState)
+        {
+            switch (nState)
+            {
+                case 0: return "IDLE";
+                case 1: return "GOTO START";
+                case 2: return "WAIT START";
+                case 3: return "ARM";
+                case 4: return "RUN";
+                case 5: return "WAIT END";
+                case 6: return "DISARM";
+                case 7: return "DONE";
+                case 8: return "ABORTED";
+                case 9: return "OUT TEST";
+                case 10: return "RETURN";
+                case 11: return "WAIT RETURN";
+                default: return nState.ToString();
+            }
+        }
+
+        // Reads shared memory, so it blocks; only a button press calls it.
+        // Returns the validate code, or -1 when the display could not be read.
+        private int RefreshScanTriggerDisplay()
+        {
+            if (MmiGV.pShMem == null) return -1;
+            if (!MmiGV.pShMem.GetScanTriggerDisplay()) return -1;
+
+            RenderScanTriggerDisplay();
+            return MmiGV.pShMem.RScanTriggerDisplay.nValidateCode;
+        }
+
+        // Paints whatever CSharedMemory last read. Touches no shared memory, so
+        // the comm thread can drive it through Invoke. UI thread only.
+        public void RenderScanTriggerDisplay()
+        {
+            if (ScanTriggerToUiThread(RenderScanTriggerDisplay)) return;
+
+            if (MmiGV.pShMem == null) return;
+
+            SharedMemDll.SCANTRIGGER_DISPLAY d = MmiGV.pShMem.RScanTriggerDisplay;
+
+            // kHz on screen, Hz on the wire - a 16K scan runs in the tens of
+            // thousands and reads better with the exponent taken out.
+            lblScanTrigRate.Text = (d.dLineRate / 1000.0).ToString("F3");
+            lblScanTrigTime.Text = d.dScanTime.ToString("F2");
+            lblScanTrigState.Text = ScanTriggerStateText(d.nState);
+
+            // The four positions are deliberately not painted from d. SET wrote
+            // them into the table that d was read out of, so they already agree,
+            // and this runs on every poll - it would overwrite whatever the
+            // operator is part way through typing for the next scan.
+
+            // Before a run there is only the expected count; once the counter has
+            // been read back, show what actually came out against it.
+            lblScanTrigLines.Text = (d.nTriggerCount >= 0)
+                ? d.nTriggerCount.ToString() + " / " + d.nLineCount.ToString()
+                : d.nLineCount.ToString();
+
+            // A pitch that is not a whole number of encoder counts is the one
+            // thing the operator can fix by changing a number, so mark it.
+            // This row means something different in each mode, caption included.
+            //
+            // PERIODIC is quantised by the encoder, so it shows the pitch in
+            // encoder counts and marks it when that is not a whole number -
+            // the thing that gets the recipe refused.
+            //
+            // TIMER does not use the encoder at all, so counts would be a
+            // number with no consequence. What the operator needs there is the
+            // speed the stage is actually being run at, which is NOT the one
+            // they typed: the board's rate points are a fixed clock divided by
+            // a whole number, so SEQ takes the rate it can really have and
+            // drives the stage at pitch x that rate, keeping the pitch exact.
+            //
+            // 253,164.56 Hz comes with 199.7468 mm/s against an entered 200.00,
+            // and the entered box keeps saying 200.00 because it is an input.
+            // Without this the difference was only visible as Scan Time moving.
+            //
+            // The rate itself is already on the Line Rate row above, so showing
+            // it here as well was saying one thing twice and the other not at
+            // all.
+            if (d.nTriggerMode == (int)ScanTriggerModeTimer)
+            {
+                lblcapScanTrigR3.Text  = "Act Speed";
+                lblScanTrigCounts.Text = d.dSpeedAdjusted.ToString("F4");
+            }
+            else
+            {
+                lblcapScanTrigR3.Text  = "Enc Count";
+                lblScanTrigCounts.Text = d.dPitchCounts.ToString("F2")
+                                       + (d.bPitchIsInteger ? "" : " !");
+            }
+
+            // The cycle has settled, so stop following it and leave the last
+            // reading on screen.
+            if (d.nState == 7 || d.nState == 8)          // DONE, ABORTED
+            {
+                bScanTriggerWatch = false;
+                lblScanTrigResult.Text = (d.nState == 7) ? "DONE" : "ABORTED";
+            }
+
+            // Last, so it overrides whatever the rest of this wrote.
+            //
+            // Every number above is derived from the recipe SEQ is holding,
+            // which is not necessarily the one in the boxes. A SET that never
+            // landed leaves a set of numbers that agree with each other and
+            // with nothing the operator typed, and reads exactly like a good
+            // measurement - which is what has made the last several faults
+            // impossible to tell apart without a console. SEQ echoes its recipe
+            // back so the panel can say it instead.
+            if (!ScanTriggerRecipeMatchesPanel(d))
+            {
+                lblScanTrigResult.Text = "SET REQUIRED";
+                btnScanTrigStart.Enabled = false;
+            }
+        }
+
+        // True when what SEQ says it is holding is what the panel is showing.
+        // Compared loosely: these have been through two round trips and the
+        // boxes carry three or four decimals, so an exact test would report a
+        // mismatch that is not one.
+        private bool ScanTriggerRecipeMatchesPanel(SharedMemDll.SCANTRIGGER_DISPLAY d)
+        {
+            double[] adPos;
+            double dPitchUm, dSpeed, dPulseUs;
+
+            // A box that will not parse is somebody typing, not a mismatch
+            // worth shouting about - SET refuses it with BAD NUMBER anyway.
+            if (!TryReadScanTriggerRecipe(out adPos, out dPitchUm, out dSpeed, out dPulseUs))
+            {
+                return true;
+            }
+            if (d.dRecipePitch <= 0.0)
+            {
+                return true;      // SEQ has not been given a recipe yet
+            }
+
+            return Math.Abs(d.dRecipePitch * 1000.0 - dPitchUm) < 0.0005
+                && Math.Abs(d.dRecipeSpeed - dSpeed)            < 0.005
+                && Math.Abs(d.dRecipePulseUS - dPulseUs)        < 0.005
+                && d.nTriggerMode == (int)ScanTriggerMode();
+        }
+
+        // Called by the comm thread after several reads in a row have failed.
+        // Distinct from the "NO LINK" a button press reports, and deliberately
+        // so. They are different faults with different answers, and while both
+        // said NO LINK the screen could not tell them apart:
+        //
+        //   NO LINK    a command this operator just sent did not get through
+        //   POLL LOST  SET succeeded, then the background poll stopped being
+        //              answered - so the numbers on screen are the last good
+        //              reading and START has been switched off
+        //
+        // POLL LOST with a fully populated display is the case that had us
+        // looking at the recipe: the recipe was fine and was accepted, and the
+        // link died afterwards.
+        public void ScanTriggerLinkLost()
+        {
+            if (ScanTriggerToUiThread(ScanTriggerLinkLost)) return;
+
+            bScanTriggerWatch = false;
+            btnScanTrigStart.Enabled = false;
+            lblScanTrigResult.Text = "POLL LOST";
+        }
+
+        // SEQ said through its event channel (CThreadSeqEvent) that the cycle
+        // ended. bRead says the display was read just now; if SEQ had already
+        // gone back to IDLE that read shows IDLE, so the end state is written
+        // over it.
+        public void ScanTriggerFinished(int nState, bool bRead)
+        {
+            if (ScanTriggerToUiThread(() => ScanTriggerFinished(nState, bRead))) return;
+
+            if (bRead) RenderScanTriggerDisplay();
+            bScanTriggerWatch = false;
+            lblScanTrigState.Text = ScanTriggerStateText(nState);
+            lblScanTrigResult.Text = (nState == 7) ? "DONE" : "ABORTED";
+        }
+
+        private void btnScanTrigSet_Click(object sender, EventArgs e)
+        {
+            double[] adPos;
+            double dPitch, dSpeed, dPulseUs;
+
+            bScanTriggerWatch = false;
+            btnScanTrigStart.Enabled = false;
+
+            if (!TryReadScanTriggerRecipe(out adPos, out dPitch, out dSpeed, out dPulseUs))
+            {
+                ClearScanTriggerDisplay();
+                lblScanTrigResult.Text = "BAD NUMBER";
+                return;
+            }
+
+            // Only the checks that need no machine knowledge. Everything else -
+            // whether the pitch is a whole number of encoder counts, whether the
+            // speed fits the axis, whether the axis is homed - is SEQ's to judge.
+            if (dPitch <= 0.0 || dSpeed <= 0.0 || dPulseUs <= 0.0)
+            {
+                ClearScanTriggerDisplay();
+                lblScanTrigResult.Text = "BAD RANGE";
+                return;
+            }
+
+            // 50 <= 51 < 52 <= 53, the same test SEQ makes. It is made here as
+            // well because the write happens first: an out of order set would
+            // otherwise land in the motor table and stay there, refused.
+            // Zero length run-up or run-out is allowed - that is a scan with no
+            // room to accelerate outside the block - but the block itself has to
+            // have length.
+            if (adPos[1] <  adPos[0] ||
+                adPos[2] <= adPos[1] ||
+                adPos[3] <  adPos[2])
+            {
+                ClearScanTriggerDisplay();
+                lblScanTrigResult.Text = "BAD ORDER";
+                return;
+            }
+
+            // Persist before sending. The refusals SEQ can still raise - not homed,
+            // no counter, speed beyond the axis - are machine states, not bad
+            // numbers, and the operator should not lose what they typed to one.
+            CRecipeCtl.CurMaterialRcp.ScanPixelRes  = dPitch;
+            CRecipeCtl.CurMaterialRcp.ScanSpeed     = dSpeed;
+            CRecipeCtl.CurMaterialRcp.ScanPulseWidth = dPulseUs;
+            CRecipeCtl.CurMaterialRcp.SaveScanTrigger();
+
+            if (MmiGV.pShMem == null)
+            {
+                ClearScanTriggerDisplay();
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            // The geometry goes into the motor index table before the recipe
+            // goes to SEQ, because that table is what SEQ judges the recipe
+            // against - the line rate and the line count it sends back are
+            // worked out from these very positions.
+            if (!WriteScanGeometryToMotorTable(adPos, dSpeed))
+            {
+                ClearScanTriggerDisplay();
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            // Send it, then check SEQ is holding what was sent.
+            //
+            // SetScanTriggerRecipe() returning true means the round trip
+            // completed, not that SEQ took the recipe. Trusting it left the
+            // panel filled with the previous recipe's answers - after one scan,
+            // changing the speed changed nothing, and every number on screen
+            // still agreed with every other one. SEQ echoes its recipe back
+            // now, so the write can be confirmed rather than assumed, and
+            // retried when it is not.
+            //
+            // Writing the same recipe twice is harmless, which is what makes
+            // the retry safe.
+            int nCode = -1;
+            bool bHeld = false;
+
+            for (int k = 0; k < ScanTriggerTries && !bHeld; k++)
+            {
+                if (!SendScanTriggerRecipe(dPitch, dSpeed, dPulseUs))
+                {
+                    continue;
+                }
+
+                nCode = RefreshScanTriggerDisplay();
+                if (nCode < 0)
+                {
+                    continue;
+                }
+
+                bHeld = ScanTriggerRecipeMatchesPanel(MmiGV.pShMem.RScanTriggerDisplay);
+            }
+
+            if (nCode < 0)
+            {
+                ClearScanTriggerDisplay();
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            // The link is up and SEQ answered, but it is answering about a
+            // different recipe. Saying so is the whole point of the echo: this
+            // used to be indistinguishable from a good SET.
+            if (!bHeld)
+            {
+                lblScanTrigResult.Text = "SET FAILED";
+                return;
+            }
+
+            lblScanTrigResult.Text = ScanTriggerValidateText(nCode);
+
+            // "PULSE W" in a 150 pixel cell says which number is wrong and
+            // nothing else. The operator can only fix it knowing what it is
+            // being measured against, so say so.
+            if (nCode == 11) ShowScanTriggerPulseWidthRefusal(dPulseUs);
+            if (nCode == 5)  ShowScanTriggerPitchRefusal(dPitch);
+
+            // SEQ accepted it, so the cycle can be started and the state row is
+            // worth following from here on.
+            btnScanTrigStart.Enabled = (nCode == 0);
+            bScanTriggerWatch = true;
+        }
+
+        private void btnScanTrigStart_Click(object sender, EventArgs e)
+        {
+            if (MmiGV.pShMem == null)
+            {
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            bool bSent = false;
+            for (int k = 0; k < ScanTriggerTries && !bSent; k++)
+            {
+                bSent = MmiGV.pShMem.SetScanTriggerStart();
+            }
+
+            if (!bSent)
+            {
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            // The command arriving is not the cycle starting. SEQ can take it
+            // and still refuse - the axis not homed, the axis still moving -
+            // and until now that refusal went to SEQ's console and nowhere
+            // else, so the screen said START and the stage sat there.
+            //
+            // The state says which. ScanTriggerM() runs inside the command
+            // handler, so by the time this round trip is back it has either
+            // moved the state off IDLE or decided not to.
+            int nState = -1;
+            int nCode  = 0;
+            for (int k = 0; k < ScanTriggerTries && nState < 0; k++)
+            {
+                if (MmiGV.pShMem.GetScanTriggerDisplay())
+                {
+                    nState = MmiGV.pShMem.RScanTriggerDisplay.nState;
+                    nCode  = MmiGV.pShMem.RScanTriggerDisplay.nValidateCode;
+                }
+            }
+
+            if (nState == 0)        // IDLE: it was heard, and nothing started
+            {
+                bScanTriggerWatch = false;
+                lblScanTrigResult.Text = (nCode != 0)
+                                       ? ScanTriggerValidateText(nCode)
+                                       : "REFUSED";
+                ShowScanTriggerStartRefusal(nCode);
+                return;
+            }
+
+            bScanTriggerWatch = true;
+            lblScanTrigResult.Text = "START";
+
+            // A second press while the cycle runs only earns a refusal from SEQ
+            // and a SEND COMMAND ERROR in its log. SET turns this back on.
+            btnScanTrigStart.Enabled = false;
+        }
+
+        // The state row will read IDLE and the stage will not have moved, which
+        // on its own says nothing about why. These are the reasons SEQ can have
+        // that the recipe itself is fine.
+        private void ShowScanTriggerStartRefusal(int nCode)
+        {
+            string strMsg;
+
+            switch (nCode)
+            {
+                case 10:
+                    strMsg = "축이 원점복귀되지 않았습니다.\n\n"
+                           + "스캔은 절대위치(모터 인덱스 50~53)로 움직이므로\n"
+                           + "원점이 잡혀 있어야 합니다. ALL HOME 실행 후\n"
+                           + "다시 SET 하십시오.";
+                    break;
+                case 14:
+                    strMsg = "축이 아직 움직이고 있습니다.\n\n"
+                           + "스캔 사이클이 축을 직접 구동하므로 정지 상태에서만\n"
+                           + "시작할 수 있습니다. 정지 후 다시 SET 하십시오.";
+                    break;
+                default:
+                    strMsg = "SEQ가 START를 받았으나 사이클을 시작하지 않았습니다.\n\n"
+                           + "판정 코드 " + nCode.ToString() + "\n\n"
+                           + "SEQ 콘솔의 [SCANTRIGGER] 행에 사유가 있습니다.";
+                    break;
+            }
+
+            MessageBox.Show(strMsg, "SCAN TRIGGER",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void btnScanTrigStop_Click(object sender, EventArgs e)
+        {
+            if (MmiGV.pShMem == null)
+            {
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            bool bSent = false;
+            for (int k = 0; k < ScanTriggerTries && !bSent; k++)
+            {
+                bSent = MmiGV.pShMem.SetScanTriggerStop();
+            }
+
+            bScanTriggerWatch = bSent;
+            lblScanTrigResult.Text = bSent ? "STOP" : "NO LINK";
+        }
+
+        // SEQ refuses a pulse width under 1 us and one over 40 % of the line
+        // period, and reports one code for both. The line period is what decides
+        // which, and it came back in the display, so work out which bound was
+        // crossed here rather than leaving the operator to.
+        private void ShowScanTriggerPulseWidthRefusal(double dPulseUs)
+        {
+            if (MmiGV.pShMem == null) return;
+
+            double dRateHz = MmiGV.pShMem.RScanTriggerDisplay.dLineRate;
+            if (dRateHz <= 0.0) return;
+
+            double dPeriodUs = 1000000.0 / dRateHz;
+            double dMaxUs    = dPeriodUs * ScanTriggerPulseMaxDuty;
+
+            string strMsg;
+            if (dPulseUs > dMaxUs)
+            {
+                strMsg = "펄스폭이 듀티 40%를 넘었습니다.\n\n"
+                       + "라인 주기 : " + dPeriodUs.ToString("F1") + " us  ("
+                       + (dRateHz / 1000.0).ToString("F3") + " kHz)\n"
+                       + "허용 최대 : " + dMaxUs.ToString("F1") + " us\n"
+                       + "입력 값     : " + dPulseUs.ToString("F2") + " us  (듀티 "
+                       + (dPulseUs / dPeriodUs * 100.0).ToString("F0") + " %)";
+            }
+            else
+            {
+                strMsg = "펄스폭이 최소값 " + ScanTriggerPulseMinUs.ToString("F0")
+                       + " us 보다 좁습니다.\n\n"
+                       + "입력 값 : " + dPulseUs.ToString("F2") + " us";
+            }
+
+            MessageBox.Show(strMsg, "SCAN TRIGGER",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        // Commissioning aid. SEQ drives the trigger output pin directly for a
+        // few seconds so it can be probed on CON1; nothing moves and no recipe
+        // is needed, which is why this does not go through SET first.
+        // "PITCH FRAC" in a 150 pixel cell says which number is wrong and
+        // nothing else. This one has a second answer the operator cannot guess
+        // at - the other mode will run it - so say both.
+        private void ShowScanTriggerPitchRefusal(double dPitchUm)
+        {
+            if (MmiGV.pShMem == null) return;
+
+            SharedMemDll.SCANTRIGGER_DISPLAY d = MmiGV.pShMem.RScanTriggerDisplay;
+
+            double dRoundedUm = d.dPitchAchieved * 1000.0;
+
+            string strMsg =
+                "PERIODIC 모드는 엔코더 카운트 단위로만 트리거를 낼 수 있습니다.\n\n"
+              + "입력 " + dPitchUm.ToString("F3") + " um "
+              + "= " + d.dPitchCounts.ToString("F3") + " counts (정수 아님)\n"
+              + "적용시 " + dRoundedUm.ToString("F3") + " um "
+              + "(" + d.dPitchErrorNM.ToString("+0.0;-0.0") + " nm / line)\n\n"
+              + "이 오차는 매 라인 같은 방향으로 쌓여 이미지 종횡비로 나타납니다.\n"
+              + "그래서 반올림하지 않고 거부합니다.\n\n"
+              + "TIMER 모드를 선택하면 이 값을 그대로 낼 수 있습니다. 주파수만\n"
+              + "정수 Hz로 맞추고 속도를 미세 조정하므로 피치는 정확합니다.\n"
+              + "대신 엔코더가 피치를 잡아주지 않으므로, 피치 정확도가\n"
+              + "스테이지 속도 안정도에 직접 좌우됩니다.";
+
+            MessageBox.Show(strMsg, "SCAN TRIGGER",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void btnScanTrigTest_Click(object sender, EventArgs e)
+        {
+            if (MmiGV.pShMem == null)
+            {
+                lblScanTrigResult.Text = "NO LINK";
+                return;
+            }
+
+            bool bSent = false;
+            for (int k = 0; k < ScanTriggerTries && !bSent; k++)
+            {
+                bSent = MmiGV.pShMem.SetScanTriggerTest();
+            }
+
+            // Follow it the same way a scan is followed, so the state row shows
+            // OUT TEST and the count row counts the pulses as they go out.
+            bScanTriggerWatch = bSent;
+            lblScanTrigResult.Text = bSent ? "OUT TEST" : "NO LINK";
+        }
+
+        #endregion
+    }
+}

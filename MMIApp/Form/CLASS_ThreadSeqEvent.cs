@@ -115,16 +115,16 @@ namespace MMI
             return MmiGV.dicErrorList.TryGetValue(nCode, out err) ? err.name : "";
         }
 
-        // The Auto panel follows a scan by polling, and SEQ may already be back
-        // at IDLE when the next poll looks. Read the final numbers once and tell
-        // the panel the cycle is over.
+        // The TRIGGER screen's recipe panel follows a scan by polling, and SEQ may
+        // already be back at IDLE when the next poll looks. Read the final numbers
+        // once and tell the panel the cycle is over.
         private static void ScanTriggerFinished(int nState)
         {
-            FormAuto1 frmAuto = (MmiGV.frmMain != null) ? MmiGV.frmMain.frmAuto1 : null;
-            if (frmAuto == null || !frmAuto.bScanTriggerWatch) return;
+            FormScanTrigger frm = (MmiGV.frmMain != null) ? MmiGV.frmMain.frmScanTrigger : null;
+            if (frm == null || !frm.bScanTriggerWatch) return;
 
             bool bRead = MmiGV.pShMem.GetScanTriggerDisplay();
-            frmAuto.ScanTriggerFinished(nState, bRead);
+            frm.ScanTriggerFinished(nState, bRead);
         }
     }
 }

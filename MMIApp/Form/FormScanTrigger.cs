@@ -6,15 +6,15 @@ using System.Windows.Forms;
 
 namespace MMI
 {
-    // SCAN TRIGGER engineer screen (Auto > TRIGGER, screen 12, engineer level).
+    // SCAN TRIGGER screen (Auto > TRIGGER, screen 12, engineer level).
     //
-    // The Auto screen keeps the recipe, SET and START: that is where an
-    // operator runs a scan and where the recipe checks already live, and a
-    // second copy of them here could only drift from the first. This screen
-    // is for what sits under the recipe:
+    // Everything about a scan in one place:
     //
-    //   Scan Cycle          what SEQ judged the recipe to be, and where the
-    //                       cycle is - with OUTPUT TEST and STOP
+    //   Motor               the scan axis: state, servo, home, alarm reset and
+    //                       jog (FormScanTrigger.Motor.cs)
+    //   Scan Trigger        the recipe, SET / START / STOP / OUTPUT TEST and
+    //                       what SEQ made of it (FormScanTrigger.Recipe.cs,
+    //                       moved here from the Production screen)
     //   Scan Geometry       motor index 50..53 to scale, with the encoder on it
     //   Live Counter        the counter channel as the board reports it
     //   Counter H/W Config  the board settings SEQ runs the trigger with
@@ -109,15 +109,9 @@ namespace MMI
 
         private void RenderDisplay(SharedMemDll.SCANTRIGGER_DISPLAY d)
         {
-            lblMode.Text = (d.nTriggerMode == 1) ? "TIMER" : "PERIODIC";
-            lblLineRate.Text = (d.dLineRate / 1000.0).ToString("F3");
-            lblLines.Text = d.nLineCount.ToString("N0");
-            lblScanTime.Text = d.dScanTime.ToString("F2");
-            lblPitchCounts.Text = d.dPitchCounts.ToString("F2") + (d.bPitchIsInteger ? "" : "  !");
-            lblValidate.Text = ValidateText(d.nValidateCode);
-            lblValidate.ForeColor = (d.nValidateCode == 0) ? HmiTheme.Normal : HmiTheme.Alarm;
-
-            PaintCycleState(d.nState);
+            // The recipe panel paints the numbers; this keeps the state for the
+            // motor interlock and writes the changes to the log.
+            if (bScanTriggerWatch) RenderScanTriggerDisplay();
 
             if (d.nState != nLastState && nLastState >= 0)
             {
@@ -189,22 +183,7 @@ namespace MMI
             lblCounterResult.Text = "POLL LOST - SEQ stopped answering.";
             m_dEncPosMM = double.NaN;
             pnlGeometryView.Invalidate();
-        }
-
-        private void PaintCycleState(int nState)
-        {
-            foreach (Control c in pnlCycle.Controls)
-            {
-                Label chip = c as Label;
-                if (chip == null || chip.Tag == null) continue;
-                int nNo;
-                if (!int.TryParse(chip.Tag.ToString(), out nNo)) continue;
-
-                bool bOn = (nNo == nState);
-                Color on = (nNo == 8) ? HmiTheme.Alarm : (nNo == 7 ? HmiTheme.Normal : HmiTheme.Accent);
-                chip.BackColor = bOn ? on : HmiTheme.Control;
-                chip.ForeColor = bOn ? Color.White : HmiTheme.TextMuted;
-            }
+            if (bScanTriggerWatch) ScanTriggerLinkLost();
         }
 
         private static string StateText(int nState)
@@ -335,27 +314,6 @@ namespace MMI
         }
 
         #endregion SCAN GEOMETRY
-
-        #region CYCLE BUTTONS
-
-        private void btnOutputTest_Click(object sender, EventArgs e)
-        {
-            bool bSent = Retry(() => MmiGV.pShMem.SetScanTriggerTest());
-            AddLog(bSent ? "OUTPUT TEST sent" : "OUTPUT TEST - NO LINK");
-        }
-
-        private void btnStop_Click(object sender, EventArgs e)
-        {
-            bool bSent = Retry(() => MmiGV.pShMem.SetScanTriggerStop());
-            AddLog(bSent ? "STOP sent" : "STOP - NO LINK");
-        }
-
-        private void btnOpenRecipe_Click(object sender, EventArgs e)
-        {
-            frmMain.ShowScreen((int)MmiGV.eSCRNO.AUTO1, true);
-        }
-
-        #endregion CYCLE BUTTONS
 
         #region COUNTER BUTTONS
 
