@@ -43,6 +43,9 @@
             this.lblBufferCount = new System.Windows.Forms.Label();
             this.txtBufferCount = new System.Windows.Forms.TextBox();
             this.btnBufferApply = new MMI.HmiButton();
+            this.btnScanLink = new MMI.HmiButton();
+            this.btnWiringA = new MMI.HmiButton();
+            this.btnWiringB = new MMI.HmiButton();
             this.lblCameraTitle = new System.Windows.Forms.Label();
             this.lblCamera = new System.Windows.Forms.Label();
             this.lblStatusTitle = new System.Windows.Forms.Label();
@@ -106,6 +109,9 @@
             this.pnlControl.Controls.Add(this.lblStatusTitle);
             this.pnlControl.Controls.Add(this.lblCamera);
             this.pnlControl.Controls.Add(this.lblCameraTitle);
+            this.pnlControl.Controls.Add(this.btnWiringB);
+            this.pnlControl.Controls.Add(this.btnWiringA);
+            this.pnlControl.Controls.Add(this.btnScanLink);
             this.pnlControl.Controls.Add(this.btnBufferApply);
             this.pnlControl.Controls.Add(this.txtBufferCount);
             this.pnlControl.Controls.Add(this.lblBufferCount);
@@ -215,10 +221,37 @@
             this.btnBufferApply.Name = "btnBufferApply";
             this.btnBufferApply.Click += new System.EventHandler(this.btnBufferApply_Click);
             // 
+            // btnScanLink
+            // 
+            this.btnScanLink.Location = new System.Drawing.Point(14, 294);
+            this.btnScanLink.Size = new System.Drawing.Size(186, 48);
+            this.btnScanLink.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnScanLink.Text = "SCAN LINK";
+            this.btnScanLink.Name = "btnScanLink";
+            this.btnScanLink.Click += new System.EventHandler(this.btnScanLink_Click);
+            // 
+            // btnWiringA
+            // 
+            this.btnWiringA.Location = new System.Drawing.Point(212, 294);
+            this.btnWiringA.Size = new System.Drawing.Size(90, 48);
+            this.btnWiringA.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnWiringA.Text = "A GRABBER";
+            this.btnWiringA.Name = "btnWiringA";
+            this.btnWiringA.Click += new System.EventHandler(this.btnWiringA_Click);
+            // 
+            // btnWiringB
+            // 
+            this.btnWiringB.Location = new System.Drawing.Point(308, 294);
+            this.btnWiringB.Size = new System.Drawing.Size(90, 48);
+            this.btnWiringB.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnWiringB.Text = "B CAMERA";
+            this.btnWiringB.Name = "btnWiringB";
+            this.btnWiringB.Click += new System.EventHandler(this.btnWiringB_Click);
+            // 
             // lblCameraTitle
             // 
-            this.lblCameraTitle.Location = new System.Drawing.Point(14, 292);
-            this.lblCameraTitle.Size = new System.Drawing.Size(384, 22);
+            this.lblCameraTitle.Location = new System.Drawing.Point(14, 348);
+            this.lblCameraTitle.Size = new System.Drawing.Size(384, 20);
             this.lblCameraTitle.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCameraTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblCameraTitle.BackColor = System.Drawing.Color.Transparent;
@@ -228,8 +261,8 @@
             // 
             // lblCamera
             // 
-            this.lblCamera.Location = new System.Drawing.Point(14, 314);
-            this.lblCamera.Size = new System.Drawing.Size(384, 40);
+            this.lblCamera.Location = new System.Drawing.Point(14, 368);
+            this.lblCamera.Size = new System.Drawing.Size(384, 34);
             this.lblCamera.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCamera.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblCamera.BackColor = System.Drawing.Color.Transparent;
@@ -239,8 +272,8 @@
             // 
             // lblStatusTitle
             // 
-            this.lblStatusTitle.Location = new System.Drawing.Point(14, 356);
-            this.lblStatusTitle.Size = new System.Drawing.Size(384, 22);
+            this.lblStatusTitle.Location = new System.Drawing.Point(14, 402);
+            this.lblStatusTitle.Size = new System.Drawing.Size(384, 20);
             this.lblStatusTitle.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblStatusTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblStatusTitle.BackColor = System.Drawing.Color.Transparent;
@@ -250,8 +283,8 @@
             // 
             // lblVisionStatus
             // 
-            this.lblVisionStatus.Location = new System.Drawing.Point(14, 378);
-            this.lblVisionStatus.Size = new System.Drawing.Size(384, 170);
+            this.lblVisionStatus.Location = new System.Drawing.Point(14, 422);
+            this.lblVisionStatus.Size = new System.Drawing.Size(384, 132);
             this.lblVisionStatus.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblVisionStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblVisionStatus.BackColor = System.Drawing.Color.Transparent;
@@ -261,8 +294,8 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(14, 552);
-            this.btnConnect.Size = new System.Drawing.Size(384, 52);
+            this.btnConnect.Location = new System.Drawing.Point(14, 558);
+            this.btnConnect.Size = new System.Drawing.Size(384, 46);
             this.btnConnect.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnConnect.Text = "CONNECT";
             this.btnConnect.Name = "btnConnect";
@@ -507,6 +540,9 @@
         private System.Windows.Forms.Label lblBufferCount;
         private System.Windows.Forms.TextBox txtBufferCount;
         private MMI.HmiButton btnBufferApply;
+        private MMI.HmiButton btnScanLink;
+        private MMI.HmiButton btnWiringA;
+        private MMI.HmiButton btnWiringB;
         private System.Windows.Forms.Label lblCameraTitle;
         private System.Windows.Forms.Label lblCamera;
         private System.Windows.Forms.Label lblStatusTitle;

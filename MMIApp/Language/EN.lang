@@ -263,7 +263,6 @@ Motor Config|Motor Config
 MTBA / MTBF|MTBA / MTBF
 No Alarm|No Alarm
 Operation|Operation
-Peripheral: -|Peripheral: -
 PM|PM
 Recipe|Recipe
 SECS/GEM: Offline|SECS/GEM: Offline
@@ -276,6 +275,7 @@ TRIGGER|TRIGGER
 USE / SKIP|USE / SKIP
 User Regist|User Regist
 VISION|VISION
+VISION: -|VISION: -
 ● Operator|● Operator
 
 # --- FormManualOP ---
@@ -461,7 +461,9 @@ Wrong Way Limit (counts)|Wrong Way Limit (counts)
 
 # --- FormVision ---
 (max - min) / (max + min), 1 % trimmed per section. Touch the values to copy them.|(max - min) / (max + min), 1 % trimmed per section. Touch the values to copy them.
+A GRABBER|A GRABBER
 Acquisition|Acquisition
+B CAMERA|B CAMERA
 Buffers|Buffers
 Camera (read only)|Camera (read only)
 CONNECT|CONNECT
@@ -480,6 +482,7 @@ S4|S4
 S5|S5
 S6|S6
 SAVE BMP|SAVE BMP
+SCAN LINK|SCAN LINK
 SNAP|SNAP
 Status|Status
 
@@ -585,6 +588,7 @@ Front Picker Z8|Front Picker Z8
 GenTL producer was not loaded.|GenTL producer was not loaded.
 Good Tray 1 Unload|Good Tray 1 Unload
 Good Tray 2 Unload|Good Tray 2 Unload
+Grabber setting for wiring {0} refused: {1}|Grabber setting for wiring {0} refused: {1}
 Grabbing|Grabbing
 Home {0}?\nThe axis moves to its origin.|Home {0}?\nThe axis moves to its origin.
 Image: {0}|Image: {0}
@@ -594,6 +598,7 @@ Limits saved and sent to SEQ.|Limits saved and sent to SEQ.
 Log Out|Log Out
 Maintenance|Maintenance
 Master|Master
+MISMATCH|MISMATCH
 MTF copied to the clipboard.|MTF copied to the clipboard.
 NG Tray Unload|NG Tray Unload
 No|No
@@ -601,6 +606,7 @@ No frame grabber board was found. Check the PCIe slot and the Coaxlink driver.|N
 No frame yet. Check the camera trigger and the CoaXPress link.|No frame yet. Check the camera trigger and the CoaXPress link.
 No image|No image
 No User|No User
+not answering|not answering
 Not while a scan cycle runs.|Not while a scan cycle runs.
 Not while the machine runs.|Not while the machine runs.
 Nothing to apply.|Nothing to apply.
@@ -620,6 +626,15 @@ Received {0}   Displayed {1}   Rejected {2}|Received {0}   Displayed {1}   Rejec
 Reloaded from the DB.|Reloaded from the DB.
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|Reset the count of {0} to 0?\nDo this after the part has been replaced.
 Rework Tray Unload|Rework Tray Unload
+Scan link on, {0}, SEQ {1}|Scan link on, {0}, SEQ {1}
+Scan: aborted by SEQ|Scan: aborted by SEQ
+Scan: cancelled|Scan: cancelled
+Scan: lines {0:N0} / expected {1:N0}, triggers {2}|Scan: lines {0:N0} / expected {1:N0}, triggers {2}
+Scan: no image. Fewer lines than {0:N0} arrived (triggers {1}). Check the trigger wiring and the camera trigger setting.|Scan: no image. Fewer lines than {0:N0} arrived (triggers {1}). Check the trigger wiring and the camera trigger setting.
+Scan: not started|Scan: not started
+Scan: waiting for {0:N0} lines|Scan: waiting for {0:N0} lines
+Scan: {0:N0} lines received|Scan: {0:N0} lines received
+SEQ did not take the VISION ready.|SEQ did not take the VISION ready.
 SEQ is not connected.|SEQ is not connected.
 SEQ: Connected|SEQ: Connected
 Sponge Clean|Sponge Clean
@@ -633,11 +648,22 @@ The board is present but no camera answers over CoaXPress. Check the camera powe
 The buffers could not be allocated.|The buffers could not be allocated.
 The eGrabber runtime is not installed on this PC.|The eGrabber runtime is not installed on this PC.
 The frame grabber was opened but the buffers could not be allocated.|The frame grabber was opened but the buffers could not be allocated.
+The grabber could not be set up for the scan.|The grabber could not be set up for the scan.
+The grabber could not be started.|The grabber could not be started.
 The image could not be opened.|The image could not be opened.
 The image could not be saved.|The image could not be saved.
 The machine name cannot be empty.|The machine name cannot be empty.
 The profile could not be saved.|The profile could not be saved.
+The scan has no lines. SET the recipe first.|The scan has no lines. SET the recipe first.
+The scan image would be {0:N0} MB, more than {1:N0} MB. Shorten the scan or use a coarser pitch.|The scan image would be {0:N0} MB, more than {1:N0} MB. Shorten the scan or use a coarser pitch.
+VISION is offline. Connect it, or turn SCAN LINK off.|VISION is offline. Connect it, or turn SCAN LINK off.
+VISION: Connected|VISION: Connected
+VISION: Disconnected|VISION: Disconnected
+Waiting for the scan|Waiting for the scan
+waits for VISION|waits for VISION
 WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.|WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.
+wiring A (through the grabber)|wiring A (through the grabber)
+wiring B (camera direct)|wiring B (camera direct)
 X {0}  Y {1}  value {2}|X {0}  Y {1}  value {2}
 {0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.|{0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.
 {0} items.|{0} items.

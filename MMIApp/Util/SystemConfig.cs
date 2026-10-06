@@ -20,6 +20,7 @@ namespace MMI
 
         private const string SectionSystem  = "SYSTEM";
         private const string SectionMachine = "MACHINE";
+        private const string SectionVision  = "VISION";
 
         public const int LogKeepDaysMin = 1;
         public const int LogKeepDaysMax = 3650;
@@ -48,6 +49,26 @@ namespace MMI
         // The language the program starts in: EN, KO, ZH or VI.
         public static string Language = "EN";
 
+        // Auto > VISION scan link (the line scan camera taking the lines of a
+        // TRIGGER scan). Kept by the VISION screen, read and written here.
+        //
+        // VisionWiring says where the trigger pulses go: A into a Coaxlink I/O
+        // input, the grabber passing a line trigger to the camera over
+        // CoaXPress; B straight into the camera. The camera's own trigger
+        // setting matches the wiring and is set up beforehand, not by the MMI.
+        //
+        // VisionFeaturesA / B are the grabber (Device module) features each
+        // wiring needs, "Feature=Value" separated by ';', applied in order when
+        // the link comes on and put back when it goes off. The defaults fit the
+        // Coaxlink with the trigger on input IIN11; a different input or a
+        // different firmware is changed here, in the file.
+        public static string VisionWiring = "B";
+        public static string VisionFeaturesA =
+            "CameraControlMethod=RC;LineInputToolSelector=LIN1;LineInputToolSource=IIN11;" +
+            "LineInputToolActivation=RisingEdge;CycleTriggerSource=LIN1";
+        public static string VisionFeaturesB = "CameraControlMethod=NC";
+        public static bool VisionScanLink = false;
+
         public static void Load()
         {
             CIniHelper ini = new CIniHelper(IniFile);
@@ -65,6 +86,33 @@ namespace MMI
             Keyboard = Enum.TryParse(strKeyboard.Trim(), true, out mode) ? mode : eKeyboardMode.SOFTWARE;
 
             Language = NormalizeLanguage(ReadString(ini, SectionSystem, "LANGUAGE", Language));
+
+            VisionWiring = ReadString(ini, SectionVision, "WIRING", VisionWiring).Trim().ToUpperInvariant() == "A" ? "A" : "B";
+            VisionFeaturesA = ReadString(ini, SectionVision, "GRABBER FEATURES A", VisionFeaturesA);
+            VisionFeaturesB = ReadString(ini, SectionVision, "GRABBER FEATURES B", VisionFeaturesB);
+            VisionScanLink = ReadInteger(ini, SectionVision, "SCAN LINK", VisionScanLink ? 1 : 0) != 0;
+        }
+
+        public static void SaveVision()
+        {
+            CIniHelper ini = new CIniHelper(IniFile);
+
+            ini.WriteString("WIRING", VisionWiring, SectionVision);
+            ini.WriteInteger("SCAN LINK", VisionScanLink ? 1 : 0, SectionVision);
+        }
+
+        // "A=1;B=2" as ordered pairs; blanks and entries without '=' are skipped.
+        public static System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, string>> ParseFeatures(string s)
+        {
+            var list = new System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, string>>();
+            foreach (string part in (s ?? "").Split(';'))
+            {
+                int i = part.IndexOf('=');
+                if (i <= 0) continue;
+                string k = part.Substring(0, i).Trim(), v = part.Substring(i + 1).Trim();
+                if (k.Length > 0) list.Add(new System.Collections.Generic.KeyValuePair<string, string>(k, v));
+            }
+            return list;
         }
 
         public static void Save()

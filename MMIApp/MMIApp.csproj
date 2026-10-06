@@ -380,6 +380,10 @@
     <Compile Include="Form\FormVision.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\FormVision.Scan.cs">
+      <DependentUpon>FormVision.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\FormVision.Designer.cs">
       <DependentUpon>FormVision.cs</DependentUpon>
     </Compile>

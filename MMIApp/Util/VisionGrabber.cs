@@ -461,6 +461,92 @@ namespace MMI
             }
         }
 
+        // ---------------------------------------------------------------------
+        // scan link (grabber side only)
+
+        private readonly System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, string>> deviceOriginals =
+            new System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, string>>();
+        private long nOriginalBufferHeight = -1;
+
+        public bool IsScanBuffer { get; private set; }
+
+        // Grabber (Device module) features for the trigger wiring, as
+        // "Feature=Value" pairs applied in order. The value each one had first
+        // is remembered for RestoreDeviceFeatures. The camera is not written.
+        public bool SetDeviceFeatures(System.Collections.Generic.IList<System.Collections.Generic.KeyValuePair<string, string>> features,
+                                      out string strError)
+        {
+            strError = "";
+            if (grabber == null || bGrabbing) { strError = "grabber busy or closed"; return false; }
+
+            foreach (var f in features)
+            {
+                try
+                {
+                    if (!deviceOriginals.Exists(o => o.Key == f.Key))
+                        deviceOriginals.Add(new System.Collections.Generic.KeyValuePair<string, string>(f.Key, grabber.Device.Get<string>(f.Key)));
+                    grabber.Device.Set<string>(f.Key, f.Value);
+                }
+                catch (Exception ex)
+                {
+                    strError = string.Format("{0}={1}: {2}", f.Key, f.Value, ex.Message);
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Back to what the grabber had before SetDeviceFeatures, last first.
+        public void RestoreDeviceFeatures()
+        {
+            if (grabber == null || bGrabbing) return;
+            for (int i = deviceOriginals.Count - 1; i >= 0; i--)
+            {
+                try { grabber.Device.Set<string>(deviceOriginals[i].Key, deviceOriginals[i].Value); } catch (Exception) { }
+            }
+            deviceOriginals.Clear();
+        }
+
+        // One buffer = one scan: the stream's BufferHeight set to the scan's
+        // line count, two buffers. Line scan firmware only; area scan firmware
+        // has no BufferHeight.
+        public bool SetScanBuffer(int nLines, out string strError)
+        {
+            strError = "";
+            if (grabber == null || bGrabbing) { strError = "grabber busy or closed"; return false; }
+            try
+            {
+                if (nOriginalBufferHeight < 0) nOriginalBufferHeight = grabber.Stream.Get<long>("BufferHeight");
+                grabber.Stream.Set<long>("BufferHeight", nLines);
+                grabber.ReallocBuffers(2, 0);
+                IsScanBuffer = true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                strError = "BufferHeight " + nLines + ": " + ex.Message;
+                return false;
+            }
+        }
+
+        // The buffers as they were before the scan link: the original
+        // BufferHeight and BufferCount buffers.
+        public void RestoreBuffer()
+        {
+            if (grabber == null || bGrabbing || !IsScanBuffer) return;
+            try
+            {
+                if (nOriginalBufferHeight >= 0) grabber.Stream.Set<long>("BufferHeight", nOriginalBufferHeight);
+                grabber.ReallocBuffers((ulong)BufferCount, 0);
+            }
+            catch (Exception ex)
+            {
+                SetError(ex.Message);
+            }
+            IsScanBuffer = false;
+            ReadGeometry();
+        }
+
         private void SetError(string s)
         {
             lock (frameLock) strLastError = s ?? "";
@@ -469,6 +555,10 @@ namespace MMI
         public void Dispose()
         {
             Stop();
+            // the board keeps its settings after this program, so hand it back
+            // as it was found
+            RestoreBuffer();
+            RestoreDeviceFeatures();
             if (grabber != null)
             {
                 try { grabber.Dispose(); } catch (Exception) { }

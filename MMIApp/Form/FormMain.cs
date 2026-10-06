@@ -106,6 +106,7 @@ namespace MMI
         private int iSeqLinkCount = 0;
         private int iSetSeqLinkCount = 2;
         private bool bSeqLinked = false;
+        public bool IsSeqLinked { get { return bSeqLinked; } }
 
         DateTime dtUserLevelStartTime;
         DateTime dtStartConsoleShow;
@@ -315,6 +316,9 @@ namespace MMI
 
         private void FormMain_Shown(object sender, EventArgs e)
         {
+            // after the window is up, so a slow grabber discovery does not
+            // hold the start
+            BeginInvoke(new Action(() => frmVision.ConnectAtStartup()));
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -333,7 +337,7 @@ namespace MMI
                 SQLiteDB.Execute(strSQL);
 
                 CLogRetention.Stop();
-                frmVision.CloseCamera();
+                frmVision.Shutdown();
                 MmiGV.bProgramExit = true;
                 MmiGV.pShMem.SetExitProgram();
 
@@ -838,17 +842,36 @@ namespace MMI
             lblSeqLinkDot.ForeColor = bLinked ? HmiTheme.Normal : HmiTheme.Alarm;
         }
 
-        // Peripheral and SECS/GEM states are set by whichever module owns the
-        // connection. Until EzGem is wired in, SECS/GEM reads Offline.
-        public void ShowPeripheralLink(string strName, bool bConnected)
+        // VISION (Auto > VISION's line scan grabber). Green only when the scan
+        // link is ready: the grabber open, the wiring set and SEQ waiting for
+        // VISION before each scan. Until EzGem is wired in, SECS/GEM reads
+        // Offline.
+        public void ShowVisionLink(eVisionLink state)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action(() => ShowPeripheralLink(strName, bConnected)));
+                BeginInvoke(new Action(() => ShowVisionLink(state)));
                 return;
             }
-            lblPeripheral.Text = strName + (bConnected ? ": OK" : ": NG");
-            lblPeripheralDot.ForeColor = bConnected ? HmiTheme.Normal : HmiTheme.Alarm;
+            switch (state)
+            {
+                case eVisionLink.Offline:
+                    lblPeripheral.Text = CLanguage.Text("VISION: Disconnected");
+                    lblPeripheralDot.ForeColor = HmiTheme.Alarm;
+                    break;
+                case eVisionLink.Connected:
+                    lblPeripheral.Text = CLanguage.Text("VISION: Connected");
+                    lblPeripheralDot.ForeColor = HmiTheme.TextMuted;
+                    break;
+                case eVisionLink.Ready:
+                    lblPeripheral.Text = CLanguage.Text("VISION: Connected");
+                    lblPeripheralDot.ForeColor = HmiTheme.Normal;
+                    break;
+                default:
+                    lblPeripheral.Text = CLanguage.Text("VISION: -");
+                    lblPeripheralDot.ForeColor = HmiTheme.TextMuted;
+                    break;
+            }
         }
 
         public void ShowSecsGemState(string strState, bool bOnline)

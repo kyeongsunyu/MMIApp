@@ -263,7 +263,6 @@ Motor Config|모터 설정
 MTBA / MTBF|MTBA / MTBF
 No Alarm|알람 없음
 Operation|조작
-Peripheral: -|주변기기: -
 PM|PM
 Recipe|레시피
 SECS/GEM: Offline|SECS/GEM: 오프라인
@@ -276,6 +275,7 @@ TRIGGER|트리거
 USE / SKIP|사용 / 스킵
 User Regist|사용자 등록
 VISION|비전
+VISION: -|VISION: -
 ● Operator|● 작업자
 
 # --- FormManualOP ---
@@ -461,7 +461,9 @@ Wrong Way Limit (counts)|역방향 한계 (counts)
 
 # --- FormVision ---
 (max - min) / (max + min), 1 % trimmed per section. Touch the values to copy them.|(최대 - 최소) / (최대 + 최소), 구간별 1 % 제외. 값을 터치하면 복사됩니다.
+A GRABBER|A 그래버
 Acquisition|영상 획득
+B CAMERA|B 카메라
 Buffers|버퍼 수
 Camera (read only)|카메라 (읽기 전용)
 CONNECT|연결
@@ -480,6 +482,7 @@ Profile (centre line)|프로파일 (중앙 라인)
 # S5|
 # S6|
 SAVE BMP|BMP 저장
+SCAN LINK|스캔 연동
 SNAP|한 장 획득
 Status|상태
 
@@ -585,6 +588,7 @@ Front Picker Z8|전면 피커 Z8
 GenTL producer was not loaded.|GenTL 프로듀서가 로드되지 않았습니다.
 Good Tray 1 Unload|양품 트레이 1 배출
 Good Tray 2 Unload|양품 트레이 2 배출
+Grabber setting for wiring {0} refused: {1}|배선 {0}용 그래버 설정이 거부되었습니다: {1}
 Grabbing|획득 중
 Home {0}?\nThe axis moves to its origin.|{0} 원점 복귀를 할까요?\n축이 원점으로 이동합니다.
 Image: {0}|이미지: {0}
@@ -594,6 +598,7 @@ Limits saved and sent to SEQ.|한계를 저장하고 SEQ로 보냈습니다.
 Log Out|로그아웃
 Maintenance|유지보수
 Master|마스터
+MISMATCH|불일치
 MTF copied to the clipboard.|MTF를 클립보드에 복사했습니다.
 NG Tray Unload|불량 트레이 배출
 No|번호
@@ -601,6 +606,7 @@ No frame grabber board was found. Check the PCIe slot and the Coaxlink driver.|�
 No frame yet. Check the camera trigger and the CoaXPress link.|아직 프레임이 없습니다. 카메라 트리거와 CoaXPress 링크를 확인하세요.
 No image|이미지 없음
 No User|사용자 없음
+not answering|응답 없음
 Not while a scan cycle runs.|스캔 사이클 중에는 할 수 없습니다.
 Not while the machine runs.|설비 운전 중에는 할 수 없습니다.
 Nothing to apply.|적용할 변경이 없습니다.
@@ -620,6 +626,15 @@ Received {0}   Displayed {1}   Rejected {2}|수신 {0}   표시 {1}   거부 {2}
 Reloaded from the DB.|DB에서 다시 읽었습니다.
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|{0}의 수량을 0으로 리셋할까요?\n부품을 교체한 뒤에 하세요.
 Rework Tray Unload|재작업 트레이 배출
+Scan link on, {0}, SEQ {1}|스캔 연동 ON, {0}, SEQ {1}
+Scan: aborted by SEQ|스캔: SEQ에서 중단됨
+Scan: cancelled|스캔: 취소됨
+Scan: lines {0:N0} / expected {1:N0}, triggers {2}|스캔: 라인 {0:N0} / 예상 {1:N0}, 트리거 {2}
+Scan: no image. Fewer lines than {0:N0} arrived (triggers {1}). Check the trigger wiring and the camera trigger setting.|스캔: 이미지 없음. {0:N0} 라인보다 적게 들어왔습니다(트리거 {1}). 트리거 배선과 카메라 트리거 설정을 확인하세요.
+Scan: not started|스캔: 시작 안 됨
+Scan: waiting for {0:N0} lines|스캔: {0:N0} 라인 대기
+Scan: {0:N0} lines received|스캔: {0:N0} 라인 수신
+SEQ did not take the VISION ready.|SEQ가 VISION 준비 신호를 받지 않았습니다.
 SEQ is not connected.|SEQ가 연결되지 않았습니다.
 SEQ: Connected|SEQ: 연결됨
 Sponge Clean|스펀지 세정
@@ -633,11 +648,22 @@ The board is present but no camera answers over CoaXPress. Check the camera powe
 The buffers could not be allocated.|버퍼를 할당하지 못했습니다.
 The eGrabber runtime is not installed on this PC.|이 PC에 eGrabber 런타임이 설치되어 있지 않습니다.
 The frame grabber was opened but the buffers could not be allocated.|프레임 그래버는 열렸지만 버퍼를 할당하지 못했습니다.
+The grabber could not be set up for the scan.|스캔용 그래버 설정을 하지 못했습니다.
+The grabber could not be started.|그래버를 시작하지 못했습니다.
 The image could not be opened.|이미지를 열 수 없습니다.
 The image could not be saved.|이미지를 저장할 수 없습니다.
 The machine name cannot be empty.|설비 이름은 비울 수 없습니다.
 The profile could not be saved.|프로파일을 저장할 수 없습니다.
+The scan has no lines. SET the recipe first.|스캔 라인 수가 없습니다. 먼저 레시피를 SET 하세요.
+The scan image would be {0:N0} MB, more than {1:N0} MB. Shorten the scan or use a coarser pitch.|스캔 이미지가 {0:N0} MB로 {1:N0} MB를 넘습니다. 스캔 길이를 줄이거나 피치를 키우세요.
+VISION is offline. Connect it, or turn SCAN LINK off.|VISION이 오프라인입니다. 연결하거나 스캔 연동을 끄세요.
+VISION: Connected|VISION: 연결됨
+VISION: Disconnected|VISION: 연결 끊김
+Waiting for the scan|스캔 대기 중
+waits for VISION|VISION 대기 중
 WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.|한계의 {0} %부터 WARN, 한계에서 OVER. 비율은 시스템 데이터에서 설정합니다.
+wiring A (through the grabber)|배선 A (그래버 경유)
+wiring B (camera direct)|배선 B (카메라 직결)
 X {0}  Y {1}  value {2}|X {0}  Y {1}  값 {2}
 {0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.|{0:HH:mm:ss}  파일 {1}개 ({2:N0} KB), 폴더 {3}개 삭제, {4}개 건너뜀
 {0} items.|{0}개 항목

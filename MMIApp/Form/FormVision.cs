@@ -21,6 +21,10 @@ namespace MMI
     //   NEW                    clears the image, the profile and the MTF
     //   LOAD / SAVE BMP        8 bit grey
     //   Buffers                the grabber's buffer ring
+    //   SCAN LINK / A / B      the camera takes the lines of a TRIGGER scan,
+    //                          trigger wired through the grabber (A) or
+    //                          straight into the camera (B); see
+    //                          FormVision.Scan.cs
     //
     // The camera settings are not touched: the camera runs as it is set up
     // (see VisionGrabber). Its geometry and pixel format are shown read only.
@@ -28,7 +32,7 @@ namespace MMI
     // The grabber is opened the first time the screen is shown. Without a
     // board, a camera or the eGrabber runtime the screen stays usable offline
     // (BMP files) and the status says what is missing; CONNECT tries again.
-    // Leaving the screen freezes a running GRAB.
+    // Leaving the screen freezes a running GRAB, not an armed scan.
     public partial class FormVision : Form
     {
         // Minimum spacing of the profile and MTF updates during a GRAB.
@@ -67,6 +71,7 @@ namespace MMI
         {
             imgView.PixelChanged += ImgView_PixelChanged;
             CLanguage.Changed += (s, e) => { ShowCamera(); ShowStatus(); };
+            InitScanLink();
             UpdateButtons();
             ShowCamera();
             ShowStatus();
@@ -82,7 +87,7 @@ namespace MMI
             else
             {
                 tmrStatus.Stop();
-                if (grabber != null && grabber.IsGrabbing) Freeze();
+                if (grabber != null && grabber.IsGrabbing && !bScanArmed) Freeze();
             }
         }
 
@@ -123,6 +128,8 @@ namespace MMI
                 grabber.Stopped += Grabber_Stopped;
                 txtBufferCount.Text = grabber.BufferCount.ToString();
             }
+            bWiringApplied = false;
+            RefreshLink();
             UpdateButtons();
             ShowCamera();
             ShowStatus();
@@ -136,14 +143,25 @@ namespace MMI
             return VisionGrabber.Open(out strError);
         }
 
-        // On program exit (FormMain) and before a reconnect.
+        // On program exit: the grabber closed and SEQ no longer waiting for it.
+        public void Shutdown()
+        {
+            if (tmrLink != null) tmrLink.Stop();
+            CloseCamera();
+            if (bSeqTookLink) SendLink(false, 0, 0);
+            bSeqTookLink = false;
+        }
+
+        // Before a reconnect, and from Shutdown.
         public void CloseCamera()
         {
             if (grabber == null) return;
             grabber.FrameReady -= Grabber_FrameReady;
             grabber.Stopped -= Grabber_Stopped;
+            if (bScanArmed) { bScanArmed = false; SendLink(true, 0, 0); }
             grabber.Dispose();
             grabber = null;
+            bWiringApplied = false;
         }
 
         private void Grabber_FrameReady()
@@ -193,6 +211,7 @@ namespace MMI
             imgView.Invalidate();
             if (imgView.HasImage) Analyse();
             bWaitingFirstFrame = false;
+            if (bScanArmed && grabber != null && grabber.FramesDisplayed > 0) ScanFrameArrived();
             UpdateButtons();
             ShowStatus();
         }
@@ -200,6 +219,8 @@ namespace MMI
         private void StartAcquisition(int nFrames)
         {
             if (grabber == null || grabber.IsGrabbing) return;
+            // a GRAB or SNAP of its own takes frames, not a scan's worth of lines
+            grabber.RestoreBuffer();
             if (grabber.Start(nFrames))
             {
                 nTickStart = Environment.TickCount;
@@ -213,6 +234,14 @@ namespace MMI
         {
             if (grabber == null) return;
             grabber.Stop();
+            if (bScanArmed)
+            {
+                // SEQ must not scan for a grabber that is no longer taking
+                bScanArmed = false;
+                SendLink(true, 0, 0);
+                strScanResult = CLanguage.Text("Scan: cancelled");
+                bScanWarn = true;
+            }
             UpdateButtons();
             ShowStatus();
         }
@@ -293,7 +322,8 @@ namespace MMI
             // the ring is reallocated with the acquisition stopped, then the
             // GRAB goes on
             bool bWasGrabbing = grabber.IsGrabbing;
-            if (bWasGrabbing) grabber.Stop();
+            if (bWasGrabbing) Freeze();
+            grabber.RestoreBuffer();
 
             string strError;
             if (!grabber.SetBufferCount(n, out strError))
@@ -451,6 +481,10 @@ namespace MMI
             btnBufferApply.Enabled = bOnline;
             txtBufferCount.ReadOnly = !bOnline;
             btnConnect.Enabled = !bGrabbing;
+            btnScanLink.Enabled = !bScanArmed;
+            btnWiringA.Enabled = !bScanArmed;
+            btnWiringB.Enabled = !bScanArmed;
+            btnLoadImage.Enabled = !bScanArmed;
             btnSaveImage.Enabled = imgView.HasImage;
             btnNewImage.Enabled = imgView.HasImage;
             btnFit.Enabled = imgView.HasImage;
@@ -471,9 +505,11 @@ namespace MMI
         private void ShowStatus()
         {
             StringBuilder sb = new StringBuilder();
+            string link = LinkStatusLine();
             if (grabber == null)
             {
                 sb.Append(CLanguage.Text("Offline. BMP files can be opened."));
+                if (link.Length > 0) sb.Append("\n").Append(link);
                 if (strOpenError.Length > 0) sb.Append("\n").Append(strOpenError);
                 lblVisionStatus.ForeColor = bTriedOpen ? HmiTheme.Warning : HmiTheme.TextMuted;
                 lblVisionStatus.Text = sb.ToString();
@@ -481,7 +517,7 @@ namespace MMI
             }
 
             bool bGrabbing = grabber.IsGrabbing;
-            sb.Append(bGrabbing ? CLanguage.Text("Grabbing") : CLanguage.Text("Stopped"));
+            sb.Append(bScanArmed ? CLanguage.Text("Waiting for the scan") : bGrabbing ? CLanguage.Text("Grabbing") : CLanguage.Text("Stopped"));
             if (strImageSource.Length > 0) sb.Append("   ").Append(CLanguage.Format("Image: {0}", strImageSource));
             sb.Append("\n").Append(CLanguage.Format("Received {0}   Displayed {1}   Rejected {2}",
                                                     grabber.FramesReceived, grabber.FramesDisplayed, grabber.FramesRejected));
@@ -489,6 +525,9 @@ namespace MMI
             if (fmt.Length > 0) sb.Append("\n").Append(CLanguage.Format("Last frame: {0}", fmt));
 
             bool bWarn = false;
+            if (link.Length > 0) sb.Append("\n").Append(link);
+            if (strLinkError.Length > 0) { sb.Append("\n").Append(strLinkError); bWarn = true; }
+            if (strScanResult.Length > 0) { sb.Append("\n").Append(strScanResult); bWarn |= bScanWarn; }
             string err = grabber.LastError;
             if (err.Length > 0)
             {
@@ -508,7 +547,18 @@ namespace MMI
 
         private void tmrStatus_Tick(object sender, EventArgs e)
         {
+            CheckScanTimeout();
             ShowStatus();
+        }
+
+        private string LinkStatusLine()
+        {
+            if (!ScanLinkOn) return "";
+            string wiring = CSystemConfig.VisionWiring == "A"
+                          ? CLanguage.Text("wiring A (through the grabber)")
+                          : CLanguage.Text("wiring B (camera direct)");
+            return CLanguage.Format("Scan link on, {0}, SEQ {1}", wiring,
+                                    bSeqTookLink ? CLanguage.Text("waits for VISION") : CLanguage.Text("not answering"));
         }
 
         private void ImgView_PixelChanged(object sender, VisionPixelEventArgs e)

@@ -263,7 +263,6 @@ Motor Config|电机设置
 MTBA / MTBF|MTBA / MTBF
 No Alarm|无报警
 Operation|操作
-Peripheral: -|外设: -
 PM|PM
 Recipe|配方
 SECS/GEM: Offline|SECS/GEM: 离线
@@ -276,6 +275,7 @@ TRIGGER|触发
 USE / SKIP|使用 / 跳过
 User Regist|用户注册
 VISION|视觉
+VISION: -|VISION: -
 ● Operator|● 操作员
 
 # --- FormManualOP ---
@@ -461,7 +461,9 @@ Wrong Way Limit (counts)|反向限制 (counts)
 
 # --- FormVision ---
 (max - min) / (max + min), 1 % trimmed per section. Touch the values to copy them.|(最大 - 最小) / (最大 + 最小)，每区段去除 1 %。触摸数值即可复制。
+A GRABBER|A 采集卡
 Acquisition|采集
+B CAMERA|B 相机
 Buffers|缓冲数
 Camera (read only)|相机 (只读)
 CONNECT|连接
@@ -480,6 +482,7 @@ Profile (centre line)|轮廓 (中心线)
 # S5|
 # S6|
 SAVE BMP|保存 BMP
+SCAN LINK|扫描联动
 SNAP|单张采集
 Status|状态
 
@@ -585,6 +588,7 @@ Front Picker Z8|前吸嘴 Z8
 GenTL producer was not loaded.|未加载 GenTL 生产者。
 Good Tray 1 Unload|良品料盘 1 卸载
 Good Tray 2 Unload|良品料盘 2 卸载
+Grabber setting for wiring {0} refused: {1}|接线 {0} 的采集卡设置被拒绝：{1}
 Grabbing|采集中
 Home {0}?\nThe axis moves to its origin.|{0} 回原点？\n轴将移动到原点。
 Image: {0}|图像：{0}
@@ -594,6 +598,7 @@ Limits saved and sent to SEQ.|上限已保存并发送到 SEQ。
 Log Out|注销
 Maintenance|维护
 Master|管理员
+MISMATCH|不一致
 MTF copied to the clipboard.|MTF 已复制到剪贴板。
 NG Tray Unload|不良料盘卸载
 No|序号
@@ -601,6 +606,7 @@ No frame grabber board was found. Check the PCIe slot and the Coaxlink driver.|�
 No frame yet. Check the camera trigger and the CoaXPress link.|尚未收到图像帧。请检查相机触发和 CoaXPress 链路。
 No image|无图像
 No User|无用户
+not answering|无响应
 Not while a scan cycle runs.|扫描循环中不可操作。
 Not while the machine runs.|设备运行中不可操作。
 Nothing to apply.|没有需要应用的更改。
@@ -620,6 +626,15 @@ Received {0}   Displayed {1}   Rejected {2}|接收 {0}   显示 {1}   拒绝 {2}
 Reloaded from the DB.|已从 DB 重新加载。
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|将 {0} 的计数清零？\n请在更换部件后执行。
 Rework Tray Unload|返工料盘卸载
+Scan link on, {0}, SEQ {1}|扫描联动开启，{0}，SEQ {1}
+Scan: aborted by SEQ|扫描：被 SEQ 中止
+Scan: cancelled|扫描：已取消
+Scan: lines {0:N0} / expected {1:N0}, triggers {2}|扫描：行 {0:N0} / 预期 {1:N0}，触发 {2}
+Scan: no image. Fewer lines than {0:N0} arrived (triggers {1}). Check the trigger wiring and the camera trigger setting.|扫描：无图像。到达的行数少于 {0:N0}（触发 {1}）。请检查触发接线和相机触发设置。
+Scan: not started|扫描：未开始
+Scan: waiting for {0:N0} lines|扫描：等待 {0:N0} 行
+Scan: {0:N0} lines received|扫描：已接收 {0:N0} 行
+SEQ did not take the VISION ready.|SEQ 未接收 VISION 就绪信号。
 SEQ is not connected.|SEQ 未连接。
 SEQ: Connected|SEQ: 已连接
 Sponge Clean|海绵清洁
@@ -633,11 +648,22 @@ The board is present but no camera answers over CoaXPress. Check the camera powe
 The buffers could not be allocated.|无法分配缓冲区。
 The eGrabber runtime is not installed on this PC.|此电脑未安装 eGrabber 运行库。
 The frame grabber was opened but the buffers could not be allocated.|图像采集卡已打开，但无法分配缓冲区。
+The grabber could not be set up for the scan.|无法为扫描设置采集卡。
+The grabber could not be started.|无法启动采集卡。
 The image could not be opened.|无法打开图像。
 The image could not be saved.|无法保存图像。
 The machine name cannot be empty.|设备名称不能为空。
 The profile could not be saved.|无法保存轮廓。
+The scan has no lines. SET the recipe first.|扫描没有行数。请先 SET 配方。
+The scan image would be {0:N0} MB, more than {1:N0} MB. Shorten the scan or use a coarser pitch.|扫描图像为 {0:N0} MB，超过 {1:N0} MB。请缩短扫描或加大间距。
+VISION is offline. Connect it, or turn SCAN LINK off.|VISION 离线。请连接，或关闭扫描联动。
+VISION: Connected|VISION: 已连接
+VISION: Disconnected|VISION: 未连接
+Waiting for the scan|等待扫描
+waits for VISION|等待 VISION
 WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.|达到上限的 {0} % 为 WARN，达到上限为 OVER。比例在系统数据中设定。
+wiring A (through the grabber)|接线 A (经采集卡)
+wiring B (camera direct)|接线 B (直连相机)
 X {0}  Y {1}  value {2}|X {0}  Y {1}  值 {2}
 {0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.|{0:HH:mm:ss}  删除文件 {1} 个 ({2:N0} KB)、文件夹 {3} 个，跳过 {4} 个。
 {0} items.|共 {0} 项

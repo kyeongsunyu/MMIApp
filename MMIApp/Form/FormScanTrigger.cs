@@ -202,6 +202,7 @@ namespace MMI
                 case 9: return "OUTPUT TEST";
                 case 10: return "RETURN";
                 case 11: return "WAIT RETURN";
+                case 12: return "WAIT VISION";
                 default: return nState.ToString();
             }
         }

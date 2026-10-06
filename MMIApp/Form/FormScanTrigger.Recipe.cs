@@ -366,6 +366,7 @@ namespace MMI
                 case 9: return "OUT TEST";
                 case 10: return "RETURN";
                 case 11: return "WAIT RETURN";
+                case 12: return "WAIT VISION";
                 default: return nState.ToString();
             }
         }
@@ -524,6 +525,8 @@ namespace MMI
 
             if (bRead) RenderScanTriggerDisplay();
             bScanTriggerWatch = false;
+            if (frmMain != null && frmMain.frmVision != null)
+                frmMain.frmVision.ScanFinished(nState, (bRead && MmiGV.pShMem != null) ? MmiGV.pShMem.RScanTriggerDisplay.nTriggerCount : -1);
             lblScanTrigState.Text = ScanTriggerStateText(nState);
             lblScanTrigResult.Text = (nState == 7) ? "DONE" : "ABORTED";
         }
@@ -663,6 +666,18 @@ namespace MMI
                 return;
             }
 
+            // With the VISION scan link on, the line scan grabber is armed and
+            // SEQ told so before the START: SEQ waits at the start position
+            // for that ready, so the first lines are not lost.
+            string strVision;
+            if (frmMain != null && frmMain.frmVision != null &&
+                !frmMain.frmVision.PrepareForScan(MmiGV.pShMem.RScanTriggerDisplay.nLineCount, out strVision))
+            {
+                lblScanTrigResult.Text = "VISION";
+                MessageBox.Show(strVision, "SCAN TRIGGER", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             bool bSent = false;
             for (int k = 0; k < ScanTriggerTries && !bSent; k++)
             {
@@ -671,6 +686,7 @@ namespace MMI
 
             if (!bSent)
             {
+                if (frmMain != null && frmMain.frmVision != null) frmMain.frmVision.CancelScan();
                 lblScanTrigResult.Text = "NO LINK";
                 return;
             }
@@ -696,6 +712,7 @@ namespace MMI
 
             if (nState == 0)        // IDLE: it was heard, and nothing started
             {
+                if (frmMain != null && frmMain.frmVision != null) frmMain.frmVision.CancelScan();
                 bScanTriggerWatch = false;
                 lblScanTrigResult.Text = (nCode != 0)
                                        ? ScanTriggerValidateText(nCode)

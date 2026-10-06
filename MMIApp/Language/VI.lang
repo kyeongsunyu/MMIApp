@@ -263,7 +263,6 @@ Motor Config|Cấu hình động cơ
 MTBA / MTBF|MTBA / MTBF
 No Alarm|Không có cảnh báo
 Operation|Vận hành
-Peripheral: -|Ngoại vi: -
 PM|PM
 Recipe|Công thức
 SECS/GEM: Offline|SECS/GEM: Ngoại tuyến
@@ -276,6 +275,7 @@ TRIGGER|KÍCH HOẠT
 USE / SKIP|DÙNG / BỎ QUA
 User Regist|Người dùng
 VISION|THỊ GIÁC
+VISION: -|VISION: -
 ● Operator|● Vận hành viên
 
 # --- FormManualOP ---
@@ -461,7 +461,9 @@ Wrong Way Limit (counts)|Giới hạn ngược (counts)
 
 # --- FormVision ---
 (max - min) / (max + min), 1 % trimmed per section. Touch the values to copy them.|(max - min) / (max + min), bỏ 1 % mỗi đoạn. Chạm vào giá trị để sao chép.
+A GRABBER|A CARD
 Acquisition|Thu nhận ảnh
+B CAMERA|B CAMERA
 Buffers|Số bộ đệm
 Camera (read only)|Camera (chỉ đọc)
 CONNECT|KẾT NỐI
@@ -480,6 +482,7 @@ Profile (centre line)|Biên dạng (dòng giữa)
 # S5|
 # S6|
 SAVE BMP|LƯU BMP
+SCAN LINK|LIÊN KẾT QUÉT
 SNAP|CHỤP MỘT ẢNH
 Status|Trạng thái
 
@@ -585,6 +588,7 @@ Front Picker Z8|Đầu hút trước Z8
 GenTL producer was not loaded.|Chưa tải GenTL producer.
 Good Tray 1 Unload|Xả khay đạt 1
 Good Tray 2 Unload|Xả khay đạt 2
+Grabber setting for wiring {0} refused: {1}|Cài đặt card cho đấu dây {0} bị từ chối: {1}
 Grabbing|Đang chụp
 Home {0}?\nThe axis moves to its origin.|Về gốc {0}?\nTrục sẽ di chuyển về gốc.
 Image: {0}|Ảnh: {0}
@@ -594,6 +598,7 @@ Limits saved and sent to SEQ.|Đã lưu giới hạn và gửi tới SEQ.
 Log Out|Đăng xuất
 Maintenance|Bảo trì
 Master|Quản trị
+MISMATCH|KHÔNG KHỚP
 MTF copied to the clipboard.|Đã sao chép MTF vào clipboard.
 NG Tray Unload|Xả khay lỗi
 No|STT
@@ -601,6 +606,7 @@ No frame grabber board was found. Check the PCIe slot and the Coaxlink driver.|K
 No frame yet. Check the camera trigger and the CoaXPress link.|Chưa có khung hình. Kiểm tra trigger camera và liên kết CoaXPress.
 No image|Không có ảnh
 No User|Chưa đăng nhập
+not answering|không phản hồi
 Not while a scan cycle runs.|Không thể khi đang chạy chu trình quét.
 Not while the machine runs.|Không thể khi máy đang chạy.
 Nothing to apply.|Không có gì để áp dụng.
@@ -620,6 +626,15 @@ Received {0}   Displayed {1}   Rejected {2}|Nhận {0}   Hiển thị {1}   Lo�
 Reloaded from the DB.|Đã tải lại từ DB.
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|Đặt lại số đếm của {0} về 0?\nHãy làm sau khi đã thay linh kiện.
 Rework Tray Unload|Xả khay làm lại
+Scan link on, {0}, SEQ {1}|Liên kết quét bật, {0}, SEQ {1}
+Scan: aborted by SEQ|Quét: SEQ đã hủy
+Scan: cancelled|Quét: đã hủy
+Scan: lines {0:N0} / expected {1:N0}, triggers {2}|Quét: dòng {0:N0} / dự kiến {1:N0}, trigger {2}
+Scan: no image. Fewer lines than {0:N0} arrived (triggers {1}). Check the trigger wiring and the camera trigger setting.|Quét: không có ảnh. Số dòng nhận được ít hơn {0:N0} (trigger {1}). Kiểm tra đấu dây trigger và cài đặt trigger của camera.
+Scan: not started|Quét: chưa bắt đầu
+Scan: waiting for {0:N0} lines|Quét: chờ {0:N0} dòng
+Scan: {0:N0} lines received|Quét: đã nhận {0:N0} dòng
+SEQ did not take the VISION ready.|SEQ không nhận tín hiệu VISION sẵn sàng.
 SEQ is not connected.|SEQ chưa kết nối.
 SEQ: Connected|SEQ: Đã kết nối
 Sponge Clean|Vệ sinh mút
@@ -633,11 +648,22 @@ The board is present but no camera answers over CoaXPress. Check the camera powe
 The buffers could not be allocated.|Không cấp phát được bộ đệm.
 The eGrabber runtime is not installed on this PC.|Máy tính này chưa cài eGrabber runtime.
 The frame grabber was opened but the buffers could not be allocated.|Đã mở card thu hình nhưng không cấp phát được bộ đệm.
+The grabber could not be set up for the scan.|Không thiết lập được card thu hình cho lần quét.
+The grabber could not be started.|Không khởi động được card thu hình.
 The image could not be opened.|Không mở được ảnh.
 The image could not be saved.|Không lưu được ảnh.
 The machine name cannot be empty.|Tên máy không được để trống.
 The profile could not be saved.|Không lưu được biên dạng.
+The scan has no lines. SET the recipe first.|Lần quét không có dòng nào. Hãy SET công thức trước.
+The scan image would be {0:N0} MB, more than {1:N0} MB. Shorten the scan or use a coarser pitch.|Ảnh quét sẽ là {0:N0} MB, vượt {1:N0} MB. Hãy rút ngắn lần quét hoặc tăng bước.
+VISION is offline. Connect it, or turn SCAN LINK off.|VISION ngoại tuyến. Hãy kết nối hoặc tắt LIÊN KẾT QUÉT.
+VISION: Connected|VISION: Đã kết nối
+VISION: Disconnected|VISION: Mất kết nối
+Waiting for the scan|Đang chờ quét
+waits for VISION|chờ VISION
 WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.|WARN từ {0} % giới hạn, OVER khi đạt giới hạn. Tỷ lệ đặt ở Dữ liệu hệ thống.
+wiring A (through the grabber)|đấu dây A (qua card)
+wiring B (camera direct)|đấu dây B (trực tiếp camera)
 X {0}  Y {1}  value {2}|X {0}  Y {1}  giá trị {2}
 {0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.|{0:HH:mm:ss}  Đã xóa {1} tệp ({2:N0} KB) và {3} thư mục, bỏ qua {4}.
 {0} items.|{0} hạng mục.
