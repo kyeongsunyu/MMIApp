@@ -18,6 +18,7 @@ namespace MMI
     //                          as text, one value per line
     //   MTF                    six sections of the centre line; touching the
     //                          values copies them
+    //   NEW                    clears the image, the profile and the MTF
     //   LOAD / SAVE BMP        8 bit grey
     //   Buffers                the grabber's buffer ring
     //
@@ -308,6 +309,26 @@ namespace MMI
             ShowStatus();
         }
 
+        // GrabDemo's FILE NEW: an empty view, as before the first frame.
+        private void btnNewImage_Click(object sender, EventArgs e)
+        {
+            if (grabber != null && grabber.IsGrabbing) Freeze();
+
+            imgView.Clear();
+            frame = new byte[0];
+            strImageSource = "";
+            lblPixel.Text = "";
+            profileView.SetLine(null);
+            bHaveMtf = false;
+            for (int i = 0; i < VisionAnalysis.Sections; i++)
+            {
+                mtf[i] = 0;
+                MtfLabel(i).Text = "-";
+            }
+            UpdateButtons();
+            ShowStatus();
+        }
+
         private void btnLoadImage_Click(object sender, EventArgs e)
         {
             if (grabber != null && grabber.IsGrabbing) Freeze();
@@ -431,6 +452,7 @@ namespace MMI
             txtBufferCount.ReadOnly = !bOnline;
             btnConnect.Enabled = !bGrabbing;
             btnSaveImage.Enabled = imgView.HasImage;
+            btnNewImage.Enabled = imgView.HasImage;
             btnFit.Enabled = imgView.HasImage;
         }
 

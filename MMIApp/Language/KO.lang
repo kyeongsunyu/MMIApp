@@ -471,6 +471,7 @@ GRAB|연속 획득
 Image|이미지
 LOAD BMP|BMP 열기
 MTF (6 sections, %)|MTF (6구간, %)
+NEW|지우기
 Profile (centre line)|프로파일 (중앙 라인)
 # S1|
 # S2|

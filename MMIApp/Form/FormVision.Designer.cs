@@ -37,6 +37,7 @@
             this.btnSnap = new MMI.HmiButton();
             this.btnFreeze = new MMI.HmiButton();
             this.btnFit = new MMI.HmiButton();
+            this.btnNewImage = new MMI.HmiButton();
             this.btnLoadImage = new MMI.HmiButton();
             this.btnSaveImage = new MMI.HmiButton();
             this.lblBufferCount = new System.Windows.Forms.Label();
@@ -110,6 +111,7 @@
             this.pnlControl.Controls.Add(this.lblBufferCount);
             this.pnlControl.Controls.Add(this.btnSaveImage);
             this.pnlControl.Controls.Add(this.btnLoadImage);
+            this.pnlControl.Controls.Add(this.btnNewImage);
             this.pnlControl.Controls.Add(this.btnFit);
             this.pnlControl.Controls.Add(this.btnFreeze);
             this.pnlControl.Controls.Add(this.btnSnap);
@@ -157,10 +159,19 @@
             this.btnFit.Name = "btnFit";
             this.btnFit.Click += new System.EventHandler(this.btnFit_Click);
             // 
+            // btnNewImage
+            // 
+            this.btnNewImage.Location = new System.Drawing.Point(14, 172);
+            this.btnNewImage.Size = new System.Drawing.Size(120, 56);
+            this.btnNewImage.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNewImage.Text = "NEW";
+            this.btnNewImage.Name = "btnNewImage";
+            this.btnNewImage.Click += new System.EventHandler(this.btnNewImage_Click);
+            // 
             // btnLoadImage
             // 
-            this.btnLoadImage.Location = new System.Drawing.Point(14, 172);
-            this.btnLoadImage.Size = new System.Drawing.Size(186, 56);
+            this.btnLoadImage.Location = new System.Drawing.Point(146, 172);
+            this.btnLoadImage.Size = new System.Drawing.Size(120, 56);
             this.btnLoadImage.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLoadImage.Text = "LOAD BMP";
             this.btnLoadImage.Name = "btnLoadImage";
@@ -168,8 +179,8 @@
             // 
             // btnSaveImage
             // 
-            this.btnSaveImage.Location = new System.Drawing.Point(212, 172);
-            this.btnSaveImage.Size = new System.Drawing.Size(186, 56);
+            this.btnSaveImage.Location = new System.Drawing.Point(278, 172);
+            this.btnSaveImage.Size = new System.Drawing.Size(120, 56);
             this.btnSaveImage.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSaveImage.Text = "SAVE BMP";
             this.btnSaveImage.Name = "btnSaveImage";
@@ -490,6 +501,7 @@
         private MMI.HmiButton btnSnap;
         private MMI.HmiButton btnFreeze;
         private MMI.HmiButton btnFit;
+        private MMI.HmiButton btnNewImage;
         private MMI.HmiButton btnLoadImage;
         private MMI.HmiButton btnSaveImage;
         private System.Windows.Forms.Label lblBufferCount;
