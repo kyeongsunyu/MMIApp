@@ -75,6 +75,7 @@
             this.flpSubAuto = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSubAuto1 = new MMI.HmiButton();
             this.btnSubTrigger = new MMI.HmiButton();
+            this.btnSubVision = new MMI.HmiButton();
             this.flpSubManual = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSubManualList = new MMI.HmiButton();
             this.btnSubManualOP = new MMI.HmiButton();
@@ -563,6 +564,7 @@
             // 
             this.flpSubAuto.Controls.Add(this.btnSubAuto1);
             this.flpSubAuto.Controls.Add(this.btnSubTrigger);
+            this.flpSubAuto.Controls.Add(this.btnSubVision);
             this.flpSubAuto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpSubAuto.Size = new System.Drawing.Size(168, 950);
             this.flpSubAuto.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -591,6 +593,17 @@
             this.btnSubTrigger.TabStop = false;
             this.btnSubTrigger.Name = "btnSubTrigger";
             this.btnSubTrigger.Click += new System.EventHandler(this.btnSubMenuClick);
+            // 
+            // btnSubVision
+            // 
+            this.btnSubVision.Size = new System.Drawing.Size(168, 44);
+            this.btnSubVision.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.btnSubVision.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSubVision.Text = "VISION";
+            this.btnSubVision.Tag = "13";
+            this.btnSubVision.TabStop = false;
+            this.btnSubVision.Name = "btnSubVision";
+            this.btnSubVision.Click += new System.EventHandler(this.btnSubMenuClick);
             // 
             // flpSubManual
             // 
@@ -894,6 +907,7 @@
         private System.Windows.Forms.FlowLayoutPanel flpSubAuto;
         public MMI.HmiButton btnSubAuto1;
         public MMI.HmiButton btnSubTrigger;
+        public MMI.HmiButton btnSubVision;
         private System.Windows.Forms.FlowLayoutPanel flpSubManual;
         public MMI.HmiButton btnSubManualList;
         public MMI.HmiButton btnSubManualOP;

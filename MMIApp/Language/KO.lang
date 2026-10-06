@@ -275,6 +275,7 @@ Ten Key|텐키
 TRIGGER|트리거
 USE / SKIP|사용 / 스킵
 User Regist|사용자 등록
+VISION|비전
 ● Operator|● 작업자
 
 # --- FormManualOP ---
@@ -457,6 +458,22 @@ Trigger Output|트리거 출력
 Unit per Count (mm)|카운트당 단위 (mm)
 WRITE|쓰기
 Wrong Way Limit (counts)|역방향 한계 (counts)
+
+# --- FormVision ---
+(max - min) / (max + min), 1 % trimmed per section|(최대 - 최소) / (최대 + 최소), 구간별 1 % 제외
+Acquisition|영상 획득
+BUFFER|버퍼
+FREEZE|정지
+GRAB|연속 획득
+Grey level along the centre line|중앙 라인의 밝기 분포
+Image|이미지
+Live image (eGrabber, Coaxlink)\nzoom with the wheel, pan by dragging, pixel value under the cursor|실시간 이미지 (eGrabber, Coaxlink)\n휠로 확대/축소, 드래그로 이동, 커서 위치의 픽셀 값
+LOAD BMP|BMP 열기
+MTF (6 sections, %)|MTF (6구간, %)
+Not connected. The GrabDemo migration is pending.|연결 안 됨. GrabDemo 이식 예정입니다.
+Profile (centre line)|프로파일 (중앙 라인)
+SAVE BMP|BMP 저장
+SNAP|한 장 획득
 
 # --- Form_DataCopy ---
 COPY|복사

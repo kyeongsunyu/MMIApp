@@ -275,6 +275,7 @@ Ten Key|Ten Key
 TRIGGER|TRIGGER
 USE / SKIP|USE / SKIP
 User Regist|User Regist
+VISION|VISION
 ● Operator|● Operator
 
 # --- FormManualOP ---
@@ -457,6 +458,22 @@ Trigger Output|Trigger Output
 Unit per Count (mm)|Unit per Count (mm)
 WRITE|WRITE
 Wrong Way Limit (counts)|Wrong Way Limit (counts)
+
+# --- FormVision ---
+(max - min) / (max + min), 1 % trimmed per section|(max - min) / (max + min), 1 % trimmed per section
+Acquisition|Acquisition
+BUFFER|BUFFER
+FREEZE|FREEZE
+GRAB|GRAB
+Grey level along the centre line|Grey level along the centre line
+Image|Image
+Live image (eGrabber, Coaxlink)\nzoom with the wheel, pan by dragging, pixel value under the cursor|Live image (eGrabber, Coaxlink)\nzoom with the wheel, pan by dragging, pixel value under the cursor
+LOAD BMP|LOAD BMP
+MTF (6 sections, %)|MTF (6 sections, %)
+Not connected. The GrabDemo migration is pending.|Not connected. The GrabDemo migration is pending.
+Profile (centre line)|Profile (centre line)
+SAVE BMP|SAVE BMP
+SNAP|SNAP
 
 # --- Form_DataCopy ---
 COPY|COPY

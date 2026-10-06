@@ -36,6 +36,7 @@ namespace MMI
             AUTO_VIEW       = 1,
             AUTO1           = 11,
             AUTO_TRIGGER    = 12,   // the scan trigger screen
+            AUTO_VISION     = 13,   // the line scan camera (GrabDemo, to be migrated)
 
             MANUAL_VIEW     = 2,
             MANUAL_LIST     = 21,

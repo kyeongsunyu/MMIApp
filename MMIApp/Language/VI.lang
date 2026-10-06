@@ -275,6 +275,7 @@ Ten Key|Phím số
 TRIGGER|KÍCH HOẠT
 USE / SKIP|DÙNG / BỎ QUA
 User Regist|Người dùng
+VISION|THỊ GIÁC
 ● Operator|● Vận hành viên
 
 # --- FormManualOP ---
@@ -457,6 +458,22 @@ Trigger Output|Đầu ra kích hoạt
 Unit per Count (mm)|Đơn vị mỗi count (mm)
 WRITE|GHI
 Wrong Way Limit (counts)|Giới hạn ngược (counts)
+
+# --- FormVision ---
+(max - min) / (max + min), 1 % trimmed per section|(max - min) / (max + min), bỏ 1 % mỗi đoạn
+Acquisition|Thu nhận ảnh
+BUFFER|BỘ ĐỆM
+FREEZE|DỪNG
+GRAB|CHỤP LIÊN TỤC
+Grey level along the centre line|Mức xám dọc dòng giữa
+Image|Hình ảnh
+Live image (eGrabber, Coaxlink)\nzoom with the wheel, pan by dragging, pixel value under the cursor|Ảnh trực tiếp (eGrabber, Coaxlink)\nlăn chuột để phóng to, kéo để di chuyển, giá trị điểm ảnh dưới con trỏ
+LOAD BMP|MỞ BMP
+MTF (6 sections, %)|MTF (6 đoạn, %)
+Not connected. The GrabDemo migration is pending.|Chưa kết nối. Đang chờ chuyển đổi GrabDemo.
+Profile (centre line)|Biên dạng (dòng giữa)
+SAVE BMP|LƯU BMP
+SNAP|CHỤP MỘT ẢNH
 
 # --- Form_DataCopy ---
 COPY|SAO CHÉP

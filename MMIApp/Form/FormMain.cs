@@ -37,6 +37,7 @@ namespace MMI
 
         public FormMotorSetting frmMotorSetting;
         public FormScanTrigger  frmScanTrigger;
+        public FormVision       frmVision;
 
         public FormDataRecipe   frmDataRecipe;
         public FormDataSystem   frmDataSystem;
@@ -133,6 +134,7 @@ namespace MMI
 
             frmMotorSetting = new FormMotorSetting(this);
             frmScanTrigger = new FormScanTrigger(this);
+            frmVision = new FormVision(this);
 
             frmDataRecipe = new FormDataRecipe(this);
             frmDataSystem = new FormDataSystem(this);
@@ -155,6 +157,7 @@ namespace MMI
 
             RegisterScreen((int)MmiGV.eSCRNO.AUTO1,             "PRODUCTION",    frmAuto1);
             RegisterScreen((int)MmiGV.eSCRNO.AUTO_TRIGGER,      "TRIGGER",       frmScanTrigger);
+            RegisterScreen((int)MmiGV.eSCRNO.AUTO_VISION,       "VISION",        frmVision);
             RegisterScreen((int)MmiGV.eSCRNO.MANUAL_LIST,       "MANUAL LIST",   frmManualList);
             RegisterScreen((int)MmiGV.eSCRNO.MANUAL_OP,         "MANUAL OP",     frmManualOP);
             RegisterScreen((int)MmiGV.eSCRNO.MOTOR_SETTING,     "MOTOR SETTING", frmMotorSetting);
@@ -595,6 +598,7 @@ namespace MMI
             // The scan trigger screen sits in the Auto group, which everyone
             // can open, but it stays at the engineer level it had under Motor.
             btnSubTrigger.Enabled     = bEngineer;
+            btnSubVision.Enabled      = bEngineer;
 
             TimerUserLevel.Enabled = (iLevel != (int)MmiGV.eUserLevel.USER_LEVEL_NONE);
 

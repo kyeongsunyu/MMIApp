@@ -275,6 +275,7 @@ Ten Key|数字键
 TRIGGER|触发
 USE / SKIP|使用 / 跳过
 User Regist|用户注册
+VISION|视觉
 ● Operator|● 操作员
 
 # --- FormManualOP ---
@@ -457,6 +458,22 @@ Trigger Output|触发输出
 Unit per Count (mm)|每计数单位 (mm)
 WRITE|写入
 Wrong Way Limit (counts)|反向限制 (counts)
+
+# --- FormVision ---
+(max - min) / (max + min), 1 % trimmed per section|(最大 - 最小) / (最大 + 最小)，每区段去除 1 %
+Acquisition|采集
+BUFFER|缓冲
+FREEZE|停止
+GRAB|连续采集
+Grey level along the centre line|中心线灰度分布
+Image|图像
+Live image (eGrabber, Coaxlink)\nzoom with the wheel, pan by dragging, pixel value under the cursor|实时图像 (eGrabber, Coaxlink)\n滚轮缩放，拖动平移，显示光标处像素值
+LOAD BMP|打开 BMP
+MTF (6 sections, %)|MTF (6 区段, %)
+Not connected. The GrabDemo migration is pending.|未连接。GrabDemo 移植待完成。
+Profile (centre line)|轮廓 (中心线)
+SAVE BMP|保存 BMP
+SNAP|单张采集
 
 # --- Form_DataCopy ---
 COPY|复制
