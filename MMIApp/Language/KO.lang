@@ -460,20 +460,27 @@ WRITE|쓰기
 Wrong Way Limit (counts)|역방향 한계 (counts)
 
 # --- FormVision ---
-(max - min) / (max + min), 1 % trimmed per section|(최대 - 최소) / (최대 + 최소), 구간별 1 % 제외
+(max - min) / (max + min), 1 % trimmed per section. Touch the values to copy them.|(최대 - 최소) / (최대 + 최소), 구간별 1 % 제외. 값을 터치하면 복사됩니다.
 Acquisition|영상 획득
-BUFFER|버퍼
+Buffers|버퍼 수
+Camera (read only)|카메라 (읽기 전용)
+CONNECT|연결
+FIT|맞춤
 FREEZE|정지
 GRAB|연속 획득
-Grey level along the centre line|중앙 라인의 밝기 분포
 Image|이미지
-Live image (eGrabber, Coaxlink)\nzoom with the wheel, pan by dragging, pixel value under the cursor|실시간 이미지 (eGrabber, Coaxlink)\n휠로 확대/축소, 드래그로 이동, 커서 위치의 픽셀 값
 LOAD BMP|BMP 열기
 MTF (6 sections, %)|MTF (6구간, %)
-Not connected. The GrabDemo migration is pending.|연결 안 됨. GrabDemo 이식 예정입니다.
 Profile (centre line)|프로파일 (중앙 라인)
+# S1|
+# S2|
+# S3|
+# S4|
+# S5|
+# S6|
 SAVE BMP|BMP 저장
 SNAP|한 장 획득
+Status|상태
 
 # --- Form_DataCopy ---
 COPY|복사
@@ -552,12 +559,19 @@ USER LOG IN|사용자 로그인
 (not applied)|(미적용)
 A limit cannot be negative.|한계는 음수가 될 수 없습니다.
 A purge is already running.|이미 정리 중입니다.
+All images|모든 이미지
 APPLY the keep period first; the purge uses the saved one.|보관 기간을 먼저 적용하세요. 정리는 저장된 기간을 씁니다.
+Buffers: {0}|버퍼: {0}
+camera|카메라
 Changes discarded.|변경을 취소했습니다.
 Changes not applied.|적용하지 않은 변경이 있습니다.
 Choose a step first.|먼저 스텝을 고르세요.
+Could not open the frame grabber.|프레임 그래버를 열 수 없습니다.
+Detected: {0} board(s), {1} device(s), {2} camera(s).|검출: 보드 {0}개, 장치 {1}개, 카메라 {2}대.
+Diagnostics unavailable: {0}|진단 불가: {0}
 Engineer|엔지니어
 Enter a value from {0} to {1}.|{0}에서 {1} 사이의 값을 입력하세요.
+Failed to load the GenTL producer (coaxlink.cti). Check that eGrabber is installed.|GenTL 프로듀서(coaxlink.cti)를 불러오지 못했습니다. eGrabber 설치를 확인하세요.
 Files last written before {0} are deleted.|{0} 이전에 마지막으로 기록된 파일을 삭제합니다.
 Front Picker Z1|전면 피커 Z1
 Front Picker Z2|전면 피커 Z2
@@ -567,21 +581,30 @@ Front Picker Z5|전면 피커 Z5
 Front Picker Z6|전면 피커 Z6
 Front Picker Z7|전면 피커 Z7
 Front Picker Z8|전면 피커 Z8
+GenTL producer was not loaded.|GenTL 프로듀서가 로드되지 않았습니다.
 Good Tray 1 Unload|양품 트레이 1 배출
 Good Tray 2 Unload|양품 트레이 2 배출
+Grabbing|획득 중
 Home {0}?\nThe axis moves to its origin.|{0} 원점 복귀를 할까요?\n축이 원점으로 이동합니다.
+Image: {0}|이미지: {0}
 JOG: moves while + / - is held.|조그: + / -를 누르고 있는 동안 움직입니다.
+Last frame: {0}|마지막 프레임: {0}
 Limits saved and sent to SEQ.|한계를 저장하고 SEQ로 보냈습니다.
 Log Out|로그아웃
 Maintenance|유지보수
 Master|마스터
+MTF copied to the clipboard.|MTF를 클립보드에 복사했습니다.
 NG Tray Unload|불량 트레이 배출
 No|번호
+No frame grabber board was found. Check the PCIe slot and the Coaxlink driver.|프레임 그래버 보드를 찾지 못했습니다. PCIe 슬롯과 Coaxlink 드라이버를 확인하세요.
+No frame yet. Check the camera trigger and the CoaXPress link.|아직 프레임이 없습니다. 카메라 트리거와 CoaXPress 링크를 확인하세요.
+No image|이미지 없음
 No User|사용자 없음
 Not while a scan cycle runs.|스캔 사이클 중에는 할 수 없습니다.
 Not while the machine runs.|설비 운전 중에는 할 수 없습니다.
 Nothing to apply.|적용할 변경이 없습니다.
 Offline|오프라인
+Offline. BMP files can be opened.|오프라인. BMP 파일은 열 수 있습니다.
 Online|온라인
 Operator|작업자
 Rear Picker Z1|후면 피커 Z1
@@ -592,6 +615,7 @@ Rear Picker Z5|후면 피커 Z5
 Rear Picker Z6|후면 피커 Z6
 Rear Picker Z7|후면 피커 Z7
 Rear Picker Z8|후면 피커 Z8
+Received {0}   Displayed {1}   Rejected {2}|수신 {0}   표시 {1}   거부 {2}
 Reloaded from the DB.|DB에서 다시 읽었습니다.
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|{0}의 수량을 0으로 리셋할까요?\n부품을 교체한 뒤에 하세요.
 Rework Tray Unload|재작업 트레이 배출
@@ -601,10 +625,19 @@ Sponge Clean|스펀지 세정
 Staged limits discarded.|대기 중인 한계를 취소했습니다.
 STEP: one step per press of + / -.|스텝: + / -를 한 번 누를 때마다 한 스텝 움직입니다.
 stopped|정지
+Stopped|정지됨
 System|시스템
 System data saved.|시스템 데이터를 저장했습니다.
+The board is present but no camera answers over CoaXPress. Check the camera power (PoCXP needs the board's auxiliary power), the cable at both ends, and that the camera has finished booting.|보드는 있으나 CoaXPress로 응답하는 카메라가 없습니다. 카메라 전원(PoCXP는 보드 보조 전원 필요), 양쪽 케이블 연결, 카메라 부팅 완료 여부를 확인하세요.
+The buffers could not be allocated.|버퍼를 할당하지 못했습니다.
+The eGrabber runtime is not installed on this PC.|이 PC에 eGrabber 런타임이 설치되어 있지 않습니다.
+The frame grabber was opened but the buffers could not be allocated.|프레임 그래버는 열렸지만 버퍼를 할당하지 못했습니다.
+The image could not be opened.|이미지를 열 수 없습니다.
+The image could not be saved.|이미지를 저장할 수 없습니다.
 The machine name cannot be empty.|설비 이름은 비울 수 없습니다.
+The profile could not be saved.|프로파일을 저장할 수 없습니다.
 WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.|한계의 {0} %부터 WARN, 한계에서 OVER. 비율은 시스템 데이터에서 설정합니다.
+X {0}  Y {1}  value {2}|X {0}  Y {1}  값 {2}
 {0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.|{0:HH:mm:ss}  파일 {1}개 ({2:N0} KB), 폴더 {3}개 삭제, {4}개 건너뜀
 {0} items.|{0}개 항목
 {0}: count reset.|{0}: 수량을 리셋했습니다.

@@ -460,20 +460,27 @@ WRITE|WRITE
 Wrong Way Limit (counts)|Wrong Way Limit (counts)
 
 # --- FormVision ---
-(max - min) / (max + min), 1 % trimmed per section|(max - min) / (max + min), 1 % trimmed per section
+(max - min) / (max + min), 1 % trimmed per section. Touch the values to copy them.|(max - min) / (max + min), 1 % trimmed per section. Touch the values to copy them.
 Acquisition|Acquisition
-BUFFER|BUFFER
+Buffers|Buffers
+Camera (read only)|Camera (read only)
+CONNECT|CONNECT
+FIT|FIT
 FREEZE|FREEZE
 GRAB|GRAB
-Grey level along the centre line|Grey level along the centre line
 Image|Image
-Live image (eGrabber, Coaxlink)\nzoom with the wheel, pan by dragging, pixel value under the cursor|Live image (eGrabber, Coaxlink)\nzoom with the wheel, pan by dragging, pixel value under the cursor
 LOAD BMP|LOAD BMP
 MTF (6 sections, %)|MTF (6 sections, %)
-Not connected. The GrabDemo migration is pending.|Not connected. The GrabDemo migration is pending.
 Profile (centre line)|Profile (centre line)
+S1|S1
+S2|S2
+S3|S3
+S4|S4
+S5|S5
+S6|S6
 SAVE BMP|SAVE BMP
 SNAP|SNAP
+Status|Status
 
 # --- Form_DataCopy ---
 COPY|COPY
@@ -552,12 +559,19 @@ USER LOG IN|USER LOG IN
 (not applied)|(not applied)
 A limit cannot be negative.|A limit cannot be negative.
 A purge is already running.|A purge is already running.
+All images|All images
 APPLY the keep period first; the purge uses the saved one.|APPLY the keep period first; the purge uses the saved one.
+Buffers: {0}|Buffers: {0}
+camera|camera
 Changes discarded.|Changes discarded.
 Changes not applied.|Changes not applied.
 Choose a step first.|Choose a step first.
+Could not open the frame grabber.|Could not open the frame grabber.
+Detected: {0} board(s), {1} device(s), {2} camera(s).|Detected: {0} board(s), {1} device(s), {2} camera(s).
+Diagnostics unavailable: {0}|Diagnostics unavailable: {0}
 Engineer|Engineer
 Enter a value from {0} to {1}.|Enter a value from {0} to {1}.
+Failed to load the GenTL producer (coaxlink.cti). Check that eGrabber is installed.|Failed to load the GenTL producer (coaxlink.cti). Check that eGrabber is installed.
 Files last written before {0} are deleted.|Files last written before {0} are deleted.
 Front Picker Z1|Front Picker Z1
 Front Picker Z2|Front Picker Z2
@@ -567,21 +581,30 @@ Front Picker Z5|Front Picker Z5
 Front Picker Z6|Front Picker Z6
 Front Picker Z7|Front Picker Z7
 Front Picker Z8|Front Picker Z8
+GenTL producer was not loaded.|GenTL producer was not loaded.
 Good Tray 1 Unload|Good Tray 1 Unload
 Good Tray 2 Unload|Good Tray 2 Unload
+Grabbing|Grabbing
 Home {0}?\nThe axis moves to its origin.|Home {0}?\nThe axis moves to its origin.
+Image: {0}|Image: {0}
 JOG: moves while + / - is held.|JOG: moves while + / - is held.
+Last frame: {0}|Last frame: {0}
 Limits saved and sent to SEQ.|Limits saved and sent to SEQ.
 Log Out|Log Out
 Maintenance|Maintenance
 Master|Master
+MTF copied to the clipboard.|MTF copied to the clipboard.
 NG Tray Unload|NG Tray Unload
 No|No
+No frame grabber board was found. Check the PCIe slot and the Coaxlink driver.|No frame grabber board was found. Check the PCIe slot and the Coaxlink driver.
+No frame yet. Check the camera trigger and the CoaXPress link.|No frame yet. Check the camera trigger and the CoaXPress link.
+No image|No image
 No User|No User
 Not while a scan cycle runs.|Not while a scan cycle runs.
 Not while the machine runs.|Not while the machine runs.
 Nothing to apply.|Nothing to apply.
 Offline|Offline
+Offline. BMP files can be opened.|Offline. BMP files can be opened.
 Online|Online
 Operator|Operator
 Rear Picker Z1|Rear Picker Z1
@@ -592,6 +615,7 @@ Rear Picker Z5|Rear Picker Z5
 Rear Picker Z6|Rear Picker Z6
 Rear Picker Z7|Rear Picker Z7
 Rear Picker Z8|Rear Picker Z8
+Received {0}   Displayed {1}   Rejected {2}|Received {0}   Displayed {1}   Rejected {2}
 Reloaded from the DB.|Reloaded from the DB.
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|Reset the count of {0} to 0?\nDo this after the part has been replaced.
 Rework Tray Unload|Rework Tray Unload
@@ -601,10 +625,19 @@ Sponge Clean|Sponge Clean
 Staged limits discarded.|Staged limits discarded.
 STEP: one step per press of + / -.|STEP: one step per press of + / -.
 stopped|stopped
+Stopped|Stopped
 System|System
 System data saved.|System data saved.
+The board is present but no camera answers over CoaXPress. Check the camera power (PoCXP needs the board's auxiliary power), the cable at both ends, and that the camera has finished booting.|The board is present but no camera answers over CoaXPress. Check the camera power (PoCXP needs the board's auxiliary power), the cable at both ends, and that the camera has finished booting.
+The buffers could not be allocated.|The buffers could not be allocated.
+The eGrabber runtime is not installed on this PC.|The eGrabber runtime is not installed on this PC.
+The frame grabber was opened but the buffers could not be allocated.|The frame grabber was opened but the buffers could not be allocated.
+The image could not be opened.|The image could not be opened.
+The image could not be saved.|The image could not be saved.
 The machine name cannot be empty.|The machine name cannot be empty.
+The profile could not be saved.|The profile could not be saved.
 WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.|WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.
+X {0}  Y {1}  value {2}|X {0}  Y {1}  value {2}
 {0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.|{0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.
 {0} items.|{0} items.
 {0}: count reset.|{0}: count reset.

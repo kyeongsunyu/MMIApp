@@ -460,20 +460,27 @@ WRITE|写入
 Wrong Way Limit (counts)|反向限制 (counts)
 
 # --- FormVision ---
-(max - min) / (max + min), 1 % trimmed per section|(最大 - 最小) / (最大 + 最小)，每区段去除 1 %
+(max - min) / (max + min), 1 % trimmed per section. Touch the values to copy them.|(最大 - 最小) / (最大 + 最小)，每区段去除 1 %。触摸数值即可复制。
 Acquisition|采集
-BUFFER|缓冲
+Buffers|缓冲数
+Camera (read only)|相机 (只读)
+CONNECT|连接
+FIT|适应窗口
 FREEZE|停止
 GRAB|连续采集
-Grey level along the centre line|中心线灰度分布
 Image|图像
-Live image (eGrabber, Coaxlink)\nzoom with the wheel, pan by dragging, pixel value under the cursor|实时图像 (eGrabber, Coaxlink)\n滚轮缩放，拖动平移，显示光标处像素值
 LOAD BMP|打开 BMP
 MTF (6 sections, %)|MTF (6 区段, %)
-Not connected. The GrabDemo migration is pending.|未连接。GrabDemo 移植待完成。
 Profile (centre line)|轮廓 (中心线)
+# S1|
+# S2|
+# S3|
+# S4|
+# S5|
+# S6|
 SAVE BMP|保存 BMP
 SNAP|单张采集
+Status|状态
 
 # --- Form_DataCopy ---
 COPY|复制
@@ -552,12 +559,19 @@ USER LOG IN|用户登录
 (not applied)|(未应用)
 A limit cannot be negative.|上限不能为负数。
 A purge is already running.|清理正在进行。
+All images|所有图像
 APPLY the keep period first; the purge uses the saved one.|请先应用保留期限；清理使用已保存的期限。
+Buffers: {0}|缓冲：{0}
+camera|相机
 Changes discarded.|已放弃更改。
 Changes not applied.|有未应用的更改。
 Choose a step first.|请先选择步距。
+Could not open the frame grabber.|无法打开图像采集卡。
+Detected: {0} board(s), {1} device(s), {2} camera(s).|检测到：{0} 块板卡，{1} 个设备，{2} 台相机。
+Diagnostics unavailable: {0}|无法诊断：{0}
 Engineer|工程师
 Enter a value from {0} to {1}.|请输入 {0} 到 {1} 之间的值。
+Failed to load the GenTL producer (coaxlink.cti). Check that eGrabber is installed.|无法加载 GenTL 生产者 (coaxlink.cti)。请检查 eGrabber 是否已安装。
 Files last written before {0} are deleted.|删除最后写入时间早于 {0} 的文件。
 Front Picker Z1|前吸嘴 Z1
 Front Picker Z2|前吸嘴 Z2
@@ -567,21 +581,30 @@ Front Picker Z5|前吸嘴 Z5
 Front Picker Z6|前吸嘴 Z6
 Front Picker Z7|前吸嘴 Z7
 Front Picker Z8|前吸嘴 Z8
+GenTL producer was not loaded.|未加载 GenTL 生产者。
 Good Tray 1 Unload|良品料盘 1 卸载
 Good Tray 2 Unload|良品料盘 2 卸载
+Grabbing|采集中
 Home {0}?\nThe axis moves to its origin.|{0} 回原点？\n轴将移动到原点。
+Image: {0}|图像：{0}
 JOG: moves while + / - is held.|点动：按住 + / - 时移动。
+Last frame: {0}|最后一帧：{0}
 Limits saved and sent to SEQ.|上限已保存并发送到 SEQ。
 Log Out|注销
 Maintenance|维护
 Master|管理员
+MTF copied to the clipboard.|MTF 已复制到剪贴板。
 NG Tray Unload|不良料盘卸载
 No|序号
+No frame grabber board was found. Check the PCIe slot and the Coaxlink driver.|未找到图像采集卡。请检查 PCIe 插槽和 Coaxlink 驱动。
+No frame yet. Check the camera trigger and the CoaXPress link.|尚未收到图像帧。请检查相机触发和 CoaXPress 链路。
+No image|无图像
 No User|无用户
 Not while a scan cycle runs.|扫描循环中不可操作。
 Not while the machine runs.|设备运行中不可操作。
 Nothing to apply.|没有需要应用的更改。
 Offline|离线
+Offline. BMP files can be opened.|离线。可以打开 BMP 文件。
 Online|在线
 Operator|操作员
 Rear Picker Z1|后吸嘴 Z1
@@ -592,6 +615,7 @@ Rear Picker Z5|后吸嘴 Z5
 Rear Picker Z6|后吸嘴 Z6
 Rear Picker Z7|后吸嘴 Z7
 Rear Picker Z8|后吸嘴 Z8
+Received {0}   Displayed {1}   Rejected {2}|接收 {0}   显示 {1}   拒绝 {2}
 Reloaded from the DB.|已从 DB 重新加载。
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|将 {0} 的计数清零？\n请在更换部件后执行。
 Rework Tray Unload|返工料盘卸载
@@ -601,10 +625,19 @@ Sponge Clean|海绵清洁
 Staged limits discarded.|已放弃待应用的上限。
 STEP: one step per press of + / -.|步进：每按一次 + / - 移动一步。
 stopped|已停止
+Stopped|已停止
 System|系统
 System data saved.|系统数据已保存。
+The board is present but no camera answers over CoaXPress. Check the camera power (PoCXP needs the board's auxiliary power), the cable at both ends, and that the camera has finished booting.|板卡存在，但没有相机通过 CoaXPress 响应。请检查相机电源 (PoCXP 需要板卡辅助电源)、两端线缆，以及相机是否已完成启动。
+The buffers could not be allocated.|无法分配缓冲区。
+The eGrabber runtime is not installed on this PC.|此电脑未安装 eGrabber 运行库。
+The frame grabber was opened but the buffers could not be allocated.|图像采集卡已打开，但无法分配缓冲区。
+The image could not be opened.|无法打开图像。
+The image could not be saved.|无法保存图像。
 The machine name cannot be empty.|设备名称不能为空。
+The profile could not be saved.|无法保存轮廓。
 WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.|达到上限的 {0} % 为 WARN，达到上限为 OVER。比例在系统数据中设定。
+X {0}  Y {1}  value {2}|X {0}  Y {1}  值 {2}
 {0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.|{0:HH:mm:ss}  删除文件 {1} 个 ({2:N0} KB)、文件夹 {3} 个，跳过 {4} 个。
 {0} items.|共 {0} 项
 {0}: count reset.|{0}: 计数已清零。

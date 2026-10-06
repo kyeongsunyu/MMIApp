@@ -460,20 +460,27 @@ WRITE|GHI
 Wrong Way Limit (counts)|Giới hạn ngược (counts)
 
 # --- FormVision ---
-(max - min) / (max + min), 1 % trimmed per section|(max - min) / (max + min), bỏ 1 % mỗi đoạn
+(max - min) / (max + min), 1 % trimmed per section. Touch the values to copy them.|(max - min) / (max + min), bỏ 1 % mỗi đoạn. Chạm vào giá trị để sao chép.
 Acquisition|Thu nhận ảnh
-BUFFER|BỘ ĐỆM
+Buffers|Số bộ đệm
+Camera (read only)|Camera (chỉ đọc)
+CONNECT|KẾT NỐI
+FIT|VỪA KHUNG
 FREEZE|DỪNG
 GRAB|CHỤP LIÊN TỤC
-Grey level along the centre line|Mức xám dọc dòng giữa
 Image|Hình ảnh
-Live image (eGrabber, Coaxlink)\nzoom with the wheel, pan by dragging, pixel value under the cursor|Ảnh trực tiếp (eGrabber, Coaxlink)\nlăn chuột để phóng to, kéo để di chuyển, giá trị điểm ảnh dưới con trỏ
 LOAD BMP|MỞ BMP
 MTF (6 sections, %)|MTF (6 đoạn, %)
-Not connected. The GrabDemo migration is pending.|Chưa kết nối. Đang chờ chuyển đổi GrabDemo.
 Profile (centre line)|Biên dạng (dòng giữa)
+# S1|
+# S2|
+# S3|
+# S4|
+# S5|
+# S6|
 SAVE BMP|LƯU BMP
 SNAP|CHỤP MỘT ẢNH
+Status|Trạng thái
 
 # --- Form_DataCopy ---
 COPY|SAO CHÉP
@@ -552,12 +559,19 @@ USER LOG IN|ĐĂNG NHẬP
 (not applied)|(chưa áp dụng)
 A limit cannot be negative.|Giới hạn không được âm.
 A purge is already running.|Đang dọn dẹp.
+All images|Tất cả ảnh
 APPLY the keep period first; the purge uses the saved one.|Hãy ÁP DỤNG thời gian lưu trước; việc dọn dùng giá trị đã lưu.
+Buffers: {0}|Bộ đệm: {0}
+camera|camera
 Changes discarded.|Đã hủy thay đổi.
 Changes not applied.|Có thay đổi chưa áp dụng.
 Choose a step first.|Hãy chọn bước trước.
+Could not open the frame grabber.|Không mở được card thu hình.
+Detected: {0} board(s), {1} device(s), {2} camera(s).|Phát hiện: {0} card, {1} thiết bị, {2} camera.
+Diagnostics unavailable: {0}|Không chẩn đoán được: {0}
 Engineer|Kỹ sư
 Enter a value from {0} to {1}.|Nhập giá trị từ {0} đến {1}.
+Failed to load the GenTL producer (coaxlink.cti). Check that eGrabber is installed.|Không tải được GenTL producer (coaxlink.cti). Kiểm tra cài đặt eGrabber.
 Files last written before {0} are deleted.|Tệp ghi lần cuối trước {0} sẽ bị xóa.
 Front Picker Z1|Đầu hút trước Z1
 Front Picker Z2|Đầu hút trước Z2
@@ -567,21 +581,30 @@ Front Picker Z5|Đầu hút trước Z5
 Front Picker Z6|Đầu hút trước Z6
 Front Picker Z7|Đầu hút trước Z7
 Front Picker Z8|Đầu hút trước Z8
+GenTL producer was not loaded.|Chưa tải GenTL producer.
 Good Tray 1 Unload|Xả khay đạt 1
 Good Tray 2 Unload|Xả khay đạt 2
+Grabbing|Đang chụp
 Home {0}?\nThe axis moves to its origin.|Về gốc {0}?\nTrục sẽ di chuyển về gốc.
+Image: {0}|Ảnh: {0}
 JOG: moves while + / - is held.|JOG: chạy khi giữ + / -.
+Last frame: {0}|Khung cuối: {0}
 Limits saved and sent to SEQ.|Đã lưu giới hạn và gửi tới SEQ.
 Log Out|Đăng xuất
 Maintenance|Bảo trì
 Master|Quản trị
+MTF copied to the clipboard.|Đã sao chép MTF vào clipboard.
 NG Tray Unload|Xả khay lỗi
 No|STT
+No frame grabber board was found. Check the PCIe slot and the Coaxlink driver.|Không tìm thấy card thu hình. Kiểm tra khe PCIe và driver Coaxlink.
+No frame yet. Check the camera trigger and the CoaXPress link.|Chưa có khung hình. Kiểm tra trigger camera và liên kết CoaXPress.
+No image|Không có ảnh
 No User|Chưa đăng nhập
 Not while a scan cycle runs.|Không thể khi đang chạy chu trình quét.
 Not while the machine runs.|Không thể khi máy đang chạy.
 Nothing to apply.|Không có gì để áp dụng.
 Offline|Ngoại tuyến
+Offline. BMP files can be opened.|Ngoại tuyến. Có thể mở tệp BMP.
 Online|Trực tuyến
 Operator|Vận hành viên
 Rear Picker Z1|Đầu hút sau Z1
@@ -592,6 +615,7 @@ Rear Picker Z5|Đầu hút sau Z5
 Rear Picker Z6|Đầu hút sau Z6
 Rear Picker Z7|Đầu hút sau Z7
 Rear Picker Z8|Đầu hút sau Z8
+Received {0}   Displayed {1}   Rejected {2}|Nhận {0}   Hiển thị {1}   Loại {2}
 Reloaded from the DB.|Đã tải lại từ DB.
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|Đặt lại số đếm của {0} về 0?\nHãy làm sau khi đã thay linh kiện.
 Rework Tray Unload|Xả khay làm lại
@@ -601,10 +625,19 @@ Sponge Clean|Vệ sinh mút
 Staged limits discarded.|Đã hủy các giới hạn chờ.
 STEP: one step per press of + / -.|BƯỚC: mỗi lần nhấn + / - đi một bước.
 stopped|đã dừng
+Stopped|Đã dừng
 System|Hệ thống
 System data saved.|Đã lưu dữ liệu hệ thống.
+The board is present but no camera answers over CoaXPress. Check the camera power (PoCXP needs the board's auxiliary power), the cable at both ends, and that the camera has finished booting.|Có card nhưng không có camera phản hồi qua CoaXPress. Kiểm tra nguồn camera (PoCXP cần nguồn phụ của card), cáp ở hai đầu và camera đã khởi động xong.
+The buffers could not be allocated.|Không cấp phát được bộ đệm.
+The eGrabber runtime is not installed on this PC.|Máy tính này chưa cài eGrabber runtime.
+The frame grabber was opened but the buffers could not be allocated.|Đã mở card thu hình nhưng không cấp phát được bộ đệm.
+The image could not be opened.|Không mở được ảnh.
+The image could not be saved.|Không lưu được ảnh.
 The machine name cannot be empty.|Tên máy không được để trống.
+The profile could not be saved.|Không lưu được biên dạng.
 WARN from {0} % of the limit, OVER at the limit. The percentage is set on System Data.|WARN từ {0} % giới hạn, OVER khi đạt giới hạn. Tỷ lệ đặt ở Dữ liệu hệ thống.
+X {0}  Y {1}  value {2}|X {0}  Y {1}  giá trị {2}
 {0:HH:mm:ss}  {1} files ({2:N0} KB) and {3} folders deleted, {4} skipped.|{0:HH:mm:ss}  Đã xóa {1} tệp ({2:N0} KB) và {3} thư mục, bỏ qua {4}.
 {0} items.|{0} hạng mục.
 {0}: count reset.|{0}: đã đặt lại số đếm.

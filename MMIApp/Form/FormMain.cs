@@ -333,6 +333,7 @@ namespace MMI
                 SQLiteDB.Execute(strSQL);
 
                 CLogRetention.Stop();
+                frmVision.CloseCamera();
                 MmiGV.bProgramExit = true;
                 MmiGV.pShMem.SetExitProgram();
 

@@ -106,6 +106,11 @@
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="EGrabber.NETFramework">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Euresys\eGrabber\clr\x86_64\EGrabber.NETFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SharedMemDll, Version=1.0.8850.16333, Culture=neutral, processorArchitecture=x64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\WORK\DLL\SharedMemDll.dll</HintPath>
@@ -152,6 +157,12 @@
     </Compile>
     <Compile Include="UI\HmiTheme.cs" />
     <Compile Include="UI\HmiGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\VisionImageView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\VisionProfileView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\HmiTabControl.cs">
@@ -225,6 +236,8 @@
     <Compile Include="RecipeCtl\CRcpMaterial.cs" />
     <Compile Include="RecipeCtl\CRecipeCtl.cs" />
     <Compile Include="Util\ConsoleHelper.cs" />
+    <Compile Include="Util\VisionAnalysis.cs" />
+    <Compile Include="Util\VisionGrabber.cs" />
     <Compile Include="Util\NVMem.cs" />
     <Compile Include="Util\RS232\RS232.cs" />
     <Compile Include="Util\TCP\TcpBase.cs" />
