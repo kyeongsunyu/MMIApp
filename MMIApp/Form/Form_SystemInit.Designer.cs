@@ -30,7 +30,7 @@
         {
             this.labelX1 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.progressBar = new MMI.HmiProgress();
             this.SuspendLayout();
             // 
             // labelX1
@@ -60,11 +60,13 @@
             // 
             // progressBar
             // 
-            this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar.Location = new System.Drawing.Point(0, 222);
+            this.progressBar.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progressBar.Location = new System.Drawing.Point(148, 262);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(516, 352);
+            this.progressBar.ProgressStyle = MMI.HmiProgressStyle.Ring;
+            this.progressBar.Size = new System.Drawing.Size(220, 220);
             this.progressBar.TabIndex = 3;
+            this.progressBar.Thickness = 16;
             this.progressBar.Value = 50;
             // 
             // Form_SystemInit
@@ -89,6 +91,6 @@
 
         private System.Windows.Forms.Label labelX1;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.ProgressBar progressBar;
+        private MMI.HmiProgress progressBar;
     }
 }
