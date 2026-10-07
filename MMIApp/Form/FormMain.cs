@@ -271,6 +271,7 @@ namespace MMI
             CRcpMaterial.EnsureScanTriggerColumns();
             FormDataLifeTime.EnsureItemNames();
             EnsurePasswordLevel((int)MmiGV.eSCRNO.DATA_LIFETIME, "LIFE TIME", 2);
+            EnsurePasswordLevel((int)MmiGV.eSCRNO.AUTO_VISION, "VISION", 2);
 
             CRecipeCtl.SetMainForm(this);
             //add by chs
@@ -326,7 +327,14 @@ namespace MMI
             string strSQL;
 
             e.Cancel = true;
-            if (frm_PWD.GetPassWord(MmiGV.iScreenNo))
+            // The password is asked at the level of the screen on show. A screen
+            // with no PWDLEVEL row makes Form_PWD refuse without asking, which
+            // left the program impossible to close from it (TEACH, and VISION
+            // before its row was added); such a screen asks at PRODUCTION's level.
+            int nPwdScreen = MmiGV.iScreenNo;
+            if (SQLiteDB.RecCount("SELECT COUNT(*) FROM PWDLEVEL WHERE SCR_INDEX = " + nPwdScreen) == 0)
+                nPwdScreen = (int)MmiGV.eSCRNO.AUTO1;
+            if (frm_PWD.GetPassWord(nPwdScreen))
             {
                 SaveDM();
                 SaveUseSkip();
