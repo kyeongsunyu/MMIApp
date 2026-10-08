@@ -557,8 +557,9 @@ namespace MMI
             string wiring = CSystemConfig.VisionWiring == "A"
                           ? CLanguage.Text("wiring A (through the grabber)")
                           : CLanguage.Text("wiring B (camera direct)");
-            return CLanguage.Format("Scan link on, {0}, SEQ {1}", wiring,
-                                    bSeqTookLink ? CLanguage.Text("waits for VISION") : CLanguage.Text("not answering"));
+            string seq = grabber == null ? CLanguage.Text("does not wait (VISION offline)")
+                       : bSeqTookLink ? CLanguage.Text("waits for VISION") : CLanguage.Text("not answering");
+            return CLanguage.Format("Scan link on, {0}, SEQ {1}", wiring, seq);
         }
 
         private void ImgView_PixelChanged(object sender, VisionPixelEventArgs e)

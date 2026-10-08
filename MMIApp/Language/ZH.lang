@@ -573,6 +573,7 @@ Choose a step first.|请先选择步距。
 Could not open the frame grabber.|无法打开图像采集卡。
 Detected: {0} board(s), {1} device(s), {2} camera(s).|检测到：{0} 块板卡，{1} 个设备，{2} 台相机。
 Diagnostics unavailable: {0}|无法诊断：{0}
+does not wait (VISION offline)|不等待（VISION 离线）
 Engineer|工程师
 Enter a value from {0} to {1}.|请输入 {0} 到 {1} 之间的值。
 Failed to load the GenTL producer (coaxlink.cti). Check that eGrabber is installed.|无法加载 GenTL 生产者 (coaxlink.cti)。请检查 eGrabber 是否已安装。

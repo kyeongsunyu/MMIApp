@@ -573,6 +573,7 @@ Choose a step first.|Hãy chọn bước trước.
 Could not open the frame grabber.|Không mở được card thu hình.
 Detected: {0} board(s), {1} device(s), {2} camera(s).|Phát hiện: {0} card, {1} thiết bị, {2} camera.
 Diagnostics unavailable: {0}|Không chẩn đoán được: {0}
+does not wait (VISION offline)|không chờ (VISION ngoại tuyến)
 Engineer|Kỹ sư
 Enter a value from {0} to {1}.|Nhập giá trị từ {0} đến {1}.
 Failed to load the GenTL producer (coaxlink.cti). Check that eGrabber is installed.|Không tải được GenTL producer (coaxlink.cti). Kiểm tra cài đặt eGrabber.

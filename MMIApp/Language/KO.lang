@@ -573,6 +573,7 @@ Choose a step first.|먼저 스텝을 고르세요.
 Could not open the frame grabber.|프레임 그래버를 열 수 없습니다.
 Detected: {0} board(s), {1} device(s), {2} camera(s).|검출: 보드 {0}개, 장치 {1}개, 카메라 {2}대.
 Diagnostics unavailable: {0}|진단 불가: {0}
+does not wait (VISION offline)|대기 안 함 (VISION 오프라인)
 Engineer|엔지니어
 Enter a value from {0} to {1}.|{0}에서 {1} 사이의 값을 입력하세요.
 Failed to load the GenTL producer (coaxlink.cti). Check that eGrabber is installed.|GenTL 프로듀서(coaxlink.cti)를 불러오지 못했습니다. eGrabber 설치를 확인하세요.

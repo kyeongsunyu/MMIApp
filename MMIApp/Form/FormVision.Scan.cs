@@ -45,11 +45,11 @@ namespace MMI
         private bool bWiringApplied;
         private string strLinkError = "";
 
-        // One scan run without VISION (TRIGGER asked, VISION offline): SEQ is
-        // told not to wait, the refresh leaves it so until the scan ends.
-        private bool bBypassScan;
-        // With the link off, SEQ has been told so (it may still hold a use
-        // from before an MMI restart).
+        // A scan the operator ran with VISION offline (TRIGGER asked); only
+        // for the status line.
+        private bool bOfflineScan;
+        // SEQ has been told not to wait (it may still hold a use from before
+        // an MMI restart, or from before VISION went offline).
         private bool bSeqUseOffSent;
 
         private bool bScanArmed;
@@ -92,14 +92,14 @@ namespace MMI
         // The wiring's features on the grabber, and the handshake on in SEQ;
         // or both back off. Called when the link or the wiring changes, after a
         // connect, and every LinkRefreshMs.
+        //
+        // SEQ waits for VISION only while the grabber is open. With VISION
+        // offline it is told not to wait, so a scan the operator chooses to
+        // run anyway (TRIGGER asks first) goes like one with the link off,
+        // with no extra round trip at START.
         private void RefreshLink()
         {
-            if (bBypassScan)
-            {
-                ShowLinkState();
-                return;
-            }
-            if (ScanLinkOn)
+            if (ScanLinkOn && grabber != null)
             {
                 bSeqUseOffSent = false;
                 if (grabber != null && !bWiringApplied && !grabber.IsGrabbing)
@@ -271,31 +271,20 @@ namespace MMI
         public bool LinkOnButOffline { get { return ScanLinkOn && grabber == null; } }
 
         // TRIGGER, the operator chose to scan anyway (an oscilloscope check of
-        // the trigger with no camera): SEQ does not wait for VISION this once.
-        // True when SEQ took it.
-        public bool BypassForOneScan()
+        // the trigger with no camera). SEQ already does not wait while VISION
+        // is offline; this only says so on the status.
+        public void ScanWithoutVision()
         {
-            if (!SendLink(false, 0, 0)) return false;
-            bBypassScan = true;
-            bSeqTookLink = false;
+            bOfflineScan = true;
             strScanResult = CLanguage.Text("Scan: run without VISION (this scan only)");
             bScanWarn = true;
-            ShowLinkState();
             ShowStatus();
-            return true;
-        }
-
-        private void EndBypass()
-        {
-            if (!bBypassScan) return;
-            bBypassScan = false;
-            RefreshLink();
         }
 
         // TRIGGER: the START was not sent, or SEQ refused it.
         public void CancelScan()
         {
-            EndBypass();
+            bOfflineScan = false;
             if (!bScanArmed) return;
             bScanArmed = false;
             if (grabber != null) grabber.Stop();
@@ -310,11 +299,11 @@ namespace MMI
         public void ScanFinished(int nState, int nTriggerCount)
         {
             if (InvokeRequired) { BeginInvoke((Action)(() => ScanFinished(nState, nTriggerCount))); return; }
-            if (bBypassScan)
+            if (bOfflineScan)
             {
                 strScanResult = CLanguage.Format("Scan without VISION: {0}, triggers {1}",
                                                  nState == 7 ? "DONE" : "ABORTED", nTriggerCount < 0 ? "-" : nTriggerCount.ToString("N0"));
-                EndBypass();
+                bOfflineScan = false;
                 ShowStatus();
                 return;
             }
