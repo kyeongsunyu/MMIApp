@@ -117,6 +117,8 @@ namespace MMI
         // send anything to SEQ. SET stays a deliberate act, so the operator sees
         // the verdict against the machine as it is right now rather than having
         // a recipe pushed in behind them at start-up.
+        private const string RecipeNumberFormat = "0.00##########";
+
         public void LoadScanTriggerFromRecipe()
         {
             if (ScanTriggerToUiThread(LoadScanTriggerFromRecipe)) return;
@@ -124,9 +126,12 @@ namespace MMI
             CRcpMaterial rcp = CRecipeCtl.CurMaterialRcp;
             if (rcp == null) return;
 
-            txtScanTrigPitch.Text = rcp.ScanPixelRes.ToString("F2");
-            txtScanTrigSpeed.Text = rcp.ScanSpeed.ToString("F2");
-            txtScanTrigPulse.Text = rcp.ScanPulseWidth.ToString("F2");
+            // The values as last SET, not rounded: a 0.689 um pitch shown as
+            // 0.69 would be sent back as 0.69 by the next SET. At least two
+            // decimals, as the boxes have always shown.
+            txtScanTrigPitch.Text = rcp.ScanPixelRes.ToString(RecipeNumberFormat);
+            txtScanTrigSpeed.Text = rcp.ScanSpeed.ToString(RecipeNumberFormat);
+            txtScanTrigPulse.Text = rcp.ScanPulseWidth.ToString(RecipeNumberFormat);
 
             LoadScanPositionsFromMotorTable();
 

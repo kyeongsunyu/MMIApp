@@ -85,9 +85,10 @@ namespace MMI
             CultureInfo ci = CultureInfo.InvariantCulture;
 
             string strSQL = " UPDATE DEVICE SET "
-                          + " SCAN_PIXEL_RES = " + ScanPixelRes.ToString("F4", ci)
-                          + ", SCAN_SPEED = "     + ScanSpeed.ToString("F4", ci)
-                          + ", SCAN_PULSE_US = "  + ScanPulseWidth.ToString("F4", ci)
+                          // "R": the value as entered, not cut to four decimals
+                          + " SCAN_PIXEL_RES = " + ScanPixelRes.ToString("R", ci)
+                          + ", SCAN_SPEED = "     + ScanSpeed.ToString("R", ci)
+                          + ", SCAN_PULSE_US = "  + ScanPulseWidth.ToString("R", ci)
                           + " WHERE IDX = "       + Material_IDX.ToString(ci);
 
             SQLiteDB.Execute(strSQL);
