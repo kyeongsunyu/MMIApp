@@ -627,11 +627,13 @@ Reloaded from the DB.|已从 DB 重新加载。
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|将 {0} 的计数清零？\n请在更换部件后执行。
 Rework Tray Unload|返工料盘卸载
 Scan link on, {0}, SEQ {1}|扫描联动开启，{0}，SEQ {1}
+Scan without VISION: {0}, triggers {1}|无 VISION 扫描：{0}，触发 {1}
 Scan: aborted by SEQ|扫描：被 SEQ 中止
 Scan: cancelled|扫描：已取消
 Scan: lines {0:N0} / expected {1:N0}, triggers {2}|扫描：行 {0:N0} / 预期 {1:N0}，触发 {2}
 Scan: no image. Fewer lines than {0:N0} arrived (triggers {1}). Check the trigger wiring and the camera trigger setting.|扫描：无图像。到达的行数少于 {0:N0}（触发 {1}）。请检查触发接线和相机触发设置。
 Scan: not started|扫描：未开始
+Scan: run without VISION (this scan only)|扫描：不使用 VISION 运行（仅本次）
 Scan: waiting for {0:N0} lines|扫描：等待 {0:N0} 行
 Scan: {0:N0} lines received|扫描：已接收 {0:N0} 行
 SEQ did not take the VISION ready.|SEQ 未接收 VISION 就绪信号。
@@ -656,6 +658,7 @@ The machine name cannot be empty.|设备名称不能为空。
 The profile could not be saved.|无法保存轮廓。
 The scan has no lines. SET the recipe first.|扫描没有行数。请先 SET 配方。
 The scan image would be {0:N0} MB, more than {1:N0} MB. Shorten the scan or use a coarser pitch.|扫描图像为 {0:N0} MB，超过 {1:N0} MB。请缩短扫描或加大间距。
+VISION is offline.\nRun this scan for the trigger only, without VISION?\n(SCAN LINK stays on; the next scan waits for VISION again.)|VISION 离线。\n是否不使用 VISION，仅以触发运行本次扫描？\n（扫描联动保持开启，下次扫描将再次等待 VISION。）
 VISION is offline. Connect it, or turn SCAN LINK off.|VISION 离线。请连接，或关闭扫描联动。
 VISION: Connected|VISION: 已连接
 VISION: Disconnected|VISION: 未连接

@@ -627,11 +627,13 @@ Reloaded from the DB.|Reloaded from the DB.
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|Reset the count of {0} to 0?\nDo this after the part has been replaced.
 Rework Tray Unload|Rework Tray Unload
 Scan link on, {0}, SEQ {1}|Scan link on, {0}, SEQ {1}
+Scan without VISION: {0}, triggers {1}|Scan without VISION: {0}, triggers {1}
 Scan: aborted by SEQ|Scan: aborted by SEQ
 Scan: cancelled|Scan: cancelled
 Scan: lines {0:N0} / expected {1:N0}, triggers {2}|Scan: lines {0:N0} / expected {1:N0}, triggers {2}
 Scan: no image. Fewer lines than {0:N0} arrived (triggers {1}). Check the trigger wiring and the camera trigger setting.|Scan: no image. Fewer lines than {0:N0} arrived (triggers {1}). Check the trigger wiring and the camera trigger setting.
 Scan: not started|Scan: not started
+Scan: run without VISION (this scan only)|Scan: run without VISION (this scan only)
 Scan: waiting for {0:N0} lines|Scan: waiting for {0:N0} lines
 Scan: {0:N0} lines received|Scan: {0:N0} lines received
 SEQ did not take the VISION ready.|SEQ did not take the VISION ready.
@@ -656,6 +658,7 @@ The machine name cannot be empty.|The machine name cannot be empty.
 The profile could not be saved.|The profile could not be saved.
 The scan has no lines. SET the recipe first.|The scan has no lines. SET the recipe first.
 The scan image would be {0:N0} MB, more than {1:N0} MB. Shorten the scan or use a coarser pitch.|The scan image would be {0:N0} MB, more than {1:N0} MB. Shorten the scan or use a coarser pitch.
+VISION is offline.\nRun this scan for the trigger only, without VISION?\n(SCAN LINK stays on; the next scan waits for VISION again.)|VISION is offline.\nRun this scan for the trigger only, without VISION?\n(SCAN LINK stays on; the next scan waits for VISION again.)
 VISION is offline. Connect it, or turn SCAN LINK off.|VISION is offline. Connect it, or turn SCAN LINK off.
 VISION: Connected|VISION: Connected
 VISION: Disconnected|VISION: Disconnected

@@ -669,9 +669,26 @@ namespace MMI
             // With the VISION scan link on, the line scan grabber is armed and
             // SEQ told so before the START: SEQ waits at the start position
             // for that ready, so the first lines are not lost.
+            //
+            // VISION offline with the link on: the scan can still be run for
+            // the trigger alone (an oscilloscope check), once, if asked to.
             string strVision;
-            if (frmMain != null && frmMain.frmVision != null &&
-                !frmMain.frmVision.PrepareForScan(MmiGV.pShMem.RScanTriggerDisplay.nLineCount, out strVision))
+            if (frmMain != null && frmMain.frmVision != null && frmMain.frmVision.LinkOnButOffline)
+            {
+                if (MessageBox.Show(CLanguage.Text("VISION is offline.\nRun this scan for the trigger only, without VISION?\n(SCAN LINK stays on; the next scan waits for VISION again.)"),
+                                    "SCAN TRIGGER", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                {
+                    lblScanTrigResult.Text = "VISION";
+                    return;
+                }
+                if (!frmMain.frmVision.BypassForOneScan())
+                {
+                    lblScanTrigResult.Text = "NO LINK";
+                    return;
+                }
+            }
+            else if (frmMain != null && frmMain.frmVision != null &&
+                     !frmMain.frmVision.PrepareForScan(MmiGV.pShMem.RScanTriggerDisplay.nLineCount, out strVision))
             {
                 lblScanTrigResult.Text = "VISION";
                 MessageBox.Show(strVision, "SCAN TRIGGER", MessageBoxButtons.OK, MessageBoxIcon.Warning);

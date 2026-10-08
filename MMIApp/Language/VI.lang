@@ -627,11 +627,13 @@ Reloaded from the DB.|Đã tải lại từ DB.
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|Đặt lại số đếm của {0} về 0?\nHãy làm sau khi đã thay linh kiện.
 Rework Tray Unload|Xả khay làm lại
 Scan link on, {0}, SEQ {1}|Liên kết quét bật, {0}, SEQ {1}
+Scan without VISION: {0}, triggers {1}|Quét không VISION: {0}, trigger {1}
 Scan: aborted by SEQ|Quét: SEQ đã hủy
 Scan: cancelled|Quét: đã hủy
 Scan: lines {0:N0} / expected {1:N0}, triggers {2}|Quét: dòng {0:N0} / dự kiến {1:N0}, trigger {2}
 Scan: no image. Fewer lines than {0:N0} arrived (triggers {1}). Check the trigger wiring and the camera trigger setting.|Quét: không có ảnh. Số dòng nhận được ít hơn {0:N0} (trigger {1}). Kiểm tra đấu dây trigger và cài đặt trigger của camera.
 Scan: not started|Quét: chưa bắt đầu
+Scan: run without VISION (this scan only)|Quét: chạy không có VISION (chỉ lần này)
 Scan: waiting for {0:N0} lines|Quét: chờ {0:N0} dòng
 Scan: {0:N0} lines received|Quét: đã nhận {0:N0} dòng
 SEQ did not take the VISION ready.|SEQ không nhận tín hiệu VISION sẵn sàng.
@@ -656,6 +658,7 @@ The machine name cannot be empty.|Tên máy không được để trống.
 The profile could not be saved.|Không lưu được biên dạng.
 The scan has no lines. SET the recipe first.|Lần quét không có dòng nào. Hãy SET công thức trước.
 The scan image would be {0:N0} MB, more than {1:N0} MB. Shorten the scan or use a coarser pitch.|Ảnh quét sẽ là {0:N0} MB, vượt {1:N0} MB. Hãy rút ngắn lần quét hoặc tăng bước.
+VISION is offline.\nRun this scan for the trigger only, without VISION?\n(SCAN LINK stays on; the next scan waits for VISION again.)|VISION ngoại tuyến.\nChạy lần quét này chỉ với trigger, không có VISION?\n(LIÊN KẾT QUÉT vẫn bật; lần quét sau sẽ lại chờ VISION.)
 VISION is offline. Connect it, or turn SCAN LINK off.|VISION ngoại tuyến. Hãy kết nối hoặc tắt LIÊN KẾT QUÉT.
 VISION: Connected|VISION: Đã kết nối
 VISION: Disconnected|VISION: Mất kết nối

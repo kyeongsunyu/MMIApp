@@ -627,11 +627,13 @@ Reloaded from the DB.|DB에서 다시 읽었습니다.
 Reset the count of {0} to 0?\nDo this after the part has been replaced.|{0}의 수량을 0으로 리셋할까요?\n부품을 교체한 뒤에 하세요.
 Rework Tray Unload|재작업 트레이 배출
 Scan link on, {0}, SEQ {1}|스캔 연동 ON, {0}, SEQ {1}
+Scan without VISION: {0}, triggers {1}|VISION 없이 스캔: {0}, 트리거 {1}
 Scan: aborted by SEQ|스캔: SEQ에서 중단됨
 Scan: cancelled|스캔: 취소됨
 Scan: lines {0:N0} / expected {1:N0}, triggers {2}|스캔: 라인 {0:N0} / 예상 {1:N0}, 트리거 {2}
 Scan: no image. Fewer lines than {0:N0} arrived (triggers {1}). Check the trigger wiring and the camera trigger setting.|스캔: 이미지 없음. {0:N0} 라인보다 적게 들어왔습니다(트리거 {1}). 트리거 배선과 카메라 트리거 설정을 확인하세요.
 Scan: not started|스캔: 시작 안 됨
+Scan: run without VISION (this scan only)|스캔: VISION 없이 실행 (이번 스캔만)
 Scan: waiting for {0:N0} lines|스캔: {0:N0} 라인 대기
 Scan: {0:N0} lines received|스캔: {0:N0} 라인 수신
 SEQ did not take the VISION ready.|SEQ가 VISION 준비 신호를 받지 않았습니다.
@@ -656,6 +658,7 @@ The machine name cannot be empty.|설비 이름은 비울 수 없습니다.
 The profile could not be saved.|프로파일을 저장할 수 없습니다.
 The scan has no lines. SET the recipe first.|스캔 라인 수가 없습니다. 먼저 레시피를 SET 하세요.
 The scan image would be {0:N0} MB, more than {1:N0} MB. Shorten the scan or use a coarser pitch.|스캔 이미지가 {0:N0} MB로 {1:N0} MB를 넘습니다. 스캔 길이를 줄이거나 피치를 키우세요.
+VISION is offline.\nRun this scan for the trigger only, without VISION?\n(SCAN LINK stays on; the next scan waits for VISION again.)|VISION이 오프라인입니다.\nVISION 없이 트리거만 이번 스캔으로 실행할까요?\n(스캔 연동은 켜진 채로, 다음 스캔부터 다시 VISION을 기다립니다.)
 VISION is offline. Connect it, or turn SCAN LINK off.|VISION이 오프라인입니다. 연결하거나 스캔 연동을 끄세요.
 VISION: Connected|VISION: 연결됨
 VISION: Disconnected|VISION: 연결 끊김
