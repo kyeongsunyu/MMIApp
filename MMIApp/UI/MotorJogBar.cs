@@ -44,7 +44,7 @@ namespace MMI
 
             SetJogEnabled(false);
             SetJogMode(false);
-            lblStep.Text = "0.00";
+            lblStep.Text = "0.000";
             CLanguage.Changed += (s, e) => ShowModeHint();
         }
 
@@ -309,6 +309,11 @@ namespace MMI
         // The step buttons count up the way the Motor screen's do: repeated
         // presses of +1.0 go 1, 2 ... 9 and back to 1; another button starts
         // from its own first value.
+        //
+        // The range is 0.001 .. 10 mm, a decade finer than the Motor screen's
+        // 0.01 .. 100. At 0.789 um a pixel, focusing and alignment happen in
+        // microns, and 0.001 mm is the smallest step that means anything;
+        // 100 mm at the other end was a stage traverse, not a jog.
         private void btnStepPlus_Click(object sender, EventArgs e)
         {
             ChangeStep(Convert.ToInt32(((Control)sender).Tag), +1);
@@ -321,7 +326,7 @@ namespace MMI
 
         private void ChangeStep(int iTag, int nSign)
         {
-            double dUnit = Math.Pow(10, iTag - 2);       // tag 0..4 -> 0.01 .. 100
+            double dUnit = Math.Pow(10, iTag - 3);       // tag 0..4 -> 0.001 .. 10
             double dStep;
             double.TryParse(lblStep.Text, out dStep);
             int iKey = (iTag + 1) * nSign;                // +0.01 and -0.01 count as different buttons
@@ -331,7 +336,7 @@ namespace MMI
             if (dStep > 9 * dUnit + 1e-9) dStep = dUnit;
             if (dStep < dUnit - 1e-9) dStep = 9 * dUnit;
 
-            lblStep.Text = dStep.ToString("F2");
+            lblStep.Text = dStep.ToString("F3");
             iStepTagLast = iKey;
         }
 
@@ -373,7 +378,7 @@ namespace MMI
             }
             int nPulses = (int)Math.Round(dStep * PulseRate(nAxis)) * (iDir == 0 ? -1 : 1);
             MmiGV.pShMem.SetMotorRelativeMove(nAxis, nPulses, uVel);
-            ShowMotorResult(string.Format("{0}: step {1}{2:F2} mm", AxisText(), iDir == 0 ? "-" : "+", dStep));
+            ShowMotorResult(string.Format("{0}: step {1}{2:F3} mm", AxisText(), iDir == 0 ? "-" : "+", dStep));
         }
 
         private void btnJogMove_MouseUp(object sender, MouseEventArgs e)
