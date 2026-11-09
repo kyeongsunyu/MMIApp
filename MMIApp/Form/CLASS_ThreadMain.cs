@@ -16,6 +16,7 @@ namespace MMI
         {
             SCREEN_AUTO1 = 11,
             SCREEN_AUTO_TRIGGER = 12,
+            SCREEN_AUTO_VISION = 13,
 
             SCREEN_MANUAL_LIST = 21,
             SCREEN_MANUAL_OP = 22,
@@ -57,6 +58,11 @@ namespace MMI
         private static readonly Stopwatch m_swScanTriggerEngineer = Stopwatch.StartNew();
         private const int ScanTriggerEngineerPeriodMs = 200;
         private static int m_iScanTriggerEngineerMiss = 0;
+
+        // The motor strip on the VISION screen, at the same five reads a
+        // second. It is one round trip, not the engineer screen's nineteen.
+        private static readonly Stopwatch m_swVisionMotor = Stopwatch.StartNew();
+        private const int VisionMotorPeriodMs = 200;
 
         
         public static void ExecuteMainThred()
@@ -325,6 +331,9 @@ namespace MMI
                 case (int)eSCR.SCREEN_AUTO_TRIGGER:
                     ScanTriggerEngineerRefresh();
                     break;
+                case (int)eSCR.SCREEN_AUTO_VISION:
+                    VisionMotorRefresh();
+                    break;
                 case (int)eSCR.SCREEN_MANUAL_LIST:
                     break;
                 case (int)eSCR.SCREEN_MANUAL_OP:
@@ -386,6 +395,22 @@ namespace MMI
             {
                 frm.LinkLost();
             }
+        }
+
+        // The VISION screen carries the same motor strip and jog bar as the
+        // TRIGGER screen, so that the stage can be nudged under the camera
+        // without leaving the image. Only the axis it is showing is read.
+        private static void VisionMotorRefresh()
+        {
+            // iScreenNo is already 13, so VISION is the screen on show; reading
+            // Control.Visible from this thread would be the only cross-thread
+            // touch in the function and tells us nothing more.
+            FormVision frm = MmiGV.frmMain.frmVision;
+            if (frm == null) return;
+            if (m_swVisionMotor.ElapsedMilliseconds < VisionMotorPeriodMs) return;
+            m_swVisionMotor.Restart();
+
+            frm.motorBar.Render(MmiGV.pShMem.GetMotorStatus(frm.motorBar.Axis));
         }
 
         private static void Auto1Refresh()

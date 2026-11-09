@@ -171,6 +171,12 @@
     <Compile Include="UI\HmiTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\MotorJogBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\MotorJogBar.Designer.cs">
+      <DependentUpon>MotorJogBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\FormCalibration.cs">
       <SubType>Form</SubType>
     </Compile>

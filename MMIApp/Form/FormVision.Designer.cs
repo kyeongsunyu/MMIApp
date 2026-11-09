@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.motorBar = new MMI.MotorJogBar();
             this.pnlImage = new MMI.HmiCard();
             this.imgView = new MMI.VisionImageView();
             this.lblPixel = new System.Windows.Forms.Label();
@@ -75,11 +76,17 @@
             this.pnlMtf.SuspendLayout();
             this.SuspendLayout();
             // 
+            // motorBar
+            // 
+            this.motorBar.Location = new System.Drawing.Point(0, 0);
+            this.motorBar.Size = new System.Drawing.Size(1644, 172);
+            this.motorBar.Name = "motorBar";
+            // 
             // pnlImage
             // 
             this.pnlImage.Controls.Add(this.lblPixel);
             this.pnlImage.Controls.Add(this.imgView);
-            this.pnlImage.Location = new System.Drawing.Point(0, 0);
+            this.pnlImage.Location = new System.Drawing.Point(0, 184);
             this.pnlImage.Size = new System.Drawing.Size(1220, 620);
             this.pnlImage.TitleText = "Image";
             this.pnlImage.Name = "pnlImage";
@@ -122,7 +129,7 @@
             this.pnlControl.Controls.Add(this.btnFreeze);
             this.pnlControl.Controls.Add(this.btnSnap);
             this.pnlControl.Controls.Add(this.btnGrab);
-            this.pnlControl.Location = new System.Drawing.Point(1232, 0);
+            this.pnlControl.Location = new System.Drawing.Point(1232, 184);
             this.pnlControl.Size = new System.Drawing.Size(412, 620);
             this.pnlControl.TitleText = "Acquisition";
             this.pnlControl.Name = "pnlControl";
@@ -305,15 +312,15 @@
             // 
             this.pnlProfile.Controls.Add(this.btnProfileSave);
             this.pnlProfile.Controls.Add(this.profileView);
-            this.pnlProfile.Location = new System.Drawing.Point(0, 632);
-            this.pnlProfile.Size = new System.Drawing.Size(1220, 194);
+            this.pnlProfile.Location = new System.Drawing.Point(0, 816);
+            this.pnlProfile.Size = new System.Drawing.Size(1220, 170);
             this.pnlProfile.TitleText = "Profile (centre line)";
             this.pnlProfile.Name = "pnlProfile";
             // 
             // profileView
             // 
             this.profileView.Location = new System.Drawing.Point(14, 38);
-            this.profileView.Size = new System.Drawing.Size(1080, 146);
+            this.profileView.Size = new System.Drawing.Size(1080, 122);
             this.profileView.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.profileView.Name = "profileView";
             // 
@@ -341,15 +348,15 @@
             this.pnlMtf.Controls.Add(this.lblMtfHead2);
             this.pnlMtf.Controls.Add(this.lblMtf1);
             this.pnlMtf.Controls.Add(this.lblMtfHead1);
-            this.pnlMtf.Location = new System.Drawing.Point(1232, 632);
-            this.pnlMtf.Size = new System.Drawing.Size(412, 194);
+            this.pnlMtf.Location = new System.Drawing.Point(1232, 816);
+            this.pnlMtf.Size = new System.Drawing.Size(412, 170);
             this.pnlMtf.TitleText = "MTF (6 sections, %)";
             this.pnlMtf.Name = "pnlMtf";
             // 
             // lblMtfHead1
             // 
-            this.lblMtfHead1.Location = new System.Drawing.Point(14, 44);
-            this.lblMtfHead1.Size = new System.Drawing.Size(64, 28);
+            this.lblMtfHead1.Location = new System.Drawing.Point(14, 40);
+            this.lblMtfHead1.Size = new System.Drawing.Size(64, 26);
             this.lblMtfHead1.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtfHead1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblMtfHead1.BackColor = System.Drawing.Color.Transparent;
@@ -359,8 +366,8 @@
             // 
             // lblMtf1
             // 
-            this.lblMtf1.Location = new System.Drawing.Point(14, 74);
-            this.lblMtf1.Size = new System.Drawing.Size(64, 40);
+            this.lblMtf1.Location = new System.Drawing.Point(14, 68);
+            this.lblMtf1.Size = new System.Drawing.Size(64, 36);
             this.lblMtf1.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtf1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblMtf1.BackColor = System.Drawing.Color.Transparent;
@@ -371,8 +378,8 @@
             // 
             // lblMtfHead2
             // 
-            this.lblMtfHead2.Location = new System.Drawing.Point(78, 44);
-            this.lblMtfHead2.Size = new System.Drawing.Size(64, 28);
+            this.lblMtfHead2.Location = new System.Drawing.Point(78, 40);
+            this.lblMtfHead2.Size = new System.Drawing.Size(64, 26);
             this.lblMtfHead2.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtfHead2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblMtfHead2.BackColor = System.Drawing.Color.Transparent;
@@ -382,8 +389,8 @@
             // 
             // lblMtf2
             // 
-            this.lblMtf2.Location = new System.Drawing.Point(78, 74);
-            this.lblMtf2.Size = new System.Drawing.Size(64, 40);
+            this.lblMtf2.Location = new System.Drawing.Point(78, 68);
+            this.lblMtf2.Size = new System.Drawing.Size(64, 36);
             this.lblMtf2.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtf2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblMtf2.BackColor = System.Drawing.Color.Transparent;
@@ -394,8 +401,8 @@
             // 
             // lblMtfHead3
             // 
-            this.lblMtfHead3.Location = new System.Drawing.Point(142, 44);
-            this.lblMtfHead3.Size = new System.Drawing.Size(64, 28);
+            this.lblMtfHead3.Location = new System.Drawing.Point(142, 40);
+            this.lblMtfHead3.Size = new System.Drawing.Size(64, 26);
             this.lblMtfHead3.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtfHead3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblMtfHead3.BackColor = System.Drawing.Color.Transparent;
@@ -405,8 +412,8 @@
             // 
             // lblMtf3
             // 
-            this.lblMtf3.Location = new System.Drawing.Point(142, 74);
-            this.lblMtf3.Size = new System.Drawing.Size(64, 40);
+            this.lblMtf3.Location = new System.Drawing.Point(142, 68);
+            this.lblMtf3.Size = new System.Drawing.Size(64, 36);
             this.lblMtf3.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtf3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblMtf3.BackColor = System.Drawing.Color.Transparent;
@@ -417,8 +424,8 @@
             // 
             // lblMtfHead4
             // 
-            this.lblMtfHead4.Location = new System.Drawing.Point(206, 44);
-            this.lblMtfHead4.Size = new System.Drawing.Size(64, 28);
+            this.lblMtfHead4.Location = new System.Drawing.Point(206, 40);
+            this.lblMtfHead4.Size = new System.Drawing.Size(64, 26);
             this.lblMtfHead4.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtfHead4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblMtfHead4.BackColor = System.Drawing.Color.Transparent;
@@ -428,8 +435,8 @@
             // 
             // lblMtf4
             // 
-            this.lblMtf4.Location = new System.Drawing.Point(206, 74);
-            this.lblMtf4.Size = new System.Drawing.Size(64, 40);
+            this.lblMtf4.Location = new System.Drawing.Point(206, 68);
+            this.lblMtf4.Size = new System.Drawing.Size(64, 36);
             this.lblMtf4.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtf4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblMtf4.BackColor = System.Drawing.Color.Transparent;
@@ -440,8 +447,8 @@
             // 
             // lblMtfHead5
             // 
-            this.lblMtfHead5.Location = new System.Drawing.Point(270, 44);
-            this.lblMtfHead5.Size = new System.Drawing.Size(64, 28);
+            this.lblMtfHead5.Location = new System.Drawing.Point(270, 40);
+            this.lblMtfHead5.Size = new System.Drawing.Size(64, 26);
             this.lblMtfHead5.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtfHead5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblMtfHead5.BackColor = System.Drawing.Color.Transparent;
@@ -451,8 +458,8 @@
             // 
             // lblMtf5
             // 
-            this.lblMtf5.Location = new System.Drawing.Point(270, 74);
-            this.lblMtf5.Size = new System.Drawing.Size(64, 40);
+            this.lblMtf5.Location = new System.Drawing.Point(270, 68);
+            this.lblMtf5.Size = new System.Drawing.Size(64, 36);
             this.lblMtf5.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtf5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblMtf5.BackColor = System.Drawing.Color.Transparent;
@@ -463,8 +470,8 @@
             // 
             // lblMtfHead6
             // 
-            this.lblMtfHead6.Location = new System.Drawing.Point(334, 44);
-            this.lblMtfHead6.Size = new System.Drawing.Size(64, 28);
+            this.lblMtfHead6.Location = new System.Drawing.Point(334, 40);
+            this.lblMtfHead6.Size = new System.Drawing.Size(64, 26);
             this.lblMtfHead6.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtfHead6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblMtfHead6.BackColor = System.Drawing.Color.Transparent;
@@ -474,8 +481,8 @@
             // 
             // lblMtf6
             // 
-            this.lblMtf6.Location = new System.Drawing.Point(334, 74);
-            this.lblMtf6.Size = new System.Drawing.Size(64, 40);
+            this.lblMtf6.Location = new System.Drawing.Point(334, 68);
+            this.lblMtf6.Size = new System.Drawing.Size(64, 36);
             this.lblMtf6.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtf6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.lblMtf6.BackColor = System.Drawing.Color.Transparent;
@@ -486,8 +493,8 @@
             // 
             // lblMtfNote
             // 
-            this.lblMtfNote.Location = new System.Drawing.Point(14, 120);
-            this.lblMtfNote.Size = new System.Drawing.Size(384, 60);
+            this.lblMtfNote.Location = new System.Drawing.Point(14, 108);
+            this.lblMtfNote.Size = new System.Drawing.Size(384, 52);
             this.lblMtfNote.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMtfNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
             this.lblMtfNote.BackColor = System.Drawing.Color.Transparent;
@@ -505,11 +512,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
-            this.ClientSize = new System.Drawing.Size(1644, 826);
+            this.ClientSize = new System.Drawing.Size(1644, 986);
             this.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Text = "FormVision";
+            this.Controls.Add(this.motorBar);
             this.Controls.Add(this.pnlMtf);
             this.Controls.Add(this.pnlProfile);
             this.Controls.Add(this.pnlControl);
@@ -565,6 +573,7 @@
         private System.Windows.Forms.Label lblMtfHead6;
         private System.Windows.Forms.Label lblMtf6;
         private System.Windows.Forms.Label lblMtfNote;
+        public MMI.MotorJogBar motorBar;
         private System.Windows.Forms.Timer tmrStatus;
     }
 }

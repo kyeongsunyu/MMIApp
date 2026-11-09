@@ -40,6 +40,9 @@ namespace MMI
         // How long after GRAB / SNAP before "no frames" is a problem rather
         // than a slow first frame.
         private const int NoFrameWarnMs = 3000;
+        // The axis a scan runs on, as FormScanTrigger has it: what the motor
+        // strip starts on here.
+        private const int ScanTriggerAxis = 0;
 
         private FormMain frmMain = null;
 
@@ -71,6 +74,7 @@ namespace MMI
         {
             imgView.PixelChanged += ImgView_PixelChanged;
             CLanguage.Changed += (s, e) => { ShowCamera(); ShowStatus(); };
+            InitMotorBar();
             InitScanLink();
             UpdateButtons();
             ShowCamera();
@@ -87,8 +91,30 @@ namespace MMI
             else
             {
                 tmrStatus.Stop();
+                motorBar.Release();
                 if (grabber != null && grabber.IsGrabbing && !bScanArmed) Freeze();
             }
+        }
+
+        // ---------------------------------------------------------------------
+        // motor strip and jog bar
+        //
+        // The same strip the TRIGGER screen carries, so that the stage can be
+        // nudged under the camera and an alarm cleared without leaving the
+        // image. It shows the scan axis to begin with; CThreadMain polls
+        // whichever axis it is on and calls Render().
+
+        private void InitMotorBar()
+        {
+            motorBar.PreferredAxis = ScanTriggerAxis;
+            motorBar.ExtraBlockReason = JogBlockReason;
+        }
+
+        // An armed scan owns the axis: SEQ is about to move it and the camera
+        // is waiting for those lines. Everything else is the bar's own business.
+        private string JogBlockReason()
+        {
+            return bScanArmed ? "Not while a scan is armed." : null;
         }
 
         // ---------------------------------------------------------------------
