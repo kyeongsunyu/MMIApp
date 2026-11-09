@@ -90,24 +90,33 @@ namespace MMI
                 #region SYSTEM_INITIALIZE
                 if (MmiGV.pShMem.GetDM(6)==1 || MmiGV.bMMIReady == false)
                 {
-                    if(MmiGV.iScreenNo==11 || MmiGV.iScreenNo == 12)
+                    // SEQ is asking to be initialized. Where the operator happens
+                    // to be standing is no reason not to answer, so this no longer
+                    // tests the screen first.
+                    //
+                    // It used to run only while AUTO (11) or TRIGGER (12) was up,
+                    // and from anywhere else it clicked the AUTO menu button and
+                    // waited for the next pass to find itself on 11. But that button
+                    // opens the AUTO group's LAST screen, not its first. With VISION
+                    // (13) in the group, standing on VISION meant the click reopened
+                    // VISION, the test failed again, and the loop clicked for ever:
+                    // the whole of MTCFG - pulse rate, max speed, jog and home speed
+                    // - never reached SEQ, which went on using the values compiled
+                    // into FUNC_Init, while a click was posted to the UI thread every
+                    // millisecond.
+                    MmiGV.frmMain.frm_SystemInit.SystemInitialize();
+
+                    MmiGV.pShMem.SetDM(6, 0);
+                    MmiGV.bMMIReady = true;
+
+                    // Then land on AUTO, through the ordinary screen change rather
+                    // than by assigning iScreenNo. The old code set the variable to
+                    // 11 without showing screen 11, so an initialize from TRIGGER
+                    // left ScreenRefresh polling AUTO while TRIGGER was on display.
+                    MmiGV.frmMain.btnMenuAuto.Invoke(new Action(() =>
                     {
-                        MmiGV.frmMain.frm_SystemInit.SystemInitialize();
-
-                        MmiGV.pShMem.SetDM(6, 0);
-                        MmiGV.bMMIReady = true;
-
-                        MmiGV.iScreenNo = 11;
-                        MmiGV.pShMem.SetDM(7, (uint)MmiGV.iScreenNo);
-
-                    }
-                    else
-                    {
-                        MmiGV.frmMain.btnMenuAuto.Invoke(new Action(() =>
-                        {
-                            MmiGV.frmMain.btnMenuAuto.PerformClick();
-                        }));
-                    }
+                        MmiGV.frmMain.ShowScreen((int)MmiGV.eSCRNO.AUTO1, false);
+                    }));
                 }
                 #endregion SYSTEM_INITIALIZE
 
