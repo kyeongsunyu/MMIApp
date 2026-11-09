@@ -45,7 +45,7 @@ namespace MMI
             FillAxisList();
             SetJogEnabled(false);
             SetJogMode(false);
-            lblStep.Text = "0.00";
+            lblStep.Text = "0.000";
             CLanguage.Changed += (s, e) => ShowModeHint();
         }
 
@@ -258,6 +258,11 @@ namespace MMI
         // The step buttons count up the way the Motor screen's do: repeated
         // presses of +1.0 go 1, 2 ... 9 and back to 1; another button starts
         // from its own first value.
+        //
+        // The ladder is 0.001 .. 10 mm, a decade finer than the Motor screen's
+        // 0.01 .. 100, and the same as the VISION strip's. A scan is set up in
+        // microns - the pixel is 0.789 um - and 100 mm was a stage traverse
+        // rather than a jog.
         private void btnStepPlus_Click(object sender, EventArgs e)
         {
             ChangeStep(Convert.ToInt32(((Control)sender).Tag), +1);
@@ -270,7 +275,7 @@ namespace MMI
 
         private void ChangeStep(int iTag, int nSign)
         {
-            double dUnit = Math.Pow(10, iTag - 2);       // tag 0..4 -> 0.01 .. 100
+            double dUnit = Math.Pow(10, iTag - 3);       // tag 0..4 -> 0.001 .. 10
             double dStep;
             double.TryParse(lblStep.Text, out dStep);
             int iKey = (iTag + 1) * nSign;                // +0.01 and -0.01 count as different buttons
@@ -280,7 +285,7 @@ namespace MMI
             if (dStep > 9 * dUnit + 1e-9) dStep = dUnit;
             if (dStep < dUnit - 1e-9) dStep = 9 * dUnit;
 
-            lblStep.Text = dStep.ToString("F2");
+            lblStep.Text = dStep.ToString("F3");
             iStepTagLast = iKey;
         }
 
@@ -320,9 +325,22 @@ namespace MMI
                 lblJogResult.ForeColor = HmiTheme.Warning;
                 return;
             }
-            int nPulses = (int)Math.Round(dStep * PulseRate(nMotorAxis)) * (iDir == 0 ? -1 : 1);
+            // A step finer than the axis itself rounds to no pulses at all, and
+            // sending that starts a zero length move: the stage does not budge
+            // and nothing says why. At 500 pulses/mm, which some axes are,
+            // that is every press of 0.001. Say what the axis can do instead.
+            double dRate = PulseRate(nMotorAxis);
+            int nPulses = (int)Math.Round(dStep * dRate);
+            if (nPulses == 0)
+            {
+                lblJogResult.Text = CLanguage.Format("{0:F3} mm is finer than this axis can move ({1:F3} mm per pulse).",
+                                                     dStep, 1.0 / dRate);
+                lblJogResult.ForeColor = HmiTheme.Warning;
+                return;
+            }
+            if (iDir == 0) nPulses = -nPulses;
             MmiGV.pShMem.SetMotorRelativeMove(nMotorAxis, nPulses, uVel);
-            ShowMotorResult(string.Format("{0}: step {1}{2:F2} mm", AxisText(), iDir == 0 ? "-" : "+", dStep));
+            ShowMotorResult(string.Format("{0}: step {1}{2:F3} mm", AxisText(), iDir == 0 ? "-" : "+", dStep));
         }
 
         private void btnJogMove_MouseUp(object sender, MouseEventArgs e)

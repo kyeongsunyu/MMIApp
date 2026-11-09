@@ -376,7 +376,20 @@ namespace MMI
                 lblJogResult.ForeColor = HmiTheme.Warning;
                 return;
             }
-            int nPulses = (int)Math.Round(dStep * PulseRate(nAxis)) * (iDir == 0 ? -1 : 1);
+            // A step finer than the axis itself rounds to no pulses at all, and
+            // sending that starts a zero length move: the stage does not budge
+            // and nothing says why. At 500 pulses/mm, which some axes are,
+            // that is every press of 0.001. Say what the axis can do instead.
+            double dRate = PulseRate(nAxis);
+            int nPulses = (int)Math.Round(dStep * dRate);
+            if (nPulses == 0)
+            {
+                lblJogResult.Text = CLanguage.Format("{0:F3} mm is finer than this axis can move ({1:F3} mm per pulse).",
+                                                     dStep, 1.0 / dRate);
+                lblJogResult.ForeColor = HmiTheme.Warning;
+                return;
+            }
+            if (iDir == 0) nPulses = -nPulses;
             MmiGV.pShMem.SetMotorRelativeMove(nAxis, nPulses, uVel);
             ShowMotorResult(string.Format("{0}: step {1}{2:F3} mm", AxisText(), iDir == 0 ? "-" : "+", dStep));
         }

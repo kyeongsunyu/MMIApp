@@ -1483,7 +1483,7 @@
             this.btnStepP0.Location = new System.Drawing.Point(14, 92);
             this.btnStepP0.Size = new System.Drawing.Size(104, 40);
             this.btnStepP0.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStepP0.Text = "+0.01";
+            this.btnStepP0.Text = "+0.001";
             this.btnStepP0.Tag = "0";
             this.btnStepP0.Name = "btnStepP0";
             this.btnStepP0.Click += new System.EventHandler(this.btnStepPlus_Click);
@@ -1493,7 +1493,7 @@
             this.btnStepP1.Location = new System.Drawing.Point(124, 92);
             this.btnStepP1.Size = new System.Drawing.Size(104, 40);
             this.btnStepP1.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStepP1.Text = "+0.1";
+            this.btnStepP1.Text = "+0.01";
             this.btnStepP1.Tag = "1";
             this.btnStepP1.Name = "btnStepP1";
             this.btnStepP1.Click += new System.EventHandler(this.btnStepPlus_Click);
@@ -1503,7 +1503,7 @@
             this.btnStepP2.Location = new System.Drawing.Point(234, 92);
             this.btnStepP2.Size = new System.Drawing.Size(104, 40);
             this.btnStepP2.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStepP2.Text = "+1.0";
+            this.btnStepP2.Text = "+0.1";
             this.btnStepP2.Tag = "2";
             this.btnStepP2.Name = "btnStepP2";
             this.btnStepP2.Click += new System.EventHandler(this.btnStepPlus_Click);
@@ -1513,7 +1513,7 @@
             this.btnStepP3.Location = new System.Drawing.Point(344, 92);
             this.btnStepP3.Size = new System.Drawing.Size(104, 40);
             this.btnStepP3.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStepP3.Text = "+10.0";
+            this.btnStepP3.Text = "+1.0";
             this.btnStepP3.Tag = "3";
             this.btnStepP3.Name = "btnStepP3";
             this.btnStepP3.Click += new System.EventHandler(this.btnStepPlus_Click);
@@ -1523,7 +1523,7 @@
             this.btnStepP4.Location = new System.Drawing.Point(454, 92);
             this.btnStepP4.Size = new System.Drawing.Size(104, 40);
             this.btnStepP4.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStepP4.Text = "+100.0";
+            this.btnStepP4.Text = "+10.0";
             this.btnStepP4.Tag = "4";
             this.btnStepP4.Name = "btnStepP4";
             this.btnStepP4.Click += new System.EventHandler(this.btnStepPlus_Click);
@@ -1533,7 +1533,7 @@
             this.btnStepM0.Location = new System.Drawing.Point(14, 138);
             this.btnStepM0.Size = new System.Drawing.Size(104, 40);
             this.btnStepM0.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStepM0.Text = "-0.01";
+            this.btnStepM0.Text = "-0.001";
             this.btnStepM0.Tag = "0";
             this.btnStepM0.Name = "btnStepM0";
             this.btnStepM0.Click += new System.EventHandler(this.btnStepMinus_Click);
@@ -1543,7 +1543,7 @@
             this.btnStepM1.Location = new System.Drawing.Point(124, 138);
             this.btnStepM1.Size = new System.Drawing.Size(104, 40);
             this.btnStepM1.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStepM1.Text = "-0.1";
+            this.btnStepM1.Text = "-0.01";
             this.btnStepM1.Tag = "1";
             this.btnStepM1.Name = "btnStepM1";
             this.btnStepM1.Click += new System.EventHandler(this.btnStepMinus_Click);
@@ -1553,7 +1553,7 @@
             this.btnStepM2.Location = new System.Drawing.Point(234, 138);
             this.btnStepM2.Size = new System.Drawing.Size(104, 40);
             this.btnStepM2.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStepM2.Text = "-1.0";
+            this.btnStepM2.Text = "-0.1";
             this.btnStepM2.Tag = "2";
             this.btnStepM2.Name = "btnStepM2";
             this.btnStepM2.Click += new System.EventHandler(this.btnStepMinus_Click);
@@ -1563,7 +1563,7 @@
             this.btnStepM3.Location = new System.Drawing.Point(344, 138);
             this.btnStepM3.Size = new System.Drawing.Size(104, 40);
             this.btnStepM3.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStepM3.Text = "-10.0";
+            this.btnStepM3.Text = "-1.0";
             this.btnStepM3.Tag = "3";
             this.btnStepM3.Name = "btnStepM3";
             this.btnStepM3.Click += new System.EventHandler(this.btnStepMinus_Click);
@@ -1573,7 +1573,7 @@
             this.btnStepM4.Location = new System.Drawing.Point(454, 138);
             this.btnStepM4.Size = new System.Drawing.Size(104, 40);
             this.btnStepM4.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnStepM4.Text = "-100.0";
+            this.btnStepM4.Text = "-10.0";
             this.btnStepM4.Tag = "4";
             this.btnStepM4.Name = "btnStepM4";
             this.btnStepM4.Click += new System.EventHandler(this.btnStepMinus_Click);
