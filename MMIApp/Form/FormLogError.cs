@@ -10,7 +10,9 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
-using Excel = Microsoft.Office.Interop.Excel;
+using System.Globalization;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace MMI
 {
@@ -291,34 +293,123 @@ namespace MMI
                 Directory.CreateDirectory(DirPath);
             }
             string FileName = DirPath + DateTime.Today.ToString("yyyy_MM_dd") + "_Error.XLS";
+            string ChartName = DirPath + "chart.png";
 
+            //-- 표는 C1FlexGrid가 직접 쓴다. Excel이 깔려 있을 필요가 없다.
             gdErrorHistory.SaveExcel(FileName, "History", FileFlags.AsDisplayed | FileFlags.IncludeFixedCells);
             gdErrorCount.SaveExcel(FileName, "ErrorCount", FileFlags.AsDisplayed | FileFlags.IncludeFixedCells);
 
+            chart.SaveImage(ChartName, ChartImageFormat.Png);
 
-            chart.SaveImage(@"C:\Work\LOG\MMI\Excel\chart.png", ChartImageFormat.Png);
+            //-- 차트 그림을 시트 안에 넣는 것만 Excel이 필요하다. 없는 PC에서는
+            //   표와 chart.png는 그대로 남고 삽입만 건너뛴다.
+            string strWhy;
+            if (!InsertChartIntoWorkbook(FileName, "ErrorCount", ChartName, out strWhy))
+            {
+                MessageBox.Show(
+                    "표는 저장했습니다:\r\n" + FileName +
+                    "\r\n\r\n차트는 시트 안에 넣지 못했습니다. 그림 파일로 남아 있습니다:\r\n" + ChartName +
+                    "\r\n\r\n" + strWhy,
+                    Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
-            // Excel 파일 열기
-            Excel.Application excel = new Excel.Application();
-            Excel.Workbook workbook = excel.Workbooks.Open(FileName);
+        // Excel을 늦은 바인딩(late binding)으로 부른다.
+        //
+        // 예전에는 Microsoft.Office.Interop.Excel COM 참조를 걸고 컴파일했다.
+        // 그래서 Excel이 등록되지 않은 PC에서는 빌드 자체가 ResolveComReference
+        // 에서 깨졌다 - 설비 HMI PC에 Office를 깔아야 빌드가 되는 셈이었고,
+        // 실제로 쓰는 것은 아래 그림 한 장을 시트에 붙이는 일뿐이었다.
+        //
+        // ProgID로 찾아 호출하면 참조가 사라져 어느 PC에서나 빌드되고, Excel이
+        // 깔린 PC에서는 전과 똑같이 동작한다. 없으면 false를 돌려주고 호출한
+        // 쪽이 그 사실을 화면에 알린다.
+        //
+        // 로캘도 같이 해결된다. 한국어 Windows에서 Excel을 늦은 바인딩으로
+        // 부르면 0x800A03EC로 거절당하는 일이 있어, 호출 문화권을 en-US로
+        // 고정한다.
+        private static bool InsertChartIntoWorkbook(string strWorkbook, string strSheet,
+                                                    string strImage, out string strWhy)
+        {
+            strWhy = "";
 
-            // Worksheet 선택
-            Excel.Worksheet worksheet = workbook.Worksheets["ErrorCount"];
+            Type tExcel = Type.GetTypeFromProgID("Excel.Application");
+            if (tExcel == null)
+            {
+                strWhy = "이 PC에 Excel이 설치되어 있지 않습니다.";
+                return false;
+            }
 
-            // 이미지 삽입
-            //Bitmap image = new Bitmap(@"C:\Work\LOG\MMI\Excel\image.jpg");
-            Excel.Range range = worksheet.Range["F5"];
-            Excel.Pictures pictures = worksheet.Pictures(Type.Missing) as Excel.Pictures;
-            Excel.Picture picture = pictures.Insert(@"C:\Work\LOG\MMI\Excel\chart.png", Type.Missing);
-            picture.Left = (double)range.Left;
-            picture.Top = (double)range.Top;
-            picture.Width = 300;// (double)range.Width;
-            picture.Height = 300;// (double)range.Height;
+            object excel = null, books = null, book = null, sheets = null, sheet = null;
+            object range = null, pictures = null, picture = null;
+            bool bOpened = false;
+            try
+            {
+                excel = Activator.CreateInstance(tExcel);
+                Set(excel, "Visible", false);
+                Set(excel, "DisplayAlerts", false);
 
-            // Excel 파일 저장하고 닫기
-            workbook.Save();
-            workbook.Close();
-             
+                books = Get(excel, "Workbooks");
+                book = Call(books, "Open", strWorkbook);
+                bOpened = true;
+
+                sheets = Get(book, "Worksheets");
+                sheet = Get(sheets, "Item", strSheet);
+
+                range = Get(sheet, "Range", "F5");
+                pictures = Call(sheet, "Pictures", Type.Missing);
+                picture = Call(pictures, "Insert", strImage, Type.Missing);
+
+                Set(picture, "Left", Convert.ToDouble(Get(range, "Left")));
+                Set(picture, "Top", Convert.ToDouble(Get(range, "Top")));
+                Set(picture, "Width", 300.0);
+                Set(picture, "Height", 300.0);
+
+                Call(book, "Save");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //-- COMException, TargetInvocationException, 파일 잠김 ... 무엇이든
+                //   로그 저장을 실패로 끝낼 이유는 안 된다. 표는 이미 저장됐다.
+                strWhy = (ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+                return false;
+            }
+            finally
+            {
+                //-- 닫고 끝내지 않으면 EXCEL.EXE가 보이지 않는 채로 남는다.
+                //   예전 코드가 Quit()을 부르지 않아 저장할 때마다 하나씩 쌓였다.
+                try { if (bOpened) Call(book, "Close", false); } catch (Exception) { }
+                try { if (excel != null) Call(excel, "Quit"); } catch (Exception) { }
+
+                Release(picture); Release(pictures); Release(range);
+                Release(sheet); Release(sheets); Release(book);
+                Release(books); Release(excel);
+            }
+        }
+
+        private const BindingFlags GetFlags = BindingFlags.GetProperty | BindingFlags.InvokeMethod;
+        private static readonly CultureInfo ExcelCulture = CultureInfo.GetCultureInfo("en-US");
+
+        private static object Get(object o, string strName, params object[] args)
+        {
+            return o.GetType().InvokeMember(strName, GetFlags, null, o, args, ExcelCulture);
+        }
+
+        private static object Call(object o, string strName, params object[] args)
+        {
+            return o.GetType().InvokeMember(strName, BindingFlags.InvokeMethod, null, o, args, ExcelCulture);
+        }
+
+        private static void Set(object o, string strName, object value)
+        {
+            o.GetType().InvokeMember(strName, BindingFlags.SetProperty, null, o, new object[] { value }, ExcelCulture);
+        }
+
+        private static void Release(object o)
+        {
+            if (o == null || !Marshal.IsComObject(o)) return;
+            try { Marshal.ReleaseComObject(o); } catch (Exception) { }
         }
 
         private void gdErrorCount_Click(object sender, EventArgs e)
