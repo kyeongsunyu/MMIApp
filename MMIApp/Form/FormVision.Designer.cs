@@ -53,6 +53,7 @@
             this.lblVisionStatus = new System.Windows.Forms.Label();
             this.btnConnect = new MMI.HmiButton();
             this.btnScanStart = new MMI.HmiButton();
+            this.btnScanStop = new MMI.HmiButton();
             this.pnlProfile = new MMI.HmiCard();
             this.profileView = new MMI.VisionProfileView();
             this.btnProfileSave = new MMI.HmiButton();
@@ -112,6 +113,7 @@
             // 
             // pnlControl
             // 
+            this.pnlControl.Controls.Add(this.btnScanStop);
             this.pnlControl.Controls.Add(this.btnScanStart);
             this.pnlControl.Controls.Add(this.btnConnect);
             this.pnlControl.Controls.Add(this.lblVisionStatus);
@@ -139,7 +141,7 @@
             // btnGrab
             // 
             this.btnGrab.Location = new System.Drawing.Point(14, 44);
-            this.btnGrab.Size = new System.Drawing.Size(186, 52);
+            this.btnGrab.Size = new System.Drawing.Size(120, 52);
             this.btnGrab.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnGrab.Text = "GRAB";
             this.btnGrab.Role = MMI.HmiButtonRole.Success;
@@ -148,8 +150,8 @@
             // 
             // btnSnap
             // 
-            this.btnSnap.Location = new System.Drawing.Point(212, 44);
-            this.btnSnap.Size = new System.Drawing.Size(186, 52);
+            this.btnSnap.Location = new System.Drawing.Point(146, 44);
+            this.btnSnap.Size = new System.Drawing.Size(120, 52);
             this.btnSnap.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSnap.Text = "SNAP";
             this.btnSnap.Name = "btnSnap";
@@ -304,7 +306,7 @@
             // btnScanStart
             // 
             this.btnScanStart.Location = new System.Drawing.Point(14, 332);
-            this.btnScanStart.Size = new System.Drawing.Size(240, 52);
+            this.btnScanStart.Size = new System.Drawing.Size(190, 52);
             this.btnScanStart.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnScanStart.Text = "SCAN START";
             this.btnScanStart.Role = MMI.HmiButtonRole.Success;
@@ -312,10 +314,20 @@
             this.btnScanStart.Name = "btnScanStart";
             this.btnScanStart.Click += new System.EventHandler(this.btnScanStart_Click);
             // 
+            // btnScanStop
+            // 
+            this.btnScanStop.Location = new System.Drawing.Point(210, 332);
+            this.btnScanStop.Size = new System.Drawing.Size(188, 52);
+            this.btnScanStop.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnScanStop.Text = "SCAN STOP";
+            this.btnScanStop.Role = MMI.HmiButtonRole.Danger;
+            this.btnScanStop.Name = "btnScanStop";
+            this.btnScanStop.Click += new System.EventHandler(this.btnScanStop_Click);
+            // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(266, 332);
-            this.btnConnect.Size = new System.Drawing.Size(132, 52);
+            this.btnConnect.Location = new System.Drawing.Point(278, 44);
+            this.btnConnect.Size = new System.Drawing.Size(120, 52);
             this.btnConnect.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnConnect.Text = "CONNECT";
             this.btnConnect.Name = "btnConnect";
@@ -588,6 +600,7 @@
         private System.Windows.Forms.Label lblMtfNote;
         public MMI.MotorJogBar motorBar;
         private MMI.HmiButton btnScanStart;
+        private MMI.HmiButton btnScanStop;
         private System.Windows.Forms.Timer tmrStatus;
     }
 }

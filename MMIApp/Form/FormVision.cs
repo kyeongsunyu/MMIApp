@@ -173,6 +173,23 @@ namespace MMI
             ShowStatus();
         }
 
+        private void btnScanStop_Click(object sender, EventArgs e)
+        {
+            if (frmMain == null || frmMain.frmScanTrigger == null)
+            {
+                strScanStartResult = CLanguage.Text("Scan: the TRIGGER screen is not available.");
+                ShowStatus();
+                return;
+            }
+
+            string strResult;
+            bool bStopped = frmMain.frmScanTrigger.StopScan(out strResult);
+
+            strScanStartResult = CLanguage.Format("Scan: {0}", strResult);
+            bScanStartWarn = !bStopped;
+            ShowStatus();
+        }
+
         // ---------------------------------------------------------------------
         // grabber
 

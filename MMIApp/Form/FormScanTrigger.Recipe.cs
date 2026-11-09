@@ -805,12 +805,17 @@ namespace MMI
             }
         }
 
-        private void btnScanTrigStop_Click(object sender, EventArgs e)
+        // STOP moved to VISION with START, so that a scan can be called off by
+        // the person watching it go wrong. Reports back the same way StartScan
+        // does; SEQ releases VISION's arming itself when the cycle reaches
+        // ABORTED, so there is nothing to cancel here.
+        public bool StopScan(out string strResult)
         {
             if (MmiGV.pShMem == null)
             {
-                lblScanTrigResult.Text = "NO LINK";
-                return;
+                strResult = "NO LINK";
+                lblScanTrigResult.Text = strResult;
+                return false;
             }
 
             bool bSent = false;
@@ -820,7 +825,9 @@ namespace MMI
             }
 
             bScanTriggerWatch = bSent;
-            lblScanTrigResult.Text = bSent ? "STOP" : "NO LINK";
+            strResult = bSent ? "STOP" : "NO LINK";
+            lblScanTrigResult.Text = strResult;
+            return bSent;
         }
 
         // SEQ refuses a pulse width under 1 us and one over 40 % of the line
