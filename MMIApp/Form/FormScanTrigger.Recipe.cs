@@ -138,7 +138,7 @@ namespace MMI
             // Setting the text fires TextChanged, which does this too. Doing it
             // here as well keeps the state right without depending on that.
             bScanTriggerWatch = false;
-            btnScanTrigStart.Enabled = false;
+            SetScanStartReady(false);
             ClearScanTriggerDisplay();
             lblScanTrigResult.Text = "-";
         }
@@ -166,7 +166,7 @@ namespace MMI
         private void ScanTriggerInput_TextChanged(object sender, EventArgs e)
         {
             bScanTriggerWatch = false;
-            btnScanTrigStart.Enabled = false;
+            SetScanStartReady(false);
             ClearScanTriggerDisplay();
             lblScanTrigResult.Text = "-";
         }
@@ -468,7 +468,7 @@ namespace MMI
             if (!ScanTriggerRecipeMatchesPanel(d))
             {
                 lblScanTrigResult.Text = "SET REQUIRED";
-                btnScanTrigStart.Enabled = false;
+                SetScanStartReady(false);
             }
         }
 
@@ -516,7 +516,7 @@ namespace MMI
             if (ScanTriggerToUiThread(ScanTriggerLinkLost)) return;
 
             bScanTriggerWatch = false;
-            btnScanTrigStart.Enabled = false;
+            SetScanStartReady(false);
             lblScanTrigResult.Text = "POLL LOST";
         }
 
@@ -542,7 +542,7 @@ namespace MMI
             double dPitch, dSpeed, dPulseUs;
 
             bScanTriggerWatch = false;
-            btnScanTrigStart.Enabled = false;
+            SetScanStartReady(false);
 
             if (!TryReadScanTriggerRecipe(out adPos, out dPitch, out dSpeed, out dPulseUs))
             {
@@ -659,16 +659,20 @@ namespace MMI
 
             // SEQ accepted it, so the cycle can be started and the state row is
             // worth following from here on.
-            btnScanTrigStart.Enabled = (nCode == 0);
+            SetScanStartReady(nCode == 0);
             bScanTriggerWatch = true;
         }
 
-        private void btnScanTrigStart_Click(object sender, EventArgs e)
+        // START lives on the VISION screen now, so this reports what happened
+        // instead of only painting this screen's result cell: the operator who
+        // pressed it is looking at the camera image, not at this panel.
+        public bool StartScan(out string strResult)
         {
             if (MmiGV.pShMem == null)
             {
-                lblScanTrigResult.Text = "NO LINK";
-                return;
+                strResult = "NO LINK";
+                lblScanTrigResult.Text = strResult;
+                return false;
             }
 
             // With the VISION scan link on, the line scan grabber is armed and
@@ -684,17 +688,19 @@ namespace MMI
                 if (MessageBox.Show(CLanguage.Text("VISION is offline.\nRun this scan for the trigger only, without VISION?\n(SCAN LINK stays on; the next scan waits for VISION again.)"),
                                     "SCAN TRIGGER", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 {
-                    lblScanTrigResult.Text = "VISION";
-                    return;
+                    strResult = "VISION";
+                    lblScanTrigResult.Text = strResult;
+                    return false;
                 }
                 frmMain.frmVision.ScanWithoutVision();
             }
             else if (frmMain != null && frmMain.frmVision != null &&
                      !frmMain.frmVision.PrepareForScan(MmiGV.pShMem.RScanTriggerDisplay.nLineCount, out strVision))
             {
-                lblScanTrigResult.Text = "VISION";
+                strResult = "VISION";
+                lblScanTrigResult.Text = strResult;
                 MessageBox.Show(strVision, "SCAN TRIGGER", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                return false;
             }
 
             bool bSent = false;
@@ -706,8 +712,9 @@ namespace MMI
             if (!bSent)
             {
                 if (frmMain != null && frmMain.frmVision != null) frmMain.frmVision.CancelScan();
-                lblScanTrigResult.Text = "NO LINK";
-                return;
+                strResult = "NO LINK";
+                lblScanTrigResult.Text = strResult;
+                return false;
             }
 
             // The command arriving is not the cycle starting. SEQ can take it
@@ -733,19 +740,20 @@ namespace MMI
             {
                 if (frmMain != null && frmMain.frmVision != null) frmMain.frmVision.CancelScan();
                 bScanTriggerWatch = false;
-                lblScanTrigResult.Text = (nCode != 0)
-                                       ? ScanTriggerValidateText(nCode)
-                                       : "REFUSED";
+                strResult = (nCode != 0) ? ScanTriggerValidateText(nCode) : "REFUSED";
+                lblScanTrigResult.Text = strResult;
                 ShowScanTriggerStartRefusal(nCode);
-                return;
+                return false;
             }
 
             bScanTriggerWatch = true;
-            lblScanTrigResult.Text = "START";
+            strResult = "START";
+            lblScanTrigResult.Text = strResult;
 
             // A second press while the cycle runs only earns a refusal from SEQ
             // and a SEND COMMAND ERROR in its log. SET turns this back on.
-            btnScanTrigStart.Enabled = false;
+            SetScanStartReady(false);
+            return true;
         }
 
         // The state row will read IDLE and the stage will not have moved, which
@@ -777,6 +785,24 @@ namespace MMI
 
             MessageBox.Show(strMsg, "SCAN TRIGGER",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        // Whether a START is possible right now: SEQ has accepted a SET and no
+        // cycle is already running. The button that acts on it sits on the
+        // VISION screen - that is where the image the scan produces appears, and
+        // leaving VISION to press START there would stop the grab - but the
+        // state behind it belongs here, with the recipe that earned it.
+        private bool bScanStartReady = false;
+
+        public bool ScanStartReady { get { return bScanStartReady; } }
+
+        private void SetScanStartReady(bool bReady)
+        {
+            bScanStartReady = bReady;
+            if (frmMain != null && frmMain.frmVision != null)
+            {
+                frmMain.frmVision.ScanStartReadyChanged(bReady);
+            }
         }
 
         private void btnScanTrigStop_Click(object sender, EventArgs e)

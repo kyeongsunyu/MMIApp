@@ -59,7 +59,6 @@
             this.lblcapScanTrigR5 = new System.Windows.Forms.Label();
             this.lblScanTrigResult = new System.Windows.Forms.Label();
             this.btnScanTrigSet = new MMI.HmiButton();
-            this.btnScanTrigStart = new MMI.HmiButton();
             this.btnScanTrigStop = new MMI.HmiButton();
             this.btnScanTrigTest = new MMI.HmiButton();
             this.pnlGeometry = new MMI.HmiCard();
@@ -174,7 +173,6 @@
             // 
             this.pnlScanTrigger.Controls.Add(this.btnScanTrigTest);
             this.pnlScanTrigger.Controls.Add(this.btnScanTrigStop);
-            this.pnlScanTrigger.Controls.Add(this.btnScanTrigStart);
             this.pnlScanTrigger.Controls.Add(this.btnScanTrigSet);
             this.pnlScanTrigger.Controls.Add(this.lblScanTrigResult);
             this.pnlScanTrigger.Controls.Add(this.lblcapScanTrigR5);
@@ -547,20 +545,9 @@
             this.btnScanTrigSet.Name = "btnScanTrigSet";
             this.btnScanTrigSet.Click += new System.EventHandler(this.btnScanTrigSet_Click);
             // 
-            // btnScanTrigStart
-            // 
-            this.btnScanTrigStart.Location = new System.Drawing.Point(356, 124);
-            this.btnScanTrigStart.Size = new System.Drawing.Size(170, 44);
-            this.btnScanTrigStart.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnScanTrigStart.Text = "START";
-            this.btnScanTrigStart.Role = MMI.HmiButtonRole.Success;
-            this.btnScanTrigStart.Enabled = false;
-            this.btnScanTrigStart.Name = "btnScanTrigStart";
-            this.btnScanTrigStart.Click += new System.EventHandler(this.btnScanTrigStart_Click);
-            // 
             // btnScanTrigStop
             // 
-            this.btnScanTrigStop.Location = new System.Drawing.Point(356, 176);
+            this.btnScanTrigStop.Location = new System.Drawing.Point(356, 124);
             this.btnScanTrigStop.Size = new System.Drawing.Size(170, 44);
             this.btnScanTrigStop.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnScanTrigStop.Text = "STOP";
@@ -570,7 +557,7 @@
             // 
             // btnScanTrigTest
             // 
-            this.btnScanTrigTest.Location = new System.Drawing.Point(356, 228);
+            this.btnScanTrigTest.Location = new System.Drawing.Point(356, 176);
             this.btnScanTrigTest.Size = new System.Drawing.Size(170, 44);
             this.btnScanTrigTest.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnScanTrigTest.Text = "OUTPUT TEST";
@@ -1735,7 +1722,6 @@
         private System.Windows.Forms.Label lblcapScanTrigR5;
         private System.Windows.Forms.Label lblScanTrigResult;
         private MMI.HmiButton btnScanTrigSet;
-        private MMI.HmiButton btnScanTrigStart;
         private MMI.HmiButton btnScanTrigStop;
         private MMI.HmiButton btnScanTrigTest;
         private MMI.HmiCard pnlGeometry;

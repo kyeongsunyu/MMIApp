@@ -56,6 +56,9 @@ namespace MMI
         private readonly double[] mtf = new double[VisionAnalysis.Sections];
         private bool bHaveMtf;
         private string strImageSource = "";
+        // What the last SCAN START press came back with, shown in the status block.
+        private string strScanStartResult = "";
+        private bool bScanStartWarn;
 
         public FormVision()
         {
@@ -86,6 +89,12 @@ namespace MMI
             if (Visible)
             {
                 if (!bTriedOpen) Connect();
+                // Coming back to this screen after a SET: take the current answer
+                // rather than wait for the next change of it.
+                if (frmMain != null && frmMain.frmScanTrigger != null)
+                {
+                    ScanStartReadyChanged(frmMain.frmScanTrigger.ScanStartReady);
+                }
                 tmrStatus.Start();
             }
             else
@@ -115,6 +124,53 @@ namespace MMI
         private string JogBlockReason()
         {
             return bScanArmed ? "Not while a scan is armed." : null;
+        }
+
+        // ---------------------------------------------------------------------
+        // starting a scan
+        //
+        // START used to sit on the TRIGGER screen, beside SET. That meant leaving
+        // VISION to press it - and leaving VISION freezes a running GRAB - so the
+        // operator could not watch the image the scan was producing. The recipe
+        // is still set on TRIGGER, which still owns the state that decides whether
+        // a START is possible; only the press happens here.
+
+        // Called by FormScanTrigger whenever that answer changes: a SET SEQ
+        // accepted turns it on, editing a field or starting a cycle turns it off.
+        public void ScanStartReadyChanged(bool bReady)
+        {
+            if (IsHandleCreated && InvokeRequired)
+            {
+                try { BeginInvoke((Action)(() => ScanStartReadyChanged(bReady))); }
+                catch (InvalidOperationException) { }
+                return;
+            }
+            btnScanStart.Enabled = bReady;
+            if (!bReady && strScanStartResult.Length > 0 && !bScanArmed)
+            {
+                strScanStartResult = "";
+                ShowStatus();
+            }
+        }
+
+        private void btnScanStart_Click(object sender, EventArgs e)
+        {
+            if (frmMain == null || frmMain.frmScanTrigger == null)
+            {
+                strScanStartResult = CLanguage.Text("Scan: the TRIGGER screen is not available.");
+                ShowStatus();
+                return;
+            }
+
+            string strResult;
+            bool bStarted = frmMain.frmScanTrigger.StartScan(out strResult);
+
+            // StartScan paints the TRIGGER screen's own result cell, which nobody
+            // is looking at from here, so the same word goes into this screen's
+            // status block.
+            strScanStartResult = CLanguage.Format("Scan: {0}", strResult);
+            bScanStartWarn = !bStarted;
+            ShowStatus();
         }
 
         // ---------------------------------------------------------------------
@@ -536,6 +592,7 @@ namespace MMI
             {
                 sb.Append(CLanguage.Text("Offline. BMP files can be opened."));
                 if (link.Length > 0) sb.Append("\n").Append(link);
+                if (strScanStartResult.Length > 0) sb.Append("\n").Append(strScanStartResult);
                 if (strOpenError.Length > 0) sb.Append("\n").Append(strOpenError);
                 lblVisionStatus.ForeColor = bTriedOpen ? HmiTheme.Warning : HmiTheme.TextMuted;
                 lblVisionStatus.Text = sb.ToString();
@@ -554,6 +611,7 @@ namespace MMI
             if (link.Length > 0) sb.Append("\n").Append(link);
             if (strLinkError.Length > 0) { sb.Append("\n").Append(strLinkError); bWarn = true; }
             if (strScanResult.Length > 0) { sb.Append("\n").Append(strScanResult); bWarn |= bScanWarn; }
+            if (strScanStartResult.Length > 0) { sb.Append("\n").Append(strScanStartResult); bWarn |= bScanStartWarn; }
             string err = grabber.LastError;
             if (err.Length > 0)
             {

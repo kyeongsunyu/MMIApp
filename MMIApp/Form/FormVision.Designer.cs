@@ -52,6 +52,7 @@
             this.lblStatusTitle = new System.Windows.Forms.Label();
             this.lblVisionStatus = new System.Windows.Forms.Label();
             this.btnConnect = new MMI.HmiButton();
+            this.btnScanStart = new MMI.HmiButton();
             this.pnlProfile = new MMI.HmiCard();
             this.profileView = new MMI.VisionProfileView();
             this.btnProfileSave = new MMI.HmiButton();
@@ -111,6 +112,7 @@
             // 
             // pnlControl
             // 
+            this.pnlControl.Controls.Add(this.btnScanStart);
             this.pnlControl.Controls.Add(this.btnConnect);
             this.pnlControl.Controls.Add(this.lblVisionStatus);
             this.pnlControl.Controls.Add(this.lblStatusTitle);
@@ -137,7 +139,7 @@
             // btnGrab
             // 
             this.btnGrab.Location = new System.Drawing.Point(14, 44);
-            this.btnGrab.Size = new System.Drawing.Size(186, 56);
+            this.btnGrab.Size = new System.Drawing.Size(186, 52);
             this.btnGrab.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnGrab.Text = "GRAB";
             this.btnGrab.Role = MMI.HmiButtonRole.Success;
@@ -147,7 +149,7 @@
             // btnSnap
             // 
             this.btnSnap.Location = new System.Drawing.Point(212, 44);
-            this.btnSnap.Size = new System.Drawing.Size(186, 56);
+            this.btnSnap.Size = new System.Drawing.Size(186, 52);
             this.btnSnap.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSnap.Text = "SNAP";
             this.btnSnap.Name = "btnSnap";
@@ -155,8 +157,8 @@
             // 
             // btnFreeze
             // 
-            this.btnFreeze.Location = new System.Drawing.Point(14, 108);
-            this.btnFreeze.Size = new System.Drawing.Size(186, 56);
+            this.btnFreeze.Location = new System.Drawing.Point(14, 102);
+            this.btnFreeze.Size = new System.Drawing.Size(186, 52);
             this.btnFreeze.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnFreeze.Text = "FREEZE";
             this.btnFreeze.Role = MMI.HmiButtonRole.Danger;
@@ -165,8 +167,8 @@
             // 
             // btnFit
             // 
-            this.btnFit.Location = new System.Drawing.Point(212, 108);
-            this.btnFit.Size = new System.Drawing.Size(186, 56);
+            this.btnFit.Location = new System.Drawing.Point(212, 102);
+            this.btnFit.Size = new System.Drawing.Size(186, 52);
             this.btnFit.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnFit.Text = "FIT";
             this.btnFit.Name = "btnFit";
@@ -174,8 +176,8 @@
             // 
             // btnNewImage
             // 
-            this.btnNewImage.Location = new System.Drawing.Point(14, 172);
-            this.btnNewImage.Size = new System.Drawing.Size(120, 56);
+            this.btnNewImage.Location = new System.Drawing.Point(14, 160);
+            this.btnNewImage.Size = new System.Drawing.Size(120, 52);
             this.btnNewImage.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNewImage.Text = "NEW";
             this.btnNewImage.Name = "btnNewImage";
@@ -183,8 +185,8 @@
             // 
             // btnLoadImage
             // 
-            this.btnLoadImage.Location = new System.Drawing.Point(146, 172);
-            this.btnLoadImage.Size = new System.Drawing.Size(120, 56);
+            this.btnLoadImage.Location = new System.Drawing.Point(146, 160);
+            this.btnLoadImage.Size = new System.Drawing.Size(120, 52);
             this.btnLoadImage.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLoadImage.Text = "LOAD BMP";
             this.btnLoadImage.Name = "btnLoadImage";
@@ -192,8 +194,8 @@
             // 
             // btnSaveImage
             // 
-            this.btnSaveImage.Location = new System.Drawing.Point(278, 172);
-            this.btnSaveImage.Size = new System.Drawing.Size(120, 56);
+            this.btnSaveImage.Location = new System.Drawing.Point(278, 160);
+            this.btnSaveImage.Size = new System.Drawing.Size(120, 52);
             this.btnSaveImage.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSaveImage.Text = "SAVE BMP";
             this.btnSaveImage.Name = "btnSaveImage";
@@ -201,7 +203,7 @@
             // 
             // lblBufferCount
             // 
-            this.lblBufferCount.Location = new System.Drawing.Point(14, 244);
+            this.lblBufferCount.Location = new System.Drawing.Point(14, 226);
             this.lblBufferCount.Size = new System.Drawing.Size(120, 36);
             this.lblBufferCount.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBufferCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
@@ -212,7 +214,7 @@
             // 
             // txtBufferCount
             // 
-            this.txtBufferCount.Location = new System.Drawing.Point(140, 246);
+            this.txtBufferCount.Location = new System.Drawing.Point(140, 228);
             this.txtBufferCount.Size = new System.Drawing.Size(90, 32);
             this.txtBufferCount.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtBufferCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -221,7 +223,7 @@
             // 
             // btnBufferApply
             // 
-            this.btnBufferApply.Location = new System.Drawing.Point(242, 238);
+            this.btnBufferApply.Location = new System.Drawing.Point(242, 220);
             this.btnBufferApply.Size = new System.Drawing.Size(156, 48);
             this.btnBufferApply.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBufferApply.Text = "APPLY";
@@ -230,7 +232,7 @@
             // 
             // btnScanLink
             // 
-            this.btnScanLink.Location = new System.Drawing.Point(14, 294);
+            this.btnScanLink.Location = new System.Drawing.Point(14, 276);
             this.btnScanLink.Size = new System.Drawing.Size(186, 48);
             this.btnScanLink.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnScanLink.Text = "SCAN LINK";
@@ -239,7 +241,7 @@
             // 
             // btnWiringA
             // 
-            this.btnWiringA.Location = new System.Drawing.Point(212, 294);
+            this.btnWiringA.Location = new System.Drawing.Point(212, 276);
             this.btnWiringA.Size = new System.Drawing.Size(90, 48);
             this.btnWiringA.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnWiringA.Text = "A GRABBER";
@@ -248,7 +250,7 @@
             // 
             // btnWiringB
             // 
-            this.btnWiringB.Location = new System.Drawing.Point(308, 294);
+            this.btnWiringB.Location = new System.Drawing.Point(308, 276);
             this.btnWiringB.Size = new System.Drawing.Size(90, 48);
             this.btnWiringB.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnWiringB.Text = "B CAMERA";
@@ -257,7 +259,7 @@
             // 
             // lblCameraTitle
             // 
-            this.lblCameraTitle.Location = new System.Drawing.Point(14, 348);
+            this.lblCameraTitle.Location = new System.Drawing.Point(14, 392);
             this.lblCameraTitle.Size = new System.Drawing.Size(384, 20);
             this.lblCameraTitle.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCameraTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -268,7 +270,7 @@
             // 
             // lblCamera
             // 
-            this.lblCamera.Location = new System.Drawing.Point(14, 368);
+            this.lblCamera.Location = new System.Drawing.Point(14, 412);
             this.lblCamera.Size = new System.Drawing.Size(384, 34);
             this.lblCamera.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCamera.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
@@ -279,7 +281,7 @@
             // 
             // lblStatusTitle
             // 
-            this.lblStatusTitle.Location = new System.Drawing.Point(14, 402);
+            this.lblStatusTitle.Location = new System.Drawing.Point(14, 450);
             this.lblStatusTitle.Size = new System.Drawing.Size(384, 20);
             this.lblStatusTitle.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblStatusTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -290,7 +292,7 @@
             // 
             // lblVisionStatus
             // 
-            this.lblVisionStatus.Location = new System.Drawing.Point(14, 422);
+            this.lblVisionStatus.Location = new System.Drawing.Point(14, 470);
             this.lblVisionStatus.Size = new System.Drawing.Size(384, 132);
             this.lblVisionStatus.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblVisionStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(160)))), ((int)(((byte)(166)))));
@@ -299,10 +301,21 @@
             this.lblVisionStatus.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.lblVisionStatus.Name = "lblVisionStatus";
             // 
+            // btnScanStart
+            // 
+            this.btnScanStart.Location = new System.Drawing.Point(14, 332);
+            this.btnScanStart.Size = new System.Drawing.Size(240, 52);
+            this.btnScanStart.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnScanStart.Text = "SCAN START";
+            this.btnScanStart.Role = MMI.HmiButtonRole.Success;
+            this.btnScanStart.Enabled = false;
+            this.btnScanStart.Name = "btnScanStart";
+            this.btnScanStart.Click += new System.EventHandler(this.btnScanStart_Click);
+            // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(14, 558);
-            this.btnConnect.Size = new System.Drawing.Size(384, 46);
+            this.btnConnect.Location = new System.Drawing.Point(266, 332);
+            this.btnConnect.Size = new System.Drawing.Size(132, 52);
             this.btnConnect.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnConnect.Text = "CONNECT";
             this.btnConnect.Name = "btnConnect";
@@ -574,6 +587,7 @@
         private System.Windows.Forms.Label lblMtf6;
         private System.Windows.Forms.Label lblMtfNote;
         public MMI.MotorJogBar motorBar;
+        private MMI.HmiButton btnScanStart;
         private System.Windows.Forms.Timer tmrStatus;
     }
 }
