@@ -72,6 +72,7 @@
             this.lblMtf6 = new System.Windows.Forms.Label();
             this.lblMtfNote = new System.Windows.Forms.Label();
             this.tmrStatus = new System.Windows.Forms.Timer(this.components);
+            this.tmrDisplay = new System.Windows.Forms.Timer(this.components);
             this.pnlImage.SuspendLayout();
             this.pnlControl.SuspendLayout();
             this.pnlProfile.SuspendLayout();
@@ -532,6 +533,11 @@
             this.tmrStatus.Interval = 500;
             this.tmrStatus.Tick += new System.EventHandler(this.tmrStatus_Tick);
             // 
+            // tmrDisplay
+            // 
+            this.tmrDisplay.Interval = 33;
+            this.tmrDisplay.Tick += new System.EventHandler(this.tmrDisplay_Tick);
+            // 
             // FormVision
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -602,5 +608,6 @@
         private MMI.HmiButton btnScanStart;
         private MMI.HmiButton btnScanStop;
         private System.Windows.Forms.Timer tmrStatus;
+        private System.Windows.Forms.Timer tmrDisplay;
     }
 }

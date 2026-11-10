@@ -53,6 +53,8 @@ namespace MMI
         private int nTickLastAnalysis;
         private int nTickStart;
         private bool bWaitingFirstFrame;
+        // Set by the grabber's thread, cleared by tmrDisplay on the UI thread.
+        private volatile bool bFramePending;
         private readonly double[] mtf = new double[VisionAnalysis.Sections];
         private bool bHaveMtf;
         private string strImageSource = "";
@@ -96,10 +98,12 @@ namespace MMI
                     ScanStartReadyChanged(frmMain.frmScanTrigger.ScanStartReady);
                 }
                 tmrStatus.Start();
+                tmrDisplay.Start();
             }
             else
             {
                 tmrStatus.Stop();
+                tmrDisplay.Stop();
                 motorBar.Release();
                 if (grabber != null && grabber.IsGrabbing && !bScanArmed) Freeze();
             }
@@ -263,12 +267,33 @@ namespace MMI
             bWiringApplied = false;
         }
 
+        // Raised on the grabber's worker thread. It used to BeginInvoke the
+        // repaint, and that is what made the screen look dead while the image
+        // went on updating.
+        //
+        // Windows takes messages off a queue in a fixed order: posted messages
+        // first, then WM_PAINT, then WM_TIMER. A BeginInvoke is a posted
+        // message, so while frames kept arriving there was always one of them
+        // ahead of WM_PAINT and no other control on the screen ever got to
+        // repaint - buttons, scroll bars, labels all froze. The image alone
+        // stayed live because ShowFrame calls imgView.Update(), which paints it
+        // synchronously instead of waiting for its WM_PAINT.
+        //
+        // Now the frame is only flagged, and a timer draws it. WM_TIMER sits
+        // BELOW WM_PAINT in that order, so the rest of the screen repaints
+        // first, and WM_TIMER cannot pile up the way posted messages can: if a
+        // repaint overruns the interval the frame rate drops instead of the
+        // queue growing.
         private void Grabber_FrameReady()
         {
-            if (IsHandleCreated && !IsDisposed)
-            {
-                try { BeginInvoke((Action)ShowFrame); } catch (InvalidOperationException) { }
-            }
+            bFramePending = true;
+        }
+
+        private void tmrDisplay_Tick(object sender, EventArgs e)
+        {
+            if (!bFramePending) return;
+            bFramePending = false;
+            ShowFrame();
         }
 
         private void Grabber_Stopped()
@@ -304,6 +329,14 @@ namespace MMI
 
         private void AcquisitionEnded()
         {
+            // The frame that ended the acquisition may still be waiting for the
+            // display timer, and for a SNAP it is the only one there will be.
+            if (bFramePending)
+            {
+                bFramePending = false;
+                ShowFrame();
+            }
+
             // the frame of a SNAP, or the last one of a GRAB, gets its analysis
             // and the still image quality
             imgView.Live = false;
