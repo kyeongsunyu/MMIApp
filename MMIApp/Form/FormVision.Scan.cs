@@ -362,6 +362,15 @@ namespace MMI
             strScanResult = CLanguage.Format("Scan: lines {0:N0} / expected {1:N0}, triggers {2}",
                                              nScanReceivedLines, nScanLines, nScanTriggers < 0 ? "-" : nScanTriggers.ToString("N0"))
                           + (bScanWarn ? "  " + CLanguage.Text("MISMATCH") : "  OK");
+
+            // Where it went. ScanFrameArrived computed this path, saved to it
+            // and dropped it, so the one thing the operator wants at the end of
+            // a scan - the image - had to be found by hand in the day's folder.
+            if (strLastScanFile.Length > 0)
+            {
+                strScanResult += "\n" + CLanguage.Format("Saved: {0}", strLastScanFile);
+            }
+
             bScanSeqDone = false;
             bScanGotFrame = false;
             ShowStatus();
